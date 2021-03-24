@@ -3,7 +3,6 @@ layout: default
 title: Bosses
 parent: Npcs
 nav_order: 1
-permalink: /docs/npcs/bosses
 ---
 
 # Bosses

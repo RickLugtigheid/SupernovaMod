@@ -3,7 +3,6 @@ layout: default
 title: Armor
 parent: Items
 nav_order: 2
-permalink: /docs/items/armor
 ---
 
 # Armor
