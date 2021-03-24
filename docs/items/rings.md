@@ -6,3 +6,7 @@ nav_order: 6
 ---
 
 # Rings
+
+#### Pre Hardmode
+- [Gem Ring](https://ricklugtigheid.github.io/SupernovaMod/docs/items/rings/gem_ring)
+- [Ring of Hellfire](https://ricklugtigheid.github.io/SupernovaMod/docs/items/rings/ring_of_hellfire)
