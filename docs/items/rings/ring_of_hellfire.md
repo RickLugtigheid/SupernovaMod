@@ -2,6 +2,7 @@
 layout: default
 title: Ring of Hellfire
 parent: Rings
+tags: Ring, Hellfire, Hellstone
 ---
 
 # Ring of Hellfire

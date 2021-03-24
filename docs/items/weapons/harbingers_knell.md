@@ -2,6 +2,7 @@
 layout: default
 title: Harbingers Knell
 parent: Weapons
+tags: Weapon, Harbinger, Annihilation, Knell, Summon
 ---
 
 # Harbingers Knell

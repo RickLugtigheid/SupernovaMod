@@ -2,6 +2,7 @@
 layout: default
 title: Gem Ring
 parent: Rings
+tags: Ring, Power, Gem
 ---
 
 # Gem Ring

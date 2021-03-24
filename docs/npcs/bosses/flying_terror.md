@@ -2,6 +2,7 @@
 layout: default
 title: Flying Terror
 parent: Bosses
+tags: Npc, Boss, Flying, Terror
 ---
 
 # Flying Terror

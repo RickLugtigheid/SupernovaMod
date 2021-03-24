@@ -3,6 +3,7 @@ layout: default
 title: Accessories
 parent: Items
 nav_order: 1
+tags: Item, Items, Accessory, Accessories
 ---
 
 # Accessories

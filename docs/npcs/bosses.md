@@ -3,6 +3,7 @@ layout: default
 title: Bosses
 parent: Npcs
 nav_order: 1
+tags: Npc, Boss
 ---
 
 # Bosses

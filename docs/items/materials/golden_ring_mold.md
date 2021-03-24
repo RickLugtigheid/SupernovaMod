@@ -2,6 +2,7 @@
 layout: default
 title: Golden Ring Mold
 parent: Materials
+tags: Material, Golden, Ring, Mold, Power
 ---
 
 # Golden Ring Mold

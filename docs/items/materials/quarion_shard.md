@@ -2,6 +2,7 @@
 layout: default
 title: Quarion Shard
 parent: Materials
+tags: Material, Quarion, Shard, Leaf, Crab, Jungle
 ---
 
 # Quarion Shard

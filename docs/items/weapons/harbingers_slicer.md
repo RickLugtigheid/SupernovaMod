@@ -2,6 +2,7 @@
 layout: default
 title: Harbingers Slicer
 parent: Weapons
+tags: Weapon, Harbinger, Annihilation, Slicer, Trown, Throwing
 ---
 
 # Harbingers Slicer

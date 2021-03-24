@@ -2,6 +2,7 @@
 layout: default
 title: Verglas Bar
 parent: Materials
+tags: Material, Bar, Verglass, Rime
 ---
 
 # Verglas Bar

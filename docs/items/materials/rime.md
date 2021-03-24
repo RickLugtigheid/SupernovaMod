@@ -2,6 +2,7 @@
 layout: default
 title: Rime
 parent: Materials
+tags: Material, Rime, Verglass, Snow, Biome, Ice, Bolt
 ---
 
 # Rime

@@ -2,6 +2,7 @@
 layout: default
 title: Ice Bolt
 parent: Weapons
+tags: Weapon, Ice, Bolt, Magic
 ---
 
 # Ice Bolt

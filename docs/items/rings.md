@@ -3,6 +3,7 @@ layout: default
 title: Rings
 parent: Items
 nav_order: 6
+tags: Item, Items, Ring
 ---
 
 # Rings

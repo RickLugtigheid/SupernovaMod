@@ -2,6 +2,7 @@
 layout: default
 title: Terror Wing
 parent: Materials
+tags: Material, Flying, Terror, Drops, Wing
 ---
 
 # Terror Wing

@@ -2,6 +2,7 @@
 layout: default
 title: Terror Tome
 parent: Weapons
+tags: Weapon, Flying, Terror, Tome, Magic
 ---
 
 ### Stats

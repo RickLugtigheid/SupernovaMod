@@ -2,6 +2,7 @@
 layout: default
 title: Tome of Frost and Fire
 parent: Weapons
+tags: Weapon, Tome, Frost, Fire, Ice, Blaze, Bolt, Pre hardmode, Magic
 ---
 
 ##### Tooltip: *Shoots fire and frostburn*

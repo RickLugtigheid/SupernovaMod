@@ -2,6 +2,7 @@
 layout: default
 title: Zirconium Bar
 parent: Materials
+tags: Material, Zirconium, Bar
 ---
 
 # Zirconium Bar
@@ -15,3 +16,5 @@ parent: Materials
 
 
 ### Used In
+- [Zirconium Axe](https://ricklugtigheid.github.io/SupernovaMod/docs/items/tools/zirconium_axe)
+- [Zirconium Pickaxe](https://ricklugtigheid.github.io/SupernovaMod/docs/items/tools/zirconium_pickaxe)

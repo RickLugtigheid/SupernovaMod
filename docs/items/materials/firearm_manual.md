@@ -2,6 +2,7 @@
 layout: default
 title: Firearm Manual
 parent: Materials
+tags: Material, Firearm, Manual, Ranged
 ---
 
 # Firearm Manual

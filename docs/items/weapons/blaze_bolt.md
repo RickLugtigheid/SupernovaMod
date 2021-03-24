@@ -2,6 +2,7 @@
 layout: default
 title: Blaze Bolt
 parent: Weapons
+tags: Weapon, Blaze, Bolt, Magic
 ---
 
 # Blaze Bolt

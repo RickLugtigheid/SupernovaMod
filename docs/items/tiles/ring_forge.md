@@ -2,6 +2,7 @@
 layout: default
 title: Ring Forge
 parent: Tiles
+tags: Ring, Forge, Pre Hardmode, Item
 ---
 
 # Ring Forge

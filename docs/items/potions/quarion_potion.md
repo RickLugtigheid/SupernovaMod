@@ -2,6 +2,7 @@
 layout: default
 title: Quarion Potion
 parent: Potions
+tags: Potion, Quarion, Buff
 ---
 
 # Quarion Potion

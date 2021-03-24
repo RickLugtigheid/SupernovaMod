@@ -2,6 +2,7 @@
 layout: default
 title: Horrid Chunk
 parent: Miscellaneous
+tags: Misc, Flying, Terror, Summon
 ---
 
 # Horrid Chunk

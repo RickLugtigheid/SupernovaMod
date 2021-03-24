@@ -2,6 +2,7 @@
 layout: default
 title: Harbinger of Annihilation
 parent: Bosses
+tags: Npc, Boss, Harbinger, Annihilation
 ---
 
 # Harbinger of Annihilation

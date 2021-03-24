@@ -2,6 +2,7 @@
 layout: default
 title: Terror Knife
 parent: Weapons
+tags: Weapon, Flying, Terror, Knive, Trown, Throwing
 ---
 
 ### Stats

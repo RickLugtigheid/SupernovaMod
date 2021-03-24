@@ -2,6 +2,7 @@
 layout: default
 title: Terror Cleaver
 parent: Weapons
+tags: Weapon, Flying, Terror, Cleaver, Melee
 ---
 
 ##### Tooltip: *A big cleaver as strong as the bones of the Flying Terror*
