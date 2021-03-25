@@ -20,4 +20,4 @@ tags: Melee, Pre Hardmode, Item, weapon, Bone, Crusher
 - 35 [Bone](https://terraria.gamepedia.com/Bone)
 - 7 [Bone Fragment](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/bone_fragment)
 
-##### Made at a [Hellforge](https://terraria.fandom.com/wiki/Work_Benches)
+##### Made at a [Work Bench](https://terraria.gamepedia.com/Work_Benches)
