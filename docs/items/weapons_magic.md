@@ -3,10 +3,11 @@ layout: default
 title: Magic Weapons
 parent: Weapons
 nav_order: 3
+permalink: /docs/items/weapons/weapons_magic
 tags: Item, Weapon, Magic, Staff, Wand, Scepter
 ---
 
-# Ranged Weapons
+# Magic Weapons
 
 Wands
 {: .fs-6 .fw-300 }

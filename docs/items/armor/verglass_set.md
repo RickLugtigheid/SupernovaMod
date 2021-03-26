@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Verglas Set
-parent: Items
+parent: Armor
 tags: Item, Items, Armor, Sets, Verglas
 ---
 

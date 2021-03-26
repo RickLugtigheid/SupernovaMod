@@ -3,6 +3,7 @@ layout: default
 title: Ranged Weapons
 parent: Weapons
 nav_order: 2
+permalink: /docs/items/weapons/weapons_ranged
 tags: Item, Weapon, Ranged, Bow, Gun
 ---
 

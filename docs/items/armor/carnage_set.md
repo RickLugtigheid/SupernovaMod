@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Carnage Set
-parent: Items
+parent: Armor
 tags: Item, Items, Armor, Sets, Carnage
 ---
 
@@ -39,4 +39,4 @@ Recipes:
 
 ### Carnage Helmet
 - 23 [Blood Shards](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/blood_shards)
-- 12 [Bone Fragments](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/bone_fragment))
+- 12 [Bone Fragments](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/bone_fragment)
