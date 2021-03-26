@@ -9,4 +9,4 @@ tags: Item, Items, Misc, Miscellaneous
 # Miscellaneous
 
 #### Summoning Items
-- [Horrid Chunk](https://ricklugtigheid.github.io/SupernovaMod/docs/items/misc/horrid_chunk)
+- [Horrid Chunk](https://ricklugtigheid.github.io/SupernovaMod/docs/items/miscellaneous/horrid_chunk)

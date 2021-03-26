@@ -7,7 +7,7 @@ tags: Npc, Boss, Flying, Terror
 
 # Flying Terror
 
-##### Flying Terror is a bosses that can be summoned by using a [Horrid Chunk](https://ricklugtigheid.github.io/SupernovaMod/docs/items/misc/horrid_chunk) at night.
+##### Flying Terror is a bosses that can be summoned by using a [Horrid Chunk](https://ricklugtigheid.github.io/SupernovaMod/docs/items/miscellaneous/horrid_chunk) at night.
 
 ### Stats
 - 3200 Health (6400 in expert mode)
