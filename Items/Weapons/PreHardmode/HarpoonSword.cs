@@ -14,7 +14,7 @@ namespace Supernova.Items.Weapons.PreHardmode
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Harpoon Blade");
-            Tooltip.SetDefault("Right click to shoots a harpoon at your enemies.");
+            Tooltip.SetDefault("Right click to shoot a harpoon at your enemies");
             // Tooltip2.SetDefault("On Hit it lets the enemey bleed.");
             Item.staff[item.type] = true;
         }

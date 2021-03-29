@@ -21,7 +21,7 @@ namespace Supernova.Items.Weapons.PreHardmode
 
         public override void SetDefaults()
         {
-            item.damage = 18;
+            item.damage = 14;
             item.ranged = true;
             item.width = 40;
             item.crit = 3;
@@ -40,10 +40,10 @@ namespace Supernova.Items.Weapons.PreHardmode
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if(shoot >= 6)
+            if(shoot >= 4)
             {
-                item.useAnimation = 84;
-                item.useTime = 84;
+                item.useAnimation = 74;
+                item.useTime = 74;
                 shoot = 0;
             }
             else
@@ -58,14 +58,16 @@ namespace Supernova.Items.Weapons.PreHardmode
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.GoldBar, 8);
-            recipe.AddIngredient(mod.GetItem("FirearmManual"), 2);
+            recipe.AddIngredient(ItemID.GoldBar, 7);
+            recipe.AddIngredient(ItemID.FlintlockPistol);
+            recipe.AddIngredient(mod.GetItem("FirearmManual"));
             recipe.SetResult(this);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.PlatinumBar, 8);
-            recipe.AddIngredient(mod.GetItem("FirearmManual"), 2);
+            recipe.AddIngredient(ItemID.PlatinumBar, 7);
+            recipe.AddIngredient(ItemID.FlintlockPistol);
+            recipe.AddIngredient(mod.GetItem("FirearmManual"));
             recipe.SetResult(this);
             recipe.SetResult(this);
             recipe.AddRecipe();

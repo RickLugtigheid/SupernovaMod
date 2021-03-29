@@ -56,7 +56,7 @@ namespace Supernova.Projectiles
 
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.60f;
 			projectile.localAI[0] += 1f;
-            projectile.alpha = (int)projectile.localAI[0] * 2;
+            projectile.alpha = (int)(projectile.localAI[0] * 1.5f);
 
 			projectile.ai[1]++;
 			Vector2 perturbedSpeed = new Vector2(projectile.velocity.X, projectile.velocity.Y).RotatedByRandom(MathHelper.ToRadians(projectile.ai[1]));

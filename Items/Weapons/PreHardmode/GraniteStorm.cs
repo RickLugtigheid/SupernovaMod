@@ -13,7 +13,7 @@ namespace Supernova.Items.Weapons.PreHardmode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Granite Storm");
-            Tooltip.SetDefault("Shoots chunks of granite at your enemy");
+            Tooltip.SetDefault("Shoots chunks of granite at your enemies");
         }
         public override void SetDefaults()
         {

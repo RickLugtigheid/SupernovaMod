@@ -82,6 +82,6 @@ namespace Supernova.Npcs.PreHardmode
             Main.projectile[i].tileCollide = false;
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (!spawnInfo.lihzahrd && !spawnInfo.invasion) && spawnInfo.player.ZoneRockLayerHeight ? 0.031f : 0;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (!spawnInfo.lihzahrd && !spawnInfo.invasion && !spawnInfo.spiderCave && !spawnInfo.desertCave && !spawnInfo.player.ZoneDungeon) && spawnInfo.player.ZoneRockLayerHeight ? 0.031f : 0;
     }
 }

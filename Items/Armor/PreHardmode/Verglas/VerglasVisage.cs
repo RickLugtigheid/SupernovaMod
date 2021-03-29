@@ -10,7 +10,7 @@ namespace Supernova.Items.Armor.PreHardmode.Verglas
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Verglas Visage");
-            Tooltip.SetDefault("Melee and throwing helmet" +
+            Tooltip.SetDefault("Ranged and throwing helmet" +
                 "\n The cold protects you from lava for a short time");
         }
 

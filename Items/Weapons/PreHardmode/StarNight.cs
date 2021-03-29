@@ -16,8 +16,7 @@ namespace Supernova.Items.Weapons.PreHardmode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Starry Night");
-            Tooltip.SetDefault("This weapon charges up when you shoot." +
-                "\n When it is fully charged it will shoot 6 deadly stars at your enemy");
+            Tooltip.SetDefault("This weapon charges up when you shoot. \nWhen fully charged it will shoot 6 deadly stars at your enemies");
         }
         public override Vector2? HoldoutOffset()
         {

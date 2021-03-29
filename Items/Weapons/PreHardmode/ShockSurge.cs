@@ -14,7 +14,7 @@ namespace Supernova.Items.Weapons.PreHardmode
         {
             DisplayName.SetDefault("Shock Surge");
 
-            Tooltip.SetDefault("Shoots Lighting bolts at the target");
+            Tooltip.SetDefault("Shoots a bolt of lighting at the target");
         }
         public override void SetDefaults()
         {

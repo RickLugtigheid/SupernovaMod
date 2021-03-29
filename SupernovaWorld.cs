@@ -19,16 +19,16 @@ namespace Supernova
             int ShiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
             if (ShiniesIndex != -1)
             {
-                tasks.Insert(ShiniesIndex + 1, new PassLegacy("Glactica Mod Ores", delegate (GenerationProgress progress)
+                tasks.Insert(ShiniesIndex + 1, new PassLegacy("Supernova Ores", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "Generating Glactica Mod Ores";
+                    progress.Message = "Generating Supernova Ores";
                     for (int i = 0; i < (int)((double)(Main.maxTilesX * Main.maxTilesY) * 8E-05); i++)
                     {
                         WorldGen.TileRunner(
                             WorldGen.genRand.Next(0, Main.maxTilesX),
                             WorldGen.genRand.Next((int)WorldGen.worldSurfaceHigh, Main.maxTilesY),
-                            (double)WorldGen.genRand.Next(3, 8),
-                            WorldGen.genRand.Next(2, 8),
+                            (double)WorldGen.genRand.Next(5, 8),
+                            WorldGen.genRand.Next(3, 9),
                             mod.TileType("ZirconiumOreTile"), false, 0f, 0f, false, true);
                     }
                 }));

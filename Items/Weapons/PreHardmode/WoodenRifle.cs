@@ -15,13 +15,13 @@ namespace Supernova.Items.Weapons.PreHardmode
 
         public override void SetDefaults()
         {
-            item.damage = 8;
+            item.damage = 7;
             item.ranged = true;
             item.width = 40;
             item.crit = 2;
             item.height = 20;
-            item.useTime = 20;
-            item.useAnimation = 20;
+            item.useTime = 23;
+            item.useAnimation = 23;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 1.2f;
@@ -38,6 +38,8 @@ namespace Supernova.Items.Weapons.PreHardmode
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.GetItem("WoodGun"));
+            recipe.AddIngredient(ItemID.IronBar, 12);
+            recipe.anyIronBar = true;
             recipe.AddIngredient(mod.GetItem("FirearmManual"), 2);
             recipe.AddIngredient(ItemID.Wood, 100);
             recipe.AddTile(TileID.WorkBenches);
