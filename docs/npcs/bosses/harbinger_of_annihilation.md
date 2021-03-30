@@ -12,7 +12,7 @@ tags: Npc, Boss, Harbinger, Annihilation
 ### Stats
 - 1950 Health (3900 in expert mode)
 - 32 Damage 
-- 10 Defence (+1 for every player)
+- 10 Defence
 
 ### Loot
 - [Harbingers Slicer](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/harbingers_slicer)

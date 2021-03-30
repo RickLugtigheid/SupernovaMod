@@ -12,7 +12,7 @@ tags: Npc, Boss, Flying, Terror
 ### Stats
 - 3200 Health (6400 in expert mode)
 - 23 Damage
-- 11 Defence (+1 for every player)
+- 11 Defence
 
 ### Loot
 - [Terror Wing](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/terror_wing)

@@ -9,8 +9,8 @@ tags: Weapon, Ranged, Item, Marble, Magnum, Gun
 
 ### Stats
 - DamageType: [Ranged]
-- Damage: 10
-- Cit: 4%
+- Damage: 9
+- Cit: 3%
 - Value: 5 Gold
 
 ### Recipe

@@ -9,12 +9,13 @@ tags: Weapon, Ranged, Item, Wood, Rifle, Gun, Firearm
 
 ### Stats
 - DamageType: [Ranged]
-- Damage: 18
+- Damage: 7
 - Cit: 3%
 - Value: 4 Gold and 30 Silver
 
 ### Recipe
 - 2 [Wood Gun](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/wood_gun)
+- 12 [Iron/Lead Bars](https://terraria-archive.fandom.com/wiki/Iron_Bar)
 - 2 [Firearm Manuals](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/firearm_manual)
 - 100 [Wood](https://terraria-archive.fandom.com/wiki/Wood)
 

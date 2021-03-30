@@ -3,7 +3,6 @@ layout: default
 title: Trown Weapons
 parent: Weapons
 nav_order: 4
-permalink: /docs/items/weapons/weapons_trown
 tags: Item, Weapon, Trown, Trowing
 ---
 

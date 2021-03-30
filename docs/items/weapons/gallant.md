@@ -9,7 +9,7 @@ tags: Weapon, Ranged, Item, Gallant
 
 ### Stats
 - DamageType: [Ranged]
-- Damage: 18
+- Damage: 14
 - Cit: 3%
 - Value: 4 Gold and 30 Silver
 

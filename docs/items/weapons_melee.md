@@ -3,7 +3,6 @@ layout: default
 title: Melee Weapons
 parent: Weapons
 nav_order: 1
-permalink: /docs/items/weapons/weapons_melee
 tags: Item, Weapon, Melee, Sword
 ---
 
