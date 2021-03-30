@@ -36,7 +36,7 @@ namespace Supernova.Npcs.PreHardmode
 
             npc.spriteDirection = npc.direction;
         }
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (!spawnInfo.lihzahrd && !spawnInfo.invasion) && spawnInfo.player.ZoneRockLayerHeight == true ? 0.025f : 0;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (!spawnInfo.lihzahrd && !spawnInfo.invasion && !spawnInfo.spiderCave && !spawnInfo.desertCave && !spawnInfo.player.ZoneDungeon) && spawnInfo.player.ZoneRockLayerHeight == true ? 0.025f : 0;
 
         public override void NPCLoot()
         {

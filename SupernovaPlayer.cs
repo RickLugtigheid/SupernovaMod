@@ -17,6 +17,7 @@ namespace Supernova
 
 		/* Minions */
 		public bool minionHairbringersKnell = false;
+		public bool minionVerglasFlake = false;
 
 		/*  Hit Events */
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) => OnHit(target, damage, knockback, crit, proj: proj);
@@ -91,6 +92,7 @@ namespace Supernova
 
 			// Minions
 			minionHairbringersKnell = false;
+			minionVerglasFlake = false;
 		}
 	}
 }
