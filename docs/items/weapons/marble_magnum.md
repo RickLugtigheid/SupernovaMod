@@ -7,9 +7,11 @@ tags: Weapon, Ranged, Item, Marble, Magnum, Gun
 
 # Marble Magnum
 
+##### Tooltip: *Fires a dense spread of bullets*
+
 ### Stats
 - DamageType: [Ranged]
-- Damage: 9
+- Damage: 7
 - Cit: 3%
 - Value: 5 Gold
 

@@ -7,6 +7,8 @@ tags: Weapon, Ranged, Item, Hellfire, Rifle, Gun, Firearm
 
 # Hellfire Rifle
 
+##### Tooltip: *Turns Wooden bullets into Molten bullets*
+
 ### Stats
 - DamageType: [Ranged]
 - Damage: 15

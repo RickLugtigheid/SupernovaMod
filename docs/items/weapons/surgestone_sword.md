@@ -7,6 +7,8 @@ tags: Weapon, Melee, Item, Surgestone, Sword, Stone, Manta, Ray
 
 # Surgestone Sword
 
+##### Tooltip: *Summons a tornado at the target after a few strikes*
+
 ### Stats
 - DamageType: [Melee]
 - Damage: 23

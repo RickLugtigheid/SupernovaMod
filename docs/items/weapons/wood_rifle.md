@@ -9,7 +9,7 @@ tags: Weapon, Ranged, Item, Wood, Rifle, Gun, Firearm
 
 ### Stats
 - DamageType: [Ranged]
-- Damage: 7
+- Damage: 8
 - Cit: 3%
 - Value: 4 Gold and 30 Silver
 

@@ -7,6 +7,8 @@ tags: Weapon, Ranged, Item, Gallant
 
 # Gallant
 
+##### Tooltip: *Can shoot 4 bullets before having to cooldown*
+
 ### Stats
 - DamageType: [Ranged]
 - Damage: 14
