@@ -10,34 +10,34 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Surgestone Sword");
+            Tooltip.SetDefault("Summons a tornado at the target after a few strikes");
         }
         int i;
 		public override void SetDefaults()
 		{
 			item.damage = 23;
 			item.melee = true;
-            item.crit = 8;
+            item.crit = 4;
             item.width = 40;
 			item.height = 40;
 			item.useTime = 20;
 			item.useAnimation = 20;
 			item.useStyle = 1;
 			item.knockBack = 6;
-			item.value = 10000;
-			item.rare = 4;
+			item.value = Item.buyPrice(0, 15, 0, 0);
+			item.rare = Rarity.Orange;
 			item.UseSound = SoundID.Item1;
-            item.useTurn = true;
             item.autoReuse = true;
-            item.scale *= 1.16f;
+            item.scale *= 1.12f;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
             i++;
-            if(i > 4)
+            if(i > 6)
             {
                 Vector2 perturbedSpeed = new Vector2(0, 0) * .4f;
-                Projectile.NewProjectile(player.position.X, player.position.Y, perturbedSpeed.X, perturbedSpeed.Y, 656, 18, 4f, player.whoAmI);
+                Projectile.NewProjectile(target.position.X, target.position.Y, perturbedSpeed.X, perturbedSpeed.Y, 656, item.damage / 2, 4f, player.whoAmI);
                 i = 0;
             }
         }

@@ -14,7 +14,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
         public bool noAI = false;
 
         /* Stats */
-        public int smallAttackDamage = 30;
+        public int smallAttackDamage = 37;
         const float ShootKnockback = 5f;
         const int ShootDirection = 7;
 
@@ -22,7 +22,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
         public string[] stage0 = new string[] { "atkSpear", "atkSpear" };
         public string[] stage1 = new string[] { "atkSpear", "atkSpear", "atkSpearRain" };
         public string[] stage2 = new string[] { "atkSpear", "atkSummon", "atkSpear", "atkSpear", "atkSpearRain" };
-        public string[] stage3 = new string[] { "atkSpearFast", "atkSpearRain", "atkSpear", "atkSpearFast", "atkSpearFast" };
+        public string[] stage3 = new string[] { "atkSpearFast", "atkSpearRain", "atkSpear", "atkSpearFast", "atkSpearFast", "atkSummon" };
 
 
         public override void SetStaticDefaults()
@@ -34,8 +34,8 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
         {
             npc.aiStyle = -1; // Will not have any AI from any existing AI styles. 
             npc.lifeMax = 4500; // The Max HP the boss has on Normal
-            npc.damage = 30; // The base damage value the boss has on Normal
-            npc.defense = 8; // The base defense on Normal
+            npc.damage = 41; // The base damage value the boss has on Normal
+            npc.defense = 10; // The base defense on Normal
             npc.knockBackResist = 0f; // No knockback
             npc.width = 150;
             npc.height = 150;
@@ -300,7 +300,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             npc.ai[1]++;
             if(npc.ai[1] == 60)
 			{
-                float Speed = 12;
+                float Speed = 14;
 
                 int type = mod.ProjectileType("StoneSpear");
                 Main.PlaySound(SoundID.Item20, npc.Center); // Boing
@@ -321,17 +321,17 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             npc.ai[1]++;
             int type = mod.ProjectileType("StoneSpear");
             if(npc.ai[1] == 70)
-                Projectile.NewProjectile(targetPlayer.position.X + 150, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(targetPlayer.position.X + 100, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             else if (npc.ai[1] == 80)
-                Projectile.NewProjectile(targetPlayer.position.X - 150, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(targetPlayer.position.X - 100, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             else if (npc.ai[1] == 90)
-                Projectile.NewProjectile(targetPlayer.position.X + 400, targetPlayer.position.Y - 1000, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(targetPlayer.position.X + 200, targetPlayer.position.Y - 1000, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             else if (npc.ai[1] == 100)
-                Projectile.NewProjectile(targetPlayer.position.X - 400, targetPlayer.position.Y - 1000, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(targetPlayer.position.X - 200, targetPlayer.position.Y - 1000, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             else if (npc.ai[1] == 110)
-                Projectile.NewProjectile(targetPlayer.position.X + 600, targetPlayer.position.Y - 1100, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(targetPlayer.position.X + 300, targetPlayer.position.Y - 1100, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             else if (npc.ai[1] == 120)
-                Projectile.NewProjectile(targetPlayer.position.X - 600, targetPlayer.position.Y - 1100, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(targetPlayer.position.X - 300, targetPlayer.position.Y - 1100, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             else if (npc.ai[1] == 140)
 			{
                 npc.ai[1] = 0;
@@ -354,7 +354,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             npc.ai[1]++;
             if (npc.ai[1] == 40)
             {
-                float Speed = 13;
+                float Speed = 15;
 
                 int type = mod.ProjectileType("StoneSpear");
                 Main.PlaySound(SoundID.Item20, npc.Center); // Boing

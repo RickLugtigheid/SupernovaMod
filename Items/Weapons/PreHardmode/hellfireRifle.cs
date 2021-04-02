@@ -11,7 +11,7 @@ namespace Supernova.Items.Weapons.PreHardmode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hellfire Rifle");
-
+            Tooltip.SetDefault("Turns Wooden bullets into Molten Bullets");
         }
         public override void SetDefaults()
         {
@@ -20,8 +20,8 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.width = 40;
             item.crit = 4;
             item.height = 20;
-            item.useTime = 18;
-            item.useAnimation = 18;
+            item.useTime = 16;
+            item.useAnimation = 16;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 2.4f;
@@ -38,8 +38,8 @@ namespace Supernova.Items.Weapons.PreHardmode
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.GetItem("WoodenRifle"));
-            recipe.AddIngredient(mod.GetItem("FirearmManual"), 2);
-            recipe.AddIngredient(ItemID.HellstoneBar, 15);
+            recipe.AddIngredient(mod.GetItem("FirearmManual"), 4);
+            recipe.AddIngredient(ItemID.HellstoneBar, 17);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(this);
             recipe.AddRecipe();
@@ -51,7 +51,7 @@ namespace Supernova.Items.Weapons.PreHardmode
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(7));
+            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(5));
             speedX = perturbedSpeed.X;
             speedY = perturbedSpeed.Y;
 

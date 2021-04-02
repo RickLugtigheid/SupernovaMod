@@ -45,5 +45,14 @@ namespace Supernova.Items.Weapons.PreHardmode
                 player.MinionNPCTargetAim();
             return base.UseItem(player);
         }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.GetItem("VerglasBar"), 12);
+            recipe.AddTile(TileID.Anvils);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

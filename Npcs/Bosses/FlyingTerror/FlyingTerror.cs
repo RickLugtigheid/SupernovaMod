@@ -16,8 +16,8 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         public bool _move = true;
 
         /* Stats */
-        public int smallAttackDamage = 19;
-        public int largeAttackDamage = 32;
+        public int smallAttackDamage = 31;
+        public int largeAttackDamage = 63;
         const float ShootKnockback = 5f;
         const int ShootDirection = 7;
 
@@ -25,7 +25,8 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         public string[] stage0 = new string[] { "atkTeleport", "atkBomb" };
         public string[] stage1 = new string[] { "atkTeleport", "atkBomb", "atkTeleport", "atkFireStorm" };
         public string[] stage2 = new string[] { "atkTeleport", "atkShootBomb", "atkFireStorm", "atkTeleport", "atkShootBomb" };
-        public string[] stage3 = new string[] { "atkFireStorm", "atkFireStorm", "atkBomb", "atkTeleport", "atkBomb" };
+        public string[] stage3 = new string[] { "atkFireStorm", "atkFireStorm", "atkShootBomb", "atkTeleport", "atkShootBomb" };
+        public string[] stage4 = new string[] { "atkFireStorm", "atkShootBomb", "atkShootBomb" };
 
         public override void SetStaticDefaults()
         {
@@ -36,8 +37,8 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         {
             npc.aiStyle = -1; // Will not have any AI from any existing AI styles. 
             npc.lifeMax = 3200; // The Max HP the boss has on Normal
-            npc.damage = 23; // The base damage value the boss has on Normal
-            npc.defense = 11; // The base defense on Normal
+            npc.damage = 31; // The base damage value the boss has on Normal
+            npc.defense = 12; // The base defense on Normal
             npc.knockBackResist = 0f; // No knockback
             npc.width = 200;
             npc.height = 200;
@@ -283,12 +284,15 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         {
             // Stages
             if (npc.life <= (npc.lifeMax * .25f))
+                attacks = stage4;
+
+            else if (npc.life <= (npc.lifeMax * .40f))
                 attacks = stage3;
 
-            else if (npc.life <= (npc.lifeMax / 2))
+            else if (npc.life <= (npc.lifeMax * .60))
                 attacks = stage2;
 
-            else if (npc.life <= (npc.lifeMax * 0.9f))
+            else if (npc.life <= (npc.lifeMax * .9f))
                 attacks = stage1;
 
             // Reset attack pointer when we have done all the attacks for this stage

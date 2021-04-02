@@ -34,7 +34,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             item.value = 5000;
             item.rare = 2;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("TrowingStone");
+            item.shoot = mod.ProjectileType("StoneProj");
         }
 
         public static Vector2[] randomSpread(float speedX, float speedY, int angle, int num)

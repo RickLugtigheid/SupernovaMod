@@ -34,7 +34,7 @@ namespace Supernova
 			// Snow Biome drops
 			if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneSnow)
 			{
-				if (Main.rand.Next(7) == 0 && NPC.downedQueenBee == true)
+				if (Main.rand.Next(5) == 0 && NPC.downedQueenBee == true)
 					Item.NewItem(npc.getRect(), mod.ItemType("Rime"));
 			}
 

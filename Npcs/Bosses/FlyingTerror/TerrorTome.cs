@@ -12,38 +12,36 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         {
             DisplayName.SetDefault("Terror Tome");
         }
-        int i;
+        int i = 0;
         public override void SetDefaults()
         {
             item.damage = 14;
             item.crit = 14;
-            item.magic = true;          //this make the item do magic damage
+            item.magic = true;
             item.width = 24;
             item.height = 28;
             item.useTime = 19;
             item.useAnimation = 19;
-            item.useStyle = 5;        //this is how the item is holded
+            item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;
             item.value = Item.buyPrice(0, 7, 0, 0);
-            item.rare = 6;
+            item.rare = Rarity.Green;
             item.mana = 4;             //mana use
             item.UseSound = SoundID.Item21;            //this is the sound when you use the item
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("FirendlyTerrorProj");  //this make the item shoot your projectile
-            item.shootSpeed = 10f;    //projectile speed when shoot
+            item.shootSpeed = 15;    //projectile speed when shoot
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             i++;
             if (i >= 5)
             {
-                item.shoot = 585;
+                type = ProjectileID.ClothiersCurse;
+                speedX *= .6f;
+                speedY *= .6f;
                 i = 0;
-            }
-            else
-            {
-                item.shoot = mod.ProjectileType("ProTerror");
             }
             return true;
         }

@@ -31,7 +31,7 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.value = 5000;
             item.rare = Rarity.Blue;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("TrowingStone");
+            item.shoot = mod.ProjectileType("StoneProj");
             item.ammo = 1;
         }
 

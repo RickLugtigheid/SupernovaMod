@@ -15,17 +15,17 @@ namespace Supernova.Items.Weapons.PreHardmode
 
         public override void SetDefaults()
         {
-            item.damage = 7;
+            item.damage = 8;
             item.ranged = true;
             item.width = 40;
-            item.crit = 2;
+            item.crit = 4;
             item.height = 20;
-            item.useTime = 23;
-            item.useAnimation = 23;
+            item.useTime = 15;
+            item.useAnimation = 15;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 1.2f;
-            item.value = Item.buyPrice(0, 11, 50, 0);
+            item.value = Item.buyPrice(0, 10, 50, 0);
             item.autoReuse = true;
             item.rare = Rarity.Green;
             item.UseSound = SoundID.Item11;

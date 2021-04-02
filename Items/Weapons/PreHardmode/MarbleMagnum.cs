@@ -12,6 +12,7 @@ namespace Supernova.Items.Weapons.PreHardmode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Marble Magnum");
+            Tooltip.SetDefault("Fires a dense spread of bullets");
         }
 
         public override Vector2? HoldoutOffset()
@@ -21,13 +22,13 @@ namespace Supernova.Items.Weapons.PreHardmode
 
         public override void SetDefaults()
         {
-            item.damage = 9;
+            item.damage = 7;
             item.ranged = true;
             item.width = 40;
             item.crit = 3;
             item.height = 20;
-            item.useAnimation = 66;
-            item.useTime = 66;
+            item.useAnimation = 68;
+            item.useTime = 68;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 5;
@@ -43,7 +44,7 @@ namespace Supernova.Items.Weapons.PreHardmode
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2[] speeds = Calc.RandomSpread(speedX, speedY, 8, 0.00215f, 6);
+            Vector2[] speeds = Calc.RandomSpread(speedX, speedY, 8, 0.0025f, 6);
             for (int i = 0; i < Main.rand.Next(3, 6); ++i)
             {
                 Projectile.NewProjectile(position.X, position.Y, speeds[i].X, speeds[i].Y, type, damage, knockBack, player.whoAmI);

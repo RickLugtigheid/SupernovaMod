@@ -10,7 +10,6 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Surgestone Repeater");
-
         }
 
         public override Vector2? HoldoutOffset()
@@ -23,15 +22,15 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             item.damage = 16;
             item.ranged = true;
             item.width = 40;
-            item.crit = 0;
+            item.crit = 4;
             item.height = 20;
-            item.useAnimation = 2;
-            item.useTime = 2;
+            item.useAnimation = 12;
+            item.useTime = 12;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 8.4f;
             item.value = 50000;
-            item.autoReuse = false;
+            item.autoReuse = true;
             item.rare = 2;
             item.UseSound = SoundID.Item38;
             item.shoot = 10; //idk why but all the guns in the vanilla source have this

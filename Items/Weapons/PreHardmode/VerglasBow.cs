@@ -31,7 +31,7 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.height = 24;
             item.useTime = 53;
             item.useAnimation = 53;
-            item.useStyle = Rarity.Orange; // Bow Use Style
+            item.useStyle = 5; // Bow Use Style
             item.noMelee = true; // Doesn't deal damage if an enemy touches at melee range.
             item.value = Item.buyPrice(0, 9, 47, 0); // Another way to handle value of item.
             item.rare = Rarity.Orange;

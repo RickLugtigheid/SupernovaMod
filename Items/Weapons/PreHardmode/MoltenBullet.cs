@@ -21,7 +21,7 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.knockBack = 0f;
             item.value = 10;
             item.rare = Rarity.Orange;
-            item.shoot = mod.ProjectileType("WoodenBullet");
+            item.shoot = mod.ProjectileType("MoltenBullet");
             item.shootSpeed = 4f;
             item.ammo = AmmoID.Bullet;
         }

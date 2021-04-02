@@ -12,6 +12,7 @@ namespace Supernova.Items.Weapons.PreHardmode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gallant");
+            Tooltip.SetDefault("Can shoot 4 bullets before having to cooldown");
         }
 
         public override Vector2? HoldoutOffset()

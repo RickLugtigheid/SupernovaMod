@@ -25,8 +25,6 @@ namespace Supernova.Projectiles
         {
             //this make that the projectile faces the right way
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
-            projectile.localAI[0] += 1f;
-			projectile.alpha = (int)projectile.localAI[0] * 2;
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
