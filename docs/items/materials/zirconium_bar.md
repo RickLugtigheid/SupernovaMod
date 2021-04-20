@@ -3,6 +3,7 @@ layout: default
 title: Zirconium Bar
 parent: Materials
 tags: Material, Zirconium, Bar
+description: A bar of Zirconium mode from Zirconium Ore
 ---
 
 # Zirconium Bar
