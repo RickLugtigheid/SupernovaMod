@@ -30,7 +30,7 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.UseSound = SoundID.Item20;
             item.useTime = 40;
             item.useAnimation = 40;
-            item.shootSpeed = 20.5f;
+            item.shootSpeed = 27;
             item.mana = 12;
             item.useStyle = 5;   //The way your Weapon will be used, 5 is the Holding Out Used for: Guns, Spellbooks, Drills, Chainsaws, Flails, Spears for example
             item.value = Item.sellPrice(0, 5, 32, 64);//	How much the item is worth, in copper coins, when you sell it to a merchant. It costs 1/5th of this to buy it back from them. An easy way to remember the value is platinum, gold, silver, copper or PPGGSSCC (so this item price is 3gold)

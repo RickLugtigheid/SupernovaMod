@@ -19,8 +19,8 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             projectile.height = 16;
             projectile.aiStyle = -1;
             projectile.friendly = true;
-            projectile.melee = true;
-            projectile.penetrate = 2;
+            projectile.thrown = true;
+            projectile.penetrate = 1;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

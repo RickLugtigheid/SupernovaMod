@@ -18,8 +18,8 @@ namespace Supernova.Projectiles
 
         public override void SetDefaults()
         {
-            projectile.width = 16;
-            projectile.height = 16;
+            projectile.width = 8;
+            projectile.height = 8;
             projectile.friendly = true;
             projectile.penetrate = 1;                       //this is the projectile penetration
             //Main.projFrames[projectile.type] = 4;           //this is projectile frames
@@ -31,22 +31,20 @@ namespace Supernova.Projectiles
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.rand.Next(8) == 0)
+            if (Main.rand.NextBool(7))
             {
-                target.AddBuff(BuffID.Frozen, 40);
+                target.AddBuff(BuffID.Frozen, 60);
             }
-            if (Main.rand.Next(12) == 0)
+            if (Main.rand.NextBool(8))
             {
-                target.AddBuff(BuffID.Frostburn, 10);
+                target.AddBuff(BuffID.Frostburn, 70);
             }
         }
 
         public override void AI()
         {
             if (projectile.localAI[0] == 0f)
-            {
                 Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 20);
-            }
 
             projectile.localAI[0] += 1f;
 
@@ -60,7 +58,7 @@ namespace Supernova.Projectiles
                 }
                 for (int num91 = 0; num91 < num90; num91++)
                 {
-                    int num92 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width, projectile.height, mod.DustType("ZirconDust"), projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+                    int num92 = Dust.NewDust(projectile.position, projectile.width, projectile.height, mod.DustType("ZirconDust"), projectile.velocity.X, projectile.velocity.Y, 100, default(Color), Scale: 1.5f);
                     Main.dust[num92].noGravity = true;
                     Dust expr_46AC_cp_0 = Main.dust[num92];
                     expr_46AC_cp_0.velocity.X = expr_46AC_cp_0.velocity.X * 0.3f;
@@ -71,7 +69,6 @@ namespace Supernova.Projectiles
                 //this make that the projectile faces the right way
                 projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
                 projectile.localAI[0] += 1f;
-                projectile.alpha = (int)projectile.localAI[0] * 2;
             }
         }
 

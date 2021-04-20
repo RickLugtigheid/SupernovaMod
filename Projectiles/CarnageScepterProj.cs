@@ -42,7 +42,7 @@ namespace Supernova.Projectiles
                     Vector2 value17 = new Vector2(Main.rand.Next(-75, 76), Main.rand.Next(-75, 76));
                     value17.Normalize();
                     value17 *= Main.rand.Next(20, 71) * 0.1f;
-                    Projectile.NewProjectile(projectile.position.X, projectile.position.Y, value17.X, value17.Y, mod.ProjectileType("CarnageScepterProj2"), projectile.damage, 1f, projectile.owner, 0, Main.rand.Next(-45, 1));
+                    Projectile.NewProjectile(projectile.position.X + 1, projectile.position.Y + 1, value17.X, value17.Y, mod.ProjectileType("CarnageScepterProj2"), projectile.damage, 1f, projectile.owner, 0, Main.rand.Next(-45, 1));
                 }
             }
         }

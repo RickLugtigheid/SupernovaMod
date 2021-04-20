@@ -41,8 +41,8 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             player.armorEffectDrawShadowEOCShield = true;
 
             //set the dust of the trail
-            int dust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width + 2, player.height + 2, mod.DustType("TerrorDust"), player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 15, default(Color), 1.8f);
-            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width, player.height, mod.DustType("TerrorDust"), player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 2, default(Color), 1.2f);
+            int dust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width + 2, player.height + 2, mod.DustType("TerrorDust"), player.velocity.X, player.velocity.Y, 15, default(Color), 1.2f);
+            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width, player.height, mod.DustType("TerrorDust"), player.velocity.X * .05f, player.velocity.Y * .05f, 2, default(Color), 1.2f);
 
 
             Main.dust[dust].noGravity = true; //this make so the dust has no gravity
@@ -129,11 +129,11 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
 
             //When a directional key is pressed and released, vanilla starts a 15 tick (1/4 second) timer during which a second press activates a dash
             //If the timers are set to 15, then this is the first press just processed by the vanilla logic.  Otherwise, it's a double-tap
-            if (player.controlDown && player.releaseDown && player.doubleTapCardinalTimer[DashDown] < 15)
+            /*if (player.controlDown && player.releaseDown && player.doubleTapCardinalTimer[DashDown] < 15)
                 DashDir = DashDown;
             else if (player.controlUp && player.releaseUp && player.doubleTapCardinalTimer[DashUp] < 15)
-                DashDir = DashUp;
-            else if (player.controlRight && player.releaseRight && player.doubleTapCardinalTimer[DashRight] < 15)
+                DashDir = DashUp;*/
+            if (player.controlRight && player.releaseRight && player.doubleTapCardinalTimer[DashRight] < 15)
                 DashDir = DashRight;
             else if (player.controlLeft && player.releaseLeft && player.doubleTapCardinalTimer[DashLeft] < 15)
                 DashDir = DashLeft;

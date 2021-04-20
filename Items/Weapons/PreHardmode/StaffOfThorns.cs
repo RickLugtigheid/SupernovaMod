@@ -22,18 +22,18 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.magic = true;          //this make the item do magic damage
             item.width = 28;
             item.height = 34;
-            item.useTime = 78;
-            item.useAnimation = 78;
+            item.useTime = 83;
+            item.useAnimation = 83;
             item.useStyle = 5;        //this is how the item is holded
             item.noMelee = true;
             item.knockBack = 1.7f;
             item.value = Item.buyPrice(0, 5, 77, 0); // Another way to handle value of item.
-            item.rare = 6;
+            item.rare = Rarity.Green;
             item.mana = 5;             //mana use
             item.UseSound = SoundID.Item21;            //this is the sound when you use the item
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("ThornBal"); 
-            item.shootSpeed = 6.75f;    //projectile speed when shoot
+            item.shootSpeed = 8f;    //projectile speed when shoot
         }
     }
 }

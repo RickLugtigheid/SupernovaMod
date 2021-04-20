@@ -17,7 +17,7 @@ namespace Supernova.Projectiles
         {
             projectile.width = 16;
             projectile.height = 16;
-            projectile.aiStyle = -1;
+            projectile.aiStyle = 3;
             projectile.friendly = true;
             projectile.melee = true;
             projectile.penetrate = 4;

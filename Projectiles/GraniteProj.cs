@@ -29,25 +29,22 @@ namespace Supernova.Projectiles
         }
         public override void Kill(int timeLeft)
         {
-            Vector2 position = projectile.Center;
-            int radius = 5;     //this is the explosion radius, the highter is the value the bigger is the explosion
-
-            for (int x = -radius; x <= radius; x++)
+            for (int x = 0; x <= 7; x++)
             {
-                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Granite, projectile.velocity.X * -0.6f, projectile.velocity.Y * 1.2f, 80, default(Color), 0.75f);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Granite, -projectile.velocity.X, -projectile.velocity.Y, 80, default(Color), 1);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
                 Main.dust[dust].noGravity = false; //this make so the dust has no gravity
-                Main.dust[dust].velocity *= 0.2f;
+                Main.dust[dust].velocity *= Main.rand.NextFloat(.2f, .4f);
             }
         }
         public override void AI()
-            {
+        {
             //this is projectile dust
-            int DustID2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 5f), projectile.width + 2, projectile.height + 2, DustID.Granite, projectile.velocity.X * 0.7f, projectile.velocity.Y * 0.7f, 70, default(Color), 0.55f);
+            int DustID2 = Dust.NewDust(projectile.position, projectile.width + 2, projectile.height + 2, DustID.Granite, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 70, default(Color), 0.7f);
             Main.dust[DustID2].noGravity = true;
             //this make that the projectile faces the right way
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 9.57f;
-                projectile.localAI[0] += 1f;
-             }
+            projectile.localAI[0] += 1f;
         }
+    }
 }
 

@@ -31,15 +31,17 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             if (targetHitbox.Width > 8 && targetHitbox.Height > 8)
-            {
                 targetHitbox.Inflate(-targetHitbox.Width / 8, -targetHitbox.Height / 8);
-            }
             return projHitbox.Intersects(targetHitbox);
         }
 
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
+
+            for (int i = 0; i <= 10; i++)
+                Dust.NewDust(projectile.position, projectile.width * 2, projectile.height * 2, DustID.Shadowflame, -projectile.velocity.X * Main.rand.NextFloat(.5f, 1), -projectile.velocity.Y * Main.rand.NextFloat(.5f, 1));
+
             Vector2 usePos = projectile.position;
             Vector2 rotVector = (projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
             usePos += rotVector * 16f;
@@ -47,9 +49,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             var item = 0;
 
             if (Main.netMode == 1 && item >= 0)
-            {
                 NetMessage.SendData(MessageID.KillProjectile);
-            }
         }
 
         // Optional Section 
@@ -61,6 +61,12 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
 
         public override void AI()
         {
+            if (Main.rand.NextBool(2))
+            {
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Shadowflame, projectile.velocity.X * .5f, projectile.velocity.Y * .5f, Scale: Main.rand.NextFloat(.5f, 1.3f));
+                Main.dust[dust].noGravity = true;
+            }
+
             if (projectile.alpha > 0)
             {
                 projectile.alpha -= alphaReducation;

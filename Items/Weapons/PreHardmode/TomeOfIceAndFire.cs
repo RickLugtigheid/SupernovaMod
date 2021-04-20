@@ -88,8 +88,11 @@ namespace Supernova.Items.Weapons.PreHardmode
             }
             return base.CanUseItem(player);
         }
-
-        public override void AddRecipes()
+		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+		{
+			base.OnHitNPC(player, target, damage, knockBack, crit);
+		}
+		public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Book);

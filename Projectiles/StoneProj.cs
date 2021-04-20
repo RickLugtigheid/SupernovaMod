@@ -44,7 +44,7 @@ namespace Supernova.Projectiles
 
             for (int x = -radius; x <= radius; x++)
             {
-                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width * 2, projectile.height * 2, DustID.Stone, projectile.velocity.X * 0.2f, projectile.velocity.Y * 1.0f, 80, default(Color), 1.75f);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
+                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width * 2, projectile.height * 2, DustID.Stone, -projectile.velocity.X * Main.rand.NextFloat(.1f, .7f), -projectile.velocity.Y * Main.rand.NextFloat(.1f, .7f), 80, default(Color), 1);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
                 Main.dust[dust].noGravity = false; //this make so the dust has no gravity
                 Main.dust[dust].velocity *= 0.2f;
             }

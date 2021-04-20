@@ -64,8 +64,11 @@ namespace Supernova.Projectiles.Minions
 		public override void AI()
 		{
             CheckActive();
-            int DustID2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width * 2, projectile.height * 2, DustID.Ice, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 20, default(Color), 1.2f);
-            Main.dust[DustID2].noGravity = true;
+            if(Main.rand.NextBool(3))
+			{
+                int DustID2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width * 2, projectile.height * 2, 92, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 20, default(Color), Main.rand.NextFloat(1, 1.4f));
+                Main.dust[DustID2].noGravity = true;
+            }
             base.AI();
 		}
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

@@ -15,10 +15,8 @@ namespace Supernova.Items.Weapons.PreHardmode
             Tooltip.SetDefault("Fires a dense spread of bullets");
         }
 
-        public override Vector2? HoldoutOffset()
-        {
-            return new Vector2(-13, 0);
-        }
+        public override Vector2? HoldoutOffset() => new Vector2(-2, 0);
+
 
         public override void SetDefaults()
         {
@@ -40,6 +38,8 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.shootSpeed = 8f;
             item.useAmmo = AmmoID.Bullet;
             item.ranged = true; // For Ranged Weapon
+
+            item.scale = .8f;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

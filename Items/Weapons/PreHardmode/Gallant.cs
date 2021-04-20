@@ -15,10 +15,7 @@ namespace Supernova.Items.Weapons.PreHardmode
             Tooltip.SetDefault("Can shoot 4 bullets before having to cooldown");
         }
 
-        public override Vector2? HoldoutOffset()
-        {
-            return new Vector2(-13, 0);
-        }
+        public override Vector2? HoldoutOffset() => new Vector2(-2, 0);
 
         public override void SetDefaults()
         {
@@ -38,22 +35,12 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.shootSpeed = 9f;
             item.useAmmo = AmmoID.Bullet;
             item.ranged = true; // For Ranged Weapon
-        }
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            if(shoot >= 4)
-            {
-                item.useAnimation = 74;
-                item.useTime = 74;
-                shoot = 0;
-            }
-            else
-            {
-                item.useAnimation = 4;
-                item.useTime = 4;
-            }
-            shoot++;
-            return true; // return true to allow tmodloader to call Projectile.NewProjectile as normal
+
+            item.useAnimation = 12;
+            item.useTime = 4;
+            item.reuseDelay = 62;
+
+            item.scale = .8f;
         }
 
         public override void AddRecipes()

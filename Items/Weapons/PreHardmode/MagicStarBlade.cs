@@ -21,8 +21,8 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.damage = 31;
             item.crit = 5;
             item.magic = true;          //this make the item do magic damage
-            item.width = 28;
-			item.height = 34;
+            item.width = 40;
+            item.height = 40;
             item.useStyle = 1;
             item.noMelee = true;
             item.knockBack = 2;
@@ -37,7 +37,6 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.mana = 7;             //mana use
             item.Size *= 0.5f;
         }
-
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));

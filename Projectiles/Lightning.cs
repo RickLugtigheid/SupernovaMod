@@ -39,9 +39,11 @@ namespace Supernova.Projectiles
 
             if(Timer >= 12)
             {
+                NPC target;
+                float targetDist = 1000;
                 for (int i = 0; i < 200; i++)
                 {
-                    NPC target = Main.npc[i];
+                    target = Main.npc[i];
                     //If the npc is hostile
                     if (!target.friendly)
                     {
@@ -51,14 +53,16 @@ namespace Supernova.Projectiles
                         float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
 
                         //If the distance between the live targeted npc and the projectile is less than 480 pixels
-                        if (distance < 480f && !target.friendly && target.active)
+                        if (distance < 480 && !target.friendly && target.active && distance < targetDist)
                         {
+                            targetDist = distance;
+
                             //Divide the factor, 3f, which is the desired velocity
                             distance = 3f / distance;
 
                             //Multiply the distance by a multiplier if you wish the projectile to have go faster
-                            shootToX *= distance * 5;
-                            shootToY *= distance * 5;
+                            shootToX *= distance * 8;
+                            shootToY *= distance * 8;
 
                             //Set the velocities to the shoot values
                             projectile.velocity.X = shootToX;
@@ -68,27 +72,22 @@ namespace Supernova.Projectiles
                 }
             }
             else
-            {
                 Timer++;
-            }
-            int DustID2 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 5f), projectile.width, projectile.height, 57, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 10, default(Color), 1.4f);
-            Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 5f), projectile.width, projectile.height, 57, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 5, default(Color), 1.6f);
-            Main.dust[DustID2].noGravity = true;
 
+            int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 57, projectile.velocity.X * 0.01f, projectile.velocity.Y * 0.01f, 10, default(Color), 1.5f);
+            Main.dust[dust].noGravity = true;
+                dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 57, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 5, default(Color), 2f);
+            Main.dust[dust].noGravity = true;
 
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.80f;
             projectile.localAI[0] += 1f;
-            projectile.alpha = (int)projectile.localAI[0] * 2;
-
             projectile.frameCounter++;
 
             if (projectile.frameCounter >= 3)
             {
-
                 projectile.frameCounter = 0;
 
                 projectile.frame = (projectile.frame + 1) % 3;
-
             }
         }
     }

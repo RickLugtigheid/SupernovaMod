@@ -12,6 +12,7 @@ namespace Supernova.Items.Weapons.PreHardmode
         {
             DisplayName.SetDefault("Wood Rifle");
         }
+        public override Vector2? HoldoutOffset() => new Vector2(-2, 2);
 
         public override void SetDefaults()
         {

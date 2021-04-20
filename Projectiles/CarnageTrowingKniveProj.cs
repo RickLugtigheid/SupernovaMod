@@ -18,7 +18,7 @@ namespace Supernova.Projectiles
             projectile.height = 16;
             projectile.aiStyle = 3;
             projectile.friendly = true;
-            projectile.melee = true;
+            projectile.thrown = true;
             projectile.penetrate = 2;
         }
 
@@ -117,14 +117,10 @@ namespace Supernova.Projectiles
         public override void AI()
         {
             if (projectile.alpha > 0)
-            {
                 projectile.alpha -= alphaReducation;
-            }
 
             if (projectile.alpha < 0)
-            {
                 projectile.alpha = 0;
-            }
 
             if (projectile.ai[0] == 0f)
             {

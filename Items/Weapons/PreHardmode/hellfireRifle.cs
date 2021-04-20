@@ -13,6 +13,7 @@ namespace Supernova.Items.Weapons.PreHardmode
             DisplayName.SetDefault("Hellfire Rifle");
             Tooltip.SetDefault("Turns Wooden bullets into Molten Bullets");
         }
+        public override Vector2? HoldoutOffset() => new Vector2(-8, 2);
         public override void SetDefaults()
         {
             item.damage = 15;
@@ -33,6 +34,8 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.shootSpeed = 11f;
             item.useAmmo = AmmoID.Bullet;
             item.ranged = true; // For Ranged Weapon
+
+            item.scale = .95f;
         }
         public override void AddRecipes()
         {

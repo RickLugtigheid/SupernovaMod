@@ -32,7 +32,7 @@ namespace Supernova
 			if(aBagOfFungus && Main.rand.Next(2) == 0)
 				for (int e = 0; e < 5; e++)
 				{
-					int i = Projectile.NewProjectile(player.Center.X, player.Center.Y, 1 - Main.rand.Next(-20, 20), 0, ProjectileID.Mushroom, Main.rand.Next(5, 15), 0f, player.whoAmI, 3f, 3f);
+					int i = Projectile.NewProjectile(player.Center.X, player.Center.Y, 1 - Main.rand.Next(-player.width, player.width) / 2, Main.rand.Next(-player.height, player.height) / 2, ProjectileID.Mushroom, Main.rand.Next(5, 15), 0f, player.whoAmI, 3f, 3f);
 					Main.projectile[i].hostile = false;
 					Main.projectile[i].friendly = true;
 				}

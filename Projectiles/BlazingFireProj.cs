@@ -60,9 +60,7 @@ namespace Supernova.Projectiles
             player.itemTime = 2;
             player.itemAnimation = 2;
             player.itemRotation = projectile.rotation;
-            int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Fire);  //this is the dust that this projectile will spawn
-            Main.dust[dust].velocity /= 1f;
-
+            int dust = Dust.NewDust(projectile.position, projectile.width - 5, projectile.height - 5, DustID.Fire);  //this is the dust that this projectile will spawn
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)  //this make the projectile sprite rotate perfectaly around the player

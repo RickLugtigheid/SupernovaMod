@@ -25,15 +25,13 @@ namespace Supernova.Items.Weapons.PreHardmode
 			item.height = 40;
 
 			item.useStyle = 1;
-			item.knockBack = 3;
+			item.knockBack = 10;
             item.value = Item.buyPrice(0, 9, 47, 0); // Another way to handle value of item.
 			item.rare = Rarity.Orange;
 			item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.useAnimation = 32;
-			item.useTime = 32;
-
-            item.shootSpeed = 9f;
+            item.useAnimation = 34;
+			item.useTime = 34;
         }
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
@@ -41,7 +39,20 @@ namespace Supernova.Items.Weapons.PreHardmode
 			Projectile.NewProjectile(position, new Vector2(speedX, speedY), type, damage, knockBack, item.owner);
 			return false;
 		}
-
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            if (Main.rand.NextBool(3))
+            {
+                //Emit dusts when the sword is swung 
+                int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, 92, Scale: 1.5f);
+                Main.dust[dust].noGravity = true;
+            }
+        }
+		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+		{
+            target.AddBuff(BuffID.Frostburn, 80);
+			base.OnHitNPC(player, target, damage, knockBack, crit);
+		}
 		public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

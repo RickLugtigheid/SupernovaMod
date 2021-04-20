@@ -30,7 +30,6 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             item.value = Item.buyPrice(0, 7, 0, 0); // Another way to handle value of item.
             item.rare = Rarity.Orange;
 			item.UseSound = SoundID.Item1;
-            item.useTurn = true;
             item.autoReuse = true;
         }
         public override void AddRecipes()

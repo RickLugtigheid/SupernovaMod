@@ -30,12 +30,6 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.shoot = mod.ProjectileType("BlazingFireProj");
             item.noUseGraphic = true;
         }
-
-        public override bool UseItemFrame(Player player)  //this defines what frame the player use when this weapon is used 
-        {
-            player.bodyFrame.Y = 3 * player.bodyFrame.Height;
-            return true;
-        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

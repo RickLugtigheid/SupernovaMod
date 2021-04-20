@@ -12,15 +12,16 @@ namespace Supernova.Items.Weapons.PreHardmode
         {
             DisplayName.SetDefault("Glow Gun");
         }
+        public override Vector2? HoldoutOffset() => new Vector2(-4, -2);
 
         public override void SetDefaults()
         {
-            item.damage = 13;
+            item.damage = 18;
             item.width = 40;
-            item.crit = 7;
+            item.crit = 4;
             item.height = 20;
-            item.useTime = 21;
-            item.useAnimation = 21;
+            item.useTime = 32;
+            item.useAnimation = 32;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 1.2f;
@@ -32,6 +33,8 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.shootSpeed = 8f;
             item.magic = true; 
             item.mana = 7;
+
+            item.scale = .8f;
         }
         public override void AddRecipes()
         {
@@ -47,7 +50,7 @@ namespace Supernova.Items.Weapons.PreHardmode
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(12));
+            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(6));
             speedX = perturbedSpeed.X;
             speedY = perturbedSpeed.Y;
             return true;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Microsoft.Xna.Framework;
 
 namespace Supernova.Items.Weapons.PreHardmode
 {
@@ -22,16 +23,23 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.crit = 8;
             item.width = 40;
 			item.height = 40;
-			item.useTime = 27;
-			item.useAnimation = 27;
+			item.useTime = 33;
+			item.useAnimation = 33;
 			item.useStyle = 1;
-			item.knockBack = 4;
+			item.knockBack = 2.5f;
 			item.value = Item.buyPrice(0, 3, 0, 0);
             item.rare = Rarity.Green;
 			item.UseSound = SoundID.Item1;
-            item.autoReuse = false;
+            item.autoReuse = true;
         }
-
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            if (Main.rand.NextBool(4))
+            {
+                //Emit dusts when the sword is swung 
+                int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Blood, Scale: 1.4f);
+            }
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

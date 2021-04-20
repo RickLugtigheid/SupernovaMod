@@ -18,11 +18,6 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
 
         bool spin = false;
 
-        public float Y = -270f;
-        public float X = -170f;
-
-        public float _bossSpeed = 11.8f;
-
         /* Stage Attacks */
         public string[] stage0 = new string[] { "atkShootTeleport", "atkEnergyBall", "atkShootTeleport", "atkEnergyBall", "atkEnergyBall" };
         public string[] stage1 = new string[] { "atkEnergyBall", "atkEnergyBall", "atkShootTeleport", "atkEnergyBall", "atkEnergyBall", "atkEnergyBall", "atkShootTeleport" };
@@ -36,6 +31,13 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
 
         public override void SetDefaults()
         {
+            targetOffset = new Vector2(-170, -270);
+            velMax = 10;
+            velAccel = .3f;
+
+            attackPointer = 0;
+            attacks = stage0;
+
             npc.aiStyle = -1; // Will not have any AI from any existing AI styles. 
             npc.lifeMax = 1950; // The Max HP the boss has on Normal
             npc.damage = 32; // The base damage value the boss has on Normal
@@ -98,8 +100,12 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             // Handle despawning
             DespawnHandler();
 
-            // Move 
-            Move(new Vector2(X, Y));
+            // Move
+            target = targetPlayer.Center;
+            target.X += targetOffset.X;
+            target.Y += targetOffset.Y; 
+
+            Move();
         }
         #region Attacks
         public void atkShootTeleport()
@@ -120,10 +126,8 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
             if (npc.ai[0] == 100)
             {
-                _bossSpeed = 11.8f;
                 npc.frameCounter += 2;
-                X = -250f;
-                Y = -300f;
+                targetOffset = new Vector2(-250, -300);
                 ShootPlus();
             }
             else if (npc.ai[0] == 150)
@@ -136,9 +140,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             else if (npc.ai[0] == 250)
             {
                 npc.frameCounter += 2;
-
-                X = 250f;
-                Y = -300f;
+                targetOffset.X = -targetOffset.X;
                 ShootPlus();
             }
             else if (npc.ai[0] == 300)
@@ -148,8 +150,10 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                 ShootX();
                 npc.frameCounter = 0;
             }
-            else if (npc.ai[0] == 390)
+            else if (npc.ai[0] == 340)
             {
+                velAccel = .03f;
+                velMax = 3;
                 npc.defense = 7;
                 npc.position.X = (Main.player[npc.target].position.X + 300);
                 npc.position.Y = (Main.player[npc.target].position.Y);
@@ -161,20 +165,16 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                     Main.dust[dust].velocity *= 0f;
                     Main.dust[dust].velocity *= 0f;
                 }
-
-                _bossSpeed = 3.8f;
-                Y = -0;
-                X = -0;
+                targetOffset = Vector2.Zero;
             }
-            else if (npc.ai[0] == 470)
+            else if (npc.ai[0] == 480)
             {
-                _bossSpeed = 2.1f;
-                Y = -200;
-                X = -0;
+                targetOffset.Y = -200;
             }
             if (npc.ai[0] >= 500)
             {
-                _bossSpeed = 4.8f;
+                velAccel = .3f;
+                velMax = 10;
                 npc.defense = 10;
 
                 npc.ai[0] = 0;
@@ -185,8 +185,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
         public void atkEnergyBall()
 		{
             npc.ai[0]++;
-            Y = -200f;
-            X = 0f;
+            targetOffset = new Vector2(0, -200);
             if (npc.ai[0] >= 30)
 			{
                 // Shoot
@@ -209,7 +208,6 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             npc.ai[0]++;
             if (npc.ai[0] == 10)
             {
-                _bossSpeed = 3.7f;
                 npc.position.X = (Main.player[npc.target].position.X + -200);
                 npc.position.Y = (Main.player[npc.target].position.Y + -250);
                 for (int i = 0; i < 50; i++)
@@ -223,10 +221,9 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
             if (npc.ai[0] == 100)
             {
-                _bossSpeed = 11.8f;
+                velAccel = .5f;
                 npc.frameCounter += 2;
-                X = -250f;
-                Y = -300f;
+                targetOffset = new Vector2(-250, -300);
                 ShootPlus();
             }
             else if (npc.ai[0] == 125)
@@ -244,8 +241,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             {
                 npc.frameCounter += 2;
 
-                X = 250f;
-                Y = -300f;
+                targetOffset.X = -targetOffset.X;
                 ShootPlus();
             }
             else if (npc.ai[0] == 275)
@@ -273,19 +269,16 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                     Main.dust[dust].velocity *= 0f;
                 }
 
-                _bossSpeed = 3.8f;
-                Y = -0;
-                X = -0;
+                velAccel = .05f;
+                targetOffset = Vector2.Zero;
             }
             else if (npc.ai[0] == 470)
             {
-                _bossSpeed = 2.1f;
-                Y = -200;
-                X = -0;
+                targetOffset.Y = -200;
             }
             if (npc.ai[0] >= 500)
             {
-                _bossSpeed = 4.8f;
+                velAccel = .3f;
                 npc.defense = 10;
 
                 npc.ai[0] = 0;
@@ -297,12 +290,11 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             npc.ai[0]++;
             npc.defense = 16;
 
-            Y = 0f;
-            X = 0f;
+            targetOffset = Vector2.Zero;
 
             spin = true;
             if (npc.ai[0] == 10)
-                _bossSpeed = 1.1f;
+                velAccel = .05f;
             else if (npc.ai[0] == 50)
                 Shoot();
             else if (npc.ai[0] == 60)
@@ -351,26 +343,29 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             Projectile.NewProjectile(npc.position.X + 20, npc.position.Y + 20, 0, -ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
         }
 
-        private void Move(Vector2 offset)
+        public Vector2 target;
+        public Vector2 targetOffset = new Vector2(0, -200);
+        public int velMax = 0;
+        public float velAccel = 0;
+        public float targetVel = 0;
+        public float velMagnitude = 0;
+        private void Move()
         {
-            if (Main.netMode != 1)
-            {
-                Vector2 moveTo = targetPlayer.Center + offset; // Gets the point that the npc will be moving to.
-                Vector2 move = moveTo - npc.Center;
-                float magnitude = Magnitude(move);
-                if (magnitude > _bossSpeed)
-                {
-                    move *= _bossSpeed / magnitude;
-                }
-                float turnResistance = 21f; // The larget the number the slower the npc will turn.
-                move = (npc.velocity * turnResistance + move) / (turnResistance + 1f);
-                magnitude = Magnitude(move);
-                if (magnitude > _bossSpeed)
-                {
-                    move *= _bossSpeed / magnitude;
-                }
-                npc.velocity = move;
-            }
+            //float dist = (float)(Math.Sqrt(((target.X - npc.Center.X) * (target.X - npc.Center.X)) + ((target.Y - npc.Center.Y) * (target.Y - npc.Center.Y))));
+            float dist = Vector2.Distance(npc.Center, target);
+            targetVel = dist / 20;
+
+            // Accel if our velocity is smaller than the taget velocity and max velocity
+            if (velMagnitude < velMax && velMagnitude < targetVel)
+                velMagnitude += velAccel;
+
+            if (velMagnitude > targetVel)
+                velMagnitude -= velAccel;
+
+            // Make sure we don't devide by 0
+            if (dist != 0)
+                // Move to 'target'
+                npc.velocity = npc.DirectionTo(target) * velMagnitude;
         }
         public override void FindFrame(int frameHeight)
         {

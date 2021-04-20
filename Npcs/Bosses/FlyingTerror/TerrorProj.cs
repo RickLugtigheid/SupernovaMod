@@ -13,8 +13,8 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
 
         public override void SetDefaults()
         {
-            projectile.width = 16;
-            projectile.height = 16;
+            projectile.width = 23;
+            projectile.height = 23;
             projectile.aiStyle = -1;
             projectile.hostile = true;
             projectile.friendly = false;
@@ -40,10 +40,10 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
 
             //Lighting.AddLight(projectile.Center, new Vector3(205, 0, 255));   //this is the light colors
 
-            int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width + 2, projectile.height + 2, mod.DustType("TerrorDust"), projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 37, default(Color), 2.7f);
+            int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width + 2, projectile.height + 2, mod.DustType("TerrorDust"), projectile.velocity.X, projectile.velocity.Y, 80, default(Color), 2.4f);
 
             Main.dust[dust].noGravity = true; //this make so the dust has no gravity
-            Main.dust[dust].velocity *= 4f;
+            Main.dust[dust].velocity *= .5f;
         }
-    }
+	}
 }

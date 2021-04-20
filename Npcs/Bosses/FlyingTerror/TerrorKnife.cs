@@ -30,12 +30,12 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             item.autoReuse = true;
             item.value = Item.buyPrice(0, 7, 0, 0); // Another way to handle value of item.
             item.rare = ItemRarityID.Green;
-            item.shootSpeed = 14f;
+            item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("TerrorKniveProj");
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(16));
+            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(7));
             speedX = perturbedSpeed.X;
             speedY = perturbedSpeed.Y;
             return true;

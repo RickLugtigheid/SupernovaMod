@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Microsoft.Xna.Framework;
 
 namespace Supernova.Projectiles
 {
@@ -26,15 +27,13 @@ namespace Supernova.Projectiles
         }
         public override void AI()
         {
-            if (projectile.ai[0] == 1)
-                Shoot();
-
-            if (projectile.ai[0] > 35)
-                projectile.ai[0] = 0;
-        }
-        void Shoot()
-        {
-            Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X += 4, projectile.velocity.Y += 4, ProjectileID.HornetStinger, (int)((double)90 * 0.1), 3 * 1, projectile.owner, 1, 0);
+            if (Main.rand.NextBool(2))
+            {
+                int DustID2 = Dust.NewDust(projectile.position, projectile.width + 2, projectile.height + 2, 44, projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 80, default(Color), 1);
+                Main.dust[DustID2].noGravity = true;
+                DustID2 = Dust.NewDust(projectile.position, projectile.width + 2, projectile.height + 2, 46, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 80, default(Color), 1.4f);
+                Main.dust[DustID2].noGravity = true;
+            }
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

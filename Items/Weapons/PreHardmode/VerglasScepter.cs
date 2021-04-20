@@ -32,14 +32,14 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("VerglasScepterProj");
             item.mana = 8;             //mana use
-            item.shootSpeed = 12f;    //projectile speed when shoot
+            item.shootSpeed = 16f;    //projectile speed when shoot
         }
+        float muli = 1;
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(4));
-            speedX = perturbedSpeed.X;
-            speedY = perturbedSpeed.Y;
-            return true;
+            muli = -muli;
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, player.whoAmI, muli);
+            return false;
         }
         public override void AddRecipes()
         {
