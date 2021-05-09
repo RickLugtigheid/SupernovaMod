@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Supernova.UI;
 
 namespace Supernova
 {
@@ -60,13 +61,14 @@ namespace Supernova
 		/* Equip Events */
 		public override void PostUpdateEquips()
 		{
-			ModItem item = player.inventory[9].modItem;
+			ModItem item = player.GetModPlayer<RingSlotPlayer>().EquipSlot.Item.modItem;
+
 			// Check if item is a ring
 			if (item != null && item.GetType().IsSubclassOf(typeof(RingBase)))
 			{
 				RingBase ring = (RingBase)item;
 				// Check if we can activate the ring
-				if (ring != null && ring.RingCanActivate() && !player.HasBuff(mod.BuffType("RingCooldown")) && Supernova.ringAbilityButton.JustPressed)
+				if (ring != null && ring.RingCanActivate(player) && !player.HasBuff(mod.BuffType("RingCooldown")) && Supernova.ringAbilityButton.JustPressed)
 				{
 					// Call on ring activate event
 					ring?.OnRingActivate(player);

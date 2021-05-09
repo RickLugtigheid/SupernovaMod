@@ -11,11 +11,9 @@ namespace Supernova.Items.Accessories.Rings
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ring of Hellfire");
-            Tooltip.SetDefault("When you click the Ring Ability button" +
-                "\n the ring will give you the inferno buff" +
-                "\n and increase your health by 45, damage by 10% and defence by 4 for 20 seconds" +
-                "\n ." +
-                "\n put in slot 0 to make it work");
+            Tooltip.SetDefault("When the 'Ring Ability button' is pressed" +
+                "\n You will gain the inferno buff" +
+                "\n and your health will be increaded by 45, damage by 10% and defence by 4 for 20 seconds" + RingBase.RING_HELP);
         }
         public override void SetDefaults()
         {

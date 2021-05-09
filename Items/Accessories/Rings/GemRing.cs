@@ -10,9 +10,7 @@ namespace Supernova.Items.Accessories.Rings
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gem Ring");
-            Tooltip.SetDefault("When you click the Ring Ability button" +
-                "\n the ring will shoot all the gem staf projectiles\n" +
-                "\n put in slot 0 to make it work");
+            Tooltip.SetDefault($"Shoots gem staff projeciltes when the 'Ring Ability button' is pressed. {RingBase.RING_HELP}");
         }
         public override void SetDefaults()
         {

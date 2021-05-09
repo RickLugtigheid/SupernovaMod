@@ -10,7 +10,7 @@ namespace Supernova.Items.Misc
         {
             DisplayName.SetDefault("MantaFood");
             Tooltip.SetDefault("Dropped by Dungeon enemies\n" +
-                "Use underground)" +
+                "Use underground" +
                 "\n Summons the Stone Manta Ray");
         }
 

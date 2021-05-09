@@ -6,28 +6,6 @@ using Terraria.ModLoader;
 
 namespace Supernova
 {
-	public abstract class RingBase : ModItem
-	{
-		/// <summary>
-		/// Ring cooldown to aply when ring is activated
-		/// </summary>
-		public abstract int cooldown { get; }
-		/// <summary>
-		/// When the ring is activated
-		/// </summary>
-		/// <param name="player">Player that activated the ring</param>
-		public abstract void OnRingActivate(Player player);
-		/// <summary>
-		/// When the ring is cooling down
-		/// </summary>
-		/// <param name="curentCooldown">Curent seconds left of the Cooldown</param>
-		/// <param name="player">Player that activated the ring</param>
-		public virtual void OnRingCooldown(int curentCooldown, Player player)
-		{
-
-		}
-		public virtual bool RingCanActivate() => true;
-	}
 	public abstract class Boss : ModNPC
 	{
 		protected Player targetPlayer;
