@@ -2,7 +2,7 @@ Supernova mod adds lots of new content to Terraria.
 
 Currently adds:
 - 3 Bosses
-- over 86 items
+- over 104 items
 - 10 npcs
 
 Plans:
