@@ -7,8 +7,7 @@ tags: Weapon, Surgestone, Glove, Trown, Throwing
 
 # Surgestone Glove
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/SurgestoneGlove.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/StoneMantaRay/StoneGlove.png)
 
 ### Stats
 - DamageType: [Trown]

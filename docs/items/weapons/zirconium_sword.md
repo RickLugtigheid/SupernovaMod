@@ -7,8 +7,7 @@ tags: Weapon, Melee, Zirconium, Sword
 
 # Zirconium Sword
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumSword.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumSword.png)
 
 ### Stats
 - DamageType: [Melee]

@@ -7,8 +7,7 @@ tags: Material, Bar, Verglass, Rime
 
 # Verglas Bar
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/VerglasBar.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/VerglasBar.png)
 
 ### Recipe
 - 1 [Iron/Lead Bar](https://terraria-archive.fandom.com/wiki/Iron_Bar)

@@ -8,8 +8,7 @@ tags: Potion, Quarion, Buff
 # Quarion Potion
 {: .no_toc }
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Potions/QuarionPotion.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Potions/QuarionPotion.png)
 
 ##### Tooltip: *Greatly increases damage and speed. But you lose half of your health*
 

@@ -8,8 +8,7 @@ description: A handy Manual for creating firearms. Used in Carnage Rifle, Glow G
 
 # Firearm Manual
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/FirearmManual.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/FirearmManual.png)
 
 ### Recipe
 - 1 [Iron/Lead Bar](https://terraria-archive.fandom.com/wiki/Iron_Bar)

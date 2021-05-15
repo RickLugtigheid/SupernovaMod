@@ -7,9 +7,8 @@ tags: Material, Golden, Ring, Mold, Power
 
 # Golden Ring Mold
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/GoldenRingMold.png) |
-| ------ |
-
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/GoldenRingMold.png)
+ 
 #### Recipe
 - 8 [Gold/Platinum Bar](https://terraria-archive.fandom.com/wiki/Iron_Bar)
 

@@ -7,8 +7,7 @@ tags: Weapon, Ice, Bolt, Magic
 
 # Ice Bolt
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/IceBolt.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/IceBolt.png)
 
 ##### Tooltip: *Shoots fire to burn your enemies*
 

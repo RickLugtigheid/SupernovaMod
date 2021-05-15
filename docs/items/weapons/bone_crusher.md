@@ -7,8 +7,7 @@ tags: Melee, Pre Hardmode, Item, weapon, Bone, Crusher
 
 # Bone Crusher
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/BoneCrusher.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/BoneCrusher.png)
 
 ##### Tooltip: *Throws your enemies a bone*
 

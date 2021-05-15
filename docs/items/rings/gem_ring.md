@@ -7,8 +7,7 @@ tags: Ring, Power, Gem
 
 # Gem Ring
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/Rings/GemRing.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/Rings/GemRing.png)
 
 ##### Tooltip: *Shoots gem staff projeciltes when the 'Ring Ability button' is pressed. Put in the ring slot to make it work.*
 

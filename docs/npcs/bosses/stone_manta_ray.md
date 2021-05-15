@@ -7,8 +7,7 @@ tags: Npc, Boss, Stone, Manta, Ray
 
 # Stone Manta Ray
 #
-| ![Icon](https://ricklugtigheid.github.io/SupernovaMod/assets/images/boss_stone_manta_ray.png) |
-| ------ |
+![Icon](https://ricklugtigheid.github.io/SupernovaMod/assets/images/boss_stone_manta_ray.png)
 
 ##### Stone Manta Ray is a bosses that can be summoned by using [Manta Food](https://ricklugtigheid.github.io/SupernovaMod/docs/items/miscellaneous/manta_food) underground.
 

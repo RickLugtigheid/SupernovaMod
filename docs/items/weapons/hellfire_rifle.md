@@ -7,8 +7,7 @@ tags: Weapon, Ranged, Item, Hellfire, Rifle, Gun, Firearm
 
 # Hellfire Rifle
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/HellfireRifle.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/HellfireRifle.png)
 
 ##### Tooltip: *Turns Wooden bullets into Molten bullets*
 

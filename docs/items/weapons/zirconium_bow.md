@@ -7,8 +7,7 @@ tags: Weapon, Ranged, Zirconium, Bow
 
 # Zirconium Bow
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumBow.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumBow.png)
 
 ### Stats
 - DamageType: [Ranged]

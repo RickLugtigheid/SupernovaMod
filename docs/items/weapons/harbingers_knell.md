@@ -7,8 +7,7 @@ tags: Weapon, Harbinger, Annihilation, Knell, Summon
 
 # Harbingers Knell
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/HarbingersKnell.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/HarbingerOfAnnihilation/HarbingersKnell.png)
 
 ### Stats
 - DamageType: [Summon]

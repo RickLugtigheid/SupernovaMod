@@ -7,8 +7,7 @@ tags: Weapon, Melee, Item, Surgestone, Sword, Stone, Manta, Ray
 
 # Surgestone Sword
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/SurgestoneSword.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/StoneMantaRay/SurgestoneSword.png)
 
 ##### Tooltip: *Summons a tornado at the target after a few strikes*
 

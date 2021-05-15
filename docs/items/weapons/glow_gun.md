@@ -7,8 +7,7 @@ tags: Weapon, Magic, Item, Glow, Gun, Glowing, Mushroom
 
 # Glow Gun
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/GlowGun.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/GlowGun.png)
 
 ### Stats
 - DamageType: [Magic]

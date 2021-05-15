@@ -7,8 +7,7 @@ tags: Weapon, Flying, Terror, Knive, Trown, Throwing
 
 # Terror Knife
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/TerrorKnife.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/FlyingTerror/TerrorKnife.png)
 
 ### Stats
 - DamageType: [Thrown]

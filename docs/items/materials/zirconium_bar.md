@@ -8,8 +8,7 @@ description: A bar of Zirconium mode from Zirconium Ore
 
 # Zirconium Bar
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/ZirconiumBar.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/ZirconiumBar.png)
 
 ##### Tooltip: *A bar of pink metal*
 

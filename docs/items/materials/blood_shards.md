@@ -8,8 +8,7 @@ description: A Shard made from blood. These shards drop form any enemy during a 
 
 # Blood Shard
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/BloodShards.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/BloodShards.png)
 
 ### Droped By
 - Any enemy during a [Blood Moon](https://terraria-archive.fandom.com/wiki/Blood_Moon).

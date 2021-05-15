@@ -7,8 +7,7 @@ tags: Weapon, Ranged, Item, Wood, Rifle, Gun, Firearm
 
 # Wood Rifle
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/WoodenRifle.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/WoodenRifle.png)
 
 ### Stats
 - DamageType: [Ranged]

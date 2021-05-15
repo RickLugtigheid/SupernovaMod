@@ -7,8 +7,7 @@ tags: Weapon, Flying, Terror, Tome, Magic
 
 # Terror Tome
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/TerrorTome.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/FlyingTerror/TerrorTome.png)
 
 ### Stats
 - DamageType: [Magic]

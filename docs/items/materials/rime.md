@@ -7,8 +7,7 @@ tags: Material, Rime, Verglass, Snow, Biome, Ice, Bolt
 
 # Rime
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/Rime.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/Rime.png)
 
 ### Droped By
 - Any enemy in the [snow biome](https://terraria-archive.fandom.com/wiki/Snow_Biome) when [Queen Bee](https://terraria-archive.fandom.com/wiki/Queen_Bee) has been defeated

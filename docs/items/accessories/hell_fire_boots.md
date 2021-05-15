@@ -8,8 +8,7 @@ description: Provides the ability to walk on water and lava. Grants immunity to 
 
 # Hell Fire Boots
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/PreHardmode/HellFireBoots.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/PreHardmode/HellFireBoots.png)
 
 ##### Tooltip: *Provides the ability to walk on water and lava. Grants immunity to fire blocks and 7 seconds of immunity to lava. Inflicts fire damage on attack. Reduces damage from touching.*
 

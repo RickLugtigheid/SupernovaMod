@@ -7,8 +7,7 @@ tags: Weapon, Magic, Item, Carnage, Scepter
 
 # Carnage Scepter
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageScepter.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageScepter.png)
 
 ### Stats
 - DamageType: [Magic]

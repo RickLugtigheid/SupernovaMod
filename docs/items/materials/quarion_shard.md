@@ -7,8 +7,7 @@ tags: Material, Quarion, Shard, Leaf, Crab, Jungle
 
 # Quarion Shard
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/QuarionShard.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/QuarionShard.png)
 
 #### Droped By
 - [Leaf Crabs](https://ricklugtigheid.github.io/SupernovaMod/docs/npcs/pre-hardmode/leaf_crab)

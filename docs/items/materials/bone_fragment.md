@@ -7,8 +7,7 @@ description: Fragments of Zombie bones. These bones drop form any zombie after t
 ---
 # Bone Fragment
 #
-| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/BoneFragment.png) |
-| ------ |
+![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/BoneFragment.png)
 
 ### Droped By
 - Any [Zombie](https://terraria-archive.fandom.com/wiki/Zombie) when the [Eye of Cthulhu](https://terraria-archive.fandom.com/wiki/Eye_of_Cthulhu).
