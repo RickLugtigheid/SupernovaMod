@@ -6,6 +6,9 @@ tags: Weapon, Kunai, Trown, Throwing, Knive
 ---
 
 # Kunai
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/Kunai.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Thrown]

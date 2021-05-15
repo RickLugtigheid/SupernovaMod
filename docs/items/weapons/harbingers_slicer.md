@@ -6,6 +6,9 @@ tags: Weapon, Harbinger, Annihilation, Slicer, Trown, Throwing
 ---
 
 # Harbingers Slicer
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/HarbingersSlicer.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Trown]

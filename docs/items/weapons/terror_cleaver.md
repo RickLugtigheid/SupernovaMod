@@ -5,6 +5,11 @@ parent: Weapons
 tags: Weapon, Flying, Terror, Cleaver, Melee
 ---
 
+# Terror Cleaver
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/TerrorCleaver.png) |
+| ------ |
+
 ##### Tooltip: *A big cleaver as strong as the bones of the Flying Terror*
 
 ### Stats

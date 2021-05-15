@@ -6,6 +6,9 @@ tags: Material, Flying, Terror, Drops, Wing
 ---
 
 # Terror Wing
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/FlyingTerror/TerrorWing.png) |
+| ------ |
 
 ### Droped By
 - [Flying Terror](https://ricklugtigheid.github.io/SupernovaMod/docs/npcs/bosses/flying_terror)

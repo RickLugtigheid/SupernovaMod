@@ -5,6 +5,11 @@ parent: Weapons
 tags: Weapon, Flying, Terror, Knive, Trown, Throwing
 ---
 
+# Terror Knife
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/TerrorKnife.png) |
+| ------ |
+
 ### Stats
 - DamageType: [Thrown]
 - Damage: 14

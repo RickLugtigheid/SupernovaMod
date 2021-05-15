@@ -6,8 +6,11 @@ tags: Ring, Power, Gem
 ---
 
 # Gem Ring
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/Rings/GemRing.png) |
+| ------ |
 
-##### Tooltip: *When you click the Ring Ability button the ring shoots gem staff projectiles where you are aiming. Put in slot '0' to make it work*
+##### Tooltip: *Shoots gem staff projeciltes when the 'Ring Ability button' is pressed. Put in the ring slot to make it work.*
 
 #### Recipe
 - 1 [Golden Ring Mold](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/golden_ring_mold)

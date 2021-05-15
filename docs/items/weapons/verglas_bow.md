@@ -6,6 +6,9 @@ tags: Weapon, Ranged, Verglas, Bow
 ---
 
 # Verglas Bow
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/VerglasBow.png) |
+| ------ |
 
 ##### Tooltip: *Turns wooden arrows into frostburn arrows*
 

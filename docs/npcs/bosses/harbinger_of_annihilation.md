@@ -6,6 +6,9 @@ tags: Npc, Boss, Harbinger, Annihilation
 ---
 
 # Harbinger of Annihilation
+#
+| ![Icon](https://ricklugtigheid.github.io/SupernovaMod/assets/images/boss_harbinger_of_annihilation.png) |
+| ------ |
 
 ##### Harbinger of Annihilation is a bosses that can be summoned by killing a [Cosmic Anomaly](https://ricklugtigheid.github.io/SupernovaMod/docs/npcs/pre-hardmode/cosmic_anomaly).
 

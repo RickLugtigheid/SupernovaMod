@@ -6,6 +6,9 @@ tags: Weapon, Trown, Throwing, Snow, Glove
 ---
 
 # Snow Glove
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/SnowGlove.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Thrown]

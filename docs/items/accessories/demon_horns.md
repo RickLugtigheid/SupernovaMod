@@ -1,10 +1,15 @@
 ---
 layout: default
-title: Demon Horns
+title: Demon Horn
 parent: Accessories
+tags: Accessory, Hell, Demon, Horn
+description: A horn that can be looted from demons. Reduces damage taken by 8%. Immumity to OnFire
 ---
 
-# Demon Horns
+# Demon Horn
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/PreHardmode/DemonHorns.png) |
+| ------ |
 
 ##### Tooltip: *Reduces damage taken by 8%. Immumity to OnFire*
 

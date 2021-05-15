@@ -6,6 +6,9 @@ tags: Weapon, Ranged, Item, Gallant
 ---
 
 # Gallant
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/Gallant.png) |
+| ------ |
 
 ##### Tooltip: *Can shoot 4 bullets before having to cooldown*
 

@@ -6,6 +6,9 @@ tags: Weapon, Ranged, Surgestone, Repeater
 ---
 
 # Surgestone Repeater
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/SurgestoneRepeater.png) |
+| ------ |
 
 ##### Tooltip: *Uses throwing stones as ammo*
 

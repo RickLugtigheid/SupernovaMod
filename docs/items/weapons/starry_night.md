@@ -6,6 +6,9 @@ tags: Weapon, Ranged, Starry, Night, Sky, Chest, Bow
 ---
 
 # Starry Night
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/StarNight.png) |
+| ------ |
 
 ##### Tooltip: *This weapon charges up when you shoot. When fully charged it will shoot 6 deadly stars at your enemies*
 

@@ -6,6 +6,9 @@ tags: Weapon, Thrown, Verglas, Trowing, Axe
 ---
 
 # Verglas Throwing Axe
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/VerglasThrowingAxe.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Trown]

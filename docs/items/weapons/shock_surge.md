@@ -6,6 +6,9 @@ tags: Weapon, Magic, Item, Shock, Surge, Bolt, Lighting
 ---
 
 # Shock Surge
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ShockSurge.png) |
+| ------ |
 
 ##### Tooltip: *Shoots a bolt of lighting at the target*
 

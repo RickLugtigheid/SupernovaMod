@@ -4,6 +4,10 @@ title: Tome of Frost and Fire
 parent: Weapons
 tags: Weapon, Tome, Frost, Fire, Ice, Blaze, Bolt, Pre hardmode, Magic
 ---
+# Tome of Frost and Fire
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/TomeOfIceAndFire.png) |
+| ------ |
 
 ##### Tooltip: *Shoots fire and frostburn*
 

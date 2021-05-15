@@ -6,6 +6,9 @@ tags: Weapon, Trown, Item, Carnage, Trowing, Knive
 ---
 
 # Carnage Trowing Knive
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageTrowingKnive.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Trown]

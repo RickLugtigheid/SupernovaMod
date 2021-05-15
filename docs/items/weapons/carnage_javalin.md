@@ -6,6 +6,9 @@ tags: Weapon, Melee, Item, Carnage, Javalin
 ---
 
 # Carnage Javalin
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageJavalin.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Melee]

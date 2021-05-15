@@ -6,6 +6,9 @@ tags: Weapon, Summon, Minion, Verglas, Staff
 ---
 
 # Verglas Staff
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/VerglasStaff.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Summon]

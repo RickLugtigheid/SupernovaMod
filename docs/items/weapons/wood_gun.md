@@ -6,6 +6,9 @@ tags: Weapon, Ranged, Item, Wood, Gun, Firearm
 ---
 
 # Wood Gun
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/WoodGun.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Ranged]

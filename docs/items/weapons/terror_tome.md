@@ -5,6 +5,11 @@ parent: Weapons
 tags: Weapon, Flying, Terror, Tome, Magic
 ---
 
+# Terror Tome
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/TerrorTome.png) |
+| ------ |
+
 ### Stats
 - DamageType: [Magic]
 - Damage: 14

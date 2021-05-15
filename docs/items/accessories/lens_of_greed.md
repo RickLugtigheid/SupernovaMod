@@ -3,9 +3,13 @@ layout: default
 title: Lens of Greed
 parent: Accessories
 tags: Accessory, Spelunker, Lens, Greed
+description: Provides spelunker to the user
 ---
 
 # Lens of Greed
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/PreHardmode/LensOfGreed.png) |
+| ------ |
 
 ##### Tooltip: *Provides spelunker to the user*
 

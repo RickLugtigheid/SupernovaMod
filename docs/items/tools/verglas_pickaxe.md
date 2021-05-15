@@ -5,7 +5,7 @@ parent: Tools
 tags: Tool, Pickaxe, Verglas
 ---
 
-# Zirconium Pickaxe
+# Verglas Pickaxe
 
 ### Stats
 - DamageType: [Melee]

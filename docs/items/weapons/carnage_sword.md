@@ -6,6 +6,9 @@ tags: Weapon, Melee, Item, Carnage, Sword
 ---
 
 # Carnage Sword
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageSword.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Melee]

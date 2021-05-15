@@ -6,6 +6,9 @@ tags: Weapon, Magic, Verglas, Scepter
 ---
 
 # Verglas Scepter
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/VerglasScepter.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Magic]

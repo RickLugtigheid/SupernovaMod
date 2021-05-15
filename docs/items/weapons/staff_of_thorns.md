@@ -6,6 +6,9 @@ tags: Weapon, Magic, Staff, Thorns, Item
 ---
 
 # Staff of Thorns
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/StaffOfThorns.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Magic]

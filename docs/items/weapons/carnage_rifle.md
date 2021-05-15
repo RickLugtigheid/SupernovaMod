@@ -6,6 +6,9 @@ tags: Weapon, Ranged, Item, Carnage, Rifle
 ---
 
 # Carnage Rifle
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageRifle.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Ranged]

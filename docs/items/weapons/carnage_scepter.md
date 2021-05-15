@@ -1,11 +1,14 @@
 ---
 layout: default
-title: Carnage Sword 
+title: Carnage Scepter 
 parent: Weapons
 tags: Weapon, Magic, Item, Carnage, Scepter
 ---
 
-# Carnage Sword
+# Carnage Scepter
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageScepter.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Magic]

@@ -6,6 +6,9 @@ tags: Weapon, Trowing, Item, Disc, Desert, Boomerang
 ---
 
 # Disc of the Desert
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/DiscOfTheDesert.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Trown]

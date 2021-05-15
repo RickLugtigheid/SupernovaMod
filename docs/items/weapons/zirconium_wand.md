@@ -6,6 +6,9 @@ tags: Weapon, Magic, Zirconium, Wand
 ---
 
 # Zirconium Wand
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumWand.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Magic]

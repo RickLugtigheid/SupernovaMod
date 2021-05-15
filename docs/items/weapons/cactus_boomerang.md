@@ -6,6 +6,9 @@ tags: Weapon, Trowing, Pre Hardmode, Item, Cactus, Boomerang
 ---
 
 # Cactus Boomerang
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CactusBoomerang.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Trown]

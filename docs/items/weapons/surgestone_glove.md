@@ -5,7 +5,10 @@ parent: Weapons
 tags: Weapon, Surgestone, Glove, Trown, Throwing
 ---
 
-# Harbingers Slicer
+# Surgestone Glove
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/SurgestoneGlove.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Trown]

@@ -6,6 +6,9 @@ tags: Weapon, Ranged, Item, Marble, Magnum, Gun
 ---
 
 # Marble Magnum
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/MarbleMagnum.png) |
+| ------ |
 
 ##### Tooltip: *Fires a dense spread of bullets*
 

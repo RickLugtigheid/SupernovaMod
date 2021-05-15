@@ -1,17 +1,18 @@
 ---
 layout: default
-title: Manta Food
+title: Eye of Death
 parent: Miscellaneous
 tags: Misc, Flying, Terror, Summon
+description: Tooltip - Stare into the Eye of Death and go back to where you died
 ---
 
-# Manta Food
+# Eye of Death
 {: .no_toc }
 #
 | ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Misc/MantaFood.png) |
 | ------ |
 
-###### Can be used to summon the [Stone Manta Ray](https://ricklugtigheid.github.io/SupernovaMod/docs/npcs/bosses/stone_manta_ray)
+##### Tooltip: *Stare into the Eye of Death and go back to where you died*
 
 ### Droped By:
 - Any enemy in the dungeon

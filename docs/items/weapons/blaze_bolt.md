@@ -6,6 +6,9 @@ tags: Weapon, Blaze, Bolt, Magic
 ---
 
 # Blaze Bolt
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/BlazeBolt.png) |
+| ------ |
 
 ##### Tooltip: *Shoots fire to burn your enemies*
 

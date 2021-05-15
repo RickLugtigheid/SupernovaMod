@@ -6,6 +6,9 @@ tags: Weapon, Magic, Item, Granite, Storm
 ---
 
 # Granite Storm
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/GraniteStorm.png) |
+| ------ |
 
 ##### Tooltip: *Shoots chunks of granite at your enemies*
 

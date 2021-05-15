@@ -6,6 +6,9 @@ tags: Weapon, Flying, Terror, Knive, Trown, Throwing
 ---
 
 # Trowing Stone
+#
+| ![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/TrowingStone.png) |
+| ------ |
 
 ### Stats
 - DamageType: [Thrown]
