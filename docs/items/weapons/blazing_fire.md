@@ -7,7 +7,7 @@ tags: Melee, Pre Hardmode, Item, weapon, Blazing, Fire
 
 # Blazing Fire
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/BlazingFire.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Weapons/PreHardmode/BlazingFire.png)
 
 ##### Tooltip: *Creates a fire aura around you*
 

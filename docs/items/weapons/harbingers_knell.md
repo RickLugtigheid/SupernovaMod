@@ -7,7 +7,7 @@ tags: Weapon, Harbinger, Annihilation, Knell, Summon
 
 # Harbingers Knell
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/HarbingerOfAnnihilation/HarbingersKnell.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Npcs/Bosses/HarbingerOfAnnihilation/HarbingersKnell.png)
 
 ### Stats
 - DamageType: [Summon]
@@ -17,4 +17,4 @@ tags: Weapon, Harbinger, Annihilation, Knell, Summon
 - Value: 4 Gold
 
 ### Droped By
-[The Harbinger of Annihilation](https://ricklugtigheid.github.io/SupernovaMod/docs/npcs/bosses/harbinger_of_annihilation)
+[The Harbinger of Annihilation](https://koekmeneer.github.io/SupernovaMod/docs/npcs/bosses/harbinger_of_annihilation)

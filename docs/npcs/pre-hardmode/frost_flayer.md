@@ -13,7 +13,7 @@ parent: Pre Hardmode Npcs
 - 15 Defence
 
 ### Drops
-- [Rime](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/rime)
+- [Rime](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/rime)
 - [Ice Blocks](https://terraria.fandom.com/wiki/Ice_Blocks)
 
 ### Found

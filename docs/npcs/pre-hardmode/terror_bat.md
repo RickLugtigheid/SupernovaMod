@@ -13,7 +13,7 @@ parent: Pre Hardmode Npcs
 - 13 Defence
 
 ### Drops
-- [Horrid Chunk](https://ricklugtigheid.github.io/SupernovaMod/docs/items/miscellaneous/horrid_chunk)
+- [Horrid Chunk](https://koekmeneer.github.io/SupernovaMod/docs/items/miscellaneous/horrid_chunk)
 
 ### Found
 Underground

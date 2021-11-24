@@ -9,6 +9,6 @@ tags: Item, Items, Tool
 # Tools
 
 #### Pre Hardmode
-- [Harbingers Pick](https://ricklugtigheid.github.io/SupernovaMod/docs/items/tools/harbingers_pick)
-- [Zirconium Hamaxe](https://ricklugtigheid.github.io/SupernovaMod/docs/items/tools/verglas_hamaxe)
-- [Zirconium Pickaxe](https://ricklugtigheid.github.io/SupernovaMod/docs/items/tools/verglas_pickaxe)
+- [Harbingers Pick](https://koekmeneer.github.io/SupernovaMod/docs/items/tools/harbingers_pick)
+- [Zirconium Hamaxe](https://koekmeneer.github.io/SupernovaMod/docs/items/tools/verglas_hamaxe)
+- [Zirconium Pickaxe](https://koekmeneer.github.io/SupernovaMod/docs/items/tools/verglas_pickaxe)

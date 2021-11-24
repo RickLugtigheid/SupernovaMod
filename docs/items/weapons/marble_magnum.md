@@ -7,7 +7,7 @@ tags: Weapon, Ranged, Item, Marble, Magnum, Gun
 
 # Marble Magnum
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/MarbleMagnum.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Weapons/PreHardmode/MarbleMagnum.png)
 
 ##### Tooltip: *Fires a dense spread of bullets*
 
@@ -19,6 +19,6 @@ tags: Weapon, Ranged, Item, Marble, Magnum, Gun
 
 ### Recipe
 - 37 [Marble Blocks](https://terraria.gamepedia.com/Marble_Blocks)
-- 2 [Firearm Manuals](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/firearm_manual)
+- 2 [Firearm Manuals](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/firearm_manual)
 
 ##### Made at a [Work Bench](https://terraria.gamepedia.com/Work_Benches)

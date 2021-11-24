@@ -7,7 +7,7 @@ parent: Pre Hardmode Npcs
 # Cosmic Anomaly
 {: .no_toc }
 
-##### Summons the [Harbinger of Annihilation](https://ricklugtigheid.github.io/SupernovaMod/docs/npcs/bosses/harbinger_of_annihilation) when killed.
+##### Summons the [Harbinger of Annihilation](https://koekmeneer.github.io/SupernovaMod/docs/npcs/bosses/harbinger_of_annihilation) when killed.
 
 ### Stats
 - 75 Health

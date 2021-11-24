@@ -7,7 +7,7 @@ tags: Weapon, Flying, Terror, Cleaver, Melee
 
 # Terror Cleaver
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/FlyingTerror/TerrorCleaver.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Npcs/Bosses/FlyingTerror/TerrorCleaver.png)
 
 ##### Tooltip: *A big cleaver as strong as the bones of the Flying Terror*
 
@@ -18,7 +18,7 @@ tags: Weapon, Flying, Terror, Cleaver, Melee
 - Value: 7 Gold
 
 ### Recipe
-- 1 [Terror Wing](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/terror_wing)
+- 1 [Terror Wing](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/terror_wing)
 
 ##### Made at a [Work Bench](https://terraria.fandom.com/wiki/Work_Benches)
 

@@ -7,7 +7,7 @@ tags: Weapon, Thrown, Verglas, Trowing, Axe
 
 # Verglas Throwing Axe
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/VerglasThrowingAxe.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Weapons/PreHardmode/VerglasThrowingAxe.png)
 
 ### Stats
 - DamageType: [Trown]
@@ -16,6 +16,6 @@ tags: Weapon, Thrown, Verglas, Trowing, Axe
 - Value: 9 Gold and 47 Silver
 
 ### Recipe
-- 12 [Verglas Bars](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/verglas_bar)
+- 12 [Verglas Bars](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/verglas_bar)
 
 ##### Made at a [Anvil](https://terraria.gamepedia.com/Anvil)

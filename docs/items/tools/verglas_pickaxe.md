@@ -15,6 +15,6 @@ tags: Tool, Pickaxe, Verglas
 - Value: 4 Gold
 
 ### Recipe
-- 14 [Verglas Bars](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/verglas_bar)
+- 14 [Verglas Bars](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/verglas_bar)
 
 ##### Made at a [Anvil](https://terraria.gamepedia.com/Anvil)

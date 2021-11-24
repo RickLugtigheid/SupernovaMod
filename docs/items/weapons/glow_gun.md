@@ -7,7 +7,7 @@ tags: Weapon, Magic, Item, Glow, Gun, Glowing, Mushroom
 
 # Glow Gun
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/GlowGun.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Weapons/PreHardmode/GlowGun.png)
 
 ### Stats
 - DamageType: [Magic]
@@ -17,7 +17,7 @@ tags: Weapon, Magic, Item, Glow, Gun, Glowing, Mushroom
 - Value: 4 Gold and 30 Silver
 
 ### Recipe
-- 2 [Firearm Manuals](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/firearm_manual)
+- 2 [Firearm Manuals](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/firearm_manual)
 - 20 [Glowing Mushrooms](https://terraria.gamepedia.com/Glowing_Mushroom)
 - 20 [Sticky Glowstick](https://terraria.gamepedia.com/Sticky_Glowstick)
 

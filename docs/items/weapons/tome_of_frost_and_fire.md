@@ -6,7 +6,7 @@ tags: Weapon, Tome, Frost, Fire, Ice, Blaze, Bolt, Pre hardmode, Magic
 ---
 # Tome of Frost and Fire
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/TomeOfIceAndFire.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Weapons/PreHardmode/TomeOfIceAndFire.png)
 
 ##### Tooltip: *Shoots fire and frostburn*
 
@@ -18,8 +18,8 @@ tags: Weapon, Tome, Frost, Fire, Ice, Blaze, Bolt, Pre hardmode, Magic
 - Value: 10 Gold
 
 ### Recipe
-- 1 [Blaze Bolt](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/blaze_bolt)
-- 1 [Ice Bolt](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/ice_bolt)
+- 1 [Blaze Bolt](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/blaze_bolt)
+- 1 [Ice Bolt](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/ice_bolt)
 - 32 [Bones](https://terraria.fandom.com/wiki/Bone)
 - 1 [Book](https://terraria.fandom.com/wiki/Book)
 

@@ -7,7 +7,7 @@ tags: Weapon, Magic, Star, Blade, Item
 
 # Magic Starblade
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/MagicStarblade.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Weapons/PreHardmode/MagicStarblade.png)
 
 ### Stats
 - DamageType: [Magic]

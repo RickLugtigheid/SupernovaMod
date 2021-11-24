@@ -10,6 +10,6 @@ tags: Item, Items, Armor, Sets
 
 PreHardmode: 
 {: .fs-6 .fw-300 }
-- [Zirconium Set](https://ricklugtigheid.github.io/SupernovaMod/docs/items/armor/zirconium_set)
-- [Carnage Set](https://ricklugtigheid.github.io/SupernovaMod/docs/items/armor/carnage_set)
-- [Verglas Set](https://ricklugtigheid.github.io/SupernovaMod/docs/items/armor/verglas_set)
+- [Zirconium Set](https://koekmeneer.github.io/SupernovaMod/docs/items/armor/zirconium_set)
+- [Carnage Set](https://koekmeneer.github.io/SupernovaMod/docs/items/armor/carnage_set)
+- [Verglas Set](https://koekmeneer.github.io/SupernovaMod/docs/items/armor/verglas_set)

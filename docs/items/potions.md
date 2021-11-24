@@ -9,4 +9,4 @@ tags: Item, Items, Potion
 # Potions
 
 #### Pre Hardmode
-- [Quarion Potion](https://ricklugtigheid.github.io/SupernovaMod/docs/items/potions/quarion_potion)
+- [Quarion Potion](https://koekmeneer.github.io/SupernovaMod/docs/items/potions/quarion_potion)

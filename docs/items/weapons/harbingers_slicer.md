@@ -7,7 +7,7 @@ tags: Weapon, Harbinger, Annihilation, Slicer, Trown, Throwing
 
 # Harbingers Slicer
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/HarbingerOfAnnihilation/HarbingersSlicer.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Npcs/Bosses/HarbingerOfAnnihilation/HarbingersSlicer.png)
 
 ### Stats
 - DamageType: [Trown]
@@ -16,4 +16,4 @@ tags: Weapon, Harbinger, Annihilation, Slicer, Trown, Throwing
 - Value: 2 Gold
 
 ### Droped By
-[The Harbinger of Annihilation](https://ricklugtigheid.github.io/SupernovaMod/docs/npcs/bosses/harbinger_of_annihilation)
+[The Harbinger of Annihilation](https://koekmeneer.github.io/SupernovaMod/docs/npcs/bosses/harbinger_of_annihilation)

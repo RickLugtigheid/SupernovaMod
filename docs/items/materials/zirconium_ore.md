@@ -11,4 +11,4 @@ tags: Material, Zirconium, Ore
 Underground
 
 ### Used In
-- [Zirconium Ore](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
+- [Zirconium Ore](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/zirconium_bar)

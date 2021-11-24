@@ -7,9 +7,9 @@ tags: Npc, Boss, Flying, Terror
 
 # Flying Terror
 #
-![Icon](https://ricklugtigheid.github.io/SupernovaMod/assets/images/boss_flying_terror.png)
+![Icon](https://koekmeneer.github.io/SupernovaMod/assets/images/boss_flying_terror.png)
 
-##### Flying Terror is a bosses that can be summoned by using a [Horrid Chunk](https://ricklugtigheid.github.io/SupernovaMod/docs/items/miscellaneous/horrid_chunk) at night.
+##### Flying Terror is a bosses that can be summoned by using a [Horrid Chunk](https://koekmeneer.github.io/SupernovaMod/docs/items/miscellaneous/horrid_chunk) at night.
 
 ### Stats
 - 3200 Health (6400 in expert mode)
@@ -17,7 +17,7 @@ tags: Npc, Boss, Flying, Terror
 - 11 Defence
 
 ### Loot
-- [Terror Wing](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/terror_wing)
+- [Terror Wing](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/terror_wing)
 
 ### Expert Mode Loot
 - [Flying Terror Bag]

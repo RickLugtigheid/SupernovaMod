@@ -8,7 +8,7 @@ description: A handy Manual for creating firearms. Used in Carnage Rifle, Glow G
 
 # Firearm Manual
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Materials/FirearmManual.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Materials/FirearmManual.png)
 
 ### Recipe
 - 1 [Iron/Lead Bar](https://terraria-archive.fandom.com/wiki/Iron_Bar)
@@ -19,9 +19,9 @@ description: A handy Manual for creating firearms. Used in Carnage Rifle, Glow G
 
 
 ### Used In
-- [Carnage Rifle](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/carnage_rifle/)
-- [Marble Magnum](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/marble_magnum/)
-- [Glow Gun](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/glow_gun/)
-- [Wood Rifle](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/wood_rifle/)
-- [Gallant](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/gallant/)
-- [Hellfire Rifle](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/hellfire_rifle/)
+- [Carnage Rifle](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/carnage_rifle/)
+- [Marble Magnum](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/marble_magnum/)
+- [Glow Gun](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/glow_gun/)
+- [Wood Rifle](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/wood_rifle/)
+- [Gallant](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/gallant/)
+- [Hellfire Rifle](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/hellfire_rifle/)

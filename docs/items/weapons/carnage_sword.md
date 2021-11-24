@@ -7,7 +7,7 @@ tags: Weapon, Melee, Item, Carnage, Sword
 
 # Carnage Sword
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageSword.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Weapons/PreHardmode/CarnageSword.png)
 
 ### Stats
 - DamageType: [Melee]
@@ -16,7 +16,7 @@ tags: Weapon, Melee, Item, Carnage, Sword
 - Value: 4 Gold
 
 ### Recipe
-- 8 [Blood Shards](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/blood_shards)
-- 12 [Bone Fragments](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/bone_fragment)
+- 8 [Blood Shards](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/blood_shards)
+- 12 [Bone Fragments](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/bone_fragment)
 
 ##### Made at a [Work Bench](https://terraria.fandom.com/wiki/Work_Benches)

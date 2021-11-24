@@ -16,6 +16,6 @@ tags: Tool, Hamaxe, Verglas
 - Value: 4 Gold
 
 ### Recipe
-- 15 [Verglas Bars](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/verglas_bar)
+- 15 [Verglas Bars](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/verglas_bar)
 
 ##### Made at a [Anvil](https://terraria.gamepedia.com/Anvil)

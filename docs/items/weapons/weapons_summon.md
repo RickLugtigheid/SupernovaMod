@@ -11,5 +11,5 @@ tags: Item, Weapon, Summon, Minion
 Staffs
 {: .fs-6 .fw-300 }
 ### Pre Hardmode
-- [Harbingers Knell](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/harbingers_knell)
-- [Verglas Staff](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/verglas_staff)
+- [Harbingers Knell](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/harbingers_knell)
+- [Verglas Staff](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/verglas_staff)

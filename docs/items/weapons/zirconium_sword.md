@@ -7,7 +7,7 @@ tags: Weapon, Melee, Zirconium, Sword
 
 # Zirconium Sword
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumSword.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumSword.png)
 
 ### Stats
 - DamageType: [Melee]
@@ -16,6 +16,6 @@ tags: Weapon, Melee, Zirconium, Sword
 - Value: 3 Gold
 
 ### Recipe
-- 8 [Zirconium Bars](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
+- 8 [Zirconium Bars](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
 
 ##### Made at a [Work Bench](https://terraria.fandom.com/wiki/Work_Benches)

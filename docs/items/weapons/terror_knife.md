@@ -7,7 +7,7 @@ tags: Weapon, Flying, Terror, Knive, Trown, Throwing
 
 # Terror Knife
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Npcs/Bosses/FlyingTerror/TerrorKnife.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Npcs/Bosses/FlyingTerror/TerrorKnife.png)
 
 ### Stats
 - DamageType: [Thrown]
@@ -16,6 +16,6 @@ tags: Weapon, Flying, Terror, Knive, Trown, Throwing
 - Value: 7 Gold
 
 ### Recipe
-- 1 [Terror Wing](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/terror_wing)
+- 1 [Terror Wing](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/terror_wing)
 
 ##### Made at a [Work Bench](https://terraria.fandom.com/wiki/Work_Benches)

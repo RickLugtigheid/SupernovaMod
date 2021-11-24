@@ -7,7 +7,7 @@ tags: Weapon, Magic, Zirconium, Wand
 
 # Zirconium Wand
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumWand.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumWand.png)
 
 ### Stats
 - DamageType: [Magic]
@@ -16,6 +16,6 @@ tags: Weapon, Magic, Zirconium, Wand
 - Value: 3 Gold
 
 ### Recipe
-- 10 [Zirconium Bars](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
+- 10 [Zirconium Bars](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
 
 ##### Made at a [Work Bench](https://terraria.fandom.com/wiki/Work_Benches)

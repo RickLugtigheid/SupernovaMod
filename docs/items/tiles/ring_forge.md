@@ -8,7 +8,7 @@ tags: Ring, Forge, Pre Hardmode, Item
 # Ring Forge
 {: .no_toc }
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/BlocksAndOres/RingForge.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/BlocksAndOres/RingForge.png)
 
 ##### Tooltip: *A forge where you can make all the rings of power*
 

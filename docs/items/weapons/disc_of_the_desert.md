@@ -7,7 +7,7 @@ tags: Weapon, Trowing, Item, Disc, Desert, Boomerang
 
 # Disc of the Desert
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/DiscOfTheDesert.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Weapons/PreHardmode/DiscOfTheDesert.png)
 
 ### Stats
 - DamageType: [Trown]
@@ -18,7 +18,7 @@ tags: Weapon, Trowing, Item, Disc, Desert, Boomerang
 ### Recipe
 - 7 [Ambers](https://terraria.gamepedia.com/Amber)
 - 20 [Desert Fossils](https://terraria.gamepedia.com/Desert_Fossil)
-- 1 [Cactus Boomerang](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/cactus_boomerang)
+- 1 [Cactus Boomerang](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/cactus_boomerang)
 - 18 [Sand Blocks](https://terraria.gamepedia.com/Sand_Block)
 
 ##### Made at a [Anvil](https://terraria.gamepedia.com/Anvil)

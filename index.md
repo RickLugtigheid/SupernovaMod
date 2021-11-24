@@ -27,9 +27,12 @@ If you want to contribute to the mod with code, sprites or other than please con
 #### Thank you to our contributors!
 <ul class="list-style-none">
    <li class="d-inline-block mr-1">
-      <a href="https://twitter.com/koek_meneer" title="KoekMeneer"><img src="https://cdn.discordapp.com/avatars/374234742108717056/ea24f2709fd875404e4199158d4abc0d.png?size=128" width="32" height="32" alt="KoekMeneer"/></a>
+      <a title="KoekMeneer"><img src="https://cdn.discordapp.com/avatars/374234742108717056/ea24f2709fd875404e4199158d4abc0d.png?size=128" width="32" height="32" alt="KoekMeneer"/></a>
    </li>
    <li class="d-inline-block mr-1">
       <a href="https://www.youtube.com/channel/UCXEf7Oh1XPfMg8u7rmbdVIA" title="Galenwald"><img src="https://yt3.ggpht.com/ytc/AAUvwnjWROGm9EEISk2EvQ7yA8LyZxF_2VtSlFEn3taL=s88-c-k-c0x00ffffff-no-rj" width="32" height="32" alt="Galenwald"/></a>
+   </li>
+      <li class="d-inline-block mr-1">
+      <a href="https://www.youtube.com/channel/UCXEf7Oh1XPfMg8u7rmbdVIA" title="Galenwald"><img src="https://yt3.ggpht.com/ytc/AAUvwnjWROGm9EEISk2EvQ7yA8LyZxF_2VtSlFEn3taL=s88-c-k-c0x00ffffff-no-rj" width="32" height="32" alt="Aqua"/></a>
    </li>
 </ul>

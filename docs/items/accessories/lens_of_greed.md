@@ -8,7 +8,7 @@ description: Provides spelunker to the user
 
 # Lens of Greed
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/PreHardmode/LensOfGreed.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Accessories/PreHardmode/LensOfGreed.png)
 
 ##### Tooltip: *Provides spelunker to the user*
 

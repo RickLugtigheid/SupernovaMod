@@ -16,6 +16,6 @@ tags: Tool, Axe, Zirconium
 
 ### Recipe
 - 3 [Wood](https://terraria.gamepedia.com/Wood)
-- 12 [Zirconium Bars](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
+- 12 [Zirconium Bars](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
 
 ##### Made at a [Tinkerers Workshop](https://terraria.fandom.com/wiki/Tinkerer%27s_Workshop)

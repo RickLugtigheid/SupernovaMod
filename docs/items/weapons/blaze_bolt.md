@@ -7,7 +7,7 @@ tags: Weapon, Blaze, Bolt, Magic
 
 # Blaze Bolt
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/BlazeBolt.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Weapons/PreHardmode/BlazeBolt.png)
 
 ##### Tooltip: *Shoots fire to burn your enemies*
 
@@ -27,4 +27,4 @@ tags: Weapon, Blaze, Bolt, Magic
 
 
 ### Recipe In
-- [Tome of Frost and Fire](https://ricklugtigheid.github.io/SupernovaMod/docs/items/weapons/tome_of_frost_and_fire)
+- [Tome of Frost and Fire](https://koekmeneer.github.io/SupernovaMod/docs/items/weapons/tome_of_frost_and_fire)

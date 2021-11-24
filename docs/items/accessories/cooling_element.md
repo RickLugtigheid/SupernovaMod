@@ -10,6 +10,6 @@ parent: Accessories
 
 ### Recipe
 - 43 [Ice Blocks](https://terraria.fandom.com/wiki/Ice_Block)
-- 7 [Verglas Bars](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/verglas_bar)
+- 7 [Verglas Bars](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/verglas_bar)
 
 ##### Made at a [Tinkerers Workshop](https://terraria.fandom.com/wiki/Tinkerer%27s_Workshop)

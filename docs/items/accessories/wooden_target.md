@@ -8,7 +8,7 @@ description: Increases trown damage by 2,5% and Increases trown velocity
 
 # Wooden Target
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/PreHardmode/WoodenTarget.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Accessories/PreHardmode/WoodenTarget.png)
 
 ##### Tooltip: *Increases trown damage by 2,5%. Increases trown velocity*
 

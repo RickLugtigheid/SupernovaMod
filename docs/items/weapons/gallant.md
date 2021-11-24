@@ -7,7 +7,7 @@ tags: Weapon, Ranged, Item, Gallant
 
 # Gallant
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/Gallant.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Weapons/PreHardmode/Gallant.png)
 
 ##### Tooltip: *Can shoot 4 bullets before having to cooldown*
 
@@ -19,6 +19,6 @@ tags: Weapon, Ranged, Item, Gallant
 
 ### Recipe
 - 8 [Gold/Platinum Bar](https://terraria-archive.fandom.com/wiki/Iron_Bar)
-- 2 [Firearm Manuals](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/firearm_manual)
+- 2 [Firearm Manuals](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/firearm_manual)
 
 ##### Made at a [Work Bench](https://terraria.fandom.com/wiki/Work_Benches)

@@ -13,7 +13,7 @@ parent: Pre Hardmode Npcs
 - 7 Defence
 
 ### Drops
-- [Quarion Shard](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/quarion_shard)
+- [Quarion Shard](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/quarion_shard)
 
 ### Found
 Leaf Crabs are found in the [Jungle biome](https://terraria.fandom.com/wiki/Jungle) and the [Ocean biome](https://terraria.fandom.com/wiki/Ocean)

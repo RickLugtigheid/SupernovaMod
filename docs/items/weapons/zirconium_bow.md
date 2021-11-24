@@ -7,7 +7,7 @@ tags: Weapon, Ranged, Zirconium, Bow
 
 # Zirconium Bow
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumBow.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Weapons/PreHardmode/ZirconiumBow.png)
 
 ### Stats
 - DamageType: [Ranged]
@@ -16,6 +16,6 @@ tags: Weapon, Ranged, Zirconium, Bow
 - Value: 3 Gold
 
 ### Recipe
-- 7 [Zirconium Bars](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
+- 7 [Zirconium Bars](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/zirconium_bar)
 
 ##### Made at a [Work Bench](https://terraria.fandom.com/wiki/Work_Benches)

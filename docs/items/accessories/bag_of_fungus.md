@@ -8,7 +8,7 @@ description: An accessory that can be found in the Glowing Mushroom biome. Has a
 
 # Bag of Fungus
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Accessories/PreHardmode/BagOfFungus.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Accessories/PreHardmode/BagOfFungus.png)
 
 ##### Tooltip: *Has a chance to release Glowing Mushrooms when damaged*
 

@@ -7,7 +7,7 @@ tags: Weapon, Melee, Item, Harpoon, Blade, Sword
 
 # Harpoon Blade
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/HarpoonBlade.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Weapons/PreHardmode/HarpoonBlade.png)
 
 ##### Tooltip: *Right click to shoot a harpoon at your enemies*
 

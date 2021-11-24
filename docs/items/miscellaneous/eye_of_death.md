@@ -9,7 +9,7 @@ description: Tooltip - Stare into the Eye of Death and go back to where you died
 # Eye of Death
 {: .no_toc }
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Misc/MantaFood.png)
+![Icon](https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Items/Misc/MantaFood.png)
 
 ##### Tooltip: *Stare into the Eye of Death and go back to where you died*
 

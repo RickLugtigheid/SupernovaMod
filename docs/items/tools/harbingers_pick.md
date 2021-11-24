@@ -15,4 +15,4 @@ parent: Tools
 - Value: 2 Gold
 
 ### Droped By
-- [Harbinger of Annihilation](https://ricklugtigheid.github.io/SupernovaMod/docs/npcs/bosses/harbinger_of_annihilation)
+- [Harbinger of Annihilation](https://koekmeneer.github.io/SupernovaMod/docs/npcs/bosses/harbinger_of_annihilation)

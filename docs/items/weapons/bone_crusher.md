@@ -7,7 +7,7 @@ tags: Melee, Pre Hardmode, Item, weapon, Bone, Crusher
 
 # Bone Crusher
 #
-![Icon](https://raw.githubusercontent.com/RickLugtigheid/SupernovaMod/main/Items/Weapons/PreHardmode/BoneCrusher.png)
+![Icon](https://raw.githubusercontent.com/koekmeneer/SupernovaMod/main/Items/Weapons/PreHardmode/BoneCrusher.png)
 
 ##### Tooltip: *Throws your enemies a bone*
 
@@ -20,6 +20,6 @@ tags: Melee, Pre Hardmode, Item, weapon, Bone, Crusher
 ### Recipe
 - 1 [Bone Sword](https://terraria.gamepedia.com/Bone_Sword)
 - 35 [Bone](https://terraria.gamepedia.com/Bone)
-- 7 [Bone Fragment](https://ricklugtigheid.github.io/SupernovaMod/docs/items/materials/bone_fragment)
+- 7 [Bone Fragment](https://koekmeneer.github.io/SupernovaMod/docs/items/materials/bone_fragment)
 
 ##### Made at a [Work Bench](https://terraria.gamepedia.com/Work_Benches)
