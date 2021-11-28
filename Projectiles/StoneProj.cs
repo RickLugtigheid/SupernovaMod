@@ -34,32 +34,25 @@ namespace Supernova.Projectiles
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
-            Vector2 usePos = projectile.position;
-            Vector2 rotVector = (projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
-            usePos += rotVector * 16f;
-
-            Vector2 position = projectile.Center;
-            int radius = 10;     //this is the explosion radius, the highter is the value the bigger is the explosion
-
-            for (int x = -radius; x <= radius; x++)
-            {
-                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width * 2, projectile.height * 2, DustID.Stone, -projectile.velocity.X * Main.rand.NextFloat(.1f, .7f), -projectile.velocity.Y * Main.rand.NextFloat(.1f, .7f), 80, default(Color), 1);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
-                Main.dust[dust].noGravity = false; //this make so the dust has no gravity
-                Main.dust[dust].velocity *= 0.2f;
-            }
-
             int item = 0;
-            if (Main.rand.NextFloat() < 0.07f) // This handles the rate at which the new item will drop. 0.99f == highChance
-            {
-                // This will spawn a javelin drop at position of javelin and in the space of the hitbox
-                item = Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height, mod.ItemType("Items.Weapons.PreHardMode.TrowingStone"), 1, false, 0, false, false);
+            if (Main.rand.NextFloat() < 0.1f) // This handles the rate at which the item will drop. 1f == 100%
+                item = Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height, ModContent.ItemType<Items.Weapons.PreHardmode.TrowingStone>(), 1, false, 0, false, false);
+            else
+			{
+                // Spawn dust on hit
+                for (int i = 0; i <= Main.rand.Next(7, 14); i++)
+                {
+                    int dustID = Dust.NewDust(projectile.position, projectile.width, projectile.height, DustID.Stone, projectile.velocity.X * 0.05f, -projectile.velocity.Y * 0.2f, 20, default(Color), Main.rand.NextFloat(.7f, 1.65f));
+                    //Main.dust[dustID].velocity *= .3f;
+                    Main.dust[dustID].noGravity = true;
+                }
+
+                // Break sound
+                Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 1, 1f, 0f);
             }
 
             if (Main.netMode == 1 && item >= 0)
-            {
                 NetMessage.SendData(MessageID.KillProjectile);
-            }
         }
 
         // Optional Section 

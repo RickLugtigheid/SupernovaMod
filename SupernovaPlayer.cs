@@ -14,11 +14,10 @@ namespace Supernova
 		public bool aBagOfFungus = false;
 		public bool aInfernalEmblem = false;
 
-		public bool arCarnage = false;
-
 		/* Minions */
 		public bool minionHairbringersKnell = false;
 		public bool minionVerglasFlake = false;
+		public bool minionCarnageOrb = false;
 
 		/*  Hit Events */
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) => OnHit(target, damage, knockback, crit, proj: proj);
@@ -44,18 +43,6 @@ namespace Supernova
 					Main.projectile[i].hostile = false;
 					Main.projectile[i].friendly = true;
 				}
-			if (arCarnage && Main.rand.Next(3) == 0)
-			{
-				player.AddBuff(BuffID.Rage, 666);
-				for (int i = 0; i < 80; i++)
-				{
-					int dust = Dust.NewDust(player.position, player.width + 6, player.height + 6, mod.DustType("Blood"));
-					Main.dust[dust].scale = 2f;
-					Main.dust[dust].noGravity = true;
-					Main.dust[dust].velocity *= 3.7f;
-					Main.dust[dust].velocity *= 3.7f;
-				}
-			}
 		}
 
 		/* Equip Events */
@@ -95,6 +82,7 @@ namespace Supernova
 			// Minions
 			minionHairbringersKnell = false;
 			minionVerglasFlake = false;
+			minionCarnageOrb = false;
 		}
 	}
 }

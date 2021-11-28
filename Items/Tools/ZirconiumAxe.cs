@@ -15,6 +15,7 @@ namespace Supernova.Items.Tools
         {
             
             item.damage = 6; // Base Damage of the Weapon
+            item.crit = 4;
             item.width = 24; // Hitbox Width
             item.height = 24; // Hitbox Height
             
@@ -27,7 +28,7 @@ namespace Supernova.Items.Tools
             item.UseSound = SoundID.Item1; // Sound effect of item on use 
             item.autoReuse = true; // Do you want to torture people with clicking? Set to false
 
-            item.axe = 50; // Axe Power - Higher Value = Better
+            item.axe = 10; // Axe Power - Higher Value = Better
         }
 
         public override void AddRecipes()

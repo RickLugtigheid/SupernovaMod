@@ -27,8 +27,8 @@ namespace Supernova
                         WorldGen.TileRunner(
                             WorldGen.genRand.Next(0, Main.maxTilesX),
                             WorldGen.genRand.Next((int)WorldGen.worldSurfaceHigh, Main.maxTilesY),
-                            (double)WorldGen.genRand.Next(5, 8),
-                            WorldGen.genRand.Next(3, 9),
+                            (double)WorldGen.genRand.Next(5, 10),
+                            WorldGen.genRand.Next(4, 9),
                             mod.TileType("ZirconiumOreTile"), false, 0f, 0f, false, true);
                     }
                 }));

@@ -15,8 +15,8 @@ namespace Supernova.Items.Weapons.PreHardmode
         {   
             item.thrown = true; // Set this to true if the weapon is throwable.
             item.maxStack = 999; // Makes it so the weapon stacks.
-            item.damage = 4;
-            item.crit = 24;
+            item.damage = 6;
+            item.crit = 4;
             item.knockBack = 1f;
             item.useStyle = 1;
             item.UseSound = SoundID.Item1;

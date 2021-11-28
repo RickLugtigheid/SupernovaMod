@@ -28,6 +28,7 @@ namespace Supernova.Projectiles.Minions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Verglas Flake");
+            ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
         }
 
         public void CheckActive()

@@ -17,6 +17,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
         const int ShootDirection = 7;
 
         bool spin = false;
+        bool _despawn = false;
 
         /* Stage Attacks */
         public string[] stage0 = new string[] { "atkShootTeleport", "atkEnergyBall", "atkShootTeleport", "atkEnergyBall", "atkEnergyBall" };
@@ -32,7 +33,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
         public override void SetDefaults()
         {
             targetOffset = new Vector2(-170, -270);
-            velMax = 10;
+            velMax = 5;
             velAccel = .3f;
 
             attackPointer = 0;
@@ -95,7 +96,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
 
             // Attack
-            Attack();
+            if (!_despawn) Attack();
 
             // Handle despawning
             DespawnHandler();
@@ -103,9 +104,9 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             // Move
             target = targetPlayer.Center;
             target.X += targetOffset.X;
-            target.Y += targetOffset.Y; 
+            target.Y += targetOffset.Y;
 
-            Move();
+            if (!_despawn) Move();
         }
         #region Attacks
         public void atkShootTeleport()
@@ -113,6 +114,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             npc.ai[0]++;
             if (npc.ai[0] == 10)
             {
+                velMax = 10;
                 npc.position.X = (Main.player[npc.target].position.X + -200);
                 npc.position.Y = (Main.player[npc.target].position.Y + -250);
                 for (int i = 0; i < 50; i++)
@@ -173,8 +175,8 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
             if (npc.ai[0] >= 500)
             {
-                velAccel = .3f;
-                velMax = 10;
+                velAccel = .2f;
+                velMax = 5;
                 npc.defense = 10;
 
                 npc.ai[0] = 0;
@@ -208,6 +210,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             npc.ai[0]++;
             if (npc.ai[0] == 10)
             {
+                velMax = 15;
                 npc.position.X = (Main.player[npc.target].position.X + -200);
                 npc.position.Y = (Main.player[npc.target].position.Y + -250);
                 for (int i = 0; i < 50; i++)
@@ -278,8 +281,9 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
             if (npc.ai[0] >= 500)
             {
+                velMax = 5;
                 velAccel = .3f;
-                npc.defense = 10;
+                npc.defense = 5;
 
                 npc.ai[0] = 0;
                 attackPointer++;
@@ -381,11 +385,12 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                 npc.TargetClosest(false);
                 targetPlayer = Main.player[npc.target];
                 if (!targetPlayer.active || targetPlayer.dead)
-                {
-                    npc.velocity = new Vector2(0f, -10f);
-                    if (npc.timeLeft > 10)
+				{
+                    _despawn = true;
+					npc.velocity = new Vector2(0f, -10f);
+                    if (npc.timeLeft > 5)
                     {
-                        npc.timeLeft = 10;
+                        npc.timeLeft = 5;
                     }
                     return;
                 }

@@ -28,7 +28,7 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.noMelee = true;
             item.knockBack = 2;
             item.value = Item.buyPrice(0, 3, 0, 0);
-            item.rare = Rarity.Green;
+            item.rare = Rarity.Orange;
             item.mana = 7;             //mana use
             item.UseSound = SoundID.Item21;            //this is the sound when you use the item
             item.autoReuse = true;

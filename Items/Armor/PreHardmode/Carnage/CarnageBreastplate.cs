@@ -11,7 +11,6 @@ namespace Supernova.Items.Armor.PreHardmode.Carnage
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Carnage Breastplate"); // Set the name
-            Tooltip.SetDefault("When your health is below 200 your crit change increases by 4%");
         }
 
         public override void SetDefaults()
@@ -22,23 +21,6 @@ namespace Supernova.Items.Armor.PreHardmode.Carnage
             item.rare = Rarity.Green;
             item.defense = 8; // The Defence value for this piece of armour.
         }
-
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
-            return head.type == mod.ItemType("BloodyHelm") && legs.type == mod.ItemType("BloodyBoots");
-        }
-
-        public override void UpdateEquip(Player player)
-        {
-            if (player.statLife <= 200)
-            {
-                player.meleeCrit += 4;
-                player.magicCrit += 4;
-                player.rangedCrit += 4;
-                player.thrownCrit += 4;
-            }
-        }
-
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

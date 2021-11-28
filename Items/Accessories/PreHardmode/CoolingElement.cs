@@ -1,7 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 
 namespace Supernova.Items.Accessories.PreHardmode
 {
@@ -11,9 +10,7 @@ namespace Supernova.Items.Accessories.PreHardmode
         {
             DisplayName.SetDefault("Cooling Element");
             Tooltip.SetDefault("Decreases ring cooldown by 7%\nWhen your ring is cooling down your movement speed increases by 10%");
-            Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 16));
             ItemID.Sets.ItemNoGravity[item.type] = true;
-            ItemID.Sets.AnimatesAsSoul[item.type] = true;
         }
 
         public override void SetDefaults()
@@ -30,9 +27,7 @@ namespace Supernova.Items.Accessories.PreHardmode
         {
             SupernovaPlayer.ringCooldownDecrease -= 0.07f;
             if (player.HasBuff(mod.BuffType("RingCooldown")))
-            {
                 player.moveSpeed *= 1.1f;
-            }
         }
 
         public override void AddRecipes()

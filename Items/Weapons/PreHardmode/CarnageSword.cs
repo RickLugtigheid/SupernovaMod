@@ -18,18 +18,18 @@ namespace Supernova.Items.Weapons.PreHardmode
         }
 		public override void SetDefaults()
 		{
-			item.damage = 18;
+			item.damage = 22;
 			item.melee = true;
-            item.crit = 8;
+            item.crit = 4;
             item.width = 40;
 			item.height = 40;
-			item.useTime = 33;
-			item.useAnimation = 33;
+			item.useTime = 30;
+			item.useAnimation = 30;
 			item.useStyle = 1;
 			item.knockBack = 2.5f;
 			item.value = Item.buyPrice(0, 3, 0, 0);
-            item.rare = Rarity.Green;
-			item.UseSound = SoundID.Item1;
+            item.rare = Rarity.Orange;
+            item.UseSound = SoundID.Item1;
             item.autoReuse = true;
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)

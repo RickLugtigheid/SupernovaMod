@@ -32,7 +32,7 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             item.rare = Rarity.Rainbow;
             item.UseSound = SoundID.Item38;
             item.shoot = ProjectileID.Bullet;
-            item.shootSpeed = 14f;
+            item.shootSpeed = 2.7f;
             item.useAmmo = AmmoID.Bullet;
             item.ranged = true;
 
@@ -42,9 +42,9 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2[] speeds = Calc.RandomSpread(speedX, speedY, 8, .0345f, 6);
-            for (int i = 0; i < 3; ++i)
-                Projectile.NewProjectile(position.X, position.Y, speeds[i].X, speeds[i].Y, type, damage, knockBack, player.whoAmI);
+            Vector2[] speeds = Calc.RandomSpread(speedX, speedY, 8, .0325f, 5);
+            for (int i = 0; i < Main.rand.Next(3, 5); ++i)
+                Projectile.NewProjectile(position.X, position.Y, speeds[i].X - Main.rand.NextFloat(-.5f, .75f), speeds[i].Y - Main.rand.NextFloat(-.5f, .75f), type, damage, knockBack, player.whoAmI);
             return false;
         }
     }

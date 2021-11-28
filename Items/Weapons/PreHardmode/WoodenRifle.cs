@@ -39,10 +39,10 @@ namespace Supernova.Items.Weapons.PreHardmode
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.GetItem("WoodGun"));
-            recipe.AddIngredient(ItemID.IronBar, 12);
+            recipe.AddIngredient(ItemID.IronBar, 7);
             recipe.anyIronBar = true;
             recipe.AddIngredient(mod.GetItem("FirearmManual"), 2);
-            recipe.AddIngredient(ItemID.Wood, 100);
+            recipe.AddIngredient(ItemID.Wood, 20);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(this);
             recipe.AddRecipe();

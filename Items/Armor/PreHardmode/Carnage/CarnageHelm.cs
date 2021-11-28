@@ -9,7 +9,6 @@ namespace Supernova.Items.Armor.PreHardmode.Carnage
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Carnage Helmet");
-            Tooltip.SetDefault("increases damage by 3%");
         }
 
         public override void SetDefaults()
@@ -23,18 +22,16 @@ namespace Supernova.Items.Armor.PreHardmode.Carnage
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == mod.ItemType("BloodyBreastplate") && legs.type == mod.ItemType("BloodyBoots");
+            return body.type == mod.ItemType("CarnageBreastplate") && legs.type == mod.ItemType("CarnageBoots");
         }
 
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "When you get hit may Rage Giving you +10% crit \nReduces damage taken by 5%";
-            player.GetModPlayer<SupernovaPlayer>().arCarnage = true;
-            player.endurance += 0.05f;
-        }
-        public override void UpdateEquip(Player player)
-        {
-            player.allDamage += 0.03f;
+            player.AddBuff(ModContent.BuffType<Buffs.Minion.CarnageOrbBuff>(), 10);
+
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Minions.CarnageOrb>()] < 1)
+                Projectile.NewProjectile(player.position, Microsoft.Xna.Framework.Vector2.Zero, ModContent.ProjectileType<Projectiles.Minions.CarnageOrb>(), item.damage, 1, player.whoAmI);
         }
 
         public override void AddRecipes()

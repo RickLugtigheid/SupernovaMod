@@ -24,7 +24,7 @@ namespace Supernova.Projectiles
             projectile.hostile = false;         
             projectile.ranged = true;           
             projectile.penetrate = 1;           
-            projectile.timeLeft = 100;                    
+            projectile.timeLeft = 110;                    
             projectile.ignoreWater = true;      
             projectile.tileCollide = true;      
             projectile.extraUpdates = 1;                                           
@@ -37,7 +37,7 @@ namespace Supernova.Projectiles
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
 
             // Spawn dust when the bullet is buring up
-            if (projectile.timeLeft <= 25)
+            if (projectile.timeLeft <= 25 || (projectile.timeLeft < 50 && projectile.timeLeft % 10 == 0))
 			{
 				int flame = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, DustID.Fire, projectile.velocity.X * -0.6f, projectile.velocity.Y * 1.2f, 20);
 				Main.dust[flame].noGravity = false;

@@ -21,15 +21,10 @@ namespace Supernova.Items.Armor.PreHardmode.Carnage
             item.rare = Rarity.Green;
             item.defense = 6; // The Defence value for this piece of armour.
         }
-        
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
-            return body.type == mod.ItemType("BloodyBreastplate") && head.type == mod.ItemType("BloodyHelm");
-        }
 
         public override void UpdateEquip(Player player)
         {
-            player.moveSpeed += 6.47f;
+            player.moveSpeed += 2.45f;
         }
 
 
