@@ -27,10 +27,9 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         {
             Lighting.AddLight(projectile.Center, ((255 - projectile.alpha) * 0.15f) / 255f, ((255 - projectile.alpha) * 0.45f) / 255f, ((255 - projectile.alpha) * 0.05f) / 255f);   //this is the light colors
 
-            int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width + 2, projectile.height + 2, mod.DustType("TerrorDust"), projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 80, default(Color), 3.7f);
+            int dust = Dust.NewDust(projectile.position, projectile.width + 2, projectile.height + 2, mod.DustType("TerrorDust"), projectile.velocity.X * 0.45f, projectile.velocity.Y * 0.45f, 80, default(Color), 3);
 
             Main.dust[dust].noGravity = true; //this make so the dust has no gravity
-            Main.dust[dust].velocity *= 0.05f;
         }
         public override void Kill(int timeLeft)
         {

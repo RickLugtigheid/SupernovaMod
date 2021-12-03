@@ -106,7 +106,11 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             target.X += targetOffset.X;
             target.Y += targetOffset.Y;
 
-            if (!_despawn) Move();
+            if (!_despawn)
+            {
+                AnimateRotation();
+                Move();
+            }
         }
         #region Attacks
         public void atkShootTeleport()
@@ -127,16 +131,18 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
             if (npc.ai[0] == 100)
             {
-                npc.frameCounter += 2;
+                //npc.frameCounter += 2;
+                targetRotation = MathHelper.ToRadians(90);
                 targetOffset = new Vector2(-250, -300);
                 ShootPlus();
             }
             else if (npc.ai[0] == 150)
             {
-                npc.frameCounter += 2;
+                //npc.frameCounter += 2;
+                targetRotation = MathHelper.ToRadians(0);
 
                 ShootX();
-                npc.frameCounter = 0;
+                //npc.frameCounter = 0;
             }
             else if (npc.ai[0] == 250)
             {
@@ -396,6 +402,17 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                     return;
                 }
             }
+        }
+        float targetRotation = 0;
+        float rotateSpeed = MathHelper.ToRadians(10);
+        public void AnimateRotation()
+		{
+            if (npc.rotation > targetRotation
+                && npc.rotation > targetRotation)
+                npc.rotation -= rotateSpeed;
+            else if (npc.rotation < targetRotation
+                && npc.rotation < targetRotation)
+                npc.rotation += rotateSpeed;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {

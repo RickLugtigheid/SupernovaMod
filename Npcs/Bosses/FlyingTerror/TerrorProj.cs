@@ -34,16 +34,16 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         public override void AI()
         {
             if (projectile.localAI[0] > 100f) //projectile time left before disappears
-            {
                 projectile.Kill();
-            }
 
             //Lighting.AddLight(projectile.Center, new Vector3(205, 0, 255));   //this is the light colors
+            for (int i = 0; i < 3; i++)
+			{
+                int dust = Dust.NewDust(projectile.position, projectile.width + 2, projectile.height + 2, mod.DustType("TerrorDust"), projectile.velocity.X, projectile.velocity.Y, 80, default(Color), 2);
 
-            int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 2f), projectile.width + 2, projectile.height + 2, mod.DustType("TerrorDust"), projectile.velocity.X, projectile.velocity.Y, 80, default(Color), 2.4f);
-
-            Main.dust[dust].noGravity = true; //this make so the dust has no gravity
-            Main.dust[dust].velocity *= .5f;
+                Main.dust[dust].noGravity = true; //this make so the dust has no gravity
+                Main.dust[dust].velocity *= .5f;
+            }
         }
 	}
 }

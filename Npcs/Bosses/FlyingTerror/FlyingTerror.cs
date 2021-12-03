@@ -14,16 +14,15 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
 
         /* Stats */
         public int smallAttackDamage = 22;
-        public int largeAttackDamage = 37;
+        public int largeAttackDamage = 34;
         const float ShootKnockback = 5f;
         const int ShootDirection = 7;
 
         /* Stage Attacks */
         public string[] stage0 = new string[] { "atkTeleport", "atkBomb" };
-        public string[] stage1 = new string[] { "atkTeleport", "atkBomb", "atkTeleport", "atkBottomDash" };
-        public string[] stage2 = new string[] { "atkBottomDash", "atkShootBomb", "atkFireStorm", "atkTeleport", "atkShootBomb" };
-        public string[] stage3 = new string[] { "atkFireStorm", "atkFireStorm", "atkShootBomb", "atkBottomDash", "atkShootBomb" };
-        public string[] stage4 = new string[] { "atkFireStorm", "atkShootBomb", "atkShootBomb" };
+        public string[] stage1 = new string[] { "atkBottomDash", "atkShootBomb", "atkBomb", "atkTeleport" };
+        public string[] stage2 = new string[] { "atkFireStorm", "atkFireStorm", "atkShootBomb", "atkBottomDash", "atkShootBomb" };
+        public string[] stage3 = new string[] { "atkShootBomb", "atkShootBomb", "atkShootBomb", "atkShootBomb", "atkBottomDash" };
 
         public override void SetStaticDefaults()
         {
@@ -85,11 +84,10 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
                 init = true;
             }
 
+            if (Despawning()) return;
+
             // Attack
             Attack();
-
-            // Handle despawning
-            DespawnHandler();
 
             // Movement
             if (_move)
@@ -108,12 +106,14 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         public void atkTeleport()
 		{
             npc.ai[0]++;
-            if (npc.ai[0] == 40)
+            if (npc.ai[0] == 60)
             {
+                for (int i = 0; i <= 20; i++)
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Shadowflame);
                 npc.position.X = (Main.player[npc.target].position.X + 450);
                 npc.position.Y = (Main.player[npc.target].position.Y - 300);
             }
-            else if (npc.ai[0] > 50 && npc.ai[0] < 150)
+            else if (npc.ai[0] > 80 && npc.ai[0] < 170)
             {
                 npc.ai[2]++;
                 if (npc.ai[2] >= 50)
@@ -122,12 +122,14 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
                     npc.ai[2] = 0;
                 }
             }
-            else if (npc.ai[0] == 151)
+            else if (npc.ai[0] == 171)
             {
+                for (int i = 0; i <= 20; i++)
+                    Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Shadowflame);
                 npc.position.X = (Main.player[npc.target].position.X - 450);
                 npc.position.Y = (Main.player[npc.target].position.Y - 300);
             }
-            else if (npc.ai[0] > 150 && npc.ai[0] < 250)
+            else if (npc.ai[0] > 170 && npc.ai[0] < 270)
             {
                 npc.ai[2]++;
                 if (npc.ai[2] >= 50)
@@ -136,7 +138,7 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
                     npc.ai[2] = 0;
                 }
             }
-            else if (npc.ai[0] >= 300)
+            else if (npc.ai[0] >= 340)
             {
                 npc.ai[0] = 0;
                 attackPointer++;
@@ -180,7 +182,7 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
                 Main.PlaySound(SoundID.Item20, npc.Center);
                 Vector2 vector8 = new Vector2(npc.position.X + (npc.width - 50), npc.position.Y + (-npc.height + 200));
 
-                float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.5f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.5f)));
+                float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.2f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.2f)));
 
                 Projectile.NewProjectile(vector8.X, vector8.Y, (float)(-(Math.Cos(rotation) * 14)), (float)(-(Math.Sin(rotation) * 14)), type, largeAttackDamage, 0f, 0);
             }
@@ -194,7 +196,7 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
 		{
             _move = false;
             npc.ai[0]++;
-            if(npc.ai[0] == 50)
+            if(npc.ai[0] == 40)
 			{
                 target = targetPlayer.position;
                 target.Y -= 500;
@@ -203,20 +205,20 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
                 for (int i = 0; i <= 20; i++)
                     Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Shadowflame);
             }
-            else if(npc.ai[0] == 90)
+            else if(npc.ai[0] == 60)
 			{
                 npc.position.X = (Main.player[npc.target].position.X);
                 npc.position.Y = (Main.player[npc.target].position.Y + 650);
                 target = new Vector2(target.X, target.Y - 1700);
 
-                velMax *= 3;
-                velAccel *= 3;
+                velMax = 23;
+                velAccel *= 4;
                 npc.alpha = 0;
             }
-            else if(npc.ai[0] >= 180)
+            else if(npc.ai[0] >= 135)
 			{
-                velMax /= 3;
-                velAccel /= 3;
+                velMax = 6;
+                velAccel /= 4;
                 _move = true;
                 npc.ai[0] = 0;
                 attackPointer++;
@@ -225,18 +227,18 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         #endregion
         private void Shoot()
         {
-            float Speed = 14;  //projectile speed
+            float Speed = 20;  //projectile speed
             int type = mod.ProjectileType("TerrorProj");
             Main.PlaySound(SoundID.Item20, npc.Center);
             Vector2 vector8 = new Vector2(npc.position.X + npc.width, npc.position.Y + (-npc.height + 200));
 
-            float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.5f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.5f)));
+            float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.1f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.1f)));
 
-            Projectile.NewProjectile(vector8.X, vector8.Y, (float)(-(Math.Cos(rotation) * Speed) * Main.rand.NextFloat(.9f, 1.1f)), (float)(-(Math.Sin(rotation) * Speed) * Main.rand.NextFloat(.9f, 1.1f)), type, smallAttackDamage, 0f, 0);
+            Projectile.NewProjectile(vector8.X, vector8.Y, (float)-(Math.Cos(rotation) * Speed), (float)-(Math.Sin(rotation) * Speed), type, smallAttackDamage, 0f, 0);
         }
         private void ShootFlames()
         {
-            float Speed = 0.75f;  //projectile speed
+            float Speed = .9f;  //projectile speed
 
             int damage = 19;  //projectile damage
             int type = 596;  //put your projectile
@@ -291,9 +293,9 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             if (frame >= Main.npcFrameCount[npc.type]) frame = 0;
             npc.frame.Y = frame * frameHeight;
         }
-        private void DespawnHandler()
+        private bool Despawning()
         {
-            if (!targetPlayer.active || targetPlayer.dead || Main.dayTime)
+            if (targetPlayer == null || !targetPlayer.active || targetPlayer.dead || Main.dayTime)
             {
                 npc.TargetClosest(false);
                 targetPlayer = Main.player[npc.target];
@@ -301,12 +303,11 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
                 {
                     npc.velocity = new Vector2(0f, -10f);
                     if (npc.timeLeft > 10)
-                    {
                         npc.timeLeft = 10;
-                    }
-                    return;
+                    return true;
                 }
             }
+            return false;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
@@ -316,16 +317,13 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
             // Stages
-            if (npc.life <= (npc.lifeMax * .3f))
-                attacks = stage4;
-
-            else if (npc.life <= (npc.lifeMax * 50f))
+            if (npc.life <= (npc.lifeMax * .3))
                 attacks = stage3;
 
-            else if (npc.life <= (npc.lifeMax * .70))
+            else if (npc.life <= (npc.lifeMax * .5))
                 attacks = stage2;
 
-            else if (npc.life <= (npc.lifeMax * .9f))
+            else if (npc.life <= (npc.lifeMax * .75))
                 attacks = stage1;
 
             // Reset attack pointer when we have done all the attacks for this stage
