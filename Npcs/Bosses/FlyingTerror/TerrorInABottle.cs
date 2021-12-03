@@ -93,11 +93,11 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         public int DashDelay = MAX_DASH_DELAY;
         public int DashTimer = MAX_DASH_TIMER;
         //The initial velocity.  10 velocity is about 37.5 tiles/second or 50 mph
-        public readonly float DashVelocity = 17f;
+        public readonly float DashVelocity = 12f;
         //These two fields are the max values for the delay between dashes and the length of the dash in that order
         //The time is measured in frames
-        public static readonly int MAX_DASH_DELAY = 50;
-        public static readonly int MAX_DASH_TIMER = 35;
+        public static readonly int MAX_DASH_DELAY = 80;
+        public static readonly int MAX_DASH_TIMER = 20;
 
         public override void ResetEffects()
         {

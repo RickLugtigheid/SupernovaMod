@@ -24,13 +24,32 @@ namespace Supernova.Items.Accessories.PreHardmode
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            if(player.statMana <= 15 && player.statLife >= 50)
+            if (player.statMana <= 15 && player.statLife >= 50)
             {
                 player.statLife -= 50;
                 player.statMana += 50;
                 Main.PlaySound(SoundID.MaxMana, player.Center);
                 Main.PlaySound(SoundID.PlayerHit, player.Center);
             }
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.GoldBar, 2);
+            recipe.AddIngredient(ItemID.ManaCrystal, 2);
+            recipe.AddIngredient(ItemID.LifeCrystal);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.PlatinumBar, 2);
+            recipe.AddIngredient(ItemID.ManaCrystal, 2);
+            recipe.AddIngredient(ItemID.LifeCrystal);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

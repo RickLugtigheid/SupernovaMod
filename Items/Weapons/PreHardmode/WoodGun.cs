@@ -16,24 +16,32 @@ namespace Supernova.Items.Weapons.PreHardmode
 
         public override void SetDefaults()
         {
-            item.damage = 5;
+            item.damage = 3;
             item.ranged = true;
             item.width = 40;
             item.crit = 3;
             item.height = 20;
-            item.useTime = 23;
-            item.useAnimation = 23;
+            item.useTime = 18;
+            item.useAnimation = 18;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
-            item.knockBack = 3.7f;
+            item.knockBack = 1.7f;
             item.value = Item.buyPrice(0, 1, 70, 0); // Another way to handle value of item.
             item.autoReuse = false;
             item.rare = Rarity.Green;
             item.UseSound = SoundID.Item41;
-            item.shoot = 10; //idk why but all the guns in the vanilla source have this
-            item.shootSpeed = 7f;
+            item.shoot = 10;
+            item.shootSpeed = 4;
             item.useAmmo = AmmoID.Bullet;
             item.ranged = true; // For Ranged Weapon
+        }
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(3));
+            speedX = perturbedSpeed.X;
+            speedY = perturbedSpeed.Y;
+            return true;
         }
 
         public override void AddRecipes()
@@ -44,7 +52,5 @@ namespace Supernova.Items.Weapons.PreHardmode
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
-
-        public override bool ConsumeAmmo(Player player) => Main.rand.NextFloat() >= .17f;
     }
 }

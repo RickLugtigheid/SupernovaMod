@@ -8,7 +8,7 @@ namespace Supernova.Items.Weapons.PreHardmode
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Trowing Stone");
+            DisplayName.SetDefault("Thrown Stone");
         }
 
         public override void SetDefaults()

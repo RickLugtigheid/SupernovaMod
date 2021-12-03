@@ -9,7 +9,7 @@ namespace Supernova.Items.Accessories.PreHardmode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ruby Ball Bearings");
-            Tooltip.SetDefault("Increases yoyo speed and lifetime.");
+            Tooltip.SetDefault("Increases yoyo speed by 50% and damage by 5%.");
         }
 
         public override void SetDefaults()
@@ -24,8 +24,12 @@ namespace Supernova.Items.Accessories.PreHardmode
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            //Main.projectile[player.heldProj];
-            if (player.HeldItem.useStyle == 5) { player.meleeSpeed *= 1.5f; }//increases yoyo speed by 50%
+            // If the player uses a yoyo
+            if (player.HeldItem.useStyle == ItemUseStyleID.HoldingOut)
+            {
+                player.meleeSpeed *= 1.50f; //increases yoyo speed by 50%
+                player.meleeDamage *= 1.05f;
+            }
         }
 
         public override void AddRecipes()
@@ -33,13 +37,14 @@ namespace Supernova.Items.Accessories.PreHardmode
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.GoldBar, 3);
             recipe.AddIngredient(ItemID.Ruby, 2);
-            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();
 
+            recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.PlatinumBar, 3);
             recipe.AddIngredient(ItemID.Ruby, 2);
-            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

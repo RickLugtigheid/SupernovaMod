@@ -16,7 +16,7 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.knockBack = 1.8f;
             item.damage = 24;
             item.crit = 4;
-            item.useStyle = Rarity.Green; // The style used for YoYos.
+            item.useStyle = ItemUseStyleID.HoldingOut; // The style used for YoYos.
             item.width = 24;
             item.height = 24;
             item.noUseGraphic = true; // Doesn't show Item in Hand.
@@ -31,8 +31,6 @@ namespace Supernova.Items.Weapons.PreHardmode
             item.value = Item.buyPrice(0, 4, 43, 70); // Another way to handle value of item.
             item.rare = Rarity.Orange;
         }
-
-        public override bool AltFunctionUse(Player player) => true;
 
         public override void AddRecipes() 
         {

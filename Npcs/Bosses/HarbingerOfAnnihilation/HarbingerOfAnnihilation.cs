@@ -122,8 +122,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                     int dust = Dust.NewDust(npc.position, npc.width, npc.height, 71);
                     Main.dust[dust].scale = 2.5f;
                     Main.dust[dust].noGravity = true;
-                    Main.dust[dust].velocity *= 0f;
-                    Main.dust[dust].velocity *= 0f;
+                    Main.dust[dust].velocity *= 0;
                 }
             }
             if (npc.ai[0] == 100)
@@ -164,19 +163,20 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                     int dust = Dust.NewDust(npc.position, npc.width, npc.height, 71);
                     Main.dust[dust].scale = 2.5f;
                     Main.dust[dust].noGravity = true;
-                    Main.dust[dust].velocity *= 0f;
-                    Main.dust[dust].velocity *= 0f;
+                    Main.dust[dust].velocity *= 0;
                 }
                 targetOffset = Vector2.Zero;
             }
             else if (npc.ai[0] == 480)
             {
+                velAccel = .03f;
+                velMax = 3;
                 targetOffset.Y = -200;
             }
             if (npc.ai[0] >= 500)
             {
                 velAccel = .2f;
-                velMax = 5;
+                velMax = 3;
                 npc.defense = 10;
 
                 npc.ai[0] = 0;
@@ -188,6 +188,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
 		{
             npc.ai[0]++;
             targetOffset = new Vector2(0, -200);
+            velMax = 3;
             if (npc.ai[0] >= 30)
 			{
                 // Shoot
@@ -281,7 +282,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
             if (npc.ai[0] >= 500)
             {
-                velMax = 5;
+                velMax = 3;
                 velAccel = .3f;
                 npc.defense = 5;
 
