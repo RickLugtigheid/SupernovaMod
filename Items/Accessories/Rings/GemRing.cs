@@ -10,7 +10,7 @@ namespace Supernova.Items.Accessories.Rings
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gem Ring");
-            Tooltip.SetDefault($"Shoots gem staff projeciltes when the 'Ring Ability button' is pressed. {RingBase.RING_HELP}");
+            Tooltip.SetDefault("Shoots gem staff projeciltes when the 'Ring Ability button' is pressed.");
         }
         public override void SetDefaults()
         {
@@ -20,7 +20,7 @@ namespace Supernova.Items.Accessories.Rings
             item.rare = Rarity.Green;
             item.value = Item.buyPrice(0, 5, 0, 0);
         }
-		public override int cooldown => 1350;
+		public override int Cooldown => 1700;
 		public override void OnRingActivate(Player player)
 		{
 			for (int i = 0; i < 3; i++)
@@ -36,18 +36,18 @@ namespace Supernova.Items.Accessories.Rings
 				diff.Normalize();
 
 				Projectile.NewProjectile(position.X, position.Y, diff.X * 10, diff.Y * 10, Type, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(position.X, position.Y, diff.X * 9, diff.Y * 9, Type, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(position.X, position.Y, diff.X * 9.5f, diff.Y * 9.5f, Type, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type1 = 122;
-				Projectile.NewProjectile(position.X, position.Y, diff.X * 8, diff.Y * 8, Type1, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(position.X, position.Y, diff.X * 9, diff.Y * 9, Type1, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type2 = 123;
-				Projectile.NewProjectile(position.X, position.Y, diff.X * 7, diff.Y * 7, Type2, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(position.X, position.Y, diff.X * 6, diff.Y * 6, Type2, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(position.X, position.Y, diff.X * 8.5f, diff.Y * 8.5f, Type2, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(position.X, position.Y, diff.X * 8, diff.Y * 8, Type2, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type3 = 124;
-				Projectile.NewProjectile(position.X, position.Y, diff.X * 5, diff.Y * 5, Type3, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(position.X, position.Y, diff.X * 7.5f, diff.Y * 7.5f, Type3, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type4 = 125;
-				Projectile.NewProjectile(position.X, position.Y, diff.X * 4, diff.Y * 4, Type4, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(position.X, position.Y, diff.X * 7, diff.Y * 7, Type4, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type5 = 126;
-				Projectile.NewProjectile(position.X, position.Y, diff.X * 3, diff.Y * 3, Type5, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(position.X, position.Y, diff.X * 6.5f, diff.Y * 6.5f, Type5, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 			}
 		}
 		public override void AddRecipes()

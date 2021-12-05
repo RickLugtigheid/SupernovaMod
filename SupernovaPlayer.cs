@@ -61,7 +61,7 @@ namespace Supernova
 					ring?.OnRingActivate(player);
 
 					// Add cooldown debuff
-					player.AddBuff(mod.BuffType("RingCooldown"), (int)Math.Ceiling(ring.cooldown * ringCooldownDecrease), true);
+					player.AddBuff(mod.BuffType("RingCooldown"), (int)Math.Ceiling(ring.Cooldown * ringCooldownDecrease), true);
 				}
 
 				// When we have the cooldown debuff

@@ -1,9 +1,9 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Supernova.Npcs.Bosses.FlyingTerror
 {
@@ -76,6 +76,7 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
 		bool init = false;
         public override void AI()
 		{
+            Lighting.AddLight(npc.Center, new Vector3(205, 0, 255));
             // Set target
             if (init == false)
             {
@@ -108,9 +109,10 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             npc.ai[0]++;
             if (npc.ai[0] == 60)
             {
+                targetOffset.X = 350;
                 for (int i = 0; i <= 20; i++)
                     Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Shadowflame);
-                npc.position.X = (Main.player[npc.target].position.X + 450);
+                npc.position.X = (Main.player[npc.target].position.X + 400);
                 npc.position.Y = (Main.player[npc.target].position.Y - 300);
             }
             else if (npc.ai[0] > 80 && npc.ai[0] < 170)
@@ -124,9 +126,10 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             }
             else if (npc.ai[0] == 171)
             {
+                targetOffset.X = -350;
                 for (int i = 0; i <= 20; i++)
                     Dust.NewDust(npc.Center, npc.width, npc.height, DustID.Shadowflame);
-                npc.position.X = (Main.player[npc.target].position.X - 450);
+                npc.position.X = (Main.player[npc.target].position.X - 400);
                 npc.position.Y = (Main.player[npc.target].position.Y - 300);
             }
             else if (npc.ai[0] > 170 && npc.ai[0] < 270)
@@ -140,6 +143,7 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             }
             else if (npc.ai[0] >= 340)
             {
+                targetOffset = new Vector2(0, -265);
                 npc.ai[0] = 0;
                 attackPointer++;
             }
@@ -207,18 +211,17 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
             }
             else if(npc.ai[0] == 60)
 			{
-                npc.position.X = (Main.player[npc.target].position.X);
-                npc.position.Y = (Main.player[npc.target].position.Y + 650);
-                target = new Vector2(target.X, target.Y - 1700);
+                npc.position.X = Main.player[npc.target].position.X + (targetPlayer.velocity.X * 50);
+                npc.position.Y = Main.player[npc.target].position.Y + 650;
+                target.Y = 1700;
 
                 velMax = 23;
-                velAccel *= 4;
                 npc.alpha = 0;
             }
-            else if(npc.ai[0] >= 135)
+            else if(npc.ai[0] >= 145)
 			{
+                targetOffset = new Vector2(0, -265);
                 velMax = 6;
-                velAccel /= 4;
                 _move = true;
                 npc.ai[0] = 0;
                 attackPointer++;
@@ -227,12 +230,12 @@ namespace Supernova.Npcs.Bosses.FlyingTerror
         #endregion
         private void Shoot()
         {
-            float Speed = 20;  //projectile speed
+            float Speed = 15;  //projectile speed
             int type = mod.ProjectileType("TerrorProj");
             Main.PlaySound(SoundID.Item20, npc.Center);
-            Vector2 vector8 = new Vector2(npc.position.X + npc.width, npc.position.Y + (-npc.height + 200));
+            Vector2 vector8 = new Vector2(npc.position.X + npc.width, npc.position.Y + (-npc.height + 300));
 
-            float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.1f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.1f)));
+            float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 1.5f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 1.5f))) * Main.rand.NextFloat(.8f, 1.2f);
 
             Projectile.NewProjectile(vector8.X, vector8.Y, (float)-(Math.Cos(rotation) * Speed), (float)-(Math.Sin(rotation) * Speed), type, smallAttackDamage, 0f, 0);
         }

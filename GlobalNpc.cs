@@ -37,6 +37,12 @@ namespace Supernova
 				if (Main.rand.Next(5) == 0 && NPC.downedQueenBee == true)
 					Item.NewItem(npc.getRect(), mod.ItemType("Rime"));
 			}
+			// Crimson/Corrupt drops
+			if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneCorrupt || Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneCrimson)
+			{
+				if (Main.rand.NextFloat() > .07f)
+					Item.NewItem(npc.getRect(), ModContent.ItemType<Items.Accessories.PreHardmode.SacrificialTalisman>());
+			}
 
 			/* Event Drops */
 			if (Main.bloodMoon == true)

@@ -14,7 +14,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
         public bool noAI = false;
 
         /* Stats */
-        public int smallAttackDamage = 37;
+        public int smallAttackDamage = 30;
         const float ShootKnockback = 5f;
         const int ShootDirection = 7;
 
@@ -34,7 +34,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
         {
             npc.aiStyle = -1; // Will not have any AI from any existing AI styles. 
             npc.lifeMax = 4500; // The Max HP the boss has on Normal
-            npc.damage = 41; // The base damage value the boss has on Normal
+            npc.damage = 34; // The base damage value the boss has on Normal
             npc.defense = 10; // The base defense on Normal
             npc.knockBackResist = 0f; // No knockback
             npc.width = 150;
@@ -53,7 +53,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax * bossLifeScale);
-            npc.damage = (int)(npc.damage * 1.2f);
+            npc.damage = (int)(npc.damage * 1.1f);
             npc.defense = (int)(npc.defense + numPlayers);
         }
 		public override void NPCLoot()
@@ -90,14 +90,102 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
                 npc.netUpdate = true;
                 init = true;
             }
+            if (Despawning()) return;
 
             // Attack
             Attack();
 
-            // Handle despawning
-            DespawnHandler();
+            WormAI();
 
-            // Movement
+            // Add light to the boss
+            //Lighting.AddLight(npc.Center, 183, 0, 255);
+        }
+        #region Attacks
+        public void atkSpear()
+        {
+            npc.ai[1]++;
+            if(npc.ai[1] == 60)
+			{
+                float Speed = 18;
+
+                int type = mod.ProjectileType("StoneSpear");
+                Main.PlaySound(SoundID.Item20, npc.Center); // Boing
+                Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 4), npc.position.Y + (-npc.height + 200));
+
+                float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.2f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.2f)));
+
+                Projectile.NewProjectile(vector8.X, vector8.Y, (float)(-(Math.Cos(rotation) * Speed)), (float)(-(Math.Sin(rotation) * Speed)), type, (int)(smallAttackDamage * .75f), 0f, 0);
+            }
+            else if(npc.ai[1] >= 120)
+			{
+                npc.ai[1] = 0;
+                attackPointer++;
+            }
+        }
+        public void atkSpearRain()
+		{
+            npc.ai[1]++;
+            int type = mod.ProjectileType("StoneSpear");
+            if(npc.ai[1] == 70)
+                Projectile.NewProjectile(targetPlayer.position.X, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            else if (npc.ai[1] == 80)
+                Projectile.NewProjectile(targetPlayer.position.X - 100, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            else if (npc.ai[1] == 90)
+                Projectile.NewProjectile(targetPlayer.position.X + 200, targetPlayer.position.Y - 1000, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            else if (npc.ai[1] == 100)
+                Projectile.NewProjectile(targetPlayer.position.X - 200, targetPlayer.position.Y - 1000, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            else if (npc.ai[1] == 110)
+                Projectile.NewProjectile(targetPlayer.position.X + 400, targetPlayer.position.Y - 1100, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            else if (npc.ai[1] == 120)
+                Projectile.NewProjectile(targetPlayer.position.X - 400, targetPlayer.position.Y - 1100, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            else if (npc.ai[1] == 140)
+			{
+                npc.ai[1] = 0;
+                attackPointer++;
+            }
+        }
+        public void atkSummon()
+		{
+            npc.ai[1]++;
+            if(npc.ai[1] == 80)
+                NPC.NewNPC((int)npc.position.X + Main.rand.Next(-75, 75), (int)npc.position.Y + Main.rand.Next(-75, 75), mod.NPCType("StoneRayChild"));
+            else if(npc.ai[1] >= 150)
+			{
+                npc.ai[1] = 0;
+                attackPointer++;
+            }
+        }
+        public void atkSpearFast()
+        {
+            npc.ai[1]++;
+            if (npc.ai[1] == 40)
+            {
+                float Speed = 21;
+
+                int type = mod.ProjectileType("StoneSpear");
+                Main.PlaySound(SoundID.Item20, npc.Center); // Boing
+                Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 4), npc.position.Y + (-npc.height + 200));
+
+                float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.2f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.2f)));
+
+                Projectile.NewProjectile(vector8.X, vector8.Y, (float)(-(Math.Cos(rotation) * Speed)), (float)(-(Math.Sin(rotation) * Speed)), type, (int)(smallAttackDamage * .75f), 0f, 0);
+            }
+            else if (npc.ai[1] >= 80)
+            {
+                npc.ai[1] = 0;
+                attackPointer++;
+            }
+        }
+        #endregion
+
+        private int _maxDistance = 1300;
+        // speed determines the max speed at which this NPC can move.
+        // Higher value = faster speed.
+        private float _speed = 9;
+        // acceleration is exactly what it sounds like. The speed at which this NPC accelerates.
+        private float _acceleration = 0.11f;
+        public void WormAI()
+		{
             int minTilePosX = (int)(npc.position.X / 16.0) - 1;
             int maxTilePosX = (int)((npc.position.X + npc.width) / 16.0) + 2;
             int minTilePosY = (int)(npc.position.Y / 16.0) - 1;
@@ -135,13 +223,12 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             if (!collision)
             {
                 Rectangle rectangle1 = new Rectangle((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height);
-                int maxDistance = 1000;
                 bool playerCollision = true;
                 for (int index = 0; index < 255; ++index)
                 {
                     if (Main.player[index].active)
                     {
-                        Rectangle rectangle2 = new Rectangle((int)Main.player[index].position.X - maxDistance, (int)Main.player[index].position.Y - maxDistance, maxDistance * 2, maxDistance * 2);
+                        Rectangle rectangle2 = new Rectangle((int)Main.player[index].position.X - _maxDistance, (int)Main.player[index].position.Y - _maxDistance, _maxDistance * 2, _maxDistance * 2);
                         if (rectangle1.Intersects(rectangle2))
                         {
                             playerCollision = false;
@@ -153,20 +240,14 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
                     collision = true;
             }
 
-            // speed determines the max speed at which this NPC can move.
-            // Higher value = faster speed.
-            float speed = 9f;
-            // acceleration is exactly what it sounds like. The speed at which this NPC accelerates.
-            float acceleration = 0.1f;
-
             Vector2 npcCenter = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
             float targetXPos = Main.player[npc.target].position.X + (Main.player[npc.target].width / 2);
             float targetYPos = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2);
 
             float targetRoundedPosX = (float)((int)(targetXPos / 16.0) * 16);
             float targetRoundedPosY = (float)((int)(targetYPos / 16.0) * 16);
-            npcCenter.X = (float)((int)(npcCenter.X / 16.0) * 16);
-            npcCenter.Y = (float)((int)(npcCenter.Y / 16.0) * 16);
+            npcCenter.X = ((int)(npcCenter.X / 16.0) * 16);
+            npcCenter.Y = ((int)(npcCenter.Y / 16.0) * 16);
             float dirX = targetRoundedPosX - npcCenter.X;
             float dirY = targetRoundedPosY - npcCenter.Y;
 
@@ -176,28 +257,28 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             {
                 npc.TargetClosest(true);
                 npc.velocity.Y = npc.velocity.Y + 0.11f;
-                if (npc.velocity.Y > speed)
-                    npc.velocity.Y = speed;
-                if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < speed * 0.4)
+                if (npc.velocity.Y > _speed)
+                    npc.velocity.Y = _speed;
+                if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < _speed * 0.4)
                 {
                     if (npc.velocity.X < 0.0)
-                        npc.velocity.X = npc.velocity.X - acceleration * 1.1f;
+                        npc.velocity.X = npc.velocity.X - _acceleration * 1.1f;
                     else
-                        npc.velocity.X = npc.velocity.X + acceleration * 1.1f;
+                        npc.velocity.X = npc.velocity.X + _acceleration * 1.1f;
                 }
-                else if (npc.velocity.Y == speed)
+                else if (npc.velocity.Y == _speed)
                 {
                     if (npc.velocity.X < dirX)
-                        npc.velocity.X = npc.velocity.X + acceleration;
+                        npc.velocity.X = npc.velocity.X + _acceleration;
                     else if (npc.velocity.X > dirX)
-                        npc.velocity.X = npc.velocity.X - acceleration;
+                        npc.velocity.X = npc.velocity.X - _acceleration;
                 }
                 else if (npc.velocity.Y > 4.0)
                 {
                     if (npc.velocity.X < 0.0)
-                        npc.velocity.X = npc.velocity.X + acceleration * 0.9f;
+                        npc.velocity.X = npc.velocity.X + _acceleration * 0.9f;
                     else
-                        npc.velocity.X = npc.velocity.X - acceleration * 0.9f;
+                        npc.velocity.X = npc.velocity.X - _acceleration * 0.9f;
                 }
             }
             // Else we want to play some audio (soundDelay) and move towards our target.
@@ -211,64 +292,64 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
                     if (num1 > 20.0)
                         num1 = 20f;
                     npc.soundDelay = (int)num1;
-                    Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 1);
+                    Main.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 1);
                 }
                 float absDirX = Math.Abs(dirX);
                 float absDirY = Math.Abs(dirY);
-                float newSpeed = speed / length;
+                float newSpeed = _speed / length;
                 dirX = dirX * newSpeed;
                 dirY = dirY * newSpeed;
                 if (npc.velocity.X > 0.0 && dirX > 0.0 || npc.velocity.X < 0.0 && dirX < 0.0 || (npc.velocity.Y > 0.0 && dirY > 0.0 || npc.velocity.Y < 0.0 && dirY < 0.0))
                 {
                     if (npc.velocity.X < dirX)
-                        npc.velocity.X = npc.velocity.X + acceleration;
+                        npc.velocity.X = npc.velocity.X + _acceleration;
                     else if (npc.velocity.X > dirX)
-                        npc.velocity.X = npc.velocity.X - acceleration;
+                        npc.velocity.X = npc.velocity.X - _acceleration;
                     if (npc.velocity.Y < dirY)
-                        npc.velocity.Y = npc.velocity.Y + acceleration;
+                        npc.velocity.Y = npc.velocity.Y + _acceleration;
                     else if (npc.velocity.Y > dirY)
-                        npc.velocity.Y = npc.velocity.Y - acceleration;
-                    if (Math.Abs(dirY) < speed * 0.2 && (npc.velocity.X > 0.0 && dirX < 0.0 || npc.velocity.X < 0.0 && dirX > 0.0))
+                        npc.velocity.Y = npc.velocity.Y - _acceleration;
+                    if (Math.Abs(dirY) < _speed * 0.2 && (npc.velocity.X > 0.0 && dirX < 0.0 || npc.velocity.X < 0.0 && dirX > 0.0))
                     {
                         if (npc.velocity.Y > 0.0)
-                            npc.velocity.Y = npc.velocity.Y + acceleration * 2f;
+                            npc.velocity.Y = npc.velocity.Y + _acceleration * 2f;
                         else
-                            npc.velocity.Y = npc.velocity.Y - acceleration * 2f;
+                            npc.velocity.Y = npc.velocity.Y - _acceleration * 2f;
                     }
-                    if (Math.Abs(dirX) < speed * 0.2 && (npc.velocity.Y > 0.0 && dirY < 0.0 || npc.velocity.Y < 0.0 && dirY > 0.0))
+                    if (Math.Abs(dirX) < _speed * 0.2 && (npc.velocity.Y > 0.0 && dirY < 0.0 || npc.velocity.Y < 0.0 && dirY > 0.0))
                     {
                         if (npc.velocity.X > 0.0)
-                            npc.velocity.X = npc.velocity.X + acceleration * 2f;
+                            npc.velocity.X = npc.velocity.X + _acceleration * 2f;
                         else
-                            npc.velocity.X = npc.velocity.X - acceleration * 2f;
+                            npc.velocity.X = npc.velocity.X - _acceleration * 2f;
                     }
                 }
                 else if (absDirX > absDirY)
                 {
                     if (npc.velocity.X < dirX)
-                        npc.velocity.X = npc.velocity.X + acceleration * 1.1f;
+                        npc.velocity.X = npc.velocity.X + _acceleration * 1.1f;
                     else if (npc.velocity.X > dirX)
-                        npc.velocity.X = npc.velocity.X - acceleration * 1.1f;
-                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < speed * 0.5)
+                        npc.velocity.X = npc.velocity.X - _acceleration * 1.1f;
+                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < _speed * 0.5)
                     {
                         if (npc.velocity.Y > 0.0)
-                            npc.velocity.Y = npc.velocity.Y + acceleration;
+                            npc.velocity.Y = npc.velocity.Y + _acceleration;
                         else
-                            npc.velocity.Y = npc.velocity.Y - acceleration;
+                            npc.velocity.Y = npc.velocity.Y - _acceleration;
                     }
                 }
                 else
                 {
                     if (npc.velocity.Y < dirY)
-                        npc.velocity.Y = npc.velocity.Y + acceleration * 1.1f;
+                        npc.velocity.Y = npc.velocity.Y + _acceleration * 1.1f;
                     else if (npc.velocity.Y > dirY)
-                        npc.velocity.Y = npc.velocity.Y - acceleration * 1.1f;
-                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < speed * 0.5)
+                        npc.velocity.Y = npc.velocity.Y - _acceleration * 1.1f;
+                    if (Math.Abs(npc.velocity.X) + Math.Abs(npc.velocity.Y) < _speed * 0.5)
                     {
                         if (npc.velocity.X > 0.0)
-                            npc.velocity.X = npc.velocity.X + acceleration;
+                            npc.velocity.X = npc.velocity.X + _acceleration;
                         else
-                            npc.velocity.X = npc.velocity.X - acceleration;
+                            npc.velocity.X = npc.velocity.X - _acceleration;
                     }
                 }
             }
@@ -290,87 +371,7 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             }
             if ((npc.velocity.X > 0.0 && npc.oldVelocity.X < 0.0 || npc.velocity.X < 0.0 && npc.oldVelocity.X > 0.0 || (npc.velocity.Y > 0.0 && npc.oldVelocity.Y < 0.0 || npc.velocity.Y < 0.0 && npc.oldVelocity.Y > 0.0)) && !npc.justHit)
                 npc.netUpdate = true;
-
-            // Add light to the boss
-            //Lighting.AddLight(npc.Center, 183, 0, 255);
         }
-        #region Attacks
-        public void atkSpear()
-        {
-            npc.ai[1]++;
-            if(npc.ai[1] == 60)
-			{
-                float Speed = 14;
-
-                int type = mod.ProjectileType("StoneSpear");
-                Main.PlaySound(SoundID.Item20, npc.Center); // Boing
-                Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 4), npc.position.Y + (-npc.height + 200));
-
-                float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.2f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.2f)));
-
-                Projectile.NewProjectile(vector8.X, vector8.Y, (float)(-(Math.Cos(rotation) * Speed)), (float)(-(Math.Sin(rotation) * Speed)), type, (int)(smallAttackDamage * .75f), 0f, 0);
-            }
-            else if(npc.ai[1] >= 120)
-			{
-                npc.ai[1] = 0;
-                attackPointer++;
-            }
-        }
-        public void atkSpearRain()
-		{
-            npc.ai[1]++;
-            int type = mod.ProjectileType("StoneSpear");
-            if(npc.ai[1] == 70)
-                Projectile.NewProjectile(targetPlayer.position.X + 100, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            else if (npc.ai[1] == 80)
-                Projectile.NewProjectile(targetPlayer.position.X - 100, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            else if (npc.ai[1] == 90)
-                Projectile.NewProjectile(targetPlayer.position.X + 200, targetPlayer.position.Y - 1000, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            else if (npc.ai[1] == 100)
-                Projectile.NewProjectile(targetPlayer.position.X - 200, targetPlayer.position.Y - 1000, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            else if (npc.ai[1] == 110)
-                Projectile.NewProjectile(targetPlayer.position.X + 300, targetPlayer.position.Y - 1100, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            else if (npc.ai[1] == 120)
-                Projectile.NewProjectile(targetPlayer.position.X - 300, targetPlayer.position.Y - 1100, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            else if (npc.ai[1] == 140)
-			{
-                npc.ai[1] = 0;
-                attackPointer++;
-            }
-        }
-        public void atkSummon()
-		{
-            npc.ai[1]++;
-            if(npc.ai[1] == 80)
-                NPC.NewNPC((int)npc.position.X + Main.rand.Next(-75, 75), (int)npc.position.Y + Main.rand.Next(-75, 75), mod.NPCType("StoneRayChild"));
-            else if(npc.ai[1] >= 150)
-			{
-                npc.ai[1] = 0;
-                attackPointer++;
-            }
-        }
-        public void atkSpearFast()
-        {
-            npc.ai[1]++;
-            if (npc.ai[1] == 40)
-            {
-                float Speed = 15;
-
-                int type = mod.ProjectileType("StoneSpear");
-                Main.PlaySound(SoundID.Item20, npc.Center); // Boing
-                Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 4), npc.position.Y + (-npc.height + 200));
-
-                float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.2f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.2f)));
-
-                Projectile.NewProjectile(vector8.X, vector8.Y, (float)(-(Math.Cos(rotation) * Speed)), (float)(-(Math.Sin(rotation) * Speed)), type, (int)(smallAttackDamage * .75f), 0f, 0);
-            }
-            else if (npc.ai[1] >= 80)
-            {
-                npc.ai[1] = 0;
-                attackPointer++;
-            }
-        }
-        #endregion
 
         public override void FindFrame(int frameHeight)
         {
@@ -380,22 +381,21 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
             if (frame >= Main.npcFrameCount[npc.type]) frame = 0;
             npc.frame.Y = frame * frameHeight;
         }
-        private void DespawnHandler()
+        private bool Despawning()
         {
-            if (!targetPlayer.active || targetPlayer.dead)
+            if (targetPlayer == null || !targetPlayer.active || targetPlayer.dead || !targetPlayer.ZoneRockLayerHeight)
             {
                 npc.TargetClosest(false);
                 targetPlayer = Main.player[npc.target];
-                if (!targetPlayer.active || targetPlayer.dead)
+                if (!targetPlayer.active || targetPlayer.dead || !targetPlayer.ZoneRockLayerHeight)
                 {
-                    npc.velocity = new Vector2(0f, -10f);
-                    if (npc.timeLeft > 10)
-                    {
-                        npc.timeLeft = 10;
-                    }
-                    return;
+                    npc.velocity.Y = 10;
+                    if (npc.timeLeft > 120)
+                        npc.timeLeft = 120;
+                    return true;
                 }
             }
+            return false;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {

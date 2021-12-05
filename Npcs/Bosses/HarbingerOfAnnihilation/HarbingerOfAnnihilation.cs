@@ -11,8 +11,8 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
 	public class HarbingerOfAnnihilation : Boss
 	{
         /* Stats */
-        public int smallAttackDamage = 15;
-        public int largeAttackDamage = 27;
+        public int smallAttackDamage = 17;
+        public int largeAttackDamage = 26;
         const float ShootKnockback = 5f;
         const int ShootDirection = 7;
 
@@ -20,8 +20,8 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
         bool _despawn = false;
 
         /* Stage Attacks */
-        public string[] stage0 = new string[] { "atkShootTeleport", "atkEnergyBall", "atkShootTeleport", "atkEnergyBall", "atkEnergyBall" };
-        public string[] stage1 = new string[] { "atkEnergyBall", "atkEnergyBall", "atkShootTeleport", "atkEnergyBall", "atkEnergyBall", "atkEnergyBall", "atkShootTeleport" };
+        public string[] stage0 = new string[] { "atkShootTeleportLeft", "atkEnergyBall", "atkShootTeleportRight", "atkEnergyBall", "atkEnergyBall" };
+        public string[] stage1 = new string[] { "atkEnergyBall", "atkEnergyBall", "atkShootTeleportLeft", "atkEnergyBall", "atkEnergyBall", "atkEnergyBall", "atkShootTeleportRight" };
         public string[] stage2 = new string[] { "atkRage", "atkRage", "atkShootTeleportRage" };
 
         public override void SetStaticDefaults()
@@ -91,9 +91,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                 init = true;
             }
             if (spin == true)
-			{
-                npc.rotation += (float)System.Math.Atan2((double)npc.velocity.Y, (double)npc.velocity.X) + MathHelper.ToRadians(30);
-            }
+                npc.rotation += (float)Math.Atan2((double)npc.velocity.Y, (double)npc.velocity.X) + MathHelper.ToRadians(30);
 
             // Attack
             if (!_despawn) Attack();
@@ -113,12 +111,13 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
         }
         #region Attacks
-        public void atkShootTeleport()
+        public void atkShootTeleportLeft()
 		{
             npc.ai[0]++;
             if (npc.ai[0] == 10)
             {
-                velMax = 10;
+                velMax = 15;
+                velAccel = .6f;
                 npc.position.X = (Main.player[npc.target].position.X + -200);
                 npc.position.Y = (Main.player[npc.target].position.Y + -250);
                 for (int i = 0; i < 50; i++)
@@ -131,38 +130,33 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
             if (npc.ai[0] == 100)
             {
-                //npc.frameCounter += 2;
-                targetRotation = MathHelper.ToRadians(90);
+                targetRotation = MathHelper.ToRadians(-47.5f);
                 targetOffset = new Vector2(-250, -300);
                 ShootPlus();
             }
             else if (npc.ai[0] == 150)
             {
-                //npc.frameCounter += 2;
                 targetRotation = MathHelper.ToRadians(0);
-
                 ShootX();
-                //npc.frameCounter = 0;
             }
             else if (npc.ai[0] == 250)
             {
-                npc.frameCounter += 2;
+                targetRotation = MathHelper.ToRadians(47.5f);
                 targetOffset.X = -targetOffset.X;
                 ShootPlus();
             }
             else if (npc.ai[0] == 300)
             {
-                npc.frameCounter += 2;
+                targetRotation = MathHelper.ToRadians(0);
 
                 ShootX();
-                npc.frameCounter = 0;
             }
             else if (npc.ai[0] == 340)
             {
                 velAccel = .03f;
                 velMax = 3;
                 npc.defense = 7;
-                npc.position.X = (Main.player[npc.target].position.X + 300);
+                npc.position.X = (Main.player[npc.target].position.X + 500);
                 npc.position.Y = (Main.player[npc.target].position.Y);
                 for (int i = 0; i < 50; i++)
                 {
@@ -176,12 +170,84 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             else if (npc.ai[0] == 480)
             {
                 velAccel = .03f;
-                velMax = 3;
-                targetOffset.Y = -200;
+                velMax = 1;
+                targetOffset.Y = -450;
             }
-            if (npc.ai[0] >= 500)
+            if (npc.ai[0] >= 520)
             {
-                velAccel = .2f;
+                velAccel = .3f;
+                velMax = 3;
+                npc.defense = 10;
+
+                npc.ai[0] = 0;
+                attackPointer++;
+            }
+        }
+        public void atkShootTeleportRight()
+		{
+            npc.ai[0]++;
+            if (npc.ai[0] == 10)
+            {
+                velMax = 15;
+                velAccel = .6f;
+                npc.position.X = (Main.player[npc.target].position.X + 300);
+                npc.position.Y = (Main.player[npc.target].position.Y + -250);
+                for (int i = 0; i < 50; i++)
+                {
+                    int dust = Dust.NewDust(npc.position, npc.width, npc.height, 71);
+                    Main.dust[dust].scale = 2.5f;
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 0;
+                }
+            }
+            if (npc.ai[0] == 100)
+            {
+                targetRotation = MathHelper.ToRadians(47.5f);
+                targetOffset = new Vector2(250, -300);
+                ShootPlus();
+            }
+            else if (npc.ai[0] == 150)
+            {
+                targetRotation = MathHelper.ToRadians(0);
+                ShootX();
+            }
+            else if (npc.ai[0] == 250)
+            {
+                targetRotation = MathHelper.ToRadians(-47.5f);
+                targetOffset.X = -targetOffset.X;
+                ShootPlus();
+            }
+            else if (npc.ai[0] == 300)
+            {
+                targetRotation = MathHelper.ToRadians(0);
+
+                ShootX();
+            }
+            else if (npc.ai[0] == 340)
+            {
+                velAccel = .03f;
+                velMax = 1;
+                npc.defense = 7;
+                npc.position.X = (Main.player[npc.target].position.X - 500);
+                npc.position.Y = (Main.player[npc.target].position.Y);
+                for (int i = 0; i < 50; i++)
+                {
+                    int dust = Dust.NewDust(npc.position, npc.width, npc.height, 71);
+                    Main.dust[dust].scale = 2.5f;
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 0;
+                }
+                targetOffset = Vector2.Zero;
+            }
+            else if (npc.ai[0] == 480)
+            {
+                velAccel = .03f;
+                velMax = 1;
+                targetOffset.Y = -450;
+            }
+            if (npc.ai[0] >= 520)
+            {
+                velAccel = .3f;
                 velMax = 3;
                 npc.defense = 10;
 
@@ -194,7 +260,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
 		{
             npc.ai[0]++;
             targetOffset = new Vector2(0, -200);
-            velMax = 3;
+            velMax = 2;
             if (npc.ai[0] >= 30)
 			{
                 // Shoot
@@ -267,8 +333,10 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                 ShootX();
             else if (npc.ai[0] == 390)
             {
+                velAccel = .03f;
+                velMax = 1;
                 npc.defense = 7;
-                npc.position.X = (Main.player[npc.target].position.X + 300);
+                npc.position.X = (Main.player[npc.target].position.X + 500);
                 npc.position.Y = (Main.player[npc.target].position.Y);
                 for (int i = 0; i < 50; i++)
                 {
@@ -279,14 +347,15 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                     Main.dust[dust].velocity *= 0f;
                 }
 
-                velAccel = .05f;
                 targetOffset = Vector2.Zero;
             }
             else if (npc.ai[0] == 470)
             {
-                targetOffset.Y = -200;
+                velAccel = .03f;
+                velMax = 1;
+                targetOffset.Y = -450;
             }
-            if (npc.ai[0] >= 500)
+            if (npc.ai[0] >= 510)
             {
                 velMax = 3;
                 velAccel = .3f;
@@ -298,6 +367,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
         }
         public void atkRage()
 		{
+            velMax = 2;
             npc.ai[0]++;
             npc.defense = 16;
 
@@ -314,7 +384,7 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
                 Shoot();
             else if (npc.ai[0] == 75)
                 Shoot();
-            else if (npc.ai[0] == 80)
+            else if (npc.ai[0] >= 80)
             {
                 Shoot();
                 // Reset
@@ -365,7 +435,8 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             //float dist = (float)(Math.Sqrt(((target.X - npc.Center.X) * (target.X - npc.Center.X)) + ((target.Y - npc.Center.Y) * (target.Y - npc.Center.Y))));
             float dist = Vector2.Distance(npc.Center, target);
             targetVel = dist / 20;
-
+            if (targetVel >= 10) targetVel = 10;
+            Screen.Write(targetVel.ToString(), Color.Red);
             // Accel if our velocity is smaller than the taget velocity and max velocity
             if (velMagnitude < velMax && velMagnitude < targetVel)
                 velMagnitude += velAccel;
@@ -404,14 +475,14 @@ namespace Supernova.Npcs.Bosses.HarbingerOfAnnihilation
             }
         }
         float targetRotation = 0;
-        float rotateSpeed = MathHelper.ToRadians(10);
+        float rotateSpeed = MathHelper.ToRadians(5);
         public void AnimateRotation()
 		{
             if (npc.rotation > targetRotation
-                && npc.rotation > targetRotation)
+                && (npc.rotation - rotateSpeed) > targetRotation)
                 npc.rotation -= rotateSpeed;
             else if (npc.rotation < targetRotation
-                && npc.rotation < targetRotation)
+                && (npc.rotation + rotateSpeed) < targetRotation)
                 npc.rotation += rotateSpeed;
         }
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

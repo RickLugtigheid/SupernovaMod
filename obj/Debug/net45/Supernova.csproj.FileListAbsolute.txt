@@ -23,10 +23,11 @@ C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\bin\D
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\bin\Debug\net45\tModLoader.xml
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\bin\Debug\net45\MonoMod.RuntimeDetour.xml
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\bin\Debug\net45\MonoMod.Utils.xml
-C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.csprojAssemblyReference.cache
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.AssemblyInfoInputs.cache
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.AssemblyInfo.cs
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.csproj.CoreCompileInputs.cache
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.csproj.CopyComplete
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.dll
 C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.pdb
+C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.csproj.AssemblyReference.cache
+C:\Users\rlugt\Documents\My Games\Terraria\ModLoader\Mod Sources\Supernova\obj\Debug\net45\Supernova.GeneratedMSBuildEditorConfig.editorconfig

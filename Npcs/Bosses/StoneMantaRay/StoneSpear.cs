@@ -33,9 +33,12 @@ namespace Supernova.Npcs.Bosses.StoneMantaRay
 
 		public override void AI()
 		{
-            int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width * 2, projectile.height * 2, DustID.Stone, projectile.velocity.X * 0.25f, projectile.velocity.Y * 1.0f, 80, default(Color), 1.25f);
-            Main.dust[dust].noGravity = false;
-            Main.dust[dust].velocity *= 0.2f;
+            for (int i = 0; i < 5; i++)
+			{
+                int dust = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width * 2, projectile.height * 2, DustID.Stone, projectile.velocity.X * 0.25f, projectile.velocity.Y * 1.0f, 80, default(Color), 1.6f);
+                Main.dust[dust].noGravity = false;
+                Main.dust[dust].velocity *= 0.3f;
+            }
             base.AI();
 		}
 	}
