@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <AssemblyName>Supernova</AssemblyName>
+    <TargetFramework>net6.0</TargetFramework>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\GlobalItems\" />
+    <Folder Include="Common\GlobalNPCs\" />
+    <Folder Include="Common\GlobalProjectiles\" />
+    <Folder Include="Common\ItemDropRules\DropConditions\" />
+    <Folder Include="Common\Players\" />
+    <Folder Include="Common\Systems\" />
+    <Folder Include="Content\Global\GUI\" />
+    <Folder Include="Content\Global\Dusts\" />
+    <Folder Include="Content\Global\Tiles\" />
+    <Folder Include="Content\Global\Projectiles\" />
+    <Folder Include="Content\PreHardmode\Items\Armor\" />
+    <Folder Include="Content\PreHardmode\Items\Accessories\" />
+    <Folder Include="Content\PreHardmode\Items\Misc\" />
+    <Folder Include="Content\PreHardmode\Items\Materials\" />
+    <Folder Include="Content\PreHardmode\Items\Tiles\" />
+    <Folder Include="Content\PreHardmode\Items\Rings\" />
+    <Folder Include="Content\PreHardmode\Items\Potions\" />
+    <Folder Include="Content\PreHardmode\Items\Tools\" />
+    <Folder Include="Content\PreHardmode\Items\Weapons\" />
+    <Folder Include="Content\Global\Buffs\" />
+    <Folder Include="Content\PreHardmode\Npcs\" />
+  </ItemGroup>
+</Project>
