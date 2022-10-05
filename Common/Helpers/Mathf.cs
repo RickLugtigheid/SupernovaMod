@@ -16,7 +16,7 @@ namespace Supernova.Common
         public static Vector2[] RandomSpread(Vector2 velocity, float angle, int num)
         {
             var posArray = new Vector2[num];
-            float spread = angle;
+            float spread = (float)(angle * 0.0344532925);
             float baseSpeed = (float)System.Math.Sqrt(velocity.X * velocity.X + velocity.Y * velocity.Y);
             double baseAngle = System.Math.Atan2(velocity.X, velocity.Y);
             double randomAngle;
@@ -39,5 +39,7 @@ namespace Supernova.Common
             //speed2 = speed * 0.5;
             return move * (speed / (float)Math.Sqrt(move.X * move.X + move.Y * move.Y));
         }
+
+        public static float Magnitude(Vector2 mag) => (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
     }
 }

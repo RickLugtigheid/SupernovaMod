@@ -1,0 +1,90 @@
+﻿using Microsoft.Xna.Framework;
+using Supernova.Common;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+
+namespace Supernova.Content.PreHardmode.Npcs
+{
+    public class Gazer : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Gazer");
+            Main.npcFrameCount[NPC.type] = 7;
+        }
+        int timer;
+        int ShootDamage;
+        int shootTimer;
+        public override void SetDefaults()
+        {
+            // Change stats when in Hardmode
+            //
+            if (Main.hardMode)
+            {
+                NPC.lifeMax = 175;
+                NPC.defense = 35;
+                ShootDamage = 30;
+                shootTimer = 80;
+            }
+            else
+            {
+                NPC.lifeMax = 60;
+                NPC.defense = 12;
+                ShootDamage = 12;
+                shootTimer = 120;
+            }
+            NPC.width = 44;
+            NPC.height = 44;
+            NPC.damage = 20;
+            NPC.value = 60f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = 44;
+            AIType = NPCID.Harpy;  //npc behavior
+            AnimationType = NPCID.Harpy;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            NPC.frameCounter -= .8F; // Determines the animation speed. Higher value = faster animation.
+            NPC.frameCounter %= Main.npcFrameCount[NPC.type];
+            int frame = (int)NPC.frameCounter;
+            NPC.frame.Y = frame * frameHeight;
+
+            NPC.spriteDirection = NPC.direction;
+        }
+
+        public override void AI()
+        {
+            int radius = 625;
+            if (Vector2.Distance(Main.player[NPC.target].Center, NPC.Center) <= radius)
+            {
+                timer++;
+                if(timer >= shootTimer)
+                {
+                    Shoot();
+                    timer = 0;
+                }
+            }
+        }
+
+        void Shoot()
+        {
+            int type = 438;//100
+            Vector2 Velocity = Mathf.VelocityFPTP(NPC.Center, new Vector2(Main.player[NPC.target].Center.X, Main.player[NPC.target].Center.Y), 5);
+            int Spread = 1;
+            float SpreadMult = 0.15f;
+            Velocity.X = Velocity.X + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
+            Velocity.Y = Velocity.Y + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
+            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, type, ShootDamage, 1.75f);
+            Main.projectile[i].hostile = true;
+            Main.projectile[i].friendly = true;
+            Main.projectile[i].tileCollide = false;
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => (!spawnInfo.Lihzahrd && !spawnInfo.Invasion && !spawnInfo.SpiderCave && !spawnInfo.DesertCave && !spawnInfo.Player.ZoneDungeon) && spawnInfo.Player.ZoneRockLayerHeight ? 0.031f : 0;
+    }
+}
