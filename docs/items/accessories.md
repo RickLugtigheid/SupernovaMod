@@ -4,6 +4,7 @@ title: Accessories
 parent: Items
 nav_order: 1
 tags: Item, Items, Accessory, Accessories
+description: A list of all Accessories in the Supernova mod.
 ---
 
 # Accessories

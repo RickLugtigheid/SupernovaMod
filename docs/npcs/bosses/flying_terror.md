@@ -2,7 +2,8 @@
 layout: default
 title: Flying Terror
 parent: Bosses
-tags: Npc, Boss, Flying, Terror
+tags: Npc, Boss, Flying, Terror, Flying Terror
+description: Information on the Supernova modded boss called the Flying Terror.
 ---
 
 # Flying Terror

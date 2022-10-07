@@ -3,7 +3,8 @@ layout: default
 title: Pre Hardmode Npcs
 parent: Npcs
 nav_order: 2
-tags: Npc, Pre Hardmode
+tags: Npc, npcs, Pre Hardmode
+description: A list of all Pre Hardmode npcs in the Supernova mod.
 ---
 
 # Pre Hardmode Npcs

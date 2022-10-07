@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Supernova Mod Wiki
-description: A wiki for a terraria mod called Supernova
+description: A wiki for the Terraria Supernova mod. In this wiki all information attaining to the Supernova Mod can be found.
 baseurl: "/SupernovaMod" # the subpath of your site, e.g. /blog
 url: "https://koekmeneer.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -81,7 +81,7 @@ nav_sort: case_sensitive # Capital letters sorted before lowercase
 back_to_top: true
 back_to_top_text: "Back to top"
 
-footer_content: "Copyright &copy; 2021-2021 Supernova Mod Team."
+footer_content: "Copyright &copy; 2021-2022 Supernova Mod Team."
 
 # Footer last edited timestamp
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter

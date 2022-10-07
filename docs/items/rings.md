@@ -4,6 +4,7 @@ title: Rings
 parent: Items
 nav_order: 6
 tags: Item, Items, Ring
+description: A list of all Rings in the Supernova mod.
 ---
 
 # Rings

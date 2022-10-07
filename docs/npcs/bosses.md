@@ -3,7 +3,8 @@ layout: default
 title: Bosses
 parent: Npcs
 nav_order: 1
-tags: Npc, Boss
+tags: Npc, Boss, bosses
+description: A list of all Bosses in the Supernova mod.
 ---
 
 # Bosses

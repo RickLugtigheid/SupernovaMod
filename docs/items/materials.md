@@ -4,6 +4,7 @@ title: Materials
 parent: Items
 nav_order: 3
 tags: Item, Items, Material, Materials
+description: A list of all Materials in the Supernova mod.
 ---
 
 # Materials

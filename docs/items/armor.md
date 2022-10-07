@@ -3,7 +3,8 @@ layout: default
 title: Armor
 parent: Items
 nav_order: 2
-tags: Item, Items, Armor, Sets
+tags: Item, Items, Armor, Sets, Armor sets
+description: A list of all Armor sets in the Supernova mod.
 ---
 
 # Armor

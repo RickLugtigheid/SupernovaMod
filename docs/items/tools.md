@@ -4,6 +4,7 @@ title: Tools
 parent: Items
 nav_order: 8
 tags: Item, Items, Tool
+description: A list of all tools in the Supernova mod.
 ---
 
 # Tools

@@ -3,6 +3,7 @@ layout: default
 title: Stone Manta Ray
 parent: Bosses
 tags: Npc, Boss, Stone, Manta, Ray
+description: Information on the Supernova modded boss called the Stone Manta Ray.
 ---
 
 # Stone Manta Ray
