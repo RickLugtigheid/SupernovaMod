@@ -7,8 +7,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Supernova.Common.Systems;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent;
 using Supernova.Api.Core;
+using Terraria.GameContent.Bestiary;
+using Supernova.Common.ItemDropRules.DropConditions;
 
 namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 {
@@ -33,6 +34,23 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Harbinger of Annihilation");
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                // Influences how the NPC looks in the Bestiary
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
+
+				// Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("TODO."),
+            });
         }
 
         public override void SetDefaults()
@@ -49,8 +67,8 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             NPC.damage = 32; // The base damage value the boss has on Normal
             NPC.defense = 10; // The base defense on Normal
             NPC.knockBackResist = 0f; // No knockback
-            NPC.width = 100;
-            NPC.height = 100;
+            NPC.width = 214;
+            NPC.height = 214;
             NPC.value = 10000;
             NPC.npcSlots = 1f; // The higher the number, the more NPC slots this NPC takes.
             NPC.boss = true; // Is a boss
@@ -65,23 +83,24 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (Main.expertMode)
+            /*if (Main.expertMode)
             {
-                npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<HarbingersCrest>()));
-            }
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersCrest>()));
+            }*/
+            npcLoot.Add(ItemDropRule.ByCondition(new ExpertModDropCondition(), ModContent.ItemType<HarbingersCrest>()));
 
             for (int i = 0; i < Main.rand.Next(1, 2); i++)
             {
                 switch (Main.rand.Next(2))
 				{
                     case 0:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersSlicer>(), 1, 2, 2));
+                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersSlicer>()));
                         break;
                     case 1:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersKnell>(), 1, 2, 2));
+                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersKnell>()));
                         break;
                     case 2:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersPick>(), 1, 2, 2));
+                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersPick>()));
                         break;
                 }
             }
@@ -409,7 +428,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
         {
             float Speed = Main.rand.Next(5, 8);  //projectile speed
 
-            int type = Mod.Find<ModProjectile>("HarbingerMissile").Type;  //put your projectile
+            int type = ModContent.ProjectileType<HarbingerMissile>();  //put your projectile
             SoundEngine.PlaySound(/*23*/SoundID.Item23, NPC.position);
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
 
@@ -421,19 +440,19 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
         }
         void ShootPlus()
         {
-            int Type = Mod.Find<ModProjectile>("HarbingerMissile").Type;
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 20, NPC.position.Y + 20, -ShootDirection, -ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 20, NPC.position.Y + 20, ShootDirection, -ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 20, NPC.position.Y + 20, -ShootDirection, ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 20, NPC.position.Y + 20, ShootDirection, ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            int Type = ModContent.ProjectileType<HarbingerMissile>();
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -ShootDirection, -ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, ShootDirection, -ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -ShootDirection, ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, ShootDirection, ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
         }
         void ShootX()
         {
-            int Type = Mod.Find<ModProjectile>("HarbingerMissile").Type;
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 20, NPC.position.Y + 20, -ShootDirection, 0, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 20, NPC.position.Y + 20, ShootDirection, 0, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 20, NPC.position.Y + 20, 0, ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position.X + 20, NPC.position.Y + 20, 0, -ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            int Type = ModContent.ProjectileType<HarbingerMissile>();
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -ShootDirection, 0, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, ShootDirection, 0, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, -ShootDirection, Type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
         }
 
         public Vector2 target;
@@ -501,14 +520,13 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            // Add glowmask
+            // Main glowmask
             /*Texture2D texture = TextureAssets.Npc[NPC.type].Value;
             Vector2 drawPos = NPC.Center - Main.screenPosition;
-            Vector2 drawOrigin = new Vector2(texture.Width / 2, texture.Height / 1.4f / Main.npcFrameCount[NPC.type]);
+            Vector2 drawOrigin = new Vector2(texture.Width / 2, texture.Height / 2);
 
             SpriteEffects effects = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            spriteBatch.Draw(texture, drawPos, NPC.frame, Color.DeepPink, 0f, drawOrigin, 1f, effects, 0f);*/
-
+            spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(180, 180, 180, 245), NPC.rotation, drawOrigin, 1f, effects, 0f);*/
             try
 			{
                 // Stages

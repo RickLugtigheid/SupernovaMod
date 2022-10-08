@@ -3,6 +3,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 {
@@ -10,6 +11,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Terror Knife");
         }
 
@@ -31,7 +34,7 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
             Item.value = Item.buyPrice(0, 7, 0, 0); // Another way to handle value of item.
             Item.rare = ItemRarityID.Green;
             Item.shootSpeed = 12f;
-            Item.shoot = Mod.Find<ModProjectile>("TerrorKniveProj").Type;
+            Item.shoot = ModContent.ProjectileType<TerrorKniveProj>();
             Item.DamageType = DamageClass.Throwing;
         }
 

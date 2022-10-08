@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.ItemDropRules;
 using Supernova.Common.Systems;
 using Supernova.Api.Core;
+using Terraria.GameContent.Bestiary;
 
 namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
 {
@@ -17,7 +18,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
         public bool noAI = false;
 
         /* Stats */
-        public int smallAttackDamage = 30;
+        public int smallAttackDamage = 27;
         const float ShootKnockback = 5f;
         const int ShootDirection = 7;
 
@@ -27,16 +28,36 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
         public string[] stage2 = new string[] { "atkSpear", "atkSummon", "atkSpear", "atkSpear", "atkSpearRain" };
         public string[] stage3 = new string[] { "atkSpearFast", "atkSpearRain", "atkSpear", "atkSpearFast", "atkSpearFast", "atkSummon" };
 
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stone Manta Ray Old");
             Main.npcFrameCount[NPC.type] = 3;
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                // Influences how the NPC looks in the Bestiary
+                Scale = .5f,
+                Velocity = 1,
+                PortraitPositionYOverride = 8
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
+
+				// Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("TODO."),
+            });
+        }
+
         public override void SetDefaults()
         {
             NPC.aiStyle = -1; // Will not have any AI from any existing AI styles. 
-            NPC.lifeMax = 4500; // The Max HP the boss has on Normal
+            NPC.lifeMax = 4000; // The Max HP the boss has on Normal
             NPC.damage = 34; // The base damage value the boss has on Normal
             NPC.defense = 10; // The base defense on Normal
             NPC.knockBackResist = 0f; // No knockback
@@ -112,7 +133,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
 			{
                 float Speed = 18;
 
-                int type = Mod.Find<ModProjectile>("StoneSpear").Type;
+                int type = ModContent.ProjectileType<StoneSpear>();
                 SoundEngine.PlaySound(SoundID.Item20, NPC.Center); // Boing
                 Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 4), NPC.position.Y + (-NPC.height + 200));
 
@@ -129,7 +150,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
         public void atkSpearRain()
 		{
             NPC.ai[1]++;
-            int type = Mod.Find<ModProjectile>("StoneSpear").Type;
+            int type = ModContent.ProjectileType<StoneSpear>();
             if(NPC.ai[1] == 70)
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), targetPlayer.position.X, targetPlayer.position.Y - 900, 0, ShootDirection, type, smallAttackDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
             else if (NPC.ai[1] == 80)
@@ -152,7 +173,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
 		{
             NPC.ai[1]++;
             if(NPC.ai[1] == 80)
-                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X + Main.rand.Next(-75, 75), (int)NPC.position.Y + Main.rand.Next(-75, 75), Mod.Find<ModNPC>("StoneRayChild").Type);
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X + Main.rand.Next(-75, 75), (int)NPC.position.Y + Main.rand.Next(-75, 75), ModContent.NPCType<StoneRayChild>());
             else if(NPC.ai[1] >= 150)
 			{
                 NPC.ai[1] = 0;
@@ -166,7 +187,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
             {
                 float Speed = 21;
 
-                int type = Mod.Find<ModProjectile>("StoneSpear").Type;
+                int type = ModContent.ProjectileType<StoneSpear>();
                 SoundEngine.PlaySound(SoundID.Item20, NPC.Center); // Boing
                 Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 4), NPC.position.Y + (-NPC.height + 200));
 
@@ -419,7 +440,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
                 attacks = stage1;
 
             // Reset attack pointer when we have done all the attacks for this stage
-            if (attackPointer >= attacks.Length) attackPointer = 0;
+            if (attacks != null && attackPointer >= attacks.Length) attackPointer = 0;
             return true;
         }
     }

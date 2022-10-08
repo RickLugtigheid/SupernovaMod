@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -8,14 +9,18 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Harpoon Blade");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            DisplayName.SetDefault("Harpoon Blade");
             Tooltip.SetDefault("Right click to shoot a harpoon at your enemies");
             // Tooltip2.SetDefault("On Hit it lets the enemey bleed.");
             Item.staff[Item.type] = true;
         }
+
+        private int _swordDamage = 24;
         public override void SetDefaults()
 		{
-            Item.damage = 24;
+            Item.damage = _swordDamage;
             Item.crit = 4;
             Item.width = 40;
 			Item.height = 40;
@@ -25,39 +30,49 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 			Item.value = 10000;
 			Item.rare = ItemRarityID.Orange;
             Item.autoReuse = true;
+            SetDefaultsSword();
 
             Item.DamageType = DamageClass.Melee;
         }
 
-        public override bool AltFunctionUse(Player player) => true;
+        private void SetDefaultsSword()
+		{
+            // Left Click has no projectile
+            Item.shootSpeed = 0f;
+            Item.shoot = ProjectileID.None;
+            Item.UseSound = SoundID.Item1;
 
-        public override bool CanUseItem(Player player)
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.knockBack = 7;
+            Item.damage = _swordDamage;
+        }
+        private void SetDefaultsHarpoon()
         {
-            if (player.altFunctionUse == 2) // Right Click function
-            {
-                Item.shoot = ProjectileID.Harpoon;
-                Item.damage = 28;
-                Item.shootSpeed = 30f;
-                Item.useStyle = ItemUseStyleID.Shoot;
-                Item.knockBack = 1;
+            Item.shoot = ProjectileID.Harpoon;
+            Item.damage = 28;
+            Item.shootSpeed = 30f;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.knockBack = 1;
 
-                Item.UseSound = SoundID.Item10;
-            }
-            else // Default Left Click
-            {
-                // Left Click has no projectile
-                Item.shootSpeed = 0f;
-                Item.shoot = ProjectileID.None;
-                Item.UseSound = SoundID.Item1;
-				
-				Item.useStyle = ItemUseStyleID.Swing;
-                Item.knockBack = 7;
-                Item.damage = 31;
-            }
-            return base.CanUseItem(player);
+            Item.UseSound = SoundID.Item10;
         }
 
-        public override void AddRecipes()
+        public override bool AltFunctionUse(Player player) => true;
+
+		public override void UseAnimation(Player player)
+		{
+            if (player.altFunctionUse == ItemAlternativeFunctionID.ActivatedAndUsed)
+            {
+                SetDefaultsHarpoon();
+            }
+            else
+            {
+                SetDefaultsSword();
+            }
+            base.UseAnimation(player);
+        }
+
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.IronBar, 7);

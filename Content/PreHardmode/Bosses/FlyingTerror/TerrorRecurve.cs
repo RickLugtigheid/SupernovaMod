@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 {
@@ -10,6 +11,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Terror Recurve");
             Tooltip.SetDefault("May shoot a unholy arrow");
         }

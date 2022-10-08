@@ -14,5 +14,6 @@
     <Folder Include="Common\GlobalItems\" />
     <Folder Include="Common\GlobalProjectiles\" />
     <Folder Include="Content\PreHardmode\Items\Tools\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
 </Project>

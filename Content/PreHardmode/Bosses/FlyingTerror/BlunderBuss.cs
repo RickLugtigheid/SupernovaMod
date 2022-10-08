@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Supernova.Api.Core;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,6 +16,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 
 		public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Blunder Buss");
         }
         public override Vector2? HoldoutOffset() => new Vector2(-13, 0);

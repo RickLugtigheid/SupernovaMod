@@ -32,7 +32,7 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
         {
             //this is projectile dust
             Lighting.AddLight(Projectile.Center, ((255 - Projectile.alpha) * 0.15f) / 255f, ((255 - Projectile.alpha) * 0.45f) / 255f, ((255 - Projectile.alpha) * 0.05f) / 255f);   //this is the light colors
-            int dust = Dust.NewDust(Projectile.position, Projectile.width + 5, Projectile.height + 5, Mod.Find<ModDust>("TerrorDust").Type, Projectile.velocity.X * .05f, Projectile.velocity.Y * .05f, 40, default(Color), 1.5f);
+            int dust = Dust.NewDust(Projectile.position, Projectile.width + 5, Projectile.height + 5, ModContent.DustType<Global.Dusts.TerrorDust>(), Projectile.velocity.X * .05f, Projectile.velocity.Y * .05f, 40, default(Color), 1.5f);
 
             Main.dust[dust].noGravity = true; //this make so the dust has no gravity
             //this make that the projectile faces the right way
@@ -47,7 +47,7 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 		{
             for (int x = 0; x <= 10; x++)
             {
-                int dust = Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, Mod.Find<ModDust>("TerrorDust").Type, -Projectile.velocity.X, -Projectile.velocity.Y, 80, default(Color), 1);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
+                int dust = Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, ModContent.DustType<Global.Dusts.TerrorDust>(), -Projectile.velocity.X, -Projectile.velocity.Y, 80, default(Color), 1);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
                 Main.dust[dust].velocity *= Main.rand.NextFloat(.5f, 1.25f);
             }
         }

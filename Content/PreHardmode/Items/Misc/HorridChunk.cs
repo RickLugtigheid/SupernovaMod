@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Misc
 {
@@ -9,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Misc
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+
             DisplayName.SetDefault("Horrid Chunk");
             Tooltip.SetDefault("dropped by Terror Bat and can only be used at night" +
                 "\nSummons the Flying Terror");

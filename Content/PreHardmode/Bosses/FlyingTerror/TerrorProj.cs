@@ -39,7 +39,7 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
             //Lighting.AddLight(projectile.Center, new Vector3(205, 0, 255));   //this is the light colors
             for (int i = 0; i < 3; i++)
 			{
-                int dust = Dust.NewDust(Projectile.position, Projectile.width + 2, Projectile.height + 2, Mod.Find<ModDust>("TerrorDust").Type, Projectile.velocity.X, Projectile.velocity.Y, 80, default(Color), 1.25f);
+                int dust = Dust.NewDust(Projectile.position, Projectile.width + 2, Projectile.height + 2, ModContent.DustType<Global.Dusts.TerrorDust>(), Projectile.velocity.X, Projectile.velocity.Y, 80, default(Color), 1.25f);
 
                 Main.dust[dust].noGravity = true; //this make so the dust has no gravity
                 Main.dust[dust].velocity *= .5f;

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -10,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Starry Night");
             Tooltip.SetDefault("This weapon charges up when you shoot. \nWhen fully charged it will shoot 6 deadly stars at your enemies");
         }
@@ -39,11 +41,14 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.shootSpeed = 16f;
             Item.DamageType = DamageClass.Ranged;
         }
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+
+		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-            if (type == ProjectileID.WoodenArrowFriendly) // or ProjectileID.WoodenArrowFriendly
+			base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
+
+            //if (type == ProjectileID.WoodenArrowFriendly) // or ProjectileID.WoodenArrowFriendly
             {
-                if(_shots <= 6)
+                if (_shots < 6)
                 {
                     Item.autoReuse = true;
                     if (_once == true)
@@ -61,14 +66,13 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
                     Item.useAnimation = 4;
                     Item.useTime = 4;
                     Item.UseSound = SoundID.Item29; // Sound for Bows
-                    type = 92; // or ProjectileID.FireArrow;
+                    type = ProjectileID.StarCannonStar;
                 }
                 else
                 {
                     Item.useAnimation = 35;
                     Item.useTime = 35;
                     Item.UseSound = SoundID.Item5; // Sound for Bows
-                    type = ProjectileID.WoodenArrowFriendly; // or ProjectileID.FireArrow;
                     Item.autoReuse = false;
                     if (_shots >= 14)
                     {
@@ -78,7 +82,6 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
                 }
                 _shots++;
             }
-            return true; // return true to allow tmodloader to call Projectile.NewProjectile as normal
         }
     }
 }

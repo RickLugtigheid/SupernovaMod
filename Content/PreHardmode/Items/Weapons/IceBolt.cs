@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Supernova.Api.Core;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -13,6 +14,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 
 		public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Ice Bolt");
 
             Tooltip.SetDefault("Shoots frostburn to burn your enemies with -196º(77kelvin)");
@@ -37,7 +40,6 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.value = Item.sellPrice(0, 5, 43, 70);//	How much the item is worth, in copper coins, when you sell it to a merchant. It costs 1/5th of this to buy it back from them. An easy way to remember the value is platinum, gold, silver, copper or PPGGSSCC (so this item price is 3gold)
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.FrostFlame>();
-            Item.shoot = Mod.Find<ModProjectile>("FrostFlame").Type;
             Item.DamageType = DamageClass.Magic;
         }
 

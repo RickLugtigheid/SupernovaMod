@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -8,9 +9,12 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
 			DisplayName.SetDefault("Kama");
             Tooltip.SetDefault("The kama is a traditional Japanese farming implement similar to a sickle used for reaping crops and also employed as a weapon.");
         }
+
 		public override void SetDefaults()
 		{
 			Item.damage = 14;

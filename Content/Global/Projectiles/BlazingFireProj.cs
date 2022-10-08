@@ -16,8 +16,8 @@ namespace Supernova.Content.Global.Projectiles
         }
         public override void SetDefaults()
         {
-            Projectile.width = 190;     //Set the hitbox width
-            Projectile.height = 190;       //Set the hitbox height
+            Projectile.width = 125;     //Set the hitbox width
+            Projectile.height = 125;       //Set the hitbox height
             Projectile.friendly = true;    //Tells the game whether it is friendly to players/friendly npcs or not
             Projectile.penetrate = -1;    //Tells the game how many enemies it can hit before being destroyed. -1 = never
             Projectile.tileCollide = false; //Tells the game whether or not it can collide with a tile
@@ -60,7 +60,7 @@ namespace Supernova.Content.Global.Projectiles
             player.itemTime = 2;
             player.itemAnimation = 2;
             player.itemRotation = Projectile.rotation;
-            int dust = Dust.NewDust(Projectile.position, Projectile.width - 5, Projectile.height - 5, DustID.Torch);  //this is the dust that this projectile will spawn
+            Dust.NewDust(Projectile.position, Projectile.width - 5, Projectile.height - 5, DustID.Torch);  //this is the dust that this projectile will spawn
         }
 
         public override bool PreDraw(ref Color lightColor)  //this make the projectile sprite rotate perfectaly around the player

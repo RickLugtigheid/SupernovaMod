@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Potions
 {
@@ -8,6 +9,8 @@ namespace Supernova.Content.PreHardmode.Items.Potions
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+
             DisplayName.SetDefault("Quarion Potion");
             Tooltip.SetDefault("Grealy increases damage and speed" +
                 "\nYou lose half of your health");
@@ -27,7 +30,7 @@ namespace Supernova.Content.PreHardmode.Items.Potions
             Item.value = 100;
             Item.rare = 1;
             Item.buffTime = 20000;    //this is the buff duration        20000 = 6 min
-            Item.buffType = Mod.Find<ModBuff>("QuarionBuff").Type;    //this is where you put your Buff name
+            Item.buffType = ModContent.BuffType<Global.Buffs.QuarionBuff>();    //this is where you put your Buff name
             return;
         }
 

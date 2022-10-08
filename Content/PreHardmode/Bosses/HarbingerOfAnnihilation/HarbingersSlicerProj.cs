@@ -62,7 +62,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 
         public override void AI()
         {
-            int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.UndergroundHallowedEnemies, Projectile.velocity.X * .5f, Projectile.velocity.Y * .5f, Scale: Main.rand.NextFloat(.5f, 1.3f));
+            int dust = Dust.NewDust(Projectile.position, Projectile.width / 2, Projectile.height / 2, DustID.UndergroundHallowedEnemies, Projectile.velocity.X * .5f, Projectile.velocity.Y * .5f, Scale: Main.rand.NextFloat(.5f, 1.3f));
             Main.dust[dust].noGravity = true;
 
             if (Projectile.alpha > 0)

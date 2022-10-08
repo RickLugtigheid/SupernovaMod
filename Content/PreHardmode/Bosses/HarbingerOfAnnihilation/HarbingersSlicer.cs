@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 {
@@ -8,6 +9,8 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Harbingers Slicer");
         }
 
@@ -28,7 +31,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             Item.value = 5000;
             Item.rare = ItemRarityID.Green;
             Item.shootSpeed = 11f;
-            Item.shoot = Mod.Find<ModProjectile>("HarbingersSlicerProj").Type;
+            Item.shoot = ModContent.ProjectileType<HarbingersSlicerProj>();
 
             Item.DamageType = DamageClass.Throwing;
         }

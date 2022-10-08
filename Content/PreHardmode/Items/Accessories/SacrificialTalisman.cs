@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Accessories
 {
@@ -9,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Sacrificial Talisman");
             Tooltip.SetDefault("When your mana is lower than 15\nyou will lose 50 health but gain 100 mana");
         }

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Armor.Zirconium
 {
@@ -9,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Zirconium
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Zirconium Casque");
             Tooltip.SetDefault("A Zirconium helmet for the ranged and throwing classes");
         }

@@ -43,12 +43,6 @@ namespace Supernova.Content.Global.Projectiles
 
         public override void AI()
         {
-            if (Projectile.localAI[0] == 0f)
-			{
-                //SoundEngine.PlaySound(2, (int)Projectile.position.X, (int)Projectile.position.Y, 20);
-                SoundEngine.PlaySound(SoundID.Item2, Projectile.position);
-            }
-
             Projectile.localAI[0] += 1f;
 
             if (Projectile.localAI[0] > 3f)
@@ -80,7 +74,7 @@ namespace Supernova.Content.Global.Projectiles
         {
             for (int k = 0; k < 5; k++)
             {
-                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, Mod.Find<ModDust>("ZirconDust").Type, Projectile.oldVelocity.X * 0.7f, Projectile.oldVelocity.Y * 0.7f);
+                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, ModContent.DustType<Dusts.ZirconDust>(), Projectile.oldVelocity.X * 0.7f, Projectile.oldVelocity.Y * 0.7f);
             }
         }
     }

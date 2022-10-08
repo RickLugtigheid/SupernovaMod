@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +11,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Terror in a Bottle");
             Tooltip.SetDefault("Allows you to dash");
         }
@@ -40,8 +43,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
             player.armorEffectDrawShadowEOCShield = true;
 
             //set the dust of the trail
-            int dust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width + 2, player.height + 2, Mod.Find<ModDust>("TerrorDust").Type, player.velocity.X, player.velocity.Y, 15, default(Color), 1.2f);
-            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width, player.height, Mod.Find<ModDust>("TerrorDust").Type, player.velocity.X * .05f, player.velocity.Y * .05f, 2, default(Color), 1.2f);
+            int dust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width + 2, player.height + 2, ModContent.DustType<Global.Dusts.TerrorDust>(), player.velocity.X, player.velocity.Y, 15, default(Color), 1.2f);
+            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width, player.height, ModContent.DustType<Global.Dusts.TerrorDust>(), player.velocity.X * .05f, player.velocity.Y * .05f, 2, default(Color), 1.2f);
 
 
             Main.dust[dust].noGravity = true; //this make so the dust has no gravity

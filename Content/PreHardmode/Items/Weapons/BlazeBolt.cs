@@ -1,9 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.DataStructures;
 using Supernova.Api.Core;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -15,6 +14,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Blaze Bolt");
 
             Tooltip.SetDefault("Shoots fire to burn your enemies");

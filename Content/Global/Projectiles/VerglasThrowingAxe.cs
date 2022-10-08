@@ -29,14 +29,13 @@ namespace Supernova.Content.Global.Projectiles
         {
             target.AddBuff(BuffID.Frostburn, 120);   //this make so when the projectile/flame hit a npc, gives it the buff  onfire , 80 = 3 seconds
 
-            Vector2 position = Projectile.Center;
             int radius = 3;     //this is the explosion radius, the highter is the value the bigger is the explosion
 
             for (int x = -radius; x <= radius; x++)
             {
-            int dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width + 2, Projectile.height + 2, 59, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 37, default(Color), 1.8f);
-            Main.dust[dust].noGravity = false; //this make so the dust has no gravity
-            Main.dust[dust].velocity *= 0.7f;
+                int dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width + 2, Projectile.height + 2, 59, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 37, default(Color), 1.8f);
+                Main.dust[dust].noGravity = false; //this make so the dust has no gravity
+                Main.dust[dust].velocity *= 0.7f;
             }
         }
     }

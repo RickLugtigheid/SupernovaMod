@@ -69,7 +69,6 @@ namespace Supernova.Content.Global.Projectiles
                 Main.dust[DustID2].noGravity = true;
             }
 
-
             // Add sinewave effect
             const double amp = 5;
             const double freq = .1;

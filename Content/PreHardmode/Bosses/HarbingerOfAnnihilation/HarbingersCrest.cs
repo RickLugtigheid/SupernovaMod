@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
@@ -7,9 +8,11 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Harbingers Crest");
-            Tooltip.SetDefault("You have a 1 in 3 change on to take fall damage" +
-                "\nAnd increaces Mining speed");
+            Tooltip.SetDefault("Has a 1 in 3 chance to not take fall damage" +
+                "\nAnd increased Mining speed");
         }
 
         public override void SetDefaults()
@@ -25,8 +28,10 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            if (Main.rand.Next(2) == 1)
+            if (Main.rand.NextBool(2))
+			{
                 player.noFallDmg = true;
+            }
             player.pickSpeed -= 0.38f;
         }
     }

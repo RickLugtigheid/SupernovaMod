@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +11,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Terror Tome");
         }
         public override void SetDefaults()
@@ -28,7 +31,7 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
             Item.mana = 4;             //mana use
             Item.UseSound = SoundID.Item21;            //this is the sound when you use the item
             Item.autoReuse = true;
-            Item.shoot = Mod.Find<ModProjectile>("FirendlyTerrorProj").Type;  //this make the item shoot your projectile
+            Item.shoot = ModContent.ProjectileType<FirendlyTerrorProj>();  //this make the item shoot your projectile
             Item.shootSpeed = 15;    //projectile speed when shoot
             Item.DamageType = DamageClass.Magic;
         }

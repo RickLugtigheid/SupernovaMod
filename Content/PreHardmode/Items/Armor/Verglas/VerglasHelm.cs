@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Armor.Verglas
 {
@@ -9,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Verglas
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Verglas Helmet");
             Tooltip.SetDefault("A Verglas helmet for the melee class" +
                 "\n The cold protects you from lava for a short time");

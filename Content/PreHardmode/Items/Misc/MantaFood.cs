@@ -2,8 +2,8 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria;
-using Supernova.Common.Systems;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Misc
 {
@@ -11,6 +11,8 @@ namespace Supernova.Content.PreHardmode.Items.Misc
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+
             DisplayName.SetDefault("MantaFood");
             Tooltip.SetDefault("Dropped by Dungeon enemies\n" +
                 "Use underground" +
@@ -34,7 +36,7 @@ namespace Supernova.Content.PreHardmode.Items.Misc
         public override bool CanUseItem(Player player)
         {
             // Does NPC Exist
-            bool alreadySpawned = NPC.AnyNPCs(Mod.Find<ModNPC>("StoneMantaRay").Type);
+            bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<Bosses.StoneMantaRay.StoneMantaRay>());
 
             // return NPC.downedQueenBee && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("TutorialBoss")); // NPC will spawn if No existing Tutorial Boss, Queen Bee is downed and it is hardmode 
             return !alreadySpawned;
@@ -44,7 +46,7 @@ namespace Supernova.Content.PreHardmode.Items.Misc
         {
             if (player.ZoneBeach)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, Mod.Find<ModNPC>("StoneMantaRay").Type); // Spawn the boss within a range of the player. 
+                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Bosses.StoneMantaRay.StoneMantaRay>()); // Spawn the boss within a range of the player. 
                 SoundEngine.PlaySound(SoundID.Roar, player.position) ;
                 return true;
             }
@@ -61,10 +63,7 @@ namespace Supernova.Content.PreHardmode.Items.Misc
 		{
             if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneDungeon)
             {
-                if (!SupernovaBosses.downedStormSovereign && Main.rand.NextBool(24) || Main.rand.NextBool(60))
-				{
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MantaFood>()));
-				}
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MantaFood>(), 50));
             }
 
             base.ModifyNPCLoot(npc, npcLoot);

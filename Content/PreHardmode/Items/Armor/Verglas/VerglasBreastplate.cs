@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Armor.Verglas
 {
@@ -10,6 +11,8 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Verglas
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Verglas Breastplate"); // Set the name
         }
 

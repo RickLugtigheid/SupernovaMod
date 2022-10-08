@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Armor.Carnage
 {
@@ -9,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Carnage
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Carnage Boots");
             Tooltip.SetDefault("Increases speed by 3%");
         }

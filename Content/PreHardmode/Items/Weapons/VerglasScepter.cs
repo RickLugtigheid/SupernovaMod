@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,6 +17,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 
         public override void SetDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             Item.damage = 20;
             Item.crit = 12;
             Item.width = 28;
@@ -30,7 +33,6 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.UseSound = SoundID.Item21;            //this is the sound when you use the item
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.VerglasScepterProj>();
-            Item.shoot = Mod.Find<ModProjectile>("VerglasScepterProj").Type;
             Item.mana = 8;             //mana use
             Item.shootSpeed = 16f;    //projectile speed when shoot
             Item.DamageType = DamageClass.Magic;

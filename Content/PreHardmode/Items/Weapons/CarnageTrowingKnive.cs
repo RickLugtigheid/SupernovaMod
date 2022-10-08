@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -8,6 +9,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+
             DisplayName.SetDefault("Carnage Trowing Knive");
         }
 
@@ -31,7 +34,6 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.rare = ItemRarityID.Orange;
             Item.shootSpeed = 11f;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.CarnageTrowingKniveProj>();
-            Item.shoot = Mod.Find<ModProjectile>("CarnageTrowingKniveProj").Type;
 
             Item.DamageType = DamageClass.Throwing;
         }

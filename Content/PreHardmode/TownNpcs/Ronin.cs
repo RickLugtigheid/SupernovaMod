@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.GameContent.Personalities;
 using System.Collections.Generic;
+using Terraria.GameContent.Bestiary;
 
 namespace Supernova.Content.PreHardmode.TownNpcs
 {
@@ -23,6 +24,21 @@ namespace Supernova.Content.PreHardmode.TownNpcs
             NPCID.Sets.AttackTime[NPC.type] = 10; //this defines the npc attack speed
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;//this defines the npc atack chance
             NPCID.Sets.HatOffsetY[NPC.type] = 4; //this defines the party hat position
+
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                // Influences how the NPC looks in the Bestiary
+                Velocity = .2f // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("TODO."),
+            });
         }
 
         public override void SetDefaults()

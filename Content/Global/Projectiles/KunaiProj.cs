@@ -45,7 +45,7 @@ namespace Supernova.Content.Global.Projectiles
             if (Main.rand.NextFloat() < 0.07f) // This handles the rate at which the new item will drop. 0.99f == highChance
             {
                 // This will spawn a javelin drop at position of javelin and in the space of the hitbox
-                 item = Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.position, Projectile.width, Projectile.height, Mod.Find<ModItem>("Items.Weapons.PreHardMode.Kunai").Type, 1, false, 0, false, false);
+                 item = Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.position, Projectile.width, Projectile.height, ModContent.ItemType<PreHardmode.Items.Weapons.Kunai>(), 1, false, 0, false, false);
             }
 
             if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)

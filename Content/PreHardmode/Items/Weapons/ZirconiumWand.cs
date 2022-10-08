@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,6 +9,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Zirconium Wand");
             Item.staff[Item.type] = true;
         }
@@ -26,7 +29,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.value = Item.buyPrice(0, 3, 0, 0);
             Item.rare = ItemRarityID.Orange;
             Item.mana = 5;
-            Item.UseSound = SoundID.Item21;
+            Item.UseSound = SoundID.Item43;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.ZirconProj>();
             Item.shootSpeed = 13f;

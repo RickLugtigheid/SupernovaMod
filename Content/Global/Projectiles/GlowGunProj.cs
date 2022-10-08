@@ -59,7 +59,7 @@ namespace Supernova.Content.Global.Projectiles
         public override void AI()
         {
             //this is projectile dust
-            int DustID2 = Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, 41, Projectile.velocity.X * 2f, Projectile.velocity.Y * 2f, 20, default(Color), Main.rand.NextFloat(.6f, 1.75f));
+            int DustID2 = Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, DustID.GlowingMushroom, Projectile.velocity.X * 2f, Projectile.velocity.Y * 2f, 20, default(Color), Main.rand.NextFloat(.6f, 1.75f));
             Main.dust[DustID2].noGravity = true;
         }
 	}

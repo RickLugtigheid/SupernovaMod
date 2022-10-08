@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,6 +9,8 @@ namespace Supernova.Content.PreHardmode.Items.Materials
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
+
             DisplayName.SetDefault("Bone Fragment");
             Tooltip.SetDefault("Drops from any zombies after the Brain of Cthulhu/Eater of Worlds is defeated");
         }

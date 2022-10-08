@@ -32,7 +32,7 @@ namespace Supernova.Content.Global.Projectiles
         public override void AI()
         {
             //this is projectile dust
-            int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 5f), Projectile.width + 2, Projectile.height + 2, Mod.Find<ModDust>("BloodDust").Type, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 20, default(Color), 0.9f);
+            int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 5f), Projectile.width + 2, Projectile.height + 2, ModContent.DustType<Dusts.BloodDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 20, default(Color), 0.9f);
             Main.dust[DustID2].noGravity = true;
         }
 

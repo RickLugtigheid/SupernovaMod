@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,6 +9,9 @@ namespace Supernova.Content.PreHardmode.Items.Tiles
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+            ItemID.Sets.SortingPriorityMaterials[Item.type] = 54;
+
             DisplayName.SetDefault("Zirconium Ore");
             Tooltip.SetDefault("A shiny pink ore chunk");
         }

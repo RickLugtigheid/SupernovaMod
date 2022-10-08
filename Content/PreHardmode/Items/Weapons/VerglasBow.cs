@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -10,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Verglas Bow");
             Tooltip.SetDefault("Turns wooden arrows into frostburn arrows.");
         }
@@ -37,15 +39,16 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.shootSpeed = 13f;
             Item.DamageType = DamageClass.Ranged;
         }
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+
+		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
             // Convert wooden arrows to frostburn arrows
             //
             if (type == ProjectileID.WoodenArrowFriendly)
-			{
+            {
                 type = ProjectileID.FrostburnArrow;
-			}
-			return base.Shoot(player, source, position, velocity, type, damage, knockback);
+            }
+            base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
 		}
 
         public override void AddRecipes()

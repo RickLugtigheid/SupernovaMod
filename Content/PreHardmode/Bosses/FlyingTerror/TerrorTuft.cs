@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 {
@@ -9,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+
             DisplayName.SetDefault("Terror Wing");
         }
 

@@ -1,6 +1,7 @@
 ﻿using Supernova.Api.Core;
 using Supernova.Common.Players;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +11,8 @@ namespace Supernova.Content.PreHardmode.Items.Rings
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Ring of Protection");
             Tooltip.SetDefault("When the 'Ring Ability button' is pressed you take 30% less damage for 30 seconds.");
         }

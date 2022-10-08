@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Supernova.Api.Core;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -13,11 +14,14 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Tome of Frost and Fire");
 
             Tooltip.SetDefault("Shoots fire and frostburn");
         }
-        int _leftClick;
+
+        int _leftClick = 0;
 
 		public override void SetDefaults()
         {

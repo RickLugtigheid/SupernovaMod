@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Materials
 {
@@ -9,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Materials
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
+
             DisplayName.SetDefault("Rime");
             Tooltip.SetDefault("Droped by creatures in the snow Biome");
             // ticksperframe, frameCount

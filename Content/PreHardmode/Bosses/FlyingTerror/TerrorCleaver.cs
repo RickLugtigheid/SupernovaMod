@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 {
@@ -13,6 +9,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 	{
 		public override void SetStaticDefaults()
 		{
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
 			DisplayName.SetDefault("Terror Cleaver");
 			Tooltip.SetDefault("Shoots scythes of terror");
             //Tooltip.SetDefault("A big cleaver as strong as the bones of the Flying Terror");
