@@ -17,10 +17,10 @@ namespace Supernova.Common.GlobalNPCs
 			{
 				// 1/7 (14,28571%) Srop chance after the EoC is downed
 				//
-				if (NPC.downedBoss1)
+				npcLoot.Add(GetDropRule<EoCDownedDropCondition>(conditionalRule =>
 				{
-					npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.BoneFragment>(), 3, maximumDropped: 3));
-				}
+					conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.BoneFragment>(), 7, maximumDropped: 3));
+				}));
 			}
 
 			// Drop from any demon
@@ -68,12 +68,16 @@ namespace Supernova.Common.GlobalNPCs
 		}
 		public void NPCBiomeSnowLoot(IItemDropRule conditionalRule)
 		{
-			// 1/5 (20%) drop chance after the Queen bee is downed
+			// 1/12 (8,33333%) drop chance after the Queen bee is downed
 			//
-			if (NPC.downedQueenBee == true)
+			conditionalRule.OnSuccess(GetDropRule<QueenBeeDownedDropCondition>(conditionalRule =>
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.Rime>(), 5, maximumDropped: 2));
-			}
+			}));
+			/*if (NPC.downedQueenBee == true)
+			{
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.Rime>(), 5, maximumDropped: 2));
+			}*/
 		}
 		public void NPCBiomeEvilLoot(IItemDropRule conditionalRule)
 		{
@@ -86,9 +90,9 @@ namespace Supernova.Common.GlobalNPCs
 		#region Event Loot Handlers
 		public void NPCEventBloodMoonLoot(IItemDropRule conditionalRule)
 		{
-			// 1/4 (25%) drop chance
+			// 1/10 (10%) drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.BloodShards>(), 4, maximumDropped: 3));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.BloodShards>(), 10, maximumDropped: 3));
 		}
 		#endregion
 	}

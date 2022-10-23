@@ -1,5 +1,6 @@
 ﻿using Supernova.Common.Players;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +10,8 @@ namespace Supernova.Content.PreHardmode.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Cooling Element");
             Tooltip.SetDefault("Decreases ring cooldown by 7%\nWhen your ring is cooling down your movement speed increases by 10%");
             ItemID.Sets.ItemNoGravity[Item.type] = true;

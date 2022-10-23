@@ -1,5 +1,6 @@
 ﻿using Supernova.Common.Players;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
 namespace Supernova.Content.PreHardmode.Items.Accessories
@@ -8,6 +9,8 @@ namespace Supernova.Content.PreHardmode.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Emblem of inferno");
             Tooltip.SetDefault("Spaws fire when you get hit");
         }

@@ -368,7 +368,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
                 velMax = 2;
                 NPC.defense = 7;
                 NPC.position.X = (Main.player[NPC.target].position.X + 500);
-                NPC.position.Y = (Main.player[NPC.target].position.Y);
+                NPC.position.Y = (Main.player[NPC.target].position.Y + 150);
                 for (int i = 0; i < 50; i++)
                 {
                     int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, 71);

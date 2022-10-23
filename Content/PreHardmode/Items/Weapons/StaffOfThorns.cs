@@ -19,8 +19,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.damage = 7;
-            Item.crit = 3;
+            Item.damage = 8;
+            Item.crit = 4;
             Item.width = 28;
             Item.height = 34;
 

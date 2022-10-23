@@ -38,7 +38,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.UseSound = SoundID.Item5; // Sound for Bows
             Item.useAmmo = AmmoID.Arrow; // The ammo used with this weapon
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 16f;
+            Item.shootSpeed = 8;
             Item.DamageType = DamageClass.Ranged;
         }
 
@@ -50,6 +50,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             {
                 if (_shots < 6)
                 {
+                    Item.shootSpeed = 17;
                     Item.autoReuse = true;
                     if (_once == true)
                     {
@@ -70,6 +71,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
                 }
                 else
                 {
+                    Item.shootSpeed = 8;
                     Item.useAnimation = 35;
                     Item.useTime = 35;
                     Item.UseSound = SoundID.Item5; // Sound for Bows
