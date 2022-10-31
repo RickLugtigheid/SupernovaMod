@@ -9,10 +9,10 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 	public class SnowGlove : ModShotgun
     {
 		public override float SpreadAngle => 4;
-		public override int MinShots => 3;
-		public override int MaxShots => 3;
 
-		public override void SetStaticDefaults()
+        public override int GetShotAmount() => 3;
+
+        public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

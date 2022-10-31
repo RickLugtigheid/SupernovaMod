@@ -9,8 +9,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 	public class TomeOfIceAndFire : ModShotgun
     {
         public override float SpreadAngle => 8;
-        public override int MinShots => 5;
-        public override int MaxShots => 5;
+
+        public override int GetShotAmount() => 5;
 
         public override void SetStaticDefaults()
         {

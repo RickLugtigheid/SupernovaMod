@@ -9,10 +9,10 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 	public class GraniteStorm : ModShotgun
     {
 		public override float SpreadAngle => 6 * 4;
-		public override int MinShots => 3;
-		public override int MaxShots => 5;
 
-		public override void SetStaticDefaults()
+        public override int GetShotAmount() => Main.rand.Next(3, 5);
+
+        public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

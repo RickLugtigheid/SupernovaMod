@@ -10,14 +10,18 @@ namespace Supernova.Api
 	public abstract class ModShotgun : ModItem
 	{
 		public abstract float SpreadAngle { get; }
-		public abstract int MinShots { get; }
-		public abstract int MaxShots { get; }
-		public virtual int Shots { get; } // TODO: Make this the ammount of shots. The user can use Main.rand.Next for random ammount of shots
+
+		/// <summary>
+		/// Gets the amount of shots this mod shotgun should use
+		/// </summary>
+		/// <returns></returns>
+		public abstract int GetShotAmount();
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
+			int shootAmount = GetShotAmount();
 			Vector2[] speeds = Mathf.RandomSpread(velocity, SpreadAngle, 6);
-			for (int i = 0; i < Main.rand.Next(MinShots, MaxShots); ++i)
+			for (int i = 0; i < shootAmount; ++i)
 			{
 				Projectile.NewProjectile(source, position.X, position.Y, speeds[i].X, speeds[i].Y, type, damage, knockback, player.whoAmI);
 			}

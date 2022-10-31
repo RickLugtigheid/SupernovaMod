@@ -69,6 +69,7 @@ namespace Supernova.Common.Players
 		public bool HasRing(out SupernovaRing equipedRing)
 		{
 			// Get the item currently in our ring slot
+			//
 			if (TryGetRingSlot(out ModAccessorySlot ringSlot))
 			{
 				Item ringSlotItem = ringSlot.FunctionalItem;

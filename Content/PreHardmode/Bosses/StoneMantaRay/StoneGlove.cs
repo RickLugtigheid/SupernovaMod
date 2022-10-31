@@ -8,10 +8,10 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
 	public class StoneGlove : ModShotgun
     {
         public override float SpreadAngle => 4;
-        public override int MinShots => 3;
-        public override int MaxShots => 3;
 
-		public override void SetStaticDefaults()
+        public override int GetShotAmount() => 3;
+
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Surgestone Glove");
         }

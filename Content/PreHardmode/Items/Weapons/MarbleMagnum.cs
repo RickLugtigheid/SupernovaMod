@@ -10,10 +10,10 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 	public class MarbleMagnum : ModShotgun
     {
         public override float SpreadAngle => 2;
-		public override int MinShots => 3;
-		public override int MaxShots => 6;
 
-		public override void SetStaticDefaults()
+        public override int GetShotAmount() => Main.rand.Next(3, 6);
+
+        public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

@@ -11,10 +11,10 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 	public class BlunderBuss : ModShotgun
     {
 		public override float SpreadAngle => 8;
-		public override int MinShots => 3;
-		public override int MaxShots => 5;
 
-		public override void SetStaticDefaults()
+        public override int GetShotAmount() => Main.rand.Next(3, 5);
+
+        public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
