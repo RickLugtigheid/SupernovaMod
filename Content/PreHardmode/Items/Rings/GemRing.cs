@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Supernova.Api.Core;
+using Supernova.Api;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;

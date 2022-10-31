@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using Supernova.Common.Players;
 
-namespace Supernova.Api.Core
+namespace Supernova.Api
 {
 	public abstract class RingPrefix : ModPrefix
 	{

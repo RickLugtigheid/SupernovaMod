@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using Supernova.Api.Core;
+using Supernova.Api;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

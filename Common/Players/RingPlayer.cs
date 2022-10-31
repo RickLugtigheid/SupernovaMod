@@ -1,4 +1,4 @@
-﻿using Supernova.Api.Core;
+﻿using Supernova.Api;
 using System;
 using Terraria;
 using Terraria.ModLoader;

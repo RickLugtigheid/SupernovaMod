@@ -12,7 +12,7 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 
-            DisplayName.SetDefault("Terror Wing");
+            DisplayName.SetDefault("Terror Tuft");
         }
 
         public override void SetDefaults()

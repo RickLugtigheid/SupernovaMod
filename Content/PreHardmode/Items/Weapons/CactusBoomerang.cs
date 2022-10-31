@@ -51,10 +51,9 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Cactus, 34);
+            recipe.AddIngredient(ItemID.Cactus, 27);
             recipe.AddIngredient(ItemID.AntlionMandible, 2);
-            recipe.AddIngredient(ItemID.SandBlock, 7);
-            recipe.AddTile(TileID.Anvils);
+            recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }
     }

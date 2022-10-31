@@ -20,7 +20,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             Projectile.height = 16;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Melee;
+            Projectile.DamageType = DamageClass.Throwing;
             Projectile.penetrate = 2;
         }
 
@@ -29,27 +29,20 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             target.AddBuff(BuffID.ShadowFlame, 30);
         }
 
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
-        {
-            if (targetHitbox.Width > 8 && targetHitbox.Height > 8)
-                targetHitbox.Inflate(-targetHitbox.Width / 8, -targetHitbox.Height / 8);
-            return projHitbox.Intersects(targetHitbox);
-        }
-
         public override void Kill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 
+            // Spawn dust on kill
+            //
             for (int i = 0; i <= 10; i++)
-                Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, DustID.UndergroundHallowedEnemies, -Projectile.velocity.X * Main.rand.NextFloat(.2f, .5f), -Projectile.velocity.Y * Main.rand.NextFloat(.2f, .5f));
-
-            Vector2 usePos = Projectile.position;
-            Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
-            usePos += rotVector * 16f;
+			{
+                Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, DustID.UndergroundHallowedEnemies, -Projectile.velocity.X * Main.rand.NextFloat(.2f, .5f), -Projectile.velocity.Y * Main.rand.NextFloat(.2f, .5f), Scale: .5f);
+            }
 
             var item = 0;
 
-            if (Main.netMode == 1 && item >= 0)
+            if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)
                 NetMessage.SendData(MessageID.KillProjectile);
         }
 
@@ -62,8 +55,8 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 
         public override void AI()
         {
-            int dust = Dust.NewDust(Projectile.position, Projectile.width / 2, Projectile.height / 2, DustID.UndergroundHallowedEnemies, Projectile.velocity.X * .5f, Projectile.velocity.Y * .5f, Scale: Main.rand.NextFloat(.5f, 1.3f));
-            Main.dust[dust].noGravity = true;
+            //int dust = Dust.NewDust(Projectile.Center, Projectile.width / 2, Projectile.height / 2, DustID.UndergroundHallowedEnemies, Projectile.velocity.X * .5f, Projectile.velocity.Y * .5f, Scale: Main.rand.NextFloat(.5f, 1));
+            //Main.dust[dust].noGravity = true;
 
             if (Projectile.alpha > 0)
             {
@@ -90,5 +83,11 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
                 Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 0.80f;
             }
         }
-    }
+		public override bool PreDraw(ref Color lightColor)
+		{
+            lightColor = new Color(180, 180, 180, 245);
+
+            return true;
+		}
+	}
 }

@@ -27,7 +27,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             Item.height = 30;
             Item.noUseGraphic = true;
             Item.noMelee = true;
-            Item.autoReuse = false;
+            Item.autoReuse = true;
             Item.value = 5000;
             Item.rare = ItemRarityID.Green;
             Item.shootSpeed = 11f;

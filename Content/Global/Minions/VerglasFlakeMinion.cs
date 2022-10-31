@@ -3,76 +3,68 @@ using Supernova.Common.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Supernova.Api;
 
 namespace Supernova.Content.Global.Minions
 {
-    public class VerglasFlakeMinion : ModProjectile
+    public class VerglasFlakeMinion : ModMinionProjectile
     {
-
-        public override void SetDefaults()
-        {
-            Projectile.netImportant = true;
-            Projectile.CloneDefaults(317);
-            AIType = 317;
-            Projectile.width = 20;
-            Projectile.height = 30;
-            Main.projFrames[Projectile.type] = 1;
-            Projectile.friendly = true;
-            Projectile.minion = true;
-            Projectile.minionSlots = 1;
-            Projectile.penetrate = -1;
-            Projectile.ignoreWater = true;
-            Projectile.tileCollide = false;
-            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
-        }
+		protected override int BuffType => ModContent.BuffType<Buffs.Minion.VerglasFlakeBuff>();
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Verglas Flake");
-            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
+
+            // Sets the amount of frames this minion has on its spritesheet
+            //Main.projFrames[Projectile.type] = 4;
+
+            // This is necessary for right-click targeting
+            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+
+            Main.projPet[Projectile.type] = true; // Denotes that this projectile is a pet or minion
+
+            ProjectileID.Sets.MinionSacrificable[Projectile.type] = true; // This is needed so your minion can properly spawn when summoned and replaced when other minions are summoned
+            ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // Make the cultist resistant to this projectile, as it's resistant to all homing projectiles.
+        }
+        public override void SetDefaults()
+        {
+            Projectile.width = 18;
+            Projectile.height = 28;
+            Projectile.tileCollide = false; // Makes the minion go through tiles freely
+
+            // These below are needed for a minion weapon
+            Projectile.friendly = true; // Only controls if it deals damage to enemies on contact (more on that later)
+            Projectile.minion = true; // Declares this as a minion (has many effects)
+            Projectile.DamageType = DamageClass.Summon; // Declares the damage type (needed for it to deal damage)
+            Projectile.minionSlots = 1f; // Amount of slots this minion occupies from the total minion slots available to the player (more on that later)
+            Projectile.penetrate = -1; // Needed so the minion doesn't despawn on collision with enemies or tiles
         }
 
-        public void CheckActive()
+        // Here you can decide if your minion breaks things like grass or pots
+        public override bool? CanCutTiles()
         {
-            Player player = Main.player[Projectile.owner];
-            AccessoryPlayer modPlayer = player.GetModPlayer<AccessoryPlayer>();
-            if (player.dead)
-            {
-                modPlayer.hasMinionVerglasFlake = false;
-            }
-            if (modPlayer.hasMinionVerglasFlake)
-            {
-                Projectile.timeLeft = 2;
-            }
-            if (!player.HasBuff(ModContent.BuffType<Buffs.Minion.VerglasFlakeBuff>()))
-            {
-                modPlayer.hasMinionVerglasFlake = false;
-            }
-        }
-
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            if (Projectile.velocity.X != oldVelocity.X)
-
-            {
-                Projectile.tileCollide = false;
-            }
-            if (Projectile.velocity.Y != oldVelocity.Y)
-            {
-                Projectile.tileCollide = false;
-            }
             return false;
         }
-		public override void AI()
+
+        // This is mandatory if your minion deals contact damage (further related stuff in AI() in the Movement region)
+        public override bool MinionContactDamage()
+        {
+            return true;
+        }
+
+        protected override void UpdateVisuals()
 		{
-            CheckActive();
-            if(Main.rand.NextBool(3))
-			{
+			base.UpdateVisuals();
+
+            // Add dust
+            //
+            if (Main.rand.NextBool(3))
+            {
                 int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width * 2, Projectile.height * 2, 92, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 20, default(Color), Main.rand.NextFloat(1, 1.4f));
                 Main.dust[DustID2].noGravity = true;
             }
-            base.AI();
-		}
+        }
+
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
             target.AddBuff(BuffID.Frostburn, 60 * 3);

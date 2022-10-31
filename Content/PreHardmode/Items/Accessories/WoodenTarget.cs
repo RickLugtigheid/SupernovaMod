@@ -12,8 +12,8 @@ namespace Supernova.Content.PreHardmode.Items.Accessories
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Wooden Target");
-            Tooltip.SetDefault("increases trown damage by 4%" +
-                                "\n increases trown velocity");
+            Tooltip.SetDefault("Increases trown and ranged damage by 4%" +
+                                "\n Increases trown velocity by 3%");
         }
 
         public override void SetDefaults()
@@ -38,8 +38,8 @@ namespace Supernova.Content.PreHardmode.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
             player.GetDamage(DamageClass.Throwing) += .04f;
-            /*player.thrownVelocity += 0.3f;
-            player.GetAttackSpeed();*/
+            player.GetDamage(DamageClass.Ranged)   += .04f;
+            player.ThrownVelocity += 0.3f;
         }
     }
 }

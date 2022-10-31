@@ -7,9 +7,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Supernova.Common.Systems;
 using Terraria.GameContent.ItemDropRules;
-using Supernova.Api.Core;
+using Supernova.Api;
 using Terraria.GameContent.Bestiary;
 using Supernova.Common.ItemDropRules.DropConditions;
+using Supernova.Api;
 
 namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 {
@@ -28,6 +29,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 
         /* Stage Attacks */
         public string[] stage0 = new string[] { "atkShootTeleportLeft", "atkEnergyBall", "atkShootTeleportRight", "atkEnergyBall", "atkEnergyBall" };
+        //public string[] stage0 = new string[] { "atkShootTeleportLeft", "atkTargetAndShoot", "atkShootTeleportRight" };
         public string[] stage1 = new string[] { "atkEnergyBall", "atkEnergyBall", "atkShootTeleportLeft", "atkEnergyBall", "atkEnergyBall", "atkEnergyBall", "atkShootTeleportRight" };
         public string[] stage2 = new string[] { "atkRage", "atkRage", "atkShootTeleportRage" };
 
@@ -49,7 +51,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("TODO."),
+				new FlavorTextBestiaryInfoElement(""),
             });
         }
 
@@ -80,7 +82,6 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             Music = MusicID.Boss1;
             // bossBag = mod.ItemType("SepticFleshBossBag"); // Needed for the NPC to drop loot bag.
         }
-
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             /*if (Main.expertMode)
@@ -114,15 +115,19 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
         bool init = false;
         public override void AI()
 		{
-
-            if (init == false)
+            // Check if not initialized
+            //
+            if (!init)
             {
                 attacks = stage0;
                 NPC.netUpdate = true;
                 init = true;
             }
-            if (spin == true)
+            // Check if we should spin
+            if (spin)
+			{
                 NPC.rotation += (float)Math.Atan2((double)NPC.velocity.Y, (double)NPC.velocity.X) + MathHelper.ToRadians(30);
+            }
 
             // Attack
             if (!_despawn) Attack();
@@ -145,11 +150,13 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
         public void atkShootTeleportLeft()
 		{
             NPC.ai[0]++;
+            // Init
+            //
             if (NPC.ai[0] == 10)
             {
                 velMax = 23;
                 velMagnitude = 15;
-                velAccel = 1f;
+                velAccel = 5f;
                 NPC.position.X = (Main.player[NPC.target].position.X + -200);
                 NPC.position.Y = (Main.player[NPC.target].position.Y + -250);
                 for (int i = 0; i < 50; i++)
@@ -221,7 +228,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             {
                 velMax = 23;
                 velMagnitude = 15;
-                velAccel = 1f;
+                velAccel = 5f;
                 NPC.position.X = (Main.player[NPC.target].position.X + 300);
                 NPC.position.Y = (Main.player[NPC.target].position.Y + -250);
                 for (int i = 0; i < 50; i++)
@@ -309,17 +316,53 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
                 attackPointer++;
             }
         }
+
+        public void atkTargetAndShoot()
+		{
+            NPC.ai[0]++;
+
+            // Init
+            //
+            if (NPC.ai[0] == 10)
+			{
+                NPC.position.X = (Main.player[NPC.target].position.X);
+                NPC.position.Y = (Main.player[NPC.target].position.Y + 600);
+            }
+            else if (NPC.ai[0] >= 10 && NPC.ai[0] <= 300)
+			{
+                RotateNPCToTarget();
+
+                // Shoot every x time
+                //
+                int shootDelay = (Main.masterMode ? 20 : Main.expertMode ? 25 : 35);
+                shootDelay -= _stage * 5;
+                if (NPC.ai[0] % shootDelay == 0)
+                {
+                    //float rotation = NPC.rotation - MathHelper.ToRadians(Main.rand.Next(80, 100)); // 90 shoots directly at the player
+                    //Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2((float)(Math.Cos(rotation) * speed) * -2, (float)(Math.Sin(rotation) * speed) * -1), type, smallAttackDamage, 0f, 0);
+                    Shoot(15);
+                }
+            }
+            else if (NPC.ai[0] >= 310)
+			{
+                // Reset
+                targetRotation = MathHelper.ToRadians(0);
+                NPC.ai[0] = 0;
+                attackPointer++;
+            }
+        }
+
         public void atkShootTeleportRage()
         {
             NPC.ai[0]++;
             if (NPC.ai[0] == 10)
             {
                 velMax = 18;
-                NPC.position.X = (Main.player[NPC.target].position.X + -200);
-                NPC.position.Y = (Main.player[NPC.target].position.Y + -250);
+                NPC.position.X = (Main.player[NPC.target].position.X - 400);
+                NPC.position.Y = (Main.player[NPC.target].position.Y + 400);
                 for (int i = 0; i < 50; i++)
                 {
-                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, 71);
+                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies);
                     Main.dust[dust].scale = 2.5f;
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0f;
@@ -367,11 +410,13 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
                 velAccel = .03f;
                 velMax = 2;
                 NPC.defense = 7;
-                NPC.position.X = (Main.player[NPC.target].position.X + 500);
-                NPC.position.Y = (Main.player[NPC.target].position.Y + 150);
+
+                bool teleportRight = (NPC.position.X - targetPlayer.position.X) > NPC.position.X;
+                NPC.position.X = (Main.player[NPC.target].position.X + (teleportRight ? 500 : -500));
+                NPC.position.Y = (Main.player[NPC.target].position.Y - 200);
                 for (int i = 0; i < 50; i++)
                 {
-                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, 71);
+                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies);
                     Main.dust[dust].scale = 2.5f;
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0f;
@@ -408,33 +453,39 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             if (NPC.ai[0] == 10)
                 velAccel = .05f;
             else if (NPC.ai[0] == 50)
-                Shoot();
+                Shoot(Main.rand.Next(5, 8));
             else if (NPC.ai[0] == 60)
-                Shoot();
+                Shoot(Main.rand.Next(5, 8));
             else if (NPC.ai[0] == 70)
-                Shoot();
+                Shoot(Main.rand.Next(5, 8));
             else if (NPC.ai[0] == 75)
-                Shoot();
+                Shoot(Main.rand.Next(5, 8));
             else if (NPC.ai[0] >= 80)
             {
-                Shoot();
+                Shoot(Main.rand.Next(5, 8));
                 // Reset
                 NPC.ai[0] = 0;
                 attackPointer++;
             }
         }
         #endregion
-        private void Shoot()
-        {
-            float Speed = Main.rand.Next(5, 8);  //projectile speed
 
+        private void RotateNPCToTarget()
+        {
+            if (targetPlayer == null) return;
+            Vector2 direction = NPC.Center - targetPlayer.Center;
+            float rotation = (float)Math.Atan2(direction.Y, direction.X);
+            NPC.rotation = rotation + ((float)Math.PI * 0.5f);
+        }
+        private void Shoot(float speed)
+        {
             int type = ModContent.ProjectileType<HarbingerMissile>();  //put your projectile
             SoundEngine.PlaySound(/*23*/SoundID.Item23, NPC.position);
-            Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+            Vector2 vector8 = NPC.Center;
 
             float rotation = (float)Math.Atan2(vector8.Y - (targetPlayer.position.Y + (targetPlayer.height * 0.5f)), vector8.X - (targetPlayer.position.X + (targetPlayer.width * 0.5f)));
 
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -2), (float)((Math.Sin(rotation) * Speed) * -1), type, smallAttackDamage, 0f, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * speed) * -2), (float)((Math.Sin(rotation) * speed) * -1), type, smallAttackDamage, 0f, 0);
 
             NPC.ai[1] = 0;
         }

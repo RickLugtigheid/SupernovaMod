@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
+using Microsoft.Xna.Framework;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
@@ -37,6 +38,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 
         private void SetDefaultsSword()
 		{
+            Item.autoReuse = true;
             // Left Click has no projectile
             Item.shootSpeed = 0f;
             Item.shoot = ProjectileID.None;
@@ -48,6 +50,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
         }
         private void SetDefaultsHarpoon()
         {
+            Item.autoReuse = false;
             Item.shoot = ProjectileID.Harpoon;
             Item.damage = 28;
             Item.shootSpeed = 30f;
@@ -59,7 +62,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 
         public override bool AltFunctionUse(Player player) => true;
 
-		public override void UseAnimation(Player player)
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
 		{
             if (player.altFunctionUse == ItemAlternativeFunctionID.ActivatedAndUsed)
             {
@@ -69,8 +72,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             {
                 SetDefaultsSword();
             }
-            base.UseAnimation(player);
-        }
+            base.UseStyle(player, heldItemFrame);
+		}
 
 		public override void AddRecipes()
         {

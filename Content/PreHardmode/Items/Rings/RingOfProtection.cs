@@ -1,4 +1,4 @@
-﻿using Supernova.Api.Core;
+﻿using Supernova.Api;
 using Supernova.Common.Players;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -29,13 +29,13 @@ namespace Supernova.Content.PreHardmode.Items.Rings
 		public override void OnRingActivate(Player player)
 		{
             // Add dust effect
+            //
             for (int i = 0; i < 20; i++)
             {
-                int dust = Dust.NewDust(player.position, player.width, player.height, DustID.Lead);
-                Main.dust[dust].scale = 1.4f;
+                int dust = Dust.NewDust(player.position, player.width, player.height, DustID.Lead, Scale: 1.4f);
                 Main.dust[dust].noGravity = true;
-                Main.dust[dust].velocity *= 1.6f;
-                Main.dust[dust].velocity *= 1.6f;
+                Main.dust[dust].velocity *= 1.75f;
+                Main.dust[dust].velocity *= 1.75f;
             }
         }
 		public override void OnRingCooldown(int curentCooldown, Player player)
@@ -43,7 +43,18 @@ namespace Supernova.Content.PreHardmode.Items.Rings
             // Only run the first 30 seconds (1800ms / 60 = 30sec)
             //
             if (curentCooldown >= ((Cooldown * RingPlayer.ringCooldownMulti) - 1800))
+            {
                 player.endurance += 0.30f; // Damage reduction +30%
+
+                // Add a small dust effect to the player so we know it's active
+                //
+                if (Main.rand.NextBool(3))
+				{
+                    int dust = Dust.NewDust(player.position, player.width, player.height, DustID.Lead, Scale: Main.rand.NextFloat(.5f, 1));
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= .25f;
+                }
+            }
         }
         public override void AddRecipes()
         {

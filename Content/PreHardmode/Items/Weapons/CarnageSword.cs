@@ -8,6 +8,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 {
     public class CarnageSword : ModItem
 	{
+        private int _healAmount = 2;
 		public override void SetStaticDefaults()
 		{
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -18,12 +19,12 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 		{
 			Item.damage = 22;
             Item.crit = 4;
-            Item.width = 40;
-			Item.height = 40;
+            Item.width = 52;
+			Item.height = 52;
 			Item.useTime = 30;
 			Item.useAnimation = 30;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 2.5f;
+			Item.knockBack = 6;
 			Item.value = Item.buyPrice(0, 3, 0, 0);
             Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item1;
@@ -35,11 +36,18 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
         {
             if (Main.rand.NextBool(4))
             {
-                //Emit dusts when the sword is swung 
-                int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Blood, Scale: 1.4f);
+                // Emit dusts when the sword is swung 
+                Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Blood, Scale: 1.4f);
             }
         }
-        public override void AddRecipes()
+		public override void ModifyHitNPC(Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
+		{
+            // Heal the player by _healAmount
+            //
+            Projectile.NewProjectile(player.GetSource_FromThis(), target.Center, Vector2.Zero, ProjectileID.SpiritHeal, 1, 0, player.whoAmI, 0, _healAmount);
+            base.ModifyHitNPC(player, target, ref damage, ref knockBack, ref crit);
+		}
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.BloodShards>(), 8);

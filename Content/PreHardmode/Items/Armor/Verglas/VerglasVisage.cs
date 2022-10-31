@@ -35,12 +35,11 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Verglas
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "Shoots sharts of ice when hit." +
-                "\n Increases thrown velocity and ranged damage";
+            player.setBonus = "Increases thrown and ranged damage by 8%\nIncreases velocity by 5%";
             //player.GetModPlayer<TheGalacticaModPlayer>().VerglasArmour = true;
             player.GetDamage(DamageClass.Ranged) += .08f;
             player.GetDamage(DamageClass.Throwing) += .08f;
-            //player.thrownVelocity += 0.05f;
+            player.ThrownVelocity += .05f;
         }
 
         public override void AddRecipes()

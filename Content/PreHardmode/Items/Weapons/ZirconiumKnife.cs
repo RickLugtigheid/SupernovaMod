@@ -5,44 +5,43 @@ using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons
 {
-    public class TrowingStone : ModItem
+    public class ZirconiumKnife : ModItem
     {
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
-            DisplayName.SetDefault("Thrown Stone");
+            DisplayName.SetDefault("Zirconium Trowing Knive");
         }
 
         public override void SetDefaults()
-        {   
+        {
             Item.maxStack = 999; // Makes it so the weapon stacks.
-            Item.damage = 6;
+            Item.damage = 14;
             Item.crit = 4;
-            Item.knockBack = 1f;
+            Item.knockBack = 3;
             Item.useStyle = 1;
             Item.UseSound = SoundID.Item1;
-            Item.useAnimation = 25;
-            Item.useTime = 25;
+            Item.useAnimation = 18;
+            Item.useTime = 18;
             Item.width = 30;
             Item.height = 30;
             Item.consumable = true; // Makes it so one is taken from stack after use.
             Item.noUseGraphic = true;
             Item.noMelee = true;
-            Item.autoReuse = true;
-            Item.value = 5000;
-            Item.rare = ItemRarityID.Blue;
-            Item.shootSpeed = 8f;
-            Item.shoot = ModContent.ProjectileType<Global.Projectiles.StoneProj>();
-            Item.ammo = 1;
+            Item.autoReuse = false;
+            Item.value = 64;
+            Item.rare = ItemRarityID.Orange;
+            Item.shootSpeed = 12f;
+            Item.shoot = ModContent.ProjectileType<Global.Projectiles.ZirconiumKnifeProj>();
 
             Item.DamageType = DamageClass.Throwing;
         }
 
         public override void AddRecipes()
         {
-            Recipe recipe = CreateRecipe(3);
-            recipe.AddIngredient(ItemID.StoneBlock, 1);
+            Recipe recipe = CreateRecipe(25);
+            recipe.AddIngredient(ModContent.ItemType<Materials.ZirconiumBar>());
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }

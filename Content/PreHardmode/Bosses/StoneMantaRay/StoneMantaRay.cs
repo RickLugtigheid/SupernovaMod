@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.ItemDropRules;
 using Supernova.Common.Systems;
-using Supernova.Api.Core;
+using Supernova.Api;
 using Terraria.GameContent.Bestiary;
 
 namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay

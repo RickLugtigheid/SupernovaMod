@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Supernova.Api.Core;
+using Supernova.Api;
 using Terraria.GameContent.Creative;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons

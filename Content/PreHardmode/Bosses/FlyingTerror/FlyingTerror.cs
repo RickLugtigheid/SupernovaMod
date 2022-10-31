@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Supernova.Api.Core;
+using Supernova.Api;
 using Supernova.Common;
 using Supernova.Common.Systems;
 using System;

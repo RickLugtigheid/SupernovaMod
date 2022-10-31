@@ -1,4 +1,4 @@
-﻿using Supernova.Api.Core;
+﻿using Supernova.Api;
 using Supernova.Common.Players;
 using Terraria;
 using Terraria.GameContent.Creative;

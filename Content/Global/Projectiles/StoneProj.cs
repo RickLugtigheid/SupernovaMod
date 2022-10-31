@@ -41,7 +41,8 @@ namespace Supernova.Content.Global.Projectiles
 			}
             else
 			{
-                // Spawn dust on hit
+                // Spawn dust on kill
+                //
                 for (int i = 0; i <= Main.rand.Next(7, 14); i++)
                 {
                     int dustID = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Stone, Projectile.velocity.X * 0.05f, -Projectile.velocity.Y * 0.2f, 20, default(Color), Main.rand.NextFloat(.7f, 1.65f));

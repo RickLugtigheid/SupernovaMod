@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Api.Core
+namespace Supernova.Api
 {
 	public abstract class SupernovaRing : ModItem
 	{

@@ -40,9 +40,8 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Verglas
             {
                 player.statDefense += 3;
             }
-            player.setBonus = "Shoots sharts of ice when hit." +
-                "\n Increases Defence when under 200 health" +
-                "\n Increases melee damage";
+            player.setBonus = "Increases Defence when under 200 health" +
+                "\n Increases melee damage by 8%";
 
             //player.GetModPlayer<Supernova>().VerglasArmour = true;
         }

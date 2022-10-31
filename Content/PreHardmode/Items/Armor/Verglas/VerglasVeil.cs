@@ -37,8 +37,8 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Verglas
         {
             player.GetDamage(DamageClass.Magic) += .08f;
             player.GetDamage(DamageClass.Summon) += .08f;
-            player.setBonus = "Shoots sharts of ice when hit." +
-                "\n an boost you magic and summon damage";
+            player.statManaMax += 40;
+            player.setBonus = "Increases max mana by 40\nIncreases magic and summon damage by 8%";
             //player.GetModPlayer<TheGalacticaModPlayer>().VerglasArmour = true;
         }
         public override void AddRecipes()

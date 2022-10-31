@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Api.Core
+namespace Supernova.Api
 {
 	public abstract class ModShotgun : ModItem
 	{
