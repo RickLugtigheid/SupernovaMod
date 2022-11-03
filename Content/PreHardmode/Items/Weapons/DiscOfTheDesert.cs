@@ -27,7 +27,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.useAnimation = 8;
             Item.noUseGraphic = true;
             Item.useStyle = 1;
-            Item.knockBack = 0.1f;
+            Item.knockBack = 2.5f;
             Item.value = Item.buyPrice(0, 5, 60, 0);
             Item.rare = ItemRarityID.Orange;
             Item.shootSpeed = 7f;
@@ -41,10 +41,9 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
         public override void AddRecipes() //SturdyFossil
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Amber, 7);
-            recipe.AddIngredient(ItemID.DesertFossil, 20);
+            recipe.AddIngredient(ItemID.Amber, 6);
+            recipe.AddIngredient(ItemID.FossilOre, 20);
             recipe.AddIngredient(ModContent.ItemType<CactusBoomerang>());
-            recipe.AddIngredient(ItemID.SandBlock, 18);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }

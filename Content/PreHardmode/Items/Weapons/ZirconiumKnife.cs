@@ -19,7 +19,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.maxStack = 999; // Makes it so the weapon stacks.
             Item.damage = 14;
             Item.crit = 4;
-            Item.knockBack = 3;
+            Item.knockBack = 4;
             Item.useStyle = 1;
             Item.UseSound = SoundID.Item1;
             Item.useAnimation = 18;

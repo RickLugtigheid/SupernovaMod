@@ -27,10 +27,10 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.useAnimation = 14;
             Item.noUseGraphic = true;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 1.2f;
+            Item.knockBack = 5;
             Item.value = Item.buyPrice(0, 1, 46, 82);
             Item.rare = ItemRarityID.Blue;
-            Item.shootSpeed = 6f;
+            Item.shootSpeed = 7;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.CactusBoomerangProj>();
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = false;
