@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Supernova.Content.Global.Projectiles
@@ -21,5 +22,13 @@ namespace Supernova.Content.Global.Projectiles
             Projectile.extraUpdates = 1;
             Projectile.DamageType = DamageClass.Throwing;
         }
-    }
+
+		public override void AI()
+		{
+            int dustID = Dust.NewDust(Projectile.position, Projectile.width / 2, Projectile.height / 2, DustID.SandstormInABottle, Projectile.velocity.X, Projectile.velocity.Y);
+            Main.dust[dustID].noGravity = true;
+
+			base.AI();
+		}
+	}
 }

@@ -30,7 +30,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Stone Manta Ray Old");
+            DisplayName.SetDefault("Stone Manta Ray");
             Main.npcFrameCount[NPC.type] = 3;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)

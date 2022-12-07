@@ -30,7 +30,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
             Item.knockBack = 2.5f;
             Item.value = Item.buyPrice(0, 5, 60, 0);
             Item.rare = ItemRarityID.Orange;
-            Item.shootSpeed = 7f;
+            Item.shootSpeed = 9;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.DiscOfTheDesertProj>();
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;

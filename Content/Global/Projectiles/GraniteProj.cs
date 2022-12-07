@@ -38,14 +38,32 @@ namespace Supernova.Content.Global.Projectiles
 
             SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
         }
+
+        private const float MAX_TICKS = 42;
         public override void AI()
         {
             //this is projectile dust
-            int DustID2 = Dust.NewDust(Projectile.position, Projectile.width + 2, Projectile.height + 2, DustID.Granite, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 70, default(Color), 0.7f);
+            int DustID2 = Dust.NewDust(Projectile.position, Projectile.width / 2, Projectile.height / 2, DustID.Granite, Projectile.velocity.X, Projectile.velocity.Y, 70, default(Color), .7f);
             Main.dust[DustID2].noGravity = true;
+            
             //this make that the projectile faces the right way
             Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 9.57f;
             Projectile.localAI[0] += 1f;
+
+            if (Projectile.ai[0] == 0f)
+            {
+                Projectile.ai[1] += 1f;
+                if (Projectile.ai[1] >= MAX_TICKS)
+                {
+                    float velXmult = 0.98f;
+                    float velYmult = 0.38f;
+                    Projectile.ai[1] = MAX_TICKS;
+                    Projectile.velocity.X = Projectile.velocity.X * velXmult;
+                    Projectile.velocity.Y = Projectile.velocity.Y + velYmult;
+                }
+
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+            }
         }
     }
 }

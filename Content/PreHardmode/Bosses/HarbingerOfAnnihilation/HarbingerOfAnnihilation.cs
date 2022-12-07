@@ -10,7 +10,6 @@ using Terraria.GameContent.ItemDropRules;
 using Supernova.Api;
 using Terraria.GameContent.Bestiary;
 using Supernova.Common.ItemDropRules.DropConditions;
-using Supernova.Api;
 
 namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 {
