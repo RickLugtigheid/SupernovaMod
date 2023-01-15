@@ -73,11 +73,7 @@ namespace Supernova.Content.PreHardmode.Npcs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-            if (Main.rand.NextBool(2))
-			{
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.QuarionShard>()));
-			}
-
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.QuarionShard>(), 9, maximumDropped: 2));
 			base.ModifyNPCLoot(npcLoot);
 		}
     }

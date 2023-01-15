@@ -125,12 +125,9 @@ namespace Supernova.Content.PreHardmode.Npcs
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
             // 1 in 26 chance to drop
-            if (Main.rand.NextBool(26))
-			{
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Rime>()));
-            }
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Rime>(), 26));
 
-            npcLoot.Add(ItemDropRule.Common(ItemID.IceBlock, 1, 0, 10));
+            npcLoot.Add(ItemDropRule.Common(ItemID.IceBlock, 2, 0, 10));
 
             base.ModifyNPCLoot(npcLoot);
 		}

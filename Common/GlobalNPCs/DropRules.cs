@@ -15,7 +15,7 @@ namespace Supernova.Common.GlobalNPCs
 			//
 			if (NPCID.Sets.Zombies[npc.type])
 			{
-				// 1/7 (14,28571%) Srop chance after the EoC is downed
+				// 1/7 (14,28571%) Drop chance after the EoC is downed
 				//
 				npcLoot.Add(GetDropRule<EoCDownedDropCondition>(conditionalRule =>
 				{

@@ -83,27 +83,15 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            /*if (Main.expertMode)
-            {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersCrest>()));
-            }*/
             npcLoot.Add(ItemDropRule.ByCondition(new ExpertModDropCondition(), ModContent.ItemType<HarbingersCrest>()));
 
-            for (int i = 0; i < Main.rand.Next(1, 2); i++)
+
+            npcLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
             {
-                switch (Main.rand.Next(2))
-				{
-                    case 0:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersSlicer>()));
-                        break;
-                    case 1:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersKnell>()));
-                        break;
-                    case 2:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HarbingersPick>()));
-                        break;
-                }
-            }
+				ModContent.ItemType<HarbingersSlicer>(),
+				ModContent.ItemType<HarbingersKnell>(),
+				ModContent.ItemType<HarbingersPick>()
+			}));
 
             // For settings if the boss has been downed
             SupernovaBosses.downedHarbingerOfAnnihilation = true;

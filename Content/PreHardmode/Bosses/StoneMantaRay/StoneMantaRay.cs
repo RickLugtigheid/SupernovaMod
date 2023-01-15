@@ -50,7 +50,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("TODO."),
+				new FlavorTextBestiaryInfoElement(""),
             });
         }
 
@@ -83,24 +83,14 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-            // Add boss bag drop
-            //npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<>()));
-
-            for (int i = 0; i < Main.rand.Next(1, 2); i++)
+			// Add boss bag drop
+			//npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<>()));
+			npcLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
 			{
-                switch (Main.rand.Next(2))
-                {
-                    case 0:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SurgestoneSword>()));
-                        break;
-                    case 1:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StoneRepeater>()));
-                        break;
-                    default:
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StoneGlove>()));
-                        break;
-                }
-            }
+				ModContent.ItemType<SurgestoneSword>(),
+				ModContent.ItemType<StoneRepeater>(),
+				ModContent.ItemType<StoneGlove>()
+			}));
 
             SupernovaBosses.downedStormSovereign = true;
         }

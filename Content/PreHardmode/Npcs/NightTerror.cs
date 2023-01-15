@@ -28,7 +28,7 @@ namespace Supernova.Content.PreHardmode.Npcs
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("TODO: Terror Bat."),
+				new FlavorTextBestiaryInfoElement(""),
             });
         }
 
@@ -46,8 +46,10 @@ namespace Supernova.Content.PreHardmode.Npcs
             NPC.knockBackResist = 1f;
             NPC.noGravity = true; // Not affected by gravity
             NPC.noTileCollide = false; // Will not collide with the tiles.
-            NPC.aiStyle = 14; // Will not have any AI from any existing AI styles. 
-            AnimationType = NPCID.CaveBat;
+
+            NPC.aiStyle     = NPCAIStyleID.Bat;
+            AIType          = NPCID.CaveBat; // Will not have any AI from any existing AI styles. 
+            AnimationType   = NPCID.CaveBat;
         }
 
         public override void FindFrame(int frameHeight)
@@ -66,11 +68,7 @@ namespace Supernova.Content.PreHardmode.Npcs
 		{
             // 15% Drop chance
             //
-            if (Main.rand.NextFloat() < .15f)
-			{
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Misc.HorridChunk>()));
-            }
-
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Misc.HorridChunk>(), 7));
             base.ModifyNPCLoot(npcLoot);
 		}
     }

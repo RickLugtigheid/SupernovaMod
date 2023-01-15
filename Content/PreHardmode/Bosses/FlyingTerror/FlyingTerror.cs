@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Supernova.Api;
 using Supernova.Common;
+using Supernova.Common.ItemDropRules.DropConditions;
 using Supernova.Common.Systems;
+using Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -73,14 +75,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-            if (Main.expertMode)
-			{
-                npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<FlyingTerrorBag>()));
-			}
-            else
-			{
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, 2, 2));
-			}
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<FlyingTerrorBag>()));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, 2, 2));
 
             // For settings if the boss has been downed
             SupernovaBosses.downedFlyingTerror = true;

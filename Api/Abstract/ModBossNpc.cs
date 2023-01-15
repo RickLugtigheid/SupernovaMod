@@ -8,7 +8,7 @@ namespace Supernova.Api
 {
 	public abstract class ModBossNpc : ModNPC
 	{
-		protected Player targetPlayer;
+		public Player targetPlayer;
 
 		public int attackPointer = 0;
 		public string[] attacks;
