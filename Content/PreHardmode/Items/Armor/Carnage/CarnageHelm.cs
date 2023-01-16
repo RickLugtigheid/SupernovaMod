@@ -28,9 +28,14 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Carnage
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "When you get hit may Rage Giving you +10% crit \nReduces damage taken by 5%";
-            player.AddBuff(ModContent.BuffType<Global.Buffs.Minion.CarnageOrbBuff>(), 10);
+            player.setBonus = "Summons an Carnage orb to assist you in battle.\nIncreases crit chance by 5%.";
 
+            // +5% crit chance
+            player.GetCritChance(DamageClass.Generic) += 5;
+
+            // Summon the Carnage orb
+            //
+            player.AddBuff(ModContent.BuffType<Global.Buffs.Minion.CarnageOrbBuff>(), 1);
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Global.Minions.CarnageOrb>()] < 1)
 			{
                 Projectile.NewProjectile(player.GetSource_Misc("SetBonus_CarnageArmor"), player.position, Microsoft.Xna.Framework.Vector2.Zero, ModContent.ProjectileType<Global.Minions.CarnageOrb>(), 18, 1, player.whoAmI);

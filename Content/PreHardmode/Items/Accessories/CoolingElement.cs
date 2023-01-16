@@ -13,7 +13,7 @@ namespace Supernova.Content.PreHardmode.Items.Accessories
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Cooling Element");
-            Tooltip.SetDefault("Decreases ring cooldown by 7%\nWhen your ring is cooling down your movement speed increases by 10%");
+            Tooltip.SetDefault("Decreases ring cooldown by 8%\nWhen your ring is cooling down your movement speed increases by 10%");
             ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
@@ -29,7 +29,7 @@ namespace Supernova.Content.PreHardmode.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            RingPlayer.ringCooldownMulti -= 0.07f;
+            RingPlayer.ringCooldownMulti -= 0.08f;
             if (player.HasBuff(ModContent.BuffType<Global.Buffs.RingCooldown>()))
 			{
                 player.moveSpeed *= 1.1f;

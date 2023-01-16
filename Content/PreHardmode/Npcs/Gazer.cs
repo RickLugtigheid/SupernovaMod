@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Supernova.Common;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,7 +31,7 @@ namespace Supernova.Content.PreHardmode.Npcs
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("TODO: Gazer."),
+				new FlavorTextBestiaryInfoElement(""),
             });
         }
 
@@ -93,8 +94,8 @@ namespace Supernova.Content.PreHardmode.Npcs
 
         void Shoot()
         {
-            int type = 438;//100
-            Vector2 Velocity = Mathf.VelocityFPTP(NPC.Center, new Vector2(Main.player[NPC.target].Center.X, Main.player[NPC.target].Center.Y), 5);
+            int type = ProjectileID.RayGunnerLaser;// 438 || 100
+			Vector2 Velocity = Mathf.VelocityFPTP(NPC.Center, new Vector2(Main.player[NPC.target].Center.X, Main.player[NPC.target].Center.Y), 5);
             int Spread = 1;
             float SpreadMult = 0.15f;
             Velocity.X = Velocity.X + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
@@ -102,9 +103,15 @@ namespace Supernova.Content.PreHardmode.Npcs
             int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, type, ShootDamage, 1.75f);
             Main.projectile[i].hostile = true;
             Main.projectile[i].friendly = true;
-            Main.projectile[i].tileCollide = false;
+            Main.projectile[i].tileCollide = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => (!spawnInfo.Lihzahrd && !spawnInfo.Invasion && !spawnInfo.SpiderCave && !spawnInfo.DesertCave && !spawnInfo.Player.ZoneDungeon) && spawnInfo.Player.ZoneRockLayerHeight ? 0.031f : 0;
-    }
+
+		public override void OnKill()
+		{
+			SoundEngine.PlaySound(SoundID.NPCDeath2);
+			base.OnKill();
+		}
+	}
 }

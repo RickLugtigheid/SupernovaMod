@@ -15,7 +15,7 @@ namespace Supernova.Content.PreHardmode.Items.Rings
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Gem Ring");
-            Tooltip.SetDefault("Shoots gem staff projeciltes when the 'Ring Ability button' is pressed.");
+            Tooltip.SetDefault("When the 'Ring Ability button' is pressedShoots gem staff projeciltes will be shot at the mouse position.");
         }
         public override void SetDefaults()
         {
@@ -26,7 +26,7 @@ namespace Supernova.Content.PreHardmode.Items.Rings
             Item.value = Item.buyPrice(0, 5, 0, 0);
 			Item.accessory = true;
 		}
-		public override int Cooldown => 1700;
+		public override int Cooldown => 5000;
 		public override void OnRingActivate(Player player)
 		{
             for (int i = 0; i < 3; i++)

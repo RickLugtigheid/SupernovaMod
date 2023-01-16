@@ -131,15 +131,19 @@ namespace Supernova.Content.PreHardmode.Npcs
 
 		public override void OnKill()
 		{
-            // Does NPC already Exist?
-            bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<Bosses.HarbingerOfAnnihilation.HarbingerOfAnnihilation>());
+			// Does NPC already Exist?
+			bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<Bosses.HarbingerOfAnnihilation.HarbingerOfAnnihilation>());
             if (!alreadySpawned)
             {
                 NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Bosses.HarbingerOfAnnihilation.HarbingerOfAnnihilation>()); // Spawn the boss within a range of the player. 
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
             }
+            else
+            {
+				SoundEngine.PlaySound(SoundID.NPCDeath6);
+			}
 
-            base.OnKill();
+			base.OnKill();
 		}
 
 		/*public override void NPCLoot()

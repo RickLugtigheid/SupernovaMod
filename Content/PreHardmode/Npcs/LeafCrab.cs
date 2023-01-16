@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
+using Terraria.Audio;
 
 namespace Supernova.Content.PreHardmode.Npcs
 {
@@ -76,5 +77,11 @@ namespace Supernova.Content.PreHardmode.Npcs
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.QuarionShard>(), 9, maximumDropped: 2));
 			base.ModifyNPCLoot(npcLoot);
 		}
-    }
+
+		public override void OnKill()
+		{
+			SoundEngine.PlaySound(SoundID.NPCDeath1);
+			base.OnKill();
+		}
+	}
 }

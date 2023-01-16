@@ -5,6 +5,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
+using Terraria.Audio;
 
 namespace Supernova.Content.PreHardmode.Npcs
 {
@@ -131,5 +132,11 @@ namespace Supernova.Content.PreHardmode.Npcs
 
             base.ModifyNPCLoot(npcLoot);
 		}
-    }
+
+		public override void OnKill()
+		{
+			SoundEngine.PlaySound(SoundID.NPCDeath6);
+			base.OnKill();
+		}
+	}
 }

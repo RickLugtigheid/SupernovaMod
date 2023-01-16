@@ -8,23 +8,25 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
 {
     public class CarnageSword : ModItem
 	{
-        private int _healAmount = 2;
+        private const int HEAL_AMOUNT = 3;
 		public override void SetStaticDefaults()
 		{
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Carnage Sword");
-        }
+			//Tooltip.SetDefault("Killing enemies will heal the player by " + 4 * HEAL_AMOUNT + '.');
+			Tooltip.SetDefault("Landing crits on enemies will heal the player by " + 3 * HEAL_AMOUNT + '.');
+		}
 		public override void SetDefaults()
 		{
-			Item.damage = 22;
-            Item.crit = 4;
+			Item.damage = 17;
+            Item.crit = 6;
             Item.width = 52;
-			Item.height = 52;
-			Item.useTime = 30;
-			Item.useAnimation = 30;
+			Item.height = 62;
+			Item.useTime = 20;
+			Item.useAnimation = 20;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 6;
+			Item.knockBack = 5;
 			Item.value = Item.buyPrice(0, 3, 0, 0);
             Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item1;
@@ -42,9 +44,25 @@ namespace Supernova.Content.PreHardmode.Items.Weapons
         }
 		public override void ModifyHitNPC(Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
 		{
-            // Heal the player by _healAmount
+            // Check if the npc will be killed by this strike
             //
-            Projectile.NewProjectile(player.GetSource_FromThis(), target.Center, Vector2.Zero, ProjectileID.SpiritHeal, 1, 0, player.whoAmI, 0, _healAmount);
+            //if ((target.life - damage) <= 0)
+            if (crit)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    // Get a random starting velocity so not all projectiles will start the same direction.
+                    Vector2 startVelocity = new Vector2(
+						Main.rand.Next(-10, 10),
+						Main.rand.Next(-10, 10)
+					);
+
+					// Heal the player by healAmount
+					//
+					Projectile.NewProjectile(player.GetSource_FromThis(), target.Center, startVelocity, ProjectileID.SpiritHeal, 1, 0, player.whoAmI, 0, HEAL_AMOUNT);
+				}
+            }
+
             base.ModifyHitNPC(player, target, ref damage, ref knockBack, ref crit);
 		}
 		public override void AddRecipes()

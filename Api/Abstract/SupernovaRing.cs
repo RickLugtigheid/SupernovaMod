@@ -9,10 +9,6 @@ namespace Supernova.Api
 		/// Ring cooldown to aply when ring is activated
 		/// </summary>
 		public abstract int Cooldown { get; }
-		/// <summary> 
-		/// The cooldown as buff cooldown 
-		/// </summary> 
-		protected int BuffCooldown => Cooldown * 2;
 		/// <summary>
 		/// When the ring is activated
 		/// </summary>

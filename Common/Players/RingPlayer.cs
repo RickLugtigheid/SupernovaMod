@@ -14,7 +14,7 @@ namespace Supernova.Common.Players
 		public override void PreUpdate()
 		{
 			// Reset the ring cooldown multi to 1
-			// We do this so any accessories (or other) effects don't keep aplying
+			// We do this so any accessory(or other) effects don't keep aplying
 			//
 			ringCooldownMulti = 1;
 			base.PreUpdate();
