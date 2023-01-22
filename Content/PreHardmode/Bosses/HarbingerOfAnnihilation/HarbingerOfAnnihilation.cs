@@ -185,7 +185,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
                 NPC.position.Y = (Main.player[NPC.target].position.Y);
                 for (int i = 0; i < 50; i++)
                 {
-                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, 71);
+                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies);
                     Main.dust[dust].scale = 2.5f;
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0;
@@ -257,7 +257,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
                 NPC.position.Y = (Main.player[NPC.target].position.Y);
                 for (int i = 0; i < 50; i++)
                 {
-                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, 71);
+                    int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies);
                     Main.dust[dust].scale = 2.5f;
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0;

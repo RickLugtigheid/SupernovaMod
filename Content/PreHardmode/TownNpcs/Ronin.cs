@@ -119,7 +119,7 @@ namespace Supernova.Content.PreHardmode.TownNpcs
                 nextSlot++;
             }
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Kama>());  //this is an example of how to add a modded item
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.Kama>());  //this is an example of how to add a modded item
             nextSlot++;
 
             /*if (NPC.downedBoss2)
@@ -129,7 +129,7 @@ namespace Supernova.Content.PreHardmode.TownNpcs
             }*/
             if (NPC.downedBoss3)   //this make so when Skeletron is killed the town npc will sell this
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Kunai>());
+                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Throwing.Kunai>());
                 nextSlot++;
                 shop.item[nextSlot].SetDefaults(ItemID.WormholePotion);
                 nextSlot++;
@@ -173,7 +173,7 @@ namespace Supernova.Content.PreHardmode.TownNpcs
         }
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)//Allows you to determine the projectile type of this town NPC's attack, and how long it takes for the projectile to actually appear
         {
-            projType = ModContent.ProjectileType<Global.Projectiles.KunaiProj>();
+            projType = ModContent.ProjectileType<Global.Projectiles.Thrown.KunaiProj>();
             attackDelay = 1;
         }
 

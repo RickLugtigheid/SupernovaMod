@@ -1,11 +1,11 @@
-﻿using Supernova.Api;
+﻿using Supernova.Content.PreHardmode.Items.Rings.BaseRings;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Supernova.Common.Players
 {
-	public class RingPlayer : ModPlayer
+    public class RingPlayer : ModPlayer
 	{
 		internal static AccessorySlotLoader Loader => LoaderManager.Get<AccessorySlotLoader>();
 
@@ -24,7 +24,7 @@ namespace Supernova.Common.Players
 		{
 			// Check if a ring is equiped by the player
 			//
-			if (HasRing(out SupernovaRing equipedRing))
+			if (HasRing(out SupernovaRingItem equipedRing))
 			{
 				try
 				{
@@ -55,7 +55,8 @@ namespace Supernova.Common.Players
 				catch (Exception ex)
 				{
 					Main.NewText("Supernova: Error '" + ex.Message+ "' when using the '" + equipedRing.Name + "' ring", Main.errorColor);
-					Logging.PublicLogger.Error("Supernova: " + ex);
+					Mod.Logger.Error("Error '" + ex.Message+ "' when using the '" + equipedRing.Name + "' ring");
+					Mod.Logger.Error(ex);
 				}
 			}
 
@@ -66,7 +67,7 @@ namespace Supernova.Common.Players
 		/// Checks if the player has equiped a ring
 		/// </summary>
 		/// <returns>If the player has a ring</returns>
-		public bool HasRing(out SupernovaRing equipedRing)
+		public bool HasRing(out SupernovaRingItem equipedRing)
 		{
 			// Get the item currently in our ring slot
 			//
@@ -78,7 +79,7 @@ namespace Supernova.Common.Players
 				//
 				if (ItemIsRing(ringSlotItem))
 				{
-					equipedRing = ringSlotItem.ModItem as SupernovaRing;
+					equipedRing = ringSlotItem.ModItem as SupernovaRingItem;
 					return true;
 				}
 			}
@@ -103,7 +104,7 @@ namespace Supernova.Common.Players
 			}
 		}
 
-		public static bool ItemIsRing(Item item) => item != null && item.ModItem != null && item.ModItem.GetType().IsSubclassOf(typeof(SupernovaRing));
+		public static bool ItemIsRing(Item item) => item != null && item.ModItem != null && item.ModItem.GetType().IsSubclassOf(typeof(SupernovaRingItem));
 	}
 
 	public class SupernovaRingSlot : ModAccessorySlot

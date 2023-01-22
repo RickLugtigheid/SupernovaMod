@@ -21,6 +21,13 @@ namespace Supernova.Api
 			// Get our target
 			targetPlayer = Main.player[NPC.target];
 
+			// Reset our attack pointer when pointed to far
+			//
+			if (attackPointer > attacks.Length)
+			{
+				attackPointer = 0;
+			}
+
 			// Get our method
 			MethodInfo attackMethod = GetType().GetMethod(attacks[attackPointer]);
 

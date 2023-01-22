@@ -19,7 +19,7 @@ namespace Supernova.Content.Global.Buffs.Minion
         {
             AccessoryPlayer modPlayer = player.GetModPlayer<AccessoryPlayer>();
 
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Minions.VerglasFlakeMinion>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.VerglasFlakeMinion>()] > 0)
             {
                 modPlayer.hasMinionVerglasFlake = true;
             }

@@ -7,7 +7,7 @@ using System;
 
 namespace Supernova.Common.GlobalNPCs
 {
-	public class DropRules : GlobalNPC
+    public class DropRules : GlobalNPC
 	{
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
 		{
@@ -58,7 +58,7 @@ namespace Supernova.Common.GlobalNPCs
 		{
 			// 1/80 (1.25%) Drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Weapons.StaffOfThorns>(), 80));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Weapons.Magic.StaffOfThorns>(), 80));
 		}
 		public void NPCBiomeGlowingMushroomLoot(IItemDropRule conditionalRule)
 		{

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
 {
-	public class StoneGlove : ModShotgun
+    public class StoneGlove : ModShotgun
     {
         public override float SpreadAngle => 4;
 
@@ -33,7 +33,7 @@ namespace Supernova.Content.PreHardmode.Bosses.StoneMantaRay
             Item.value = 5000;
             Item.rare = 2;
             Item.shootSpeed = 12f;
-            Item.shoot = ModContent.ProjectileType<Global.Projectiles.StoneProj>();
+            Item.shoot = ModContent.ProjectileType<Global.Projectiles.Thrown.StoneProj>();
             Item.DamageType = DamageClass.Throwing;
         }
     }

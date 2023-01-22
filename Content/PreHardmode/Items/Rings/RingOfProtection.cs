@@ -1,5 +1,4 @@
-﻿using Supernova.Api;
-using Supernova.Common.Players;
+﻿using Supernova.Content.PreHardmode.Items.Rings.BaseRings;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -7,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Supernova.Content.PreHardmode.Items.Rings
 {
-	public class RingOfProtection : SupernovaRing
+    public class RingOfProtection : SupernovaRingItem
     {
         public override void SetStaticDefaults()
         {

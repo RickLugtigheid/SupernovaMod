@@ -36,9 +36,9 @@ namespace Supernova.Content.PreHardmode.Items.Armor.Carnage
             // Summon the Carnage orb
             //
             player.AddBuff(ModContent.BuffType<Global.Buffs.Minion.CarnageOrbBuff>(), 1);
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Global.Minions.CarnageOrb>()] < 1)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Content.Global.Projectiles.Summon.CarnageOrb>()] < 1)
 			{
-                Projectile.NewProjectile(player.GetSource_Misc("SetBonus_CarnageArmor"), player.position, Microsoft.Xna.Framework.Vector2.Zero, ModContent.ProjectileType<Global.Minions.CarnageOrb>(), 18, 1, player.whoAmI);
+                Projectile.NewProjectile(player.GetSource_Misc("SetBonus_CarnageArmor"), player.position, Microsoft.Xna.Framework.Vector2.Zero, ModContent.ProjectileType<Content.Global.Projectiles.Summon.CarnageOrb>(), 18, 1, player.whoAmI);
             }
         }
 

@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Supernova.Common.Players;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Supernova.Api;
+using Supernova.Content.Global.Projectiles.BaseProjectiles;
 
 namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 {
-    public class HarbingersKnellProjectile : ModMinionProjectile
+    public class HarbingersKnellProjectile : SupernovaMinionProjectile
     {
 		protected override int BuffType => ModContent.BuffType<Global.Buffs.Minion.HarbingersKnellBuff>();
 

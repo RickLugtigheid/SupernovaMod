@@ -19,7 +19,7 @@ namespace Supernova.Content.Global.Buffs.Minion
         {
             AccessoryPlayer modPlayer = player.GetModPlayer<AccessoryPlayer>();
 
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<Global.Minions.CarnageOrb>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.CarnageOrb>()] > 0)
 			{
                 modPlayer.hasMinionCarnageOrb = true;
             }
