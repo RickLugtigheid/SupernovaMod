@@ -17,5 +17,10 @@ namespace Supernova.Content.Global.Buffs
             Main.buffNoSave[Type] = true;
             //longerExpertDebuff = false;
         }
-    }
+
+		public override void Update(Player player, ref int buffIndex)
+        {
+
+        }
+	}
 }

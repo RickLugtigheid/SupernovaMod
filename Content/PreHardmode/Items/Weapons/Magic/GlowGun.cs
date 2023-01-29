@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Supernova.Content.PreHardmode.Items.Weapons.BaseWeapons;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
 {
-    public class GlowGun : ModItem
+    public class GlowGun : SupernovaGunItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,25 +20,29 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 18;
+            //base.SetDefaults();
+
+            Item.damage = 21;
             Item.width = 40;
             Item.crit = 4;
             Item.height = 20;
-            Item.useTime = 32;
-            Item.useAnimation = 32;
-            Item.useStyle = 5;
-            Item.noMelee = true; //so the item's animation doesn't do damage
+            Item.useTime = 42;
+            Item.useAnimation = 42;
             Item.knockBack = 1.2f;
             Item.value = Item.buyPrice(0, 2, 50, 0);
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Green;
             Item.UseSound = SoundID.Item38;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.Magic.GlowGunProj>();
-            Item.shootSpeed = 8f;
+            Item.shootSpeed = 3;
             Item.DamageType = DamageClass.Magic;
-            Item.mana = 7;
+            Item.mana = 6;
+			Item.useStyle = ItemUseStyleID.Shoot;
 
-            Item.scale = .8f;
+			Item.scale = .8f;
+
+            Gun.recoil = 1.6f;
+            Gun.spread = 3;
         }
         public override void AddRecipes()
         {
@@ -47,14 +52,6 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
             recipe.AddIngredient(ItemID.StickyGlowstick, 5);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
-        }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            // Rotate our projectile randomly
-            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(6));
-
-            return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
 }

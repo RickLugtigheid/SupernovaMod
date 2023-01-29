@@ -17,7 +17,7 @@ namespace Supernova.Content.Global.Buffs.Minion
 
         public override void Update(Player player, ref int buffIndex)
         {
-            AccessoryPlayer modPlayer = player.GetModPlayer<AccessoryPlayer>();
+           AccessoryPlayer modPlayer = player.GetModPlayer<AccessoryPlayer>();
 
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.CarnageOrb>()] > 0)
 			{
@@ -28,10 +28,6 @@ namespace Supernova.Content.Global.Buffs.Minion
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;
-            }
-            else
-            {
-                player.buffTime[buffIndex] = 18000;
             }
         }
     }

@@ -11,12 +11,13 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Textures\" />
     <Folder Include="Common\GlobalItems\" />
     <Folder Include="Common\GlobalProjectiles\" />
+    <Folder Include="Content\Global\Buffs\Cooldowns\" />
     <Folder Include="Content\Global\Projectiles\Enemy\" />
     <Folder Include="Content\Global\Projectiles\Boss\" />
     <Folder Include="Content\PreHardmode\Items\Tools\" />
-    <Folder Include="Assets\" />
     <Folder Include="Content\PreHardmode\Items\Weapons\Typeless\" />
   </ItemGroup>
 </Project>

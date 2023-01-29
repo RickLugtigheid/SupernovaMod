@@ -12,7 +12,7 @@ namespace Supernova.Content.PreHardmode.Items.Materials
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 
-            DisplayName.SetDefault("QuarionShard");
+            DisplayName.SetDefault("Quarion Shard");
         }
 
         public override void SetDefaults()

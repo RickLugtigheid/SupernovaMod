@@ -23,9 +23,10 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
             Item.width = 16;
             Item.height = 16;
             Item.maxStack = 1;
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ItemRarityID.Master;
             Item.value = Item.buyPrice(0, 4, 60, 30);
             Item.accessory = true;
+            Item.master = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)

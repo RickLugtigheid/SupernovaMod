@@ -19,9 +19,10 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
         {
             base.SetDefaults();
 
-            Item.damage = 18;
+            Item.ArmorPenetration = 2;
+            Item.damage = 17;
             Item.width = 58;
-            Item.crit = 4;
+            Item.crit = 3;
             Item.height = 22;
             Item.useTime = 20;
             Item.useAnimation = 20;

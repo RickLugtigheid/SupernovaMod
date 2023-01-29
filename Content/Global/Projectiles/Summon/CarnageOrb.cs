@@ -24,6 +24,7 @@ namespace Supernova.Content.Global.Projectiles.Summon
             //Projectile.minion = true;
             //Projectile.minionSlots = 0;
             Projectile.DamageType = DamageClass.Default;
+            Projectile.timeLeft = 2;
         }
 
         /*public static bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
@@ -35,7 +36,9 @@ namespace Supernova.Content.Global.Projectiles.Summon
 
         public override void AI()
         {
-            int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width - 10, Projectile.height - 10, ModContent.DustType<Dusts.BloodDust>(), Projectile.velocity.X * 12, Projectile.velocity.Y * 12, 70, default(Color), .8f);
+			CheckActive();
+
+			int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width - 10, Projectile.height - 10, ModContent.DustType<Dusts.BloodDust>(), Projectile.velocity.X * 12, Projectile.velocity.Y * 12, 70, default(Color), .8f);
             Main.dust[DustID2].noGravity = true;
 
             #region orbit
@@ -60,8 +63,6 @@ namespace Supernova.Content.Global.Projectiles.Summon
             //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
             Projectile.ai[1] += 3;
             #endregion
-
-            CheckActive();
         }
         public void CheckActive()
         {
@@ -80,5 +81,14 @@ namespace Supernova.Content.Global.Projectiles.Summon
                 modPlayer.hasMinionCarnageOrb = false;
             }
         }
-    }
+
+		public override void Kill(int timeLeft)
+		{
+			for (int i = 0; i <= 10; i++)
+			{
+				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Projectile.velocity.X, Projectile.velocity.Y, Scale: 1.5f);
+			}
+			base.Kill(timeLeft);
+		}
+	}
 }

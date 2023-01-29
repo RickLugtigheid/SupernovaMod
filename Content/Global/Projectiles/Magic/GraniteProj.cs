@@ -13,7 +13,7 @@ namespace Supernova.Content.Global.Projectiles.Magic
         {
             DisplayName.SetDefault("Chunk of Granite");
             //ProjectileID.Sets.TrailCacheLength[projectile.type] = 0;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         }
         public override void SetDefaults()
         {

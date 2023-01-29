@@ -75,11 +75,16 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
+			// Add a BossBag (automatically checks for expert mode)
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<FlyingTerrorBag>()));
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, 2, 2));
 
-            // For settings if the boss has been downed
-            SupernovaBosses.downedFlyingTerror = true;
+			// All our drops here are based on "not expert", meaning we use .OnSuccess() to add them into the rule, which then gets added
+			LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+			// Notice we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal mode
+			notExpertRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>()));
+
+			// For settings if the boss has been downed
+			SupernovaBosses.downedFlyingTerror = true;
 
             base.ModifyNPCLoot(npcLoot);
 		}

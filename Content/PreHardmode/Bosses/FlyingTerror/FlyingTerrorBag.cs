@@ -1,10 +1,12 @@
-﻿using Terraria;
+﻿using Supernova.Content.PreHardmode.Items.BaseItems;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 {
-    public class FlyingTerrorBag : ModItem
+    public class FlyingTerrorBag : SupernovaBossBag
     {
         public override void SetStaticDefaults()
         {
@@ -31,34 +33,17 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 		{
 			base.OnConsumeItem(player);
 		}
-
-		public override void OpenBossBag(Player player)
-        {
-            int rand = Main.rand.Next(2, 3);
-
-            for (int i = 0; i < rand; i++)
+		public override void ModifyItemLoot(ItemLoot itemLoot)
+		{
+			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<FlyingTerror>()));
+            itemLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TerrorInABottle>()));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
             {
-                int item = Main.rand.Next(2);
-
-                switch (item)
-                {
-                    case 0:
-                        player.QuickSpawnItem(Item.GetSource_Loot(), ModContent.ItemType<TerrorInABottle>());
-                        break;
-                    case 1:
-                        player.QuickSpawnItem(Item.GetSource_Loot(), ModContent.ItemType<TerrorCleaver>());
-                        break;
-                    case 2:
-                        player.QuickSpawnItem(Item.GetSource_Loot(), ModContent.ItemType<TerrorRecurve>());
-                        break;
-                    case 3:
-                        player.QuickSpawnItem(Item.GetSource_Loot(), ModContent.ItemType<TerrorTome>());
-                        break;
-                    case 4:
-                        player.QuickSpawnItem(Item.GetSource_Loot(), ModContent.ItemType<BlunderBuss>());
-                        break;
-                }
-            }
-        }
+				ModContent.ItemType<TerrorCleaver>(),
+				ModContent.ItemType<TerrorRecurve>(),
+				ModContent.ItemType<TerrorTome>(),
+				ModContent.ItemType<BlunderBuss>()
+			}));
+		}
     }
 }

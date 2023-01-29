@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.PreHardmode.Items.Potions
+namespace Supernova.Content.PreHardmode.Items.Consumables
 {
     public class QuarionPotion: ModItem
     {
@@ -30,7 +30,7 @@ namespace Supernova.Content.PreHardmode.Items.Potions
             Item.value = 100;
             Item.rare = 1;
             Item.buffTime = 20000;    //this is the buff duration        20000 = 6 min
-            Item.buffType = ModContent.BuffType<Global.Buffs.QuarionBuff>();    //this is where you put your Buff name
+            Item.buffType = ModContent.BuffType<Global.Buffs.Potions.QuarionBuff>();    //this is where you put your Buff name
             return;
         }
 
