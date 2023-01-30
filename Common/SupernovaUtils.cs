@@ -1,10 +1,26 @@
 ﻿using Microsoft.Xna.Framework;
+using Supernova.Api;
 using Terraria;
 
 namespace Supernova.Common
 {
 	public static class SupernovaUtils
 	{
+		/// <summary>
+		/// Checks if the chest is empty.
+		/// </summary>
+		/// <param name="chest"></param>
+		/// <returns>If our Chest is empty</returns>
+		public static bool IsEmptyChest(this Chest chest)
+		{
+			for (int i = 0; i < chest.item.Length; i++)
+			{
+				if (chest.item[i] == null || chest.item[i].IsAir) { continue; }
+				return false;
+			}
+			return true;
+		}
+
 		public static Player.CompositeArmStretchAmount ToStretchAmount(this float percent)
 		{
 			if (percent < 0.25f)

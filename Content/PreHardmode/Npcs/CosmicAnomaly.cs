@@ -52,7 +52,9 @@ namespace Supernova.Content.PreHardmode.Npcs
             NPC.noGravity = true; // Not affected by gravity
             NPC.noTileCollide = false; // Will not collide with the tiles.
             NPC.aiStyle = -1; // Will not have any AI from any existing AI styles. 
-        }
+
+            NPC.rarity = 3; // For Lifeform Analyzer
+		}
         public override void AI()
         {
             NPC.rotation += (float)Math.Atan2((double)NPC.velocity.Y, (double)NPC.velocity.X) + MathHelper.ToRadians(80);

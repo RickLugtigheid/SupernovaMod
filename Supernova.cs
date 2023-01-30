@@ -1,3 +1,4 @@
+using log4net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Supernova.Common.Systems;
@@ -14,9 +15,10 @@ namespace Supernova
 	public class Supernova : Mod
 	{
 		public static ModKeybind ringAbilityButton;
-
+		public static ILog Log { get; private set; }
 		public override void Load()
 		{
+			Log = Logger;
 			BindKeys();
 		}
 

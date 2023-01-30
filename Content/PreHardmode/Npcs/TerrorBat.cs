@@ -51,9 +51,11 @@ namespace Supernova.Content.PreHardmode.Npcs
             NPC.aiStyle     = NPCAIStyleID.Bat;
             AIType          = NPCID.CaveBat; // Will not have any AI from any existing AI styles. 
             AnimationType   = NPCID.CaveBat;
-        }
 
-        public override void FindFrame(int frameHeight)
+			NPC.rarity = 3; // For Lifeform Analyzer
+		}
+
+		public override void FindFrame(int frameHeight)
         {
             NPC.frameCounter -= .9F; // Determines the animation speed. Higher value = faster animation.
             NPC.frameCounter %= Main.npcFrameCount[NPC.type];
