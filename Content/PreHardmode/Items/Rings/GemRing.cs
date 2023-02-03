@@ -26,8 +26,11 @@ namespace Supernova.Content.PreHardmode.Items.Rings
             Item.value = Item.buyPrice(0, 5, 0, 0);
 			Item.accessory = true;
 		}
+
+		public override int MaxAnimationFrames => 60;
+
 		public override int Cooldown => 5000;
-		public override void OnRingActivate(Player player)
+		public override void RingActivate(Player player)
 		{
             for (int i = 0; i < 3; i++)
 			{
@@ -51,21 +54,47 @@ namespace Supernova.Content.PreHardmode.Items.Rings
 
 				diff.Normalize();
 
-				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 10, diff.Y * 10, Type, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 9.5f, diff.Y * 9.5f, Type, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type1 = 122;
 				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 9, diff.Y * 9, Type1, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type2 = 123;
 				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 8.5f, diff.Y * 8.5f, Type2, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
-				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 8, diff.Y * 8, Type2, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type3 = 124;
-				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 7.5f, diff.Y * 7.5f, Type3, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 8, diff.Y * 8, Type3, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type4 = 125;
-				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 7, diff.Y * 7, Type4, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 7.5f, diff.Y * 7.5f, Type4, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 				int Type5 = 126;
-				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 6.5f, diff.Y * 6.5f, Type5, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
+				Projectile.NewProjectile(Item.GetSource_FromAI(), position.X, position.Y, diff.X * 7, diff.Y * 7, Type5, ShootDamage, ShootKnockback, Main.myPlayer, 0f, 0f);
 			}
 		}
+
+        private int[] _gemDusts = new int[] { DustID.GemTopaz, DustID.GemSapphire, DustID.GemRuby, DustID.GemEmerald, DustID.GemDiamond };
+        private float _rot = 0;
+        public override void RingUseAnimation(Player player)
+		{
+			SoundEngine.PlaySound(SoundID.Item15);
+
+			// Spawn gem dust on the player
+			//
+			for (int i = 0; i < _gemDusts.Length; i++)
+            {
+				_rot += MathHelper.ToRadians(45);
+				_rot = _rot % MathHelper.ToRadians(360);
+
+				Vector2 dustPos = player.Center + new Vector2(15, 0).RotatedBy(_rot);
+				Vector2 diff = player.Center - dustPos;
+				diff.Normalize();
+
+				int dustType = _gemDusts[i];
+
+				Dust.NewDustPerfect(dustPos, dustType, diff).noGravity = true;
+			}
+			_rot += MathHelper.ToRadians(1);
+
+			// Spawn gem dust on the mouse position
+			Dust.NewDustPerfect(Main.MouseWorld, DustID.AmberBolt).noGravity = true;
+		}
+
 		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();

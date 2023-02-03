@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,8 +7,13 @@ namespace Supernova.Common.Players
 {
 	public class AccessoryPlayer : ModPlayer
 	{
+		/* Accessories */
 		public bool hasBagOfFungus = false;
 		public bool hasInfernalEmblem = false;
+
+		/* Buffs */
+		private int _buffTypeHellfireRing = ModContent.BuffType<Content.Global.Buffs.Rings.HellfireRingBuff>();
+		public bool HasBuffHellfireRing => Player.HasBuff(_buffTypeHellfireRing);
 
 		/* Minions */
 		public bool hasMinionVerglasFlake = false;
@@ -25,6 +31,21 @@ namespace Supernova.Common.Players
 			hasMinionVerglasFlake		= false;
 			hasMinionCarnageOrb			= false;
 			hasMinionHairbringersKnell	= false;
+		}
+
+		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit) => OnAnyHitNpc(target, damage, knockback, crit);
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) => OnAnyHitNpc(target, damage, knockback, crit, proj.type);
+
+		private void OnAnyHitNpc(NPC target, int damage, float knockback, bool crit, int? projType = null)
+		{
+			if (HasBuffHellfireRing && Main.rand.NextBool(3) && (projType != null && projType != ProjectileID.InfernoFriendlyBlast))
+			{
+				// Get a random position within our enemy sprite
+				Vector2 position = target.Center + new Vector2(Main.rand.Next(-target.width, target.width), Main.rand.Next(-target.height, target.height));
+
+				// Spawn a fire blast at the position with a max of 20 damage
+				Projectile.NewProjectile(Player.GetSource_FromThis(), position, Vector2.Zero, ProjectileID.InfernoFriendlyBlast, (damage / 2) % 20, knockback, Player.whoAmI);
+			}
 		}
 
 		public override void OnHitByNPC(NPC npc, int damage, bool crit)

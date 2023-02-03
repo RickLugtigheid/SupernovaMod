@@ -45,9 +45,11 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
             Vector2 icicleVelocity = velocity * .7f;
-            float spread = MathHelper.ToRadians(5);
-			Projectile.NewProjectile(source, position, icicleVelocity.RotatedByRandom(spread), _proj2Type, damage, knockback, player.whoAmI);
-			Projectile.NewProjectile(source, position, icicleVelocity.RotatedByRandom(spread) * .85f, _proj2Type, damage, knockback, player.whoAmI);
+            int icicleDamage = (int)(damage * .75f);
+
+			float spread = MathHelper.ToRadians(5);
+			Projectile.NewProjectile(source, position, icicleVelocity.RotatedByRandom(spread), _proj2Type, icicleDamage, knockback, player.whoAmI);
+			Projectile.NewProjectile(source, position, icicleVelocity.RotatedByRandom(spread) * .85f, _proj2Type, icicleDamage, knockback, player.whoAmI);
 
 			return base.Shoot(player, source, position, velocity, type, damage, knockback);
 		}

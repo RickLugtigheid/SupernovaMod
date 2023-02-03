@@ -28,12 +28,6 @@ namespace Supernova.Api.ChestLoot
 				return false;
 			}
 
-			DropAttemptInfo dropInfo = new DropAttemptInfo()
-			{
-				IsExpertMode = Main.expertMode,
-				IsMasterMode = Main.masterMode,
-				rng = Main.rand
-			};
 			foreach (IItemDropRule rule in _ruleMap[chestType])
 			{
 				return TryGetRuleItem(rule, out itemId, out lootInjectRule);

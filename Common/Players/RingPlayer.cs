@@ -11,6 +11,20 @@ namespace Supernova.Common.Players
 
 		public static float ringCooldownMulti = 1;
 
+		private static int _ringCooldownBuffType = ModContent.BuffType<Content.Global.Buffs.RingCooldown>();
+		/// <summary>
+		/// If our ring is on a cooldown
+		/// </summary>
+		public bool RingOnCooldown => Player.HasBuff(_ringCooldownBuffType);
+
+		#region Ring Animation Properties
+		private int _ringAnimationFrame = 0;
+		/// <summary>
+		/// If our ring is animating
+		/// </summary>
+		public bool RingAnimationActive => _ringAnimationFrame > 0;
+		#endregion
+
 		public override void PreUpdate()
 		{
 			// Reset the ring cooldown multi to 1
@@ -28,28 +42,43 @@ namespace Supernova.Common.Players
 			{
 				try
 				{
-					int ringCooldownBuffID = ModContent.BuffType<Content.Global.Buffs.RingCooldown>();
-
 					// Check if the player doesn't have the ring cooldown debuff
 					//
-					if (!Player.HasBuff(ringCooldownBuffID))
+					if (!RingOnCooldown && equipedRing.CanRingActivate(this))
 					{
-						if (equipedRing.CanRingActivate(Player) && Supernova.ringAbilityButton.JustPressed)
+						// Check if our 'ringAbility' button was pressed and we are not animating
+						//
+						if (Supernova.ringAbilityButton.JustPressed && !RingAnimationActive)
 						{
-							// Call the ring activate event
-							//
-							equipedRing?.OnRingActivate(Player);
+							// When the ringAbilityButton is pressed we start our ring animation
+							equipedRing.UseAnimation(Player);
+							_ringAnimationFrame = equipedRing.MaxAnimationFrames; // Start our animation
+						}
+						// Else when animating
+						//
+						else if (RingAnimationActive)
+						{
+							// Update our ring animation until done
+							equipedRing.RingUseAnimation(Player);
+							_ringAnimationFrame--;
 
-							// After the ring is activated give the player a cooldown
+							// On our last frame activate the ring
 							//
-							Player.AddBuff(ringCooldownBuffID, (int)Math.Ceiling(equipedRing.Cooldown * ringCooldownMulti));
+							if (!RingAnimationActive)
+							{
+								// Activate our ring when our animation is done
+								equipedRing.RingActivate(Player);
+
+								// After the ring is activated give the player a cooldown
+								Player.AddBuff(_ringCooldownBuffType, (int)Math.Ceiling(equipedRing.Cooldown * ringCooldownMulti));
+							}
 						}
 					}
-					else
+					else if (RingOnCooldown)
 					{
 						// Call the ring cooldown effect for if the ring should give an effect when cooling down
 						//
-						equipedRing.OnRingCooldown(Player.buffTime[Player.FindBuffIndex(ringCooldownBuffID)], Player);
+						equipedRing?.OnRingCooldown(Player.buffTime[Player.FindBuffIndex(_ringCooldownBuffType)], Player);
 					}
 				}
 				catch (Exception ex)
@@ -89,7 +118,11 @@ namespace Supernova.Common.Players
 			equipedRing = null;
 			return false;
 		}
-
+		/// <summary>
+		/// Tries to get the ring Accessory slot.
+		/// </summary>
+		/// <param name="ringSlot"></param>
+		/// <returns>If the ring Accessory slot was found</returns>
 		public bool TryGetRingSlot(out ModAccessorySlot ringSlot)
 		{
 			try
@@ -104,6 +137,11 @@ namespace Supernova.Common.Players
 			}
 		}
 
+		/// <summary>
+		/// Checks if an item is a ring item.
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
 		public static bool ItemIsRing(Item item) => item != null && item.ModItem != null && item.ModItem.GetType().IsSubclassOf(typeof(SupernovaRingItem));
 	}
 

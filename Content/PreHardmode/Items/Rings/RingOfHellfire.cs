@@ -1,6 +1,8 @@
-﻿using Supernova.Common.Players;
+﻿using Microsoft.Xna.Framework;
+using Supernova.Common.Players;
 using Supernova.Content.PreHardmode.Items.Rings.BaseRings;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,8 +17,8 @@ namespace Supernova.Content.PreHardmode.Items.Rings
 
             DisplayName.SetDefault("Ring of Hellfire");
             Tooltip.SetDefault("When the 'Ring Ability button' is pressed" +
-                "\n You will gain the inferno buff" +
-                "\n and your health will be increased by 45, damage by 10% and defence by 4 for 20 seconds");
+                "\n You will gain the inferno and Hellfire Ring buff." +
+				"\n The Hellfire Ring buff gives every attack a chance to spawn a fiery explosion near the target.");
         }
         public override void SetDefaults()
         {
@@ -27,35 +29,35 @@ namespace Supernova.Content.PreHardmode.Items.Rings
             Item.value = Item.buyPrice(0, 6, 0, 0);
             Item.accessory = true;
         }
-        public override int Cooldown => 5000;
-        public override void OnRingActivate(Player player)
+        public override int Cooldown => 60 * 140;
+        public override void RingActivate(Player player)
         {
-            player.AddBuff(BuffID.Inferno, 1200);
+            player.AddBuff(BuffID.Inferno, 60 * 40);
+			player.AddBuff(ModContent.BuffType<Global.Buffs.Rings.HellfireRingBuff>(), 60 * 40);
 
-            // Add dust effect
-            for (int i = 0; i < 15; i++)
+			// Add dust effect
+			for (int i = 0; i < 15; i++)
             {
                 int dust = Dust.NewDust(player.position, player.width, player.height, DustID.Torch);
-                Main.dust[dust].scale = 1.5f;
+                Main.dust[dust].scale = 2;
                 Main.dust[dust].noGravity = true;
-                Main.dust[dust].velocity *= 1.7f;
-                Main.dust[dust].velocity *= 1.7f;
+                Main.dust[dust].velocity *= 3;
+                Main.dust[dust].velocity *= 3;
             }
-        }
-        public override void OnRingCooldown(int curentCooldown, Player player)
+			SoundEngine.PlaySound(SoundID.Item74);
+		}
+
+		public override int MaxAnimationFrames => 40;
+		public override void RingUseAnimation(Player player)
 		{
-            // Only run the first 20 seconds (1200ms / 60 = 20sec)
-            //
-            if (curentCooldown >= ((Cooldown * RingPlayer.ringCooldownMulti) - 1200))
-            {
-                player.statLifeMax2 += 50;
-                player.GetDamage(DamageClass.Ranged) += 0.35f;
-                player.GetDamage(DamageClass.Melee) += 0.35f;
-                player.GetDamage(DamageClass.Throwing) += 0.35f;
-                player.GetDamage(DamageClass.Magic) += 0.35f;
-                player.statDefense += 4;
-            }
-        }
+            SoundEngine.PlaySound(SoundID.Item15);
+			Vector2 dustPos = player.Center + new Vector2(30, 0).RotatedByRandom(MathHelper.ToRadians(360));
+			Vector2 diff = player.Center - dustPos;
+			diff.Normalize();
+
+			Dust.NewDustPerfect(dustPos, DustID.Lava, diff * 2).noGravity = true;
+		}
+
 		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();

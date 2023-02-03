@@ -1,4 +1,5 @@
-﻿using Supernova.Content.PreHardmode.Items.Rings.BaseRings;
+﻿using Supernova.Common.Players;
+using Supernova.Content.PreHardmode.Items.Rings.BaseRings;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -25,7 +26,7 @@ namespace Supernova.Content.PreHardmode.Items.Rings
             Item.accessory = true;
         }
 		public override int Cooldown => 7200;
-		public override void OnRingActivate(Player player)
+		public override void RingActivate(Player player)
 		{
             // Add dust effect
             //
@@ -40,6 +41,8 @@ namespace Supernova.Content.PreHardmode.Items.Rings
             // Add the ring buff to the player
             player.AddBuff(BuffID.ShadowDodge, Cooldown);
         }
+
+		public override int MaxAnimationFrames => 1;
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
