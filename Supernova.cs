@@ -14,20 +14,10 @@ namespace Supernova
 {
 	public class Supernova : Mod
 	{
-		public static ModKeybind ringAbilityButton;
 		public static ILog Log { get; private set; }
 		public override void Load()
 		{
 			Log = Logger;
-			BindKeys();
-		}
-
-		/// <summary>
-		/// Bind custom keys
-		/// </summary>
-		private void BindKeys()
-		{
-			ringAbilityButton = KeybindLoader.RegisterKeybind(this, "Ring Ability", Microsoft.Xna.Framework.Input.Keys.Q);
 		}
 
 		public override void PostSetupContent()

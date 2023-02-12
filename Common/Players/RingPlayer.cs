@@ -1,17 +1,21 @@
-﻿using Supernova.Content.PreHardmode.Items.Rings.BaseRings;
+﻿using Microsoft.Xna.Framework;
+using Supernova.Common.Systems;
+using Supernova.Content.PreHardmode.Items.Rings.BaseRings;
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 
 namespace Supernova.Common.Players
 {
-    public class RingPlayer : ModPlayer
+    public class RingPlayer : ModAccessorySlotPlayer
 	{
 		internal static AccessorySlotLoader Loader => LoaderManager.Get<AccessorySlotLoader>();
 
 		public static float ringCooldownMulti = 1;
 
 		private static int _ringCooldownBuffType = ModContent.BuffType<Content.Global.Buffs.RingCooldown>();
+		
 		/// <summary>
 		/// If our ring is on a cooldown
 		/// </summary>
@@ -48,7 +52,7 @@ namespace Supernova.Common.Players
 					{
 						// Check if our 'ringAbility' button was pressed and we are not animating
 						//
-						if (Supernova.ringAbilityButton.JustPressed && !RingAnimationActive)
+						if (SupernovaKeybinds.RingAbilityButton.JustPressed && !RingAnimationActive)
 						{
 							// When the ringAbilityButton is pressed we start our ring animation
 							equipedRing.UseAnimation(Player);
@@ -127,7 +131,8 @@ namespace Supernova.Common.Players
 		{
 			try
 			{
-				ringSlot = Loader.Get(Loader.VanillaCount, Player);
+				ModAccessorySlotPlayer accPlayer = Player.GetModPlayer<ModAccessorySlotPlayer>();
+				ringSlot = Loader.Get(ModContent.GetInstance<SupernovaRingSlot>().Type, Player);
 				return true;
 			}
 			catch
@@ -147,6 +152,8 @@ namespace Supernova.Common.Players
 
 	public class SupernovaRingSlot : ModAccessorySlot
 	{
+		// Icon textures. Nominal image size is 32x32. Will be centered on the slot.
+		public override string FunctionalTexture => "Supernova/Assets/Textures/RingSlotBackground";
 		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
 		{
 			return RingPlayer.ItemIsRing(checkItem);
@@ -160,7 +167,6 @@ namespace Supernova.Common.Players
 
 		public override bool IsEnabled()
 		{
-			//return base.IsEnabled();
 			return true;
 		}
 
@@ -169,9 +175,6 @@ namespace Supernova.Common.Players
 		{
 			return false; // We set to false to just not display if not Enabled. NOTE: this does not affect behavour when mod is unloaded!
 		}
-
-		// Icon textures. Nominal image size is 32x32. Will be centered on the slot.
-		public override string FunctionalTexture => "Supernova/Content/UI/RingSlotBackground";
 
 		// Can be used to modify stuff while the Mouse is hovering over the slot.
 		public override void OnMouseHover(AccessorySlotType context)
