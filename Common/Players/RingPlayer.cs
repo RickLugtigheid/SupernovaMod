@@ -14,7 +14,7 @@ namespace Supernova.Common.Players
 
 		public static float ringCooldownMulti = 1;
 
-		private static int _ringCooldownBuffType = ModContent.BuffType<Content.Global.Buffs.RingCooldown>();
+		private readonly static int _ringCooldownBuffType = ModContent.BuffType<Content.Global.Buffs.RingCooldown>();
 		
 		/// <summary>
 		/// If our ring is on a cooldown

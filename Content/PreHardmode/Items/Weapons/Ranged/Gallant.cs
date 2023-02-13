@@ -22,7 +22,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Gallant");
-            Tooltip.SetDefault("Can shoot 6 bullets before having to cooldown.");
+            Tooltip.SetDefault("Can shoot 6 bullets before having to reload.\nRight-click to manualy reload.");
         }
 
         public override void SetDefaults()
@@ -40,7 +40,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 			Item.autoReuse = false;
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item41;
-			Item.shootSpeed = 8;
+			Item.shootSpeed = 6;
 
 			Item.useAmmo = AmmoID.None;
 
@@ -135,7 +135,10 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 				{
 					break;
 				}
-				player.ConsumeItem(ammo.type);
+				if (ammo.type != ItemID.EndlessMusketPouch)
+				{
+					player.ConsumeItem(ammo.type);
+				}
 			}
 			Item.useAmmo = AmmoID.None;
 		}
