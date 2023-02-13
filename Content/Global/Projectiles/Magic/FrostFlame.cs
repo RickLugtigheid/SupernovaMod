@@ -39,7 +39,7 @@ namespace Supernova.Content.Global.Projectiles.Magic
                     Main.dust[dust].noGravity = true; //this make so the dust has no gravity
                     Main.dust[dust].velocity *= 2.5f;
 
-                    Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 59, Projectile.velocity.X * 1.2f, Projectile.velocity.Y * 1.2f, 130, default, 3.5f); //this defines the flames dust and color parcticles, like when they fall thru ground, change DustID to wat dust you want from Terraria
+                    //Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 59, Projectile.velocity.X * 1.2f, Projectile.velocity.Y * 1.2f, 130, default, 3.5f); //this defines the flames dust and color parcticles, like when they fall thru ground, change DustID to wat dust you want from Terraria
                 }
             }
             else

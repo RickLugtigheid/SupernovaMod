@@ -32,7 +32,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
             Item.UseSound = SoundID.Item43;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.Magic.ZirconProj>();
-            Item.shootSpeed = 13f;
+            Item.shootSpeed = 9;
 
             Item.DamageType = DamageClass.Magic;
         }

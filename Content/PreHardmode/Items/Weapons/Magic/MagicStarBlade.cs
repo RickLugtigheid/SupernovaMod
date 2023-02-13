@@ -14,6 +14,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Magic Starblade");
+            Tooltip.SetDefault("Shoots a random star projectile.");
         }
         public override Vector2? HoldoutOffset()
         {

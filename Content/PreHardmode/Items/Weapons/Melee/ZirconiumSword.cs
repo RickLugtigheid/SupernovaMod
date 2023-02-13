@@ -4,16 +4,19 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Terraria.Audio;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons.Melee
 {
     public class ZirconiumSword : ModItem
 	{
+        private readonly int _projIdSpark = ModContent.ProjectileType<Global.Projectiles.Magic.ZicroniumSpark>();
 		public override void SetStaticDefaults()
 		{
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Zirconium Sword");
+			Tooltip.SetDefault("When striking an enemy may release a blast of Zirconium Spark.\nZirconium Sparks linger for a short while.");
         }
 		public override void SetDefaults()
 		{
@@ -30,20 +33,23 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Melee
 			Item.UseSound = SoundID.Item1;
             Item.autoReuse = false;
 
-            Item.shootSpeed = 6.5f;
-            Item.shoot = ProjectileID.MolotovFire3;
-
             Item.DamageType = DamageClass.Melee;
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) => Main.rand.NextBool(3);
-
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
 		{
-            damage /= 2; // The projectile should have less damage than the melee attack
-            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(8));
+			if (!Main.rand.NextBool(5))
+			{
+				return;
+			}
+			SoundEngine.PlaySound(SoundID.Item93, new Vector2?(player.position));
 
-			base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
+			// Spark Explosion effect
+			for (int j = 0; j <= Main.rand.Next(2, 4); j++)
+			{
+				Vector2 velocity = (Vector2.One * Main.rand.Next(2, 4)).RotatedByRandom(180);
+				Projectile.NewProjectile(Item.GetSource_FromAI(), target.position.X, target.position.Y, velocity.X, velocity.Y, _projIdSpark, Item.damage / 2, 3, player.whoAmI);
+			}
 		}
 
 		public override void AddRecipes()

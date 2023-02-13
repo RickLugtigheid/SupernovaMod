@@ -8,7 +8,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Melee
 {
     public class CarnageSword : ModItem
     {
-        private const int HEAL_AMOUNT = 3;
+        private const int HEAL_AMOUNT = 2;
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -20,7 +20,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Item.damage = 17;
-            Item.crit = 6;
+            Item.crit = 7;
             Item.width = 52;
             Item.height = 62;
             Item.useTime = 20;
