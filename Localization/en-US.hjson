@@ -1,0 +1,31 @@
+﻿Mods: {
+	Supernova: {
+		Ring: Ring
+		SocialRing: Social Ring
+		SlotLocation_Header: Slot Location Options
+		SlotLocation_Label: Slot location
+		ShowCustomLocationPanel_Tooltip: Show the draggable panel for a custom location
+		ShowCustomLocationPanel_Label: Show custom location panel
+		ResetCustomSlotLocation_Tooltip: Reset custom panel location if it disappears from the screen
+		ResetCustomSlotLocation_Label: Reset custom location
+		TownNPCMood: {
+			Ronin: {
+				Content: I feel pretty fine right now.
+				NoHome: I would appreciate having a home.
+				LoveSpace: More than enough space to practice!
+				FarFromHome: Could you please get me back to my house?
+				DislikeCrowded: There is no peace here, to many people.
+				HateCrowded: I can't think with so many people around!
+				LikeBiome: "{BiomeName} is a very nice place to practice."
+				LoveBiome: "I love {BiomeName}."
+
+				DislikeBiome: "It's way too cold in {BiomeName}, I'm freezing!"
+				HateBiome: "Its kind of hard to think while being attacked by monsters in {BiomeName}."
+				LikeNPC: "I can respect {NPCName} as a fellow guide and educator!"
+				LoveNPC: "Do you think {NPCName} notices me?"
+				DislikeNPC: '''"{NPCName} keeps rambling on about "payed mods"... Wish I could convince him how terrible of an idea that is."'''
+				HateNPC: "I hate all the loud noises caused by {NPCName} and his explosives! I just want peace and quiet."
+			}
+		}
+	}
+}

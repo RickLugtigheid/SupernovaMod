@@ -1,24 +1,24 @@
 {
   "version": 3,
   "targets": {
-    ".NETFramework,Version=v4.5": {
-      "tModLoader.CodeAssist/0.1.2": {
+    "net6.0": {
+      "tModLoader.CodeAssist/0.1.5": {
         "type": "package"
       }
     }
   },
   "libraries": {
-    "tModLoader.CodeAssist/0.1.2": {
-      "sha512": "o43lkrLmnOojQxVgmhmyAhCZV7DxL3gvcCaZvL7GcG7NH6hcyzSHFTM7tntoGthmx2OmOH8BUx1hZDhNhADV8Q==",
+    "tModLoader.CodeAssist/0.1.5": {
+      "sha512": "Sg/jKEg/z5eN+Cdi3/9CU4JfJwvXHVH+UDJf4Lipo26uTa+guLLJXH1XDJNPShTFwKK8jMUYbthINP4QhsgHSA==",
       "type": "package",
-      "path": "tmodloader.codeassist/0.1.2",
+      "path": "tmodloader.codeassist/0.1.5",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "NugetIcon.png",
         "analyzers/dotnet/cs/tModLoader.CodeAssist.dll",
-        "tmodloader.codeassist.0.1.2.nupkg.sha512",
+        "tmodloader.codeassist.0.1.5.nupkg.sha512",
         "tmodloader.codeassist.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
@@ -26,7 +26,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETFramework,Version=v4.5": [
+    "net6.0": [
       "tModLoader.CodeAssist >= 0.1.*"
     ]
   },
@@ -37,11 +37,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rlugt\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Supernova\\Supernova.csproj",
+      "projectUniqueName": "C:\\Users\\rlugt\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Supernova\\Supernova.csproj",
       "projectName": "Supernova",
-      "projectPath": "C:\\Users\\rlugt\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Supernova\\Supernova.csproj",
+      "projectPath": "C:\\Users\\rlugt\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Supernova\\Supernova.csproj",
       "packagesPath": "C:\\Users\\rlugt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rlugt\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\Supernova\\obj\\",
+      "outputPath": "C:\\Users\\rlugt\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Supernova\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -51,15 +51,16 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net45"
+        "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\rlugt\\AppData\\Roaming\\Cosmos User Kit\\packages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net45": {
-          "targetAlias": "net45",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {}
         }
       },
@@ -70,15 +71,31 @@
       }
     },
     "frameworks": {
-      "net45": {
-        "targetAlias": "net45",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "dependencies": {
           "tModLoader.CodeAssist": {
             "target": "Package",
             "version": "[0.1.*, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
