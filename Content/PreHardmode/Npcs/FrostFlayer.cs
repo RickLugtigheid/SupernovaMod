@@ -9,7 +9,7 @@ using Terraria.Audio;
 
 namespace Supernova.Content.PreHardmode.Npcs
 {
-    public class FrostFlayer : ModNPC // ModNPC is used for Custom NPCs
+    public class FrostFlayer : ModNPC
     {
         private float speed;
         private Player player;
@@ -20,7 +20,7 @@ namespace Supernova.Content.PreHardmode.Npcs
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
-                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
+                Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -30,9 +30,8 @@ namespace Supernova.Content.PreHardmode.Npcs
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the spawning conditions of this NPC that is listed in the bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
-
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("TODO: Frost Flayer."),
+				new FlavorTextBestiaryInfoElement("These mindless glacial constructs are formed from the souls of those unfortunate enough to perish within this frigid wonderland to frostbite. Now they're out to skin you alive and steal yours!"),
             });
         }
         public override void SetDefaults()

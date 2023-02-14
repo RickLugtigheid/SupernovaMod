@@ -15,12 +15,11 @@ namespace Supernova.Content.PreHardmode.Npcs
         {
             DisplayName.SetDefault("Leaf Crab");
             Main.npcFrameCount[NPC.type] = 8;
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
-                // Influences how the NPC looks in the Bestiary
-                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
-            };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			{
+				// Influences how the NPC looks in the Bestiary
+			};
+			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
@@ -28,9 +27,11 @@ namespace Supernova.Content.PreHardmode.Npcs
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the spawning conditions of this NPC that is listed in the bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime,
+
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("TODO: Leaf Crab."),
+				new FlavorTextBestiaryInfoElement("Peculiar little crustaceans with an inherently aggressive nature to other sentient objects outsizing it. Despite what their appearance suggests, they aren't true crabs. These hostile critters are coveted for a special piece of their exoskeleton."),
             });
         }
 

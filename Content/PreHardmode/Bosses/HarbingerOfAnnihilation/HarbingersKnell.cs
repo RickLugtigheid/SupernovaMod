@@ -15,6 +15,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Harbingers Knell");
+            Tooltip.SetDefault("Summons a Omen to fight for you.");
         }
 
         public override void SetDefaults()

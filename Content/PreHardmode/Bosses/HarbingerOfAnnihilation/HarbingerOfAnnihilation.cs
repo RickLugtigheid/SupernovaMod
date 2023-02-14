@@ -50,7 +50,7 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement(""),
+				new FlavorTextBestiaryInfoElement("An enigmatic subsistence. This stellar entity with a seemingly inexplicable nature all the way back to its formation is tasked with one thing and one thing only - to destitute all planets of their lifeforms."),
             });
         }
 

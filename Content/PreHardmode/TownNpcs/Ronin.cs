@@ -36,8 +36,9 @@ namespace Supernova.Content.PreHardmode.TownNpcs
         {
             // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("TODO."),
+				new FlavorTextBestiaryInfoElement(""),
             });
         }
 

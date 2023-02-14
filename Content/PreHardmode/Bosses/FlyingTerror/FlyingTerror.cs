@@ -30,6 +30,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
+                Frame = 1,
+                Scale = .5f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -41,7 +43,7 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement(""),
+				new FlavorTextBestiaryInfoElement("A scourge of the night, veraciously out for the hunt. Always looking for its next prey in its neverending pursuit to satiate its flesh craving. Its emissaries scour the underground searching for more victims to nourish their gluttonous master.\r\n"),
             });
         }
 

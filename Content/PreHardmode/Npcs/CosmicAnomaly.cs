@@ -34,7 +34,7 @@ namespace Supernova.Content.PreHardmode.Npcs
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("TODO: Cosmic Anomaly."),
+				new FlavorTextBestiaryInfoElement("Little subjects cast away from a greater whole. Subduing them may only result in said greater whole arriving."),
             });
         }
 

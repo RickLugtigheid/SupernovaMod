@@ -35,7 +35,8 @@ namespace Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation
             Projectile.tileCollide = false; // Makes the minion go through tiles freely
 
             // These below are needed for a minion weapon
-            Projectile.friendly = true; // Only controls if it deals damage to enemies on contact (more on that later)
+            Projectile.usesLocalNPCImmunity = true;
+			Projectile.friendly = true; // Only controls if it deals damage to enemies on contact (more on that later)
             Projectile.minion = true; // Declares this as a minion (has many effects)
             Projectile.DamageType = DamageClass.Summon; // Declares the damage type (needed for it to deal damage)
             Projectile.minionSlots = 1f; // Amount of slots this minion occupies from the total minion slots available to the player (more on that later)

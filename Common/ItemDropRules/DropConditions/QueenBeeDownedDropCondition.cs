@@ -16,7 +16,7 @@ namespace Supernova.Common.ItemDropRules.DropConditions
 
 		public bool CanShowItemDropInUI()
 		{
-			return true;
+			return false;
 		}
 
 		public string GetConditionDescription()

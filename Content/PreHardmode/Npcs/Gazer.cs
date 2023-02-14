@@ -18,8 +18,9 @@ namespace Supernova.Content.PreHardmode.Npcs
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
+                PortraitPositionYOverride = -20,
                 // Influences how the NPC looks in the Bestiary
-                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
+                Velocity = 1 // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -31,7 +32,7 @@ namespace Supernova.Content.PreHardmode.Npcs
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement(""),
+				new FlavorTextBestiaryInfoElement("Impish terrors to all excavators beneath the surface. These unique creatures have evolved and adapted to coexist with the harsh circumstances of the underground. But something's hinting towards them being more than just lifeforms..."),
             });
         }
 

@@ -17,7 +17,6 @@ namespace Supernova.Content.PreHardmode.Npcs
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
-                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -29,7 +28,7 @@ namespace Supernova.Content.PreHardmode.Npcs
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement(""),
+				new FlavorTextBestiaryInfoElement("Small but ferocious beastlings seen wandering the underground. Formed in the thick of pitch-black darkness under their master's influence."),
             });
         }
 
