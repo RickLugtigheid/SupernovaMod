@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Supernova.Api;
 using Supernova.Common;
-using Supernova.Common.ItemDropRules.DropConditions;
 using Supernova.Common.Systems;
-using Supernova.Content.PreHardmode.Bosses.HarbingerOfAnnihilation;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -30,8 +28,8 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
-                Frame = 1,
-                Scale = .5f
+                PortraitScale = .75f,
+                Scale = .75f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -492,7 +490,7 @@ namespace Supernova.Content.PreHardmode.Bosses.FlyingTerror
             );*/
 
             SetStage();
-            return false;
+            return NPC.IsABestiaryIconDummy;
 		}
         private bool _playAnimation = true;
 		public override void FindFrame(int frameHeight)
