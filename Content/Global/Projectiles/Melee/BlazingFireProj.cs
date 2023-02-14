@@ -99,7 +99,7 @@ namespace Supernova.Content.Global.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.OnFire, 60);
+            target.AddBuff(BuffID.OnFire3, 120);
         }
     }
 }

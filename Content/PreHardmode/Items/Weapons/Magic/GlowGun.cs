@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
 {
-    public class GlowGun : SupernovaGunItem
+    public class GlowGun : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -22,27 +22,24 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
         {
             //base.SetDefaults();
 
-            Item.damage = 21;
-            Item.width = 40;
-            Item.crit = 4;
-            Item.height = 20;
-            Item.useTime = 42;
-            Item.useAnimation = 42;
-            Item.knockBack = 1.2f;
-            Item.value = Item.buyPrice(0, 2, 50, 0);
+            Item.damage = 12;
+			Item.width = 50;
+			Item.height = 24;
+			Item.crit = 3;
+            Item.useTime = 48;
+            Item.useAnimation = 48;
+            Item.knockBack = 2;
+            Item.value = Item.buyPrice(0, 3, 50, 0);
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Green;
             Item.UseSound = SoundID.Item38;
             Item.shoot = ModContent.ProjectileType<Global.Projectiles.Magic.GlowGunProj>();
-            Item.shootSpeed = 3;
+            Item.shootSpeed = 5;
             Item.DamageType = DamageClass.Magic;
             Item.mana = 6;
 			Item.useStyle = ItemUseStyleID.Shoot;
 
-			Item.scale = .8f;
-
-            Gun.recoil = 1.6f;
-            Gun.spread = 3;
+			Item.scale = .75f;
         }
         public override void AddRecipes()
         {

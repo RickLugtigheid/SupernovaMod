@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using Supernova.Api.Rendering;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -23,8 +24,8 @@ namespace Supernova.Content.Global.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            Projectile.width = 8;
-            Projectile.height = 8;
+            Projectile.width = 16;
+            Projectile.height = 16;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -55,60 +56,21 @@ namespace Supernova.Content.Global.Projectiles.Magic
             // Truffle Explosion effect
             for (int j = 0; j <= Main.rand.Next(3, 7); j++)
             {
-                Vector2 velocity = (Projectile.velocity * Main.rand.Next(3, 6)).RotatedByRandom(360);
+                Vector2 velocity = (Projectile.velocity * Main.rand.Next(4, 6)).RotatedByRandom(360);
                 Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position.X, Projectile.position.Y, velocity.X, velocity.Y, ProjectileID.Mushroom, (int)(Projectile.damage * .75f), 3 * 1, Projectile.owner, 1, 0);
             }
         }
-
-		public NPC FindTarget()
-		{
-			float bestScore = 0f;
-			NPC bestTarget = null;
-			for (int i = 0; i < 200; i++)
-			{
-				NPC potentialTarget = Main.npc[i];
-				if (potentialTarget.CanBeChasedBy(null, false))
-				{
-					float distance = potentialTarget.Distance(base.Projectile.Center);
-					float angle = base.Projectile.velocity.AngleFrom(potentialTarget.Center - base.Projectile.Center);
-					float extraDistance = (float)(potentialTarget.width / 2 + potentialTarget.height / 2);
-					if (distance - extraDistance < HOMING_RANGE && angle < HOMING_ANGLE / 2f && (Collision.CanHit(base.Projectile.Center, 1, 1, potentialTarget.Center, 1, 1) || extraDistance >= distance))
-					{
-						float attemptedScore = EvaluateTarget(distance - extraDistance, angle / 2f);
-						if (attemptedScore > bestScore)
-						{
-							bestTarget = potentialTarget;
-							bestScore = attemptedScore;
-						}
-					}
-				}
-			}
-			return bestTarget;
-		}
-		public float EvaluateTarget(float distance, float angle)
-		{
-			return 1f - distance / HOMING_RANGE * 0.5f + (1f - Math.Abs(angle) / (HOMING_ANGLE / 2f)) * 0.5f;
-		}
-
-		private NPC _target = null;
 		public override void AI()
 		{
-			Lighting.AddLight(Projectile.Center, (Color.GreenYellow * 0.8f).ToVector3() * 0.5f);
-			
-			_target = FindTarget();
+			//this make that the projectile faces the right way
+			Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
+			Projectile.localAI[0] += 1f;
 
-			if (_target != null )
-			{
-				float distanceFromTarget = (_target.Center - Projectile.Center).Length();
-				// Update projectile rotation
-				//
-				Projectile.rotation = Utils.AngleTowards(Projectile.rotation, Utils.ToRotation(_target.Center - base.Projectile.Center), 0.07f * (float)Math.Pow((double)(1f - distanceFromTarget / HOMING_RANGE), 2.0));
-
-				// Update projectile velocity
-				//
-				Projectile.velocity *= 0.99f;
-				Projectile.velocity = Utils.ToRotationVector2(Projectile.rotation) * Projectile.velocity.Length();
-			}
+            for (int i = 0; i < 2; i++)
+            {
+				int dustId = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GlowingMushroom, Projectile.velocity.X, Projectile.velocity.Y, 100, default, Scale: 1.5f);
+                Main.dust[dustId].noGravity = true;
+            }
 		}
 
 		internal Color ColorFunction(float completionRatio)
@@ -117,26 +79,9 @@ namespace Supernova.Content.Global.Projectiles.Magic
 			return Utils.MultiplyRGB(Color.DeepSkyBlue, Color.Blue) * fadeOpacity;
 		}
 
-		public override bool PreDraw(ref Color lightColor)
+		public override bool PreDrawExtras()
 		{
-			Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
-			Main.spriteBatch.Draw
-			(
-				texture,
-				new Vector2
-				(
-					Projectile.position.X - Main.screenPosition.X + Projectile.width * 0.5f,
-					Projectile.position.Y - Main.screenPosition.Y + Projectile.height - texture.Height * 0.5f + 2f
-				),
-				new Rectangle(0, 0, texture.Width, texture.Height),
-				Color.White,
-				Projectile.rotation,
-				texture.Size() * 0.5f,
-				Projectile.scale,
-				SpriteEffects.None,
-				0f
-			);
-			return false;
+			return base.PreDrawExtras();
 		}
 	}
 }

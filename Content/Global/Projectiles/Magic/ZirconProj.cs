@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -27,18 +27,7 @@ namespace Supernova.Content.Global.Projectiles.Magic
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = true;                 //this make that the projectile does not go thru walls
             Projectile.ignoreWater = false;
-        }
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            if (Main.rand.NextBool(7))
-            {
-                target.AddBuff(BuffID.Frozen, 60);
-            }
-            if (Main.rand.NextBool(8))
-            {
-                target.AddBuff(BuffID.Frostburn, 70);
-            }
+            Projectile.timeLeft = 120;
         }
 
         public override void AI()

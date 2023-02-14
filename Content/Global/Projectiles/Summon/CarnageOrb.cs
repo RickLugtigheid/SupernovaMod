@@ -25,32 +25,33 @@ namespace Supernova.Content.Global.Projectiles.Summon
             //Projectile.minionSlots = 0;
             Projectile.DamageType = DamageClass.Default;
             Projectile.timeLeft = 2;
-        }
+			Projectile.usesLocalNPCImmunity = true;
+		}
 
-        /*public static bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
+		/*public static bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             if (projectile.ModProjectile != null)
                 return projectile.ModProjectile.OnTileCollide(oldVelocity);
             return true;
         }*/
 
-        public override void AI()
+		public override void AI()
         {
 			CheckActive();
 
-			int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width - 10, Projectile.height - 10, ModContent.DustType<Dusts.BloodDust>(), Projectile.velocity.X * 12, Projectile.velocity.Y * 12, 70, default(Color), .8f);
+			int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width - 10, Projectile.height - 10, ModContent.DustType<Dusts.BloodDust>(), Projectile.velocity.X * 20, Projectile.velocity.Y * 20, 70, default(Color));
             Main.dust[DustID2].noGravity = true;
 
-            #region orbit
-            //Making player variable "p" set as the projectile's owner
-            Player p = Main.player[Projectile.owner];
+			#region orbit
+			//Making player variable "p" set as the projectile's owner
+			Player p = Main.player[Projectile.owner];
             if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<CarnageOrb>()] > 1)
             {
                 Projectile.timeLeft = 0;
             }
 
             //Factors for calculations
-            double deg = (double)Projectile.ai[1]; //The degrees, you can multiply projectile.ai[1] to make it orbit faster, may be choppy depending on the value
+            double deg = Projectile.ai[1]; //The degrees, you can multiply projectile.ai[1] to make it orbit faster, may be choppy depending on the value
             double rad = deg * (Math.PI / 180); //Convert degrees to radians
             double dist = 90; //Distance away from the player
 
@@ -63,8 +64,10 @@ namespace Supernova.Content.Global.Projectiles.Summon
             //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
             Projectile.ai[1] += 3;
             #endregion
+
+            Projectile.rotation = (float)rad;
         }
-        public void CheckActive()
+		public void CheckActive()
         {
             Player player = Main.player[Projectile.owner];
             AccessoryPlayer modPlayer = player.GetModPlayer<AccessoryPlayer>();
