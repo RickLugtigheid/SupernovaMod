@@ -1,5 +1,5 @@
 displayName = Supernova
-author = KoekMeneer, Galenwald
+author = KoekMeneer, Galenwald, The ExiIed FeIIow
 version = 0.1.6
 homepage = https://forums.terraria.org/index.php?threads/supernova-mod.104268/
-wiki = https://ricklugtigheid.github.io/SupernovaMod/
+wiki = https://koekmeneer.github.io/SupernovaMod/

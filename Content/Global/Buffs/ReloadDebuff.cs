@@ -3,14 +3,14 @@ using Terraria.ModLoader;
 
 namespace Supernova.Content.Global.Buffs
 {
-    public class GallantCooldown : ModBuff
+    public class ReloadDebuff : ModBuff
     {
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = false;
 
-            DisplayName.SetDefault("Gallant Cooldown");
-            Description.SetDefault("Waiting for your 'Gallant' to cooldown");
+            DisplayName.SetDefault("Reloading");
+            Description.SetDefault("Waiting for the weapon to be reload.");
 
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;

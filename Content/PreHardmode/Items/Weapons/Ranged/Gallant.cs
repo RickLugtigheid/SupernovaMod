@@ -52,7 +52,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 		public override bool CanUseItem(Player player)
         {
 			// Check if our Gallant is cooling down
-			if (player.HasBuff(ModContent.BuffType<Global.Buffs.GallantCooldown>()))
+			//
+			if (player.HasBuff(ModContent.BuffType<Global.Buffs.ReloadDebuff>()))
 			{
 				return false;
 			}
@@ -68,6 +69,8 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 				return false;
 			}
 
+
+
             return base.CanUseItem(player);
         }
 
@@ -79,7 +82,13 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 			//
 			if (_storedShots <= 0)
 			{
-				Reload(player);
+				// Check if reloading was unsuccessfull,
+				// and if any bullets where loaded.
+				//
+				if (!Reload(player) && _storedShots == 0)
+				{
+					return false;
+				}
 			}
 
 			return base.UseItem(player);
@@ -118,10 +127,10 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 		/// Handles our reload
 		/// </summary>
 		/// <param name="player"></param>
-		private void Reload(Player player)
+		private bool Reload(Player player)
 		{
 			SoundEngine.PlaySound(SoundID.Item149);
-			player.AddBuff(ModContent.BuffType<Global.Buffs.GallantCooldown>(), Item.useTime * 10); // The use time will be the ammount of seconds needed for cooldown
+			player.AddBuff(ModContent.BuffType<Global.Buffs.ReloadDebuff>(), Item.useTime * 10); // The use time will be the ammount of seconds needed for cooldown
 
 			Item.useAmmo = AmmoID.Bullet;
 
@@ -133,7 +142,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 				Item? ammo = player.ChooseAmmo(Item);
 				if (ammo == null)
 				{
-					break;
+					return false;
 				}
 				if (ammo.type != ItemID.EndlessMusketPouch)
 				{
@@ -141,6 +150,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Ranged
 				}
 			}
 			Item.useAmmo = AmmoID.None;
+			return false;
 		}
 
 		#region Save stored ammo
