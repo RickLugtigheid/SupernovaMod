@@ -14,12 +14,14 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Staff of Thorns");
+            Tooltip.SetDefault("Shoots a spread of armor piercing thorns.");
             Item.staff[Item.type] = true;
         }
 
         public override void SetDefaults()
         {
-            Item.damage = 8;
+            Item.ArmorPenetration = 8;
+            Item.damage = 10;
             Item.crit = 4;
             Item.width = 28;
             Item.height = 34;
@@ -28,17 +30,17 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Magic
             Item.useTime = 3;
             Item.reuseDelay = 30;
 
-            Item.useStyle = 5;        //this is how the item is holded
+            Item.useStyle = 5;
             Item.noMelee = true;
             Item.knockBack = 1.7f;
-            Item.value = Item.buyPrice(0, 5, 77, 0); // Another way to handle value of item.
+            Item.value = Item.buyPrice(0, 5, 77, 0);
             Item.rare = ItemRarityID.Green;
-            Item.mana = 4;             //mana use
-            Item.UseSound = SoundID.Item21;            //this is the sound when you use the item
+            Item.mana = 4;
+            Item.UseSound = SoundID.Item21;
             Item.autoReuse = true;
             //Item.shoot = ModContent.ProjectileType<Global.Projectiles.ThornBal>();
             Item.shoot = ProjectileID.SeedlerThorn;
-            Item.shootSpeed = 5;    //projectile speed when shoot
+            Item.shootSpeed = 5;
 
             Item.DamageType = DamageClass.Magic;
         }

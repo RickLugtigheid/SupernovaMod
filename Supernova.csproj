@@ -12,7 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\Collections\" />
-    <Folder Include="Assets\Textures\" />
     <Folder Include="Common\GlobalItems\" />
     <Folder Include="Common\GlobalProjectiles\" />
     <Folder Include="Content\Global\Buffs\Cooldowns\" />

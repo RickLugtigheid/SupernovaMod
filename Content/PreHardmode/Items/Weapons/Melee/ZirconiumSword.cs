@@ -16,7 +16,7 @@ namespace Supernova.Content.PreHardmode.Items.Weapons.Melee
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Zirconium Sword");
-			Tooltip.SetDefault("When striking an enemy may release a blast of Zirconium Spark.\nZirconium Sparks linger for a short while.");
+			Tooltip.SetDefault("May release a blast of Zirconium Spark when striking an enemy.\nZirconium Sparks linger for a short while.");
         }
 		public override void SetDefaults()
 		{
