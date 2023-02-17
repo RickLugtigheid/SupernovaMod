@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using Supernova.Common;
+using SupernovaMod.Common;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Api
+namespace SupernovaMod.Api
 {
 	public abstract class ModShotgun : ModItem
 	{

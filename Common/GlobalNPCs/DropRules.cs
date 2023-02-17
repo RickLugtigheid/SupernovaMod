@@ -2,10 +2,10 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Supernova.Common.ItemDropRules.DropConditions;
+using SupernovaMod.Common.ItemDropRules.DropConditions;
 using System;
 
-namespace Supernova.Common.GlobalNPCs
+namespace SupernovaMod.Common.GlobalNPCs
 {
     public class DropRules : GlobalNPC
 	{

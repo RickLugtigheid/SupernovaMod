@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Weapons.Magic
+namespace SupernovaMod.Content.Items.Weapons.Magic
 {
     public class ShockSurge : ModItem
     {

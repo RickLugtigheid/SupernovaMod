@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Hardmode.Items.Misc
+namespace SupernovaMod.Content.Items.Misc
 {
     public class EyeOfDeath : ModItem
     {

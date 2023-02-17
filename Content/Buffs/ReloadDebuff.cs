@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Buffs
+namespace SupernovaMod.Content.Buffs
 {
     public class ReloadDebuff : ModBuff
     {

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
 
-namespace Supernova.Content.Npcs.Bosses.FlyingTerror
+namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 {
     public class TerrorKniveProj : ModProjectile
     {

@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Tiles
+namespace SupernovaMod.Content.Tiles
 {
     public class ZirconiumOreTile : ModTile
     {

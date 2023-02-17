@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.Audio;
 
-namespace Supernova.Content.Projectiles.Ranged
+namespace SupernovaMod.Content.Projectiles.Ranged
 {
     public class VerglasIcicle : ModProjectile
     {

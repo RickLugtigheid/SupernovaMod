@@ -1,9 +1,9 @@
-﻿using Supernova.Api;
+﻿using SupernovaMod.Api;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Npcs.Bosses.StoneMantaRay
+namespace SupernovaMod.Content.Npcs.Bosses.StoneMantaRay
 {
     public class StoneGlove : ModShotgun
     {

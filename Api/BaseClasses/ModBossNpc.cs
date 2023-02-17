@@ -4,7 +4,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Api
+namespace SupernovaMod.Api
 {
 	public abstract class ModBossNpc : ModNPC
 	{

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
 
-namespace Supernova.Common.Systems
+namespace SupernovaMod.Common.Systems
 {
 	public class SupernovaKeybinds : ModSystem
 	{

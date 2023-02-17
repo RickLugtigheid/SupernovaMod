@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Npcs.Bosses.FlyingTerror
+namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 {
     public class TerrorCleaver : ModItem
     {

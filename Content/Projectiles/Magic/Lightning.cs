@@ -2,8 +2,9 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
 
-namespace Supernova.Content.Projectiles.Magic
+namespace SupernovaMod.Content.Projectiles.Magic
 {
     public class Lightning : ModProjectile
     {
@@ -75,9 +76,9 @@ namespace Supernova.Content.Projectiles.Magic
                 Projectile.ai[1]++;
             }
 
-            int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 57, Projectile.velocity.X * 0.01f, Projectile.velocity.Y * 0.01f, 10, default, 1.5f);
+            int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, Projectile.velocity.X * 0.01f, Projectile.velocity.Y * 0.01f, 10, default, 1.5f);
             Main.dust[dust].noGravity = true;
-            dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 57, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 5, default, 2f);
+            dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Gold, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 5, default, 2f);
             Main.dust[dust].noGravity = true;
 
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.80f;

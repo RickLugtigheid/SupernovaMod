@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 
-namespace Supernova.Content.Npcs.Bosses.StoneMantaRay
+namespace SupernovaMod.Content.Npcs.Bosses.StoneMantaRay
 {
     public class SurgestoneSword : ModItem
     {

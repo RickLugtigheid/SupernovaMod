@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
-using Supernova.Common.Players;
+using SupernovaMod.Common.Players;
 
-namespace Supernova.Content.Projectiles.Summon
+namespace SupernovaMod.Content.Projectiles.Summon
 {
     public class CarnageOrb : ModProjectile
     {

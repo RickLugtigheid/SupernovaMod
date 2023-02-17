@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 
-namespace Supernova.Content.Items.Weapons.Ranged
+namespace SupernovaMod.Content.Items.Weapons.Ranged
 {
     public class VerglasBow : ModItem
     {

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Npcs.Bosses.HarbingerOfAnnihilation
+namespace SupernovaMod.Content.Npcs.Bosses.HarbingerOfAnnihilation
 {
     public class HarbingersSlicer : ModItem
     {

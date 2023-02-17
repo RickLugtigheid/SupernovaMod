@@ -35,11 +35,6 @@ Mods: {
 				Description: Mods.Supernova.BuffDescription.VerglasIcicleDebuff
 			}
 
-			GallantCooldown: {
-				DisplayName: Gallant Cooldown
-				Description: Waiting for your 'Gallant' to cooldown
-			}
-
 			CarnageOrbBuff: {
 				DisplayName: Carnage Orb
 				Description: Summons a orb that will steal the life essence from your foes.
@@ -58,6 +53,11 @@ Mods: {
 			QuarionBuff: {
 				DisplayName: Quarion Potion
 				Description: Greatly increased damage and speed but halved health
+			}
+
+			ReloadDebuff: {
+				DisplayName: Reloading
+				Description: Waiting for the weapon to be reload.
 			}
 
 			RingCooldown: {

@@ -1,12 +1,10 @@
 using Microsoft.Xna.Framework;
-using Supernova.Content.Items.Weapons.BaseWeapons;
+using SupernovaMod.Content.Items.Weapons.BaseWeapons;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Weapons.Ranged
+namespace SupernovaMod.Content.Items.Weapons.Ranged
 {
     public class WoodGun : SupernovaGunItem
     {

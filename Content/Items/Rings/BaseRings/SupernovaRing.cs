@@ -1,9 +1,9 @@
-﻿using Supernova.Common.Players;
+﻿using SupernovaMod.Common.Players;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Rings.BaseRings
+namespace SupernovaMod.Content.Items.Rings.BaseRings
 {
     public abstract class SupernovaRingItem : ModItem
     {

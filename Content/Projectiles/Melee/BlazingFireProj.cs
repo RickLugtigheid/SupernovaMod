@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Projectiles.Melee
+namespace SupernovaMod.Content.Projectiles.Melee
 {
     public class BlazingFireProj : ModProjectile
     {

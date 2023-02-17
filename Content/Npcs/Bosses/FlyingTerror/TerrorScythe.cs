@@ -4,7 +4,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.Audio;
 
-namespace Supernova.Content.Npcs.Bosses.FlyingTerror
+namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 {
     public class TerrorScythe : ModProjectile
     {

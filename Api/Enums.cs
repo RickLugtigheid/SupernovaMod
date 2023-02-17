@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Supernova.Api.ChestLoot
+namespace SupernovaMod.Api.ChestLoot
 {
 	public enum ChestFrameType
 	{

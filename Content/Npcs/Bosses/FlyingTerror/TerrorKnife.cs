@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Npcs.Bosses.FlyingTerror
+namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 {
     public class TerrorKnife : ModItem
     {

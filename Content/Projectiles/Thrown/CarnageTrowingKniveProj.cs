@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Supernova.Content.Projectiles.Thrown
+namespace SupernovaMod.Content.Projectiles.Thrown
 {
     public class CarnageTrowingKniveProj : ModProjectile
     {

@@ -1,10 +1,10 @@
-﻿using Supernova.Content.Items.BaseItems;
+﻿using SupernovaMod.Content.Items.BaseItems;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Npcs.Bosses.FlyingTerror
+namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 {
     public class FlyingTerrorBag : SupernovaBossBag
     {

@@ -1,16 +1,9 @@
 using log4net;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Supernova.Common.Systems;
-//using Supernova.Content.Global.GUI;
-using System;
+using SupernovaMod.Common.Systems;
 using System.Collections.Generic;
-using System.IO;
-using Terraria;
 using Terraria.ModLoader;
-using Terraria.UI;
 
-namespace Supernova
+namespace SupernovaMod
 {
     public class Supernova : Mod
 	{

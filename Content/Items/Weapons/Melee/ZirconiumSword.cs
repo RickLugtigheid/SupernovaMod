@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.Audio;
 
-namespace Supernova.Content.Items.Weapons.Melee
+namespace SupernovaMod.Content.Items.Weapons.Melee
 {
     public class ZirconiumSword : ModItem
     {

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 
-namespace Supernova.Content.Projectiles.Melee.Yoyos
+namespace SupernovaMod.Content.Projectiles.Melee.Yoyos
 {
     public class PoisonousYoYo : ModProjectile
     {

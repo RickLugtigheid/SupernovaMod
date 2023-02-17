@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Common.GlobalNPCs
+namespace SupernovaMod.Common.GlobalNPCs
 {
     public class NPCShop : GlobalNPC
 	{

@@ -1,10 +1,10 @@
-﻿using Supernova.Api.ChestLoot;
-using Supernova.Content.Items.Weapons.Magic;
-using Supernova.Content.Items.Weapons.Ranged;
+﻿using SupernovaMod.Api.ChestLoot;
+using SupernovaMod.Content.Items.Weapons.Magic;
+using SupernovaMod.Content.Items.Weapons.Ranged;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
-namespace Supernova.Common.Systems
+namespace SupernovaMod.Common.Systems
 {
     public class SupernovaChestLoot : CustomChestLootSystem
 	{

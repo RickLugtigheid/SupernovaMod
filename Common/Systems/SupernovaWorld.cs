@@ -5,7 +5,7 @@ using Terraria.GameContent.Generation;
 using Terraria.WorldBuilding;
 using Terraria.IO;
 
-namespace Supernova.Common.Systems
+namespace SupernovaMod.Common.Systems
 {
     public class SupernovaWorld : ModSystem
 	{

@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Projectiles.Thrown
+namespace SupernovaMod.Content.Projectiles.Thrown
 {
     public class CactusBoomerangProj : ModProjectile
     {

@@ -1,8 +1,8 @@
-using Supernova.Common.Players;
+using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Buffs.Minion
+namespace SupernovaMod.Content.Buffs.Minion
 {
     public class CarnageOrbBuff : ModBuff
     {

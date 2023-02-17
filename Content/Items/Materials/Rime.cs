@@ -4,7 +4,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Materials
+namespace SupernovaMod.Content.Items.Materials
 {
     public class Rime : ModItem
     {

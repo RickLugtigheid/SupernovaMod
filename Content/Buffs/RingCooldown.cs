@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Buffs
+namespace SupernovaMod.Content.Buffs
 {
     public class RingCooldown : ModBuff
     {

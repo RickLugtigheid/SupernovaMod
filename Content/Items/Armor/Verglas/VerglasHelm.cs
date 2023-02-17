@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Armor.Verglas
+namespace SupernovaMod.Content.Items.Armor.Verglas
 {
     [AutoloadEquip(EquipType.Head)]
     public class VerglasHelm : ModItem

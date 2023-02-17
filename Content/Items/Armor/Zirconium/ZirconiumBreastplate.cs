@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Armor.Zirconium
+namespace SupernovaMod.Content.Items.Armor.Zirconium
 {
     // Added instread of AutoLoad
     [AutoloadEquip(EquipType.Body)]

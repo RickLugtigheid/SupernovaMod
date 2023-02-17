@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Accessories
+namespace SupernovaMod.Content.Items.Accessories
 {
     public class SacrificialTalisman : ModItem
     {

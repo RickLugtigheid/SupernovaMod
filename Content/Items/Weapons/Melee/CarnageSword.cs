@@ -4,7 +4,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Weapons.Melee
+namespace SupernovaMod.Content.Items.Weapons.Melee
 {
     public class CarnageSword : ModItem
     {

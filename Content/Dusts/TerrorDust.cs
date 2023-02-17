@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Dusts
+namespace SupernovaMod.Content.Dusts
 {
     public class TerrorDust : ModDust
     {

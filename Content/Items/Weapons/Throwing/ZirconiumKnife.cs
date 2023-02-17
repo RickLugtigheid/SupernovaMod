@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Weapons.Throwing
+namespace SupernovaMod.Content.Items.Weapons.Throwing
 {
     public class ZirconiumKnife : ModItem
     {

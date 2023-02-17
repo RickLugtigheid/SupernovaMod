@@ -5,7 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Weapons.Summon
+namespace SupernovaMod.Content.Items.Weapons.Summon
 {
     public class VerglasScepter : ModItem
     {

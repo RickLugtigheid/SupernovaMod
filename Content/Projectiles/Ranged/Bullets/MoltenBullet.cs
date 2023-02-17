@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Supernova.Content.Projectiles.Ranged.Bullets
+namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
 {
     public class MoltenBullet : ModProjectile
     {

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Ammo
+namespace SupernovaMod.Content.Items.Ammo
 {
     public class WoodenBullet : ModItem
     {

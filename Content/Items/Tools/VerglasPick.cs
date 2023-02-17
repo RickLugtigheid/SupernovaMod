@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Tools
+namespace SupernovaMod.Content.Items.Tools
 {
     public class VerglasPick : ModItem
     {

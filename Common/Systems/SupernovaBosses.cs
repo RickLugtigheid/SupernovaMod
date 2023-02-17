@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Supernova.Common.Systems
+namespace SupernovaMod.Common.Systems
 {
 	public class SupernovaBosses : ModSystem
 	{

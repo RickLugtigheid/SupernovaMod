@@ -7,7 +7,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
 
-namespace Supernova.Content.Npcs
+namespace SupernovaMod.Content.Npcs
 {
     public class FrostFlayer : ModNPC
     {

@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Common.Players
+namespace SupernovaMod.Common.Players
 {
     public class AccessoryPlayer : ModPlayer
 	{

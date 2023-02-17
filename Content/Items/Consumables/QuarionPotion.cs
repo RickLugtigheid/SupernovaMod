@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Consumables
+namespace SupernovaMod.Content.Items.Consumables
 {
     public class QuarionPotion : ModItem
     {

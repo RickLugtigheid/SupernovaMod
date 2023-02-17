@@ -3,7 +3,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Projectiles.BaseProjectiles
+namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 {
     /// <credits>
     ///	Created based on the example mod minion code: https://github.com/tModLoader/tModLoader/blob/1.4/ExampleMod/Content/Projectiles/Minions/ExampleSimpleMinion.cs

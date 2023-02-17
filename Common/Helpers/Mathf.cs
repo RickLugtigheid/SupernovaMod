@@ -2,7 +2,7 @@
 using System;
 using Terraria;
 
-namespace Supernova.Common
+namespace SupernovaMod.Common
 {
 	public static class Mathf
 	{

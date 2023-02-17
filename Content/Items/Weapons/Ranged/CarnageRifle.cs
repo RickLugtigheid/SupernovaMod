@@ -4,9 +4,9 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
-using Supernova.Content.Items.Weapons.BaseWeapons;
+using SupernovaMod.Content.Items.Weapons.BaseWeapons;
 
-namespace Supernova.Content.Items.Weapons.Ranged
+namespace SupernovaMod.Content.Items.Weapons.Ranged
 {
     public class CarnageRifle : SupernovaGunItem
     {

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Weapons.Melee
+namespace SupernovaMod.Content.Items.Weapons.Melee
 {
     public class VerglasSword : ModItem
     {

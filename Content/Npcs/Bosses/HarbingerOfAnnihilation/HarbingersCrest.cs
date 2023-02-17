@@ -2,7 +2,7 @@
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Npcs.Bosses.HarbingerOfAnnihilation
+namespace SupernovaMod.Content.Npcs.Bosses.HarbingerOfAnnihilation
 {
     public class HarbingersCrest : ModItem
     {

@@ -3,7 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Materials
+namespace SupernovaMod.Content.Items.Materials
 {
     public class GoldenRingMold : ModItem
     {

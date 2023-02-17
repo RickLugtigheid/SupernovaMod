@@ -5,13 +5,13 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Supernova.Common.Systems;
+using SupernovaMod.Common.Systems;
 using Terraria.GameContent.ItemDropRules;
-using Supernova.Api;
+using SupernovaMod.Api;
 using Terraria.GameContent.Bestiary;
-using Supernova.Common.ItemDropRules.DropConditions;
+using SupernovaMod.Common.ItemDropRules.DropConditions;
 
-namespace Supernova.Content.Npcs.Bosses.HarbingerOfAnnihilation
+namespace SupernovaMod.Content.Npcs.Bosses.HarbingerOfAnnihilation
 {
     [AutoloadBossHead]
     public class HarbingerOfAnnihilation : ModBossNpc

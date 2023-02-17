@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 
-namespace Supernova.Content.Projectiles.Ranged.Bullets
+namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
 {
     public class SandBullet : ModProjectile
     {

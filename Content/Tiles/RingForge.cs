@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Supernova.Content.Tiles
+namespace SupernovaMod.Content.Tiles
 {
     public class RingForge : ModTile
     {

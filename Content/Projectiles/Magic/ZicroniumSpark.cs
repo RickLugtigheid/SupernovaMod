@@ -3,11 +3,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Projectiles.Magic
+namespace SupernovaMod.Content.Projectiles.Magic
 {
     public class ZicroniumSpark : ModProjectile
     {
-        public override string Texture => "Supernova/Assets/Textures/InvisibleProjectile";
+        public override string Texture => "SupernovaMod/Assets/Textures/InvisibleProjectile";
         //protected virtual int DustId => DustID.UnusedWhiteBluePurple;
         protected int dustId = ModContent.DustType<Dusts.ZirconDust>();
 

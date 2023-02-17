@@ -6,11 +6,11 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.ItemDropRules;
-using Supernova.Common.Systems;
-using Supernova.Api;
+using SupernovaMod.Common.Systems;
+using SupernovaMod.Api;
 using Terraria.GameContent.Bestiary;
 
-namespace Supernova.Content.Npcs.Bosses.StoneMantaRay
+namespace SupernovaMod.Content.Npcs.Bosses.StoneMantaRay
 {
     [AutoloadBossHead]
     public class StoneMantaRay : ModBossNpc

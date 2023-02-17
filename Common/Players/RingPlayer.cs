@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Supernova.Common.Systems;
-using Supernova.Content.Items.Rings.BaseRings;
+using SupernovaMod.Common.Systems;
+using SupernovaMod.Content.Items.Rings.BaseRings;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
 
-namespace Supernova.Common.Players
+namespace SupernovaMod.Common.Players
 {
     public class RingPlayer : ModAccessorySlotPlayer
 	{
@@ -153,7 +153,7 @@ namespace Supernova.Common.Players
 	public class SupernovaRingSlot : ModAccessorySlot
 	{
 		// Icon textures. Nominal image size is 32x32. Will be centered on the slot.
-		public override string FunctionalTexture => "Supernova/Assets/Textures/RingSlotBackground";
+		public override string FunctionalTexture => "SupernovaMod/Assets/Textures/RingSlotBackground";
 		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
 		{
 			return RingPlayer.ItemIsRing(checkItem);

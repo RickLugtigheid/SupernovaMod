@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Supernova.Common;
+using SupernovaMod.Common;
 using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Weapons.BaseWeapons
+namespace SupernovaMod.Content.Items.Weapons.BaseWeapons
 {
     public enum GunStyle { Default, Shotgun }
     public enum GunUseStyle { Default, PumpAction }

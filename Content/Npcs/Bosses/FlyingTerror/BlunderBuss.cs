@@ -1,13 +1,13 @@
 using System;
 using Microsoft.Xna.Framework;
-using Supernova.Api;
-using Supernova.Content.Items.Weapons.BaseWeapons;
+using SupernovaMod.Api;
+using SupernovaMod.Content.Items.Weapons.BaseWeapons;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Npcs.Bosses.FlyingTerror
+namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 {
     public class BlunderBuss : SupernovaGunItem
     {

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 
-namespace Supernova.Content.Projectiles.Magic
+namespace SupernovaMod.Content.Projectiles.Magic
 {
     public class VerglasScepterProj : ModProjectile
     {

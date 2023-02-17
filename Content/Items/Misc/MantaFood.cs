@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Misc
+namespace SupernovaMod.Content.Items.Misc
 {
     public class MantaFood : ModItem
     {

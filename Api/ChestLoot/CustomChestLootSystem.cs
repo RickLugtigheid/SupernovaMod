@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
-namespace Supernova.Api.ChestLoot
+namespace SupernovaMod.Api.ChestLoot
 {
 	public abstract class CustomChestLootSystem : ModSystem
 	{

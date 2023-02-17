@@ -1,14 +1,13 @@
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
-namespace Supernova.Content.Buffs.Debuffs
+namespace SupernovaMod.Content.Buffs.Debuffs
 {
     public class VerglasIcicleDebuff : ModBuff
     {
         private float _defenceDecreaseMulti = 1;
         // NPC only buff so we'll just assign it a useless buff icon.
-        public override string Texture => "Supernova/Assets/Textures/DebuffTemplate";
+        public override string Texture => "SupernovaMod/Assets/Textures/DebuffTemplate";
 
         /*public override void SetStaticDefaults()
         {

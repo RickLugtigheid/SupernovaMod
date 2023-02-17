@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using System;
 using Microsoft.Xna.Framework;
 
-namespace Supernova.Content.Projectiles.Thrown
+namespace SupernovaMod.Content.Projectiles.Thrown
 {
     public class ZirconiumKnifeProj : ModProjectile
     {

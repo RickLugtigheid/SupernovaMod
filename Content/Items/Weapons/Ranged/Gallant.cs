@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Supernova.Content.Items.Weapons.BaseWeapons;
+using SupernovaMod.Content.Items.Weapons.BaseWeapons;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
@@ -10,7 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Supernova.Content.Items.Weapons.Ranged
+namespace SupernovaMod.Content.Items.Weapons.Ranged
 {
     public class Gallant : SupernovaGunItem
     {

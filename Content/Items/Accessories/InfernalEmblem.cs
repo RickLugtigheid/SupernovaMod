@@ -1,9 +1,9 @@
-﻿using Supernova.Common.Players;
+﻿using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Accessories
+namespace SupernovaMod.Content.Items.Accessories
 {
     public class InfernalEmblem : ModItem
     {

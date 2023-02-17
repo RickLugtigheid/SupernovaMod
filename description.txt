@@ -6,4 +6,9 @@ Currently adds:
 - 10 npcs
 
 Plans:
-We are working on a Hardmode update that will add 4 bosses and lots of items!
+
+[version 0.1.7] Boss Update:
+For this update all bosses will be reworked and fixed.
+
+[version 0.2] Early Hardmode:
+For this version new hardmode items and 1 new boss will be added for early hardmode.

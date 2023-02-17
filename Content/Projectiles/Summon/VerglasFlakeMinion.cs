@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Supernova.Common.Players;
+using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Supernova.Api;
-using Supernova.Content.Projectiles.BaseProjectiles;
+using SupernovaMod.Api;
+using SupernovaMod.Content.Projectiles.BaseProjectiles;
 
-namespace Supernova.Content.Projectiles.Summon
+namespace SupernovaMod.Content.Projectiles.Summon
 {
     public class VerglasFlakeMinion : SupernovaMinionProjectile
     {

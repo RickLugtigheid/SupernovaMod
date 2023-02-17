@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Supernova.Content.Projectiles.BaseProjectiles;
+using SupernovaMod.Content.Projectiles.BaseProjectiles;
 
-namespace Supernova.Content.Npcs.Bosses.HarbingerOfAnnihilation
+namespace SupernovaMod.Content.Npcs.Bosses.HarbingerOfAnnihilation
 {
     public class HarbingersKnellProjectile : SupernovaMinionProjectile
     {

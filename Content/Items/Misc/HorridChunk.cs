@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Misc
+namespace SupernovaMod.Content.Items.Misc
 {
     public class HorridChunk : ModItem
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Supernova.Api.ChestLoot
+namespace SupernovaMod.Api.ChestLoot
 {
 	public class ChestLoot
 	{

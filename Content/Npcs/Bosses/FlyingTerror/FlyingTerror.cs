@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Supernova.Api;
-using Supernova.Common;
-using Supernova.Common.Systems;
+using SupernovaMod.Api;
+using SupernovaMod.Common;
+using SupernovaMod.Common.Systems;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -12,7 +12,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Npcs.Bosses.FlyingTerror
+namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 {
     [AutoloadBossHead]
     public class FlyingTerror : ModBossNpc

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Supernova.Common;
+using SupernovaMod.Common;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace Supernova.Content.Npcs
+namespace SupernovaMod.Content.Npcs
 {
     public class Gazer : ModNPC
     {

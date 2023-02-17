@@ -3,7 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Tiles
+namespace SupernovaMod.Content.Items.Tiles
 {
     public class ZirconiumOre : ModItem
     {

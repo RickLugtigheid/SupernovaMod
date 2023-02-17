@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Weapons.Melee
+namespace SupernovaMod.Content.Items.Weapons.Melee
 {
     public class Kama : ModItem
     {

@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Projectiles.Thrown
+namespace SupernovaMod.Content.Projectiles.Thrown
 {
     public class VerglasThrowingAxe : ModProjectile
     {

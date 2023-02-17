@@ -1,8 +1,8 @@
 using Terraria;
 using Terraria.ModLoader;
-using Supernova.Common.Players;
+using SupernovaMod.Common.Players;
 
-namespace Supernova.Content.Buffs.Minion
+namespace SupernovaMod.Content.Buffs.Minion
 {
     public class VerglasFlakeBuff : ModBuff
     {

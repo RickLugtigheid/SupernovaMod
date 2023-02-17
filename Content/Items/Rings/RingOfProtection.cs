@@ -1,11 +1,11 @@
-﻿using Supernova.Common.Players;
-using Supernova.Content.Items.Rings.BaseRings;
+﻿using SupernovaMod.Common.Players;
+using SupernovaMod.Content.Items.Rings.BaseRings;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Rings
+namespace SupernovaMod.Content.Items.Rings
 {
     public class RingOfProtection : SupernovaRingItem
     {

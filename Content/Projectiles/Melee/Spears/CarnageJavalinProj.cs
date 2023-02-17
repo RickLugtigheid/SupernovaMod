@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 
-namespace Supernova.Content.Projectiles.Melee.Spears
+namespace SupernovaMod.Content.Projectiles.Melee.Spears
 {
     public class CarnageJavalinProj : ModProjectile
     {

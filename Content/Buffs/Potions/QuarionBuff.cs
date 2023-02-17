@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Buffs.Potions
+namespace SupernovaMod.Content.Buffs.Potions
 {
     public class QuarionBuff : ModBuff
     {

@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Buffs.Rings
+namespace SupernovaMod.Content.Buffs.Rings
 {
     public class HellfireRingBuff : ModBuff
     {

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Weapons.Ranged
+namespace SupernovaMod.Content.Items.Weapons.Ranged
 {
     public class ZirconiumBow : ModItem
     {

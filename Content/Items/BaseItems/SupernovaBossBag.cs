@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Supernova.Content.Items.BaseItems
+namespace SupernovaMod.Content.Items.BaseItems
 {
     public abstract class SupernovaBossBag : ModItem
     {

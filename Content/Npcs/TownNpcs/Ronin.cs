@@ -6,12 +6,12 @@ using Terraria.GameContent.Personalities;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 
-namespace Supernova.Content.Npcs.TownNpcs
+namespace SupernovaMod.Content.Npcs.TownNpcs
 {
     [AutoloadHead]
     public class Ronin : ModNPC
     {
-        public override string Texture => "Supernova/Content/PreHardmode/TownNpcs/Ronin";
+        public override string Texture => "SupernovaMod/Content/Npcs/TownNpcs/Ronin";
 
         public override void SetStaticDefaults()
         {

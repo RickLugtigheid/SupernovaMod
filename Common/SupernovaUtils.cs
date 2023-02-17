@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Supernova.Api;
+using SupernovaMod.Api;
 using Terraria;
 
-namespace Supernova.Common
+namespace SupernovaMod.Common
 {
 	public static class SupernovaUtils
 	{

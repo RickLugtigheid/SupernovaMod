@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Dusts
+namespace SupernovaMod.Content.Dusts
 {
     public class BloodDust : ModDust
     {

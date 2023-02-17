@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 
-namespace Supernova.Content.Items.Weapons.Melee
+namespace SupernovaMod.Content.Items.Weapons.Melee
 {
     public class HarpoonSword : ModItem
     {

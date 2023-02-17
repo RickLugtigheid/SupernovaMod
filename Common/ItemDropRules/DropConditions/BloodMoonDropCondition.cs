@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Supernova.Common.ItemDropRules.DropConditions
+namespace SupernovaMod.Common.ItemDropRules.DropConditions
 {
 	internal class BloodMoonDropCondition : IItemDropRuleCondition
 	{

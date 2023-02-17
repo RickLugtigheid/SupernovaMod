@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Weapons.Magic
+namespace SupernovaMod.Content.Items.Weapons.Magic
 {
     public class GlowGun : ModItem
     {

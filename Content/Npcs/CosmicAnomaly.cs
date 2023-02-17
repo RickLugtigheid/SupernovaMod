@@ -3,11 +3,11 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Supernova.Common.Systems;
+using SupernovaMod.Common.Systems;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 
-namespace Supernova.Content.Npcs
+namespace SupernovaMod.Content.Npcs
 {
     public class CosmicAnomaly : ModNPC // ModNPC is used for Custom NPCs
     {

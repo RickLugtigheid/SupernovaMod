@@ -4,7 +4,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Projectiles.Magic
+namespace SupernovaMod.Content.Projectiles.Magic
 {
     public class CarnageScepterProj : ModProjectile
     {

@@ -3,7 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Items.Armor.Carnage
+namespace SupernovaMod.Content.Items.Armor.Carnage
 {
     [AutoloadEquip(EquipType.Head)]
     public class CarnageHelm : ModItem

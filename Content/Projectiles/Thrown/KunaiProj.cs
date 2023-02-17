@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
-namespace Supernova.Content.Projectiles.Thrown
+namespace SupernovaMod.Content.Projectiles.Thrown
 {
     public class KunaiProj : ModProjectile
     {

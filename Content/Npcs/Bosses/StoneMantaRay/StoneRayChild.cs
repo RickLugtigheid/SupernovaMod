@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Supernova.Content.Npcs.Bosses.StoneMantaRay
+namespace SupernovaMod.Content.Npcs.Bosses.StoneMantaRay
 {
     public class StoneRayChild : ModNPC
     {

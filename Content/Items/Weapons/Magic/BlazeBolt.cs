@@ -1,10 +1,10 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Supernova.Api;
+using SupernovaMod.Api;
 using Terraria.GameContent.Creative;
 
-namespace Supernova.Content.Items.Weapons.Magic
+namespace SupernovaMod.Content.Items.Weapons.Magic
 {
     public class BlazeBolt : ModShotgun
     {
