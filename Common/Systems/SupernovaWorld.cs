@@ -7,7 +7,7 @@ using Terraria.IO;
 
 namespace Supernova.Common.Systems
 {
-	public class SupernovaWorld : ModSystem
+    public class SupernovaWorld : ModSystem
 	{
         /* World Generation */
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
@@ -46,7 +46,7 @@ namespace Supernova.Common.Systems
                 // Finally, we do the actual world generation code. In this example, we use the WorldGen.TileRunner method. This method spawns splotches of the Tile type we provide to the method. The behavior of TileRunner is detailed in the Useful Methods section below.
                 //
                 WorldGen.TileRunner(x, y, WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(2, 6),
-                    ModContent.TileType<Content.Global.Tiles.ZirconiumOreTile>() // Ore to spawn
+                    ModContent.TileType<Content.Tiles.ZirconiumOreTile>() // Ore to spawn
                 );
             }
         }

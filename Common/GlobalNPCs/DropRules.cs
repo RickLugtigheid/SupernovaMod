@@ -19,7 +19,7 @@ namespace Supernova.Common.GlobalNPCs
 				//
 				npcLoot.Add(GetDropRule<EoCDownedDropCondition>(conditionalRule =>
 				{
-					conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.BoneFragment>(), 7, maximumDropped: 3));
+					conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.BoneFragment>(), 7, maximumDropped: 3));
 				}));
 			}
 
@@ -28,7 +28,7 @@ namespace Supernova.Common.GlobalNPCs
 			{
 				// 1/30 (3.3333%) Drop chance
 				//
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Accessories.DemonHorns>(), 30));
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.DemonHorns>(), 30));
 			}
 
 			/* Register Event Handlers */
@@ -58,13 +58,13 @@ namespace Supernova.Common.GlobalNPCs
 		{
 			// 1/80 (1.25%) Drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Weapons.Magic.StaffOfThorns>(), 80));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Weapons.Magic.StaffOfThorns>(), 80));
 		}
 		public void NPCBiomeGlowingMushroomLoot(IItemDropRule conditionalRule)
 		{
 			// 1/50 (2%) Drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Accessories.BagOfFungus>(), 50));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.BagOfFungus>(), 50));
 		}
 		public void NPCBiomeSnowLoot(IItemDropRule conditionalRule)
 		{
@@ -72,7 +72,7 @@ namespace Supernova.Common.GlobalNPCs
 			//
 			conditionalRule.OnSuccess(GetDropRule<QueenBeeDownedDropCondition>(conditionalRule =>
 			{
-				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.Rime>(), 5, maximumDropped: 2));
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.Rime>(), 5, maximumDropped: 2));
 			}));
 			/*if (NPC.downedQueenBee == true)
 			{
@@ -83,7 +83,7 @@ namespace Supernova.Common.GlobalNPCs
 		{
 			// 1/120 (0.83333%) Drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Accessories.SacrificialTalisman>(), 120));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.SacrificialTalisman>(), 120));
 		}
 		#endregion
 
@@ -92,7 +92,7 @@ namespace Supernova.Common.GlobalNPCs
 		{
 			// 1/10 (10%) drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.BloodShards>(), 10, maximumDropped: 3));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.BloodShards>(), 10, maximumDropped: 3));
 		}
 		#endregion
 	}

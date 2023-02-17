@@ -1,12 +1,12 @@
 ﻿using Supernova.Api.ChestLoot;
-using Supernova.Content.PreHardmode.Items.Weapons.Magic;
-using Supernova.Content.PreHardmode.Items.Weapons.Ranged;
+using Supernova.Content.Items.Weapons.Magic;
+using Supernova.Content.Items.Weapons.Ranged;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Supernova.Common.Systems
 {
-	public class SupernovaChestLoot : CustomChestLootSystem
+    public class SupernovaChestLoot : CustomChestLootSystem
 	{
 		protected override void ModifyChestLoot(ChestLoot chestLoot)
 		{

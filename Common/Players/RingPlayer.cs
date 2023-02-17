@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Supernova.Common.Systems;
-using Supernova.Content.PreHardmode.Items.Rings.BaseRings;
+using Supernova.Content.Items.Rings.BaseRings;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -14,7 +14,7 @@ namespace Supernova.Common.Players
 
 		public static float ringCooldownMulti = 1;
 
-		private readonly static int _ringCooldownBuffType = ModContent.BuffType<Content.Global.Buffs.RingCooldown>();
+		private readonly static int _ringCooldownBuffType = ModContent.BuffType<Content.Buffs.RingCooldown>();
 		
 		/// <summary>
 		/// If our ring is on a cooldown

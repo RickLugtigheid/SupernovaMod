@@ -14,10 +14,9 @@
     <Folder Include="Api\Collections\" />
     <Folder Include="Common\GlobalItems\" />
     <Folder Include="Common\GlobalProjectiles\" />
-    <Folder Include="Content\Global\Buffs\Cooldowns\" />
-    <Folder Include="Content\Global\Projectiles\Enemy\" />
-    <Folder Include="Content\Global\Projectiles\Boss\" />
-    <Folder Include="Content\PreHardmode\Items\Tools\" />
-    <Folder Include="Content\PreHardmode\Items\Weapons\Typeless\" />
+    <Folder Include="Content\Buffs\Cooldowns\" />
+    <Folder Include="Content\Projectiles\Enemy\" />
+    <Folder Include="Content\Projectiles\Boss\" />
+    <Folder Include="Content\Items\Weapons\Typeless\" />
   </ItemGroup>
 </Project>

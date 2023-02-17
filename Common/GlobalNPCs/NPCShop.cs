@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Supernova.Common.GlobalNPCs
 {
-	public class NPCShop : GlobalNPC
+    public class NPCShop : GlobalNPC
 	{
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
@@ -27,7 +27,7 @@ namespace Supernova.Common.GlobalNPCs
 		private void SetupShopArmsDealer(Chest shop, ref int nextSlot)
 		{
 			// Add the FirearmManual to the shop
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.PreHardmode.Items.Materials.FirearmManual>());
+			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Materials.FirearmManual>());
 			nextSlot++;
 		}
 	}

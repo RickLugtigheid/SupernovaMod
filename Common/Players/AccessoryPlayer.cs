@@ -5,14 +5,14 @@ using Terraria.ModLoader;
 
 namespace Supernova.Common.Players
 {
-	public class AccessoryPlayer : ModPlayer
+    public class AccessoryPlayer : ModPlayer
 	{
 		/* Accessories */
 		public bool hasBagOfFungus = false;
 		public bool hasInfernalEmblem = false;
 
 		/* Buffs */
-		private int _buffTypeHellfireRing = ModContent.BuffType<Content.Global.Buffs.Rings.HellfireRingBuff>();
+		private int _buffTypeHellfireRing = ModContent.BuffType<Content.Buffs.Rings.HellfireRingBuff>();
 		public bool HasBuffHellfireRing => Player.HasBuff(_buffTypeHellfireRing);
 
 		/* Minions */
