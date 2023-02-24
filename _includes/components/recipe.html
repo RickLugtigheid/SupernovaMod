@@ -1,0 +1,48 @@
+{%- comment -%}
+    Builds a reicpe table for the given recipe object.
+    If no recipe object was given as parameter it will load the recipe for the page if exists.
+{%- endcomment -%}
+{%- assign recipe = include.recipe -%}
+{%- if recipe == nil -%}
+    {%- assign recipe_id = page.name 
+        | replace: '.md','' -%}
+    {%- assign recipe = site.data.recipes[recipe_id] -%}
+{%- endif -%}
+<table>
+    <thead class="thead-light">
+        <tr>
+            <th style="text-align: center">Result</th>
+            <th style="text-align: center">Ingredients</th>
+            <th style="text-align: center">Crafting station</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            {% if recipe.result %}
+            <td style="text-align: center"><a href="{{ recipe.result.url }}"><img src="{{ recipe.result.icon }}" alt="{{ recipe.result.name }}"> {{ recipe.result.name }}</a></td>
+            {% endif %}
+            {% if recipe.ingredients %}
+                <td style="text-align: center">
+                    <ul style="list-style-type: none;">
+                    {%- for ingredient in recipe.ingredients -%}
+                        {% if ingredient.id %}
+                        <li>{% assign ingredient_obj = site.data.ingredients[ingredient.id] %}<a href="{{ ingredient_obj.url }}"><img src="{{ ingredient_obj.icon }}" alt="{{ ingredient_obj.name }}"> {{ ingredient_obj.name }}</a></li>
+                        {% else %}<li><a href="{{ ingredient.url }}"><img src="{{ ingredient.icon }}" alt="{{ ingredient.name }}"> {{ ingredient.name }}</a></li>
+                        {% endif %}({% if ingredient.ammount && ingredient.ammount > 1 %}{{ ingredient.ammount }}{% else %}1{% endif %})
+                    {%- endfor -%}
+                    </ul>
+                </td>
+            {% endif %}
+            {% if recipe.station.id %}
+                <td style="text-align: center">
+                    {% assign station = site.data.stations[recipe.station.id] %}
+                    <div><a href="{{ station.url }}"><img src="{{ station.icon }}" alt="{{ station.name }}"> {{ station.name }}</a></div>{% if recipe.station.or %}
+                    <i><b>OR</b></i>
+                    {% assign station_or = site.data.stations[recipe.station.or.id] %}
+                    <div><a href="{{ station.url }}"><img src="{{ station_or.icon }}" alt="{{ station_or.name }}"> {{ station_or.name }}</a></div>
+                {% endif %}</td>
+            {% endif %}
+        </tr>
+    </tbody>
+</table>

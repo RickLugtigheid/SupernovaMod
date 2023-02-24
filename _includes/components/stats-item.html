@@ -1,0 +1,133 @@
+<table>
+    <thead class="thead-light">
+        <tr>
+        <th style="text-align: center">{{ page.item.name | page.name }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if page.item.icon %}
+        <tr>
+            <td style="text-align: center"><img src="{{page.item.icon}}" alt="{{ page.item.name | page.name }}"></td>
+        </tr>
+        {% endif %}
+    </tbody>
+    <thead class="thead-light">
+        <tr>
+            <th style="text-align: center">Statistics</th>
+        </tr>
+    </thead>
+    <tbody class="tbody-stats">
+        {% if page.item.type %}
+        <tr>
+            <td>
+                <span><b>Type</b></span>
+                <span>{{page.item.type}}</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.uses %}
+        <tr>
+            <td>
+                <span><b>Uses</b></span>
+                <span>{{page.item.uses}}</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.damage %}
+        <tr>
+            <td>
+                <span><b>Damage</b></span>
+                <span>{{page.item.damage}} ({{page.item.damage_class | default: "Typeless"}})</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.knockback %}
+        <tr>
+            <td>
+                <span><b>Knockback</b></span>
+                <span>{{page.item.knockback}} ({% if page.item.knockback == 0 %}No knockback
+                    {% elsif page.item.knockback <= 1.5 %}Extremely weak knockback
+                    {% elsif page.item.knockback <= 3 %}Very weak knockback
+                    {% elsif page.item.knockback <= 4 %}Weak knockback
+                    {% elsif page.item.knockback <= 6 %}Average knockback
+                    {% elsif page.item.knockback <= 7 %}Strong knockback
+                    {% elsif page.item.knockback <= 9 %}Very strong knockback
+                    {% elsif page.item.knockback <= 11 %}Extremely strong knockback
+                    {% elsif page.item.knockback > 11 %}Insane knockback{% endif %})</span>
+            </td>
+        </tr>
+        {% endif %}
+
+        {% if page.item.critchance %}
+        <tr>
+            <td>
+                <span><b>Critical chance</b></span>
+                <span>{{page.item.critchance}}%</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.usetime %}
+        <tr>
+            <td>
+                <span><b>Use time</b></span>
+                <span>{{page.item.usetime}} ({% if page.item.knockback <= 8 %}Insanely fast speed
+                    {% elsif page.item.knockback <= 20 %}Very fast speed
+                    {% elsif page.item.knockback <= 25 %}Fast speed
+                    {% elsif page.item.knockback <= 30 %}Average speed
+                    {% elsif page.item.knockback <= 35 %}Slow speed
+                    {% elsif page.item.knockback <= 45 %}Very slow speed
+                    {% elsif page.item.knockback <= 55 %}Extremely slow speed
+                    {% elsif page.item.knockback >= 56 %}Snail speed{% endif %})</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.velocity %}
+        <tr>
+            <td>
+                <span><b>Velocity</b></span>
+                <span>{{page.item.velocity}}</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.tooltip %}
+        <tr>
+            <td>
+                <span><b>Tooltip</b></span>
+                <span>{{page.item.tooltip}}</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.rarity %}
+        <tr>
+            <td>
+                <span><b>Rarity</b></span>
+                <span>Rarity level: 2</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.buyPrice %}
+        <tr>
+            <td>
+                <span><b>Buy</b></span>
+                <span>{{page.item.buyPrice}}<img alt="Gold"></span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.sellPrice %}
+        <tr>
+            <td>
+                <span><b>Sell</b></span>
+                <span>{{page.item.sellPrice}}<img alt="Gold"></span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.item.sacrificeCountNeeded %}
+        <tr>
+            <td>
+                <span><b>Research</b></span>
+                <span>{{page.item.sacrificeCountNeeded}} required</span>
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>

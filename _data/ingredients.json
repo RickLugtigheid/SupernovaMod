@@ -1,0 +1,48 @@
+{
+    "zirconium_ore": {
+        "name": "Zirconium Ore",
+        "url": "/SupernovaMod/wiki/items/materials/zirconium_ore/",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Tiles/ZirconiumOre.png"
+    },
+    "blood_shard": {
+        "name": "Blood Shard",
+        "url": "/SupernovaMod/wiki/items/materials/blood_shards/",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/BloodShards.png"
+    },
+    "bone_fragment": {
+        "name": "Bone Fragment",
+        "url": "/SupernovaMod/wiki/items/materials/bone_fragment/",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/BoneFragment.png"
+    },
+    "golden_ring_mold": {
+        "name": "Golden Ring Mold",
+        "url": "/SupernovaMod/wiki/items/materials/golden_ring_mold/",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/GoldenRingMold.png"
+    },
+    "firearm_manual": {
+        "name": "Firearm Manual",
+        "url": "/SupernovaMod/wiki/items/materials/firearm_manual/",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/FirearmManual.png"
+    },
+    "rime": {
+        "name": "Rime",
+        "url": "/SupernovaMod/wiki/items/materials/rime/",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/Rime.png"
+    },
+
+    "any_iron_bar": {
+        "name": "Iron Bar",
+        "url": "https://terraria.wiki.gg/wiki/Iron_Bar",
+        "icon": "https://terraria.wiki.gg/images/6/6c/Iron_Bar.png"
+    },
+    "any_gold_bar": {
+        "name": "Gold Bar",
+        "url": "https://terraria.wiki.gg/wiki/Gold_Bar",
+        "icon": "https://terraria.wiki.gg/images/4/4e/Gold_Bar.png"
+    },
+    "hellstone_bar": {
+        "name": "Hellstone Bar",
+        "url": "https://terraria.wiki.gg/wiki/Hellstone_Bar",
+        "icon": "https://terraria.wiki.gg/images/d/dc/Hellstone_Bar.png"
+    }
+}

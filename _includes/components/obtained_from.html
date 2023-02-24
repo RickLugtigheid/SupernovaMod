@@ -1,0 +1,30 @@
+{% if page.obtained %}
+<table>
+    <thead class="thead-light">
+        <tr>
+            <th>    </th>
+            <th style="text-align: center"><img src="{%- if page.obtained.type == 'npc' -%}https://terraria.wiki.gg/images/3/32/Bestiary_Boss_Enemy.png{%- elsif page.obtained.type == 'loot' -%}https://terraria.wiki.gg/images/8/84/Bestiary_Item_Spawn.png{% endif %}"> Obtained from</th>
+            <th>    </th>
+        </tr>
+    </thead>
+    <tbody>
+            
+        <td style="text-align: center">
+            <thead class="thead-light">
+                <tr>
+                <th style="text-align: center">Entity</th>
+                <th style="text-align: center" title="Quantity">Qty.</th>
+                <th style="text-align: center">Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%- for entity in page.obtained.from -%}
+                    <td style="text-align: center" title="{{ entity.name }}"><a href="{{ entity.url }}"><img src="{{ entity.icon }}" alt="{{ entity.name }}"> {{ entity.name }}</a></td>
+                    <td style="text-align: center">{{ entity.quantity }}</td>
+                    <td style="text-align: center">{{ entity.drop_rate }}</td>
+                {%- endfor -%}
+            </tbody>
+        </td>
+    </tbody>
+</table>
+{% endif %}

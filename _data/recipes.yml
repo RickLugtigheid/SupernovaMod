@@ -1,0 +1,278 @@
+#
+# Define recipes here.
+#
+# Note:
+#   The recipe id MUST be the same as the page name for the item that will be crafted.
+#   We do this so the recipe can be auto loaded.
+#
+
+# Material Recipes |
+#===================
+#
+golden_ring_mold:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/GoldenRingMold.png
+    name: Golden Ring Mold
+  ingredients:
+    - id: any_gold_bar
+      ammount: 8
+  station:
+    id: ringforge
+
+zirconium_bar:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/ZirconiumBar.png
+    url: /SupernovaMod/wiki/items/materials/zirconium_bar/
+    name: Zirconium Bar
+  ingredients:
+    - id: zirconium_ore
+      ammount: 4
+  station:
+      id: furnaces
+
+verglas_bar:
+  result:
+      icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/VerglasBar.png
+      url: /SupernovaMod/wiki/items/materials/verglas_bar/
+      name: Verglas Bar
+  ingredients:
+      - id: any_iron_bar
+        ammount: 1
+
+      - id: rime
+        ammount: 1
+      
+      - name: Ice Block
+        url: https://terraria.wiki.gg/wiki/Ice_Blocks
+        icon: https://terraria.wiki.gg/images/b/b1/Ice_Block.png
+        ammount: 3
+  station:
+      id: hellforge
+
+
+# Weapon Recipes |
+#=================
+#
+carnage_rifle:
+  result:
+      icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/CarnageRifle.png
+      url: /SupernovaMod/wiki/items/weapons/ranged/carnage_rifle/
+      name: Carnage Rifle
+  ingredients:
+      - id: blood_shard
+        ammount: 5
+
+      - id: bone_fragment
+        ammount: 5
+
+      - name: Musket
+        icon: https://terraria.wiki.gg/images/2/2b/Musket.png
+
+      - id: firearm_manual
+        ammount: 2
+  station:
+      id: anvil_iron
+      or:
+        id: anvil_lead
+
+desert_duster: 
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/DesertDuster.png
+    url: /SupernovaMod/wiki/items/weapons/ranged/desert_duster/
+    name: Desert Duster
+  ingredients:
+    - name: Sturdy Fossil
+      url: https://terraria.wiki.gg/wiki/Sturdy_Fossil
+      icon: https://terraria.wiki.gg/images/e/e1/Sturdy_Fossil.png
+
+    - id: firearm_manual
+      ammount: 2
+  station:
+    id: workbenches
+
+gallant:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/Gallant.png
+    url: /SupernovaMod/wiki/items/weapons/ranged/gallant/
+    name: Gallant
+  ingredients:
+    - id: any_gold_bar
+      ammount: 7
+
+    - name: Flintlock Pistol
+      url: https://terraria.wiki.gg/wiki/Flintlock_Pistol
+      icon: https://terraria.wiki.gg/images/d/da/Flintlock_Pistol.png
+
+    - id: firearm_manual
+      ammount: 1
+  station:
+    id: workbenches
+
+hellfire_rifle:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/HellfireRifle.png
+    url: /SupernovaMod/wiki/items/weapons/ranged/hellfire_rifle/
+    name: Hellfire Rifle
+  ingredients:
+    - name: Wooden Rifle
+      url: /SupernovaMod/wiki/items/weapons/ranged/wooden_rifle/
+      icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/WoodenRifle.png
+
+    - id: hellstone_bar
+      ammount: 17
+
+    - id: firearm_manual
+      ammount: 2
+  station:
+    id: workbenches
+
+marble_magnum:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/MarbleMagnum.png
+    url: /SupernovaMod/wiki/items/weapons/ranged/marble_magnum/
+    name: Marble Magnum
+  ingredients:
+    - name: Marble Block
+      url: https://terraria.wiki.gg/wiki/Marble_Block
+      icon: https://terraria.wiki.gg/images/e/ed/Marble_Block.png
+      ammount: 37
+
+    - id: any_iron_bar
+      ammount: 7
+
+    - id: firearm_manual
+      ammount: 2
+  station:
+    id: furnaces
+
+wooden_handgun:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/WoodGun.png
+    url: /SupernovaMod/wiki/items/weapons/ranged/wooden_handgun/
+    name: Wooden Handgun
+  ingredients:
+    - name: Wood
+      url: https://terraria.wiki.gg/wiki/Woods
+      icon: https://terraria.wiki.gg/images/7/70/Any_Wood.gif
+      ammount: 15
+  station:
+    id: workbenches
+
+wooden_rifle:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/WoodenRifle.png
+    url: /SupernovaMod/wiki/items/weapons/ranged/wooden_rifle/
+    name: Wooden Rifle
+  ingredients:
+    - id: any_iron_bar
+      ammount: 7
+
+    - name: Wooden Handgun
+      url: /SupernovaMod/wiki/items/weapons/ranged/wooden_handgun/
+      icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/WoodGun.png
+
+    - name: Wood
+      url: https://terraria.wiki.gg/wiki/Woods
+      icon: https://terraria.wiki.gg/images/7/70/Any_Wood.gif
+      ammount: 20
+    
+    - id: firearm_manual
+      ammount: 2
+  station:
+    id: workbenches
+
+# Ring Recipes |
+#=================
+#
+gem_ring:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Rings/GemRing.png
+    url: /SupernovaMod/wiki/items/rings/gem_ring/
+    name: Gem Ring
+  ingredients:
+    - id: golden_ring_mold
+      ammount: 1
+
+    - name: Diamond
+      url: https://terraria.wiki.gg/wiki/Diamond
+      icon: https://terraria.wiki.gg/images/e/ea/Diamond.png
+
+    - name: Ruby
+      url: https://terraria.wiki.gg/wiki/Ruby
+      icon: https://terraria.wiki.gg/images/a/a9/Ruby.png
+
+    - name: Emerald
+      url: https://terraria.wiki.gg/wiki/Emerald
+      icon: https://terraria.wiki.gg/images/6/6a/Emerald.png
+
+    - name: Sapphire
+      url: https://terraria.wiki.gg/wiki/Sapphire
+      icon: https://terraria.wiki.gg/images/f/f7/Sapphire.png
+
+    - name: Topaz
+      url: https://terraria.wiki.gg/wiki/Topaz
+      icon: https://terraria.wiki.gg/images/a/a5/Topaz.png
+
+    - name: Amethyst
+      url: https://terraria.wiki.gg/wiki/Amethyst
+      icon: https://terraria.wiki.gg/images/2/2e/Amethyst.png
+      
+  station:
+    id: ring_forge
+
+ring_of_protection:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Rings/RingOfProtection.png
+    url: /SupernovaMod/wiki/items/rings/ring_of_protection/
+    name: Ring of Protection
+  ingredients:
+    - id: golden_ring_mold
+      ammount: 1
+
+    - name: Ironskin Potion
+      url: https://terraria.wiki.gg/wiki/Ironskin_Potion
+      icon: https://terraria.wiki.gg/images/9/9f/Ironskin_Potion.png
+
+    - name: Tungsten Bar
+      url: https://terraria.wiki.gg/wiki/Tungsten_Bar
+      icon: https://terraria.wiki.gg/images/f/f3/Tungsten_Bar.png
+      ammount: 4
+
+  station:
+    id: ring_forge
+
+ring_of_hellfire:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Rings/RingOfHellfire.png
+    url: /SupernovaMod/wiki/items/rings/ring_of_hellfire/
+    name: Ring of Hellfire
+  ingredients:
+    - id: golden_ring_mold
+      ammount: 1
+
+    - id: hellstone_bar
+      ammount: 1
+  station:
+    id: ring_forge
+
+prospectors_ring:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Rings/ProspectorsRing.png
+    url: /SupernovaMod/wiki/items/rings/prospectors_ring/
+    name: Prospectors Ring
+  ingredients:
+    - id: golden_ring_mold
+      ammount: 1
+
+    - name: Spelunker Potion
+      url: https://terraria.wiki.gg/wiki/Spelunker_Potion
+      icon: https://terraria.wiki.gg/images/0/03/Spelunker_Potion.png
+      ammount: 2
+
+    - name: Gold Ore
+      url: https://terraria.wiki.gg/wiki/Gold_Ore
+      icon: https://terraria.wiki.gg/images/f/f7/Gold_Ore.png
+      ammount: 4
+
+  station:
+    id: ring_forge

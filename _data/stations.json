@@ -1,0 +1,33 @@
+{
+    "ring_forge": {
+        "url": "/SupernovaMod/wiki/tiles/ring_forge",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Tiles/RingForge.png",
+        "name": "Ring Forge"
+    },
+
+    "workbenches": {
+        "url": "hhttps://terraria.wiki.gg/wiki/Work_Benches",
+        "icon": "https://terraria.wiki.gg/images/d/d5/Any_Work_Bench.gif",
+        "name": "Work Benches"
+    },
+    "furnaces": {
+        "url": "https://terraria.wiki.gg/wiki/Furnace",
+        "icon": "https://terraria.wiki.gg/images/0/0f/Furnace.png",
+        "name": "Furnace"
+    },
+    "anvil_iron": {
+        "url": "https://terraria.wiki.gg/wiki/Pre-Hardmode_Anvils",
+        "icon": "https://terraria.wiki.gg/images/c/c3/Iron_Anvil.png",
+        "name": "Iron Anvil"
+    },
+    "anvil_lead": {
+        "url": "https://terraria.wiki.gg/wiki/Pre-Hardmode_Anvils",
+        "icon": "https://terraria.wiki.gg/images/3/32/Lead_Anvil.png",
+        "name": "Lead Anvil"
+    },
+    "hellforge": {
+        "url": "https://terraria.wiki.gg/wiki/Hellforge",
+        "icon": "https://terraria.wiki.gg/images/6/67/Hellforge.png",
+        "name": "Hellforge"
+    }
+}

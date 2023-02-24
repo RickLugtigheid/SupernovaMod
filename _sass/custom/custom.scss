@@ -1,0 +1,9 @@
+// custom SCSS (or CSS) goes here
+.tbody-stats td {
+    display: flex;
+    justify-content: space-between;
+}
+.tbody-stats td span {
+    margin-left: 10%;
+    margin-right: 10%;
+}
