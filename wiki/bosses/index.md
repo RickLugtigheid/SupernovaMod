@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Items
+title: Bosses
 nav_order: 2
 has_children: true
-permalink: /wiki/items
+permalink: /wiki/bosses
 ---
 
-# Items
+# Bosses
 
 {: .fs-6 .fw-300 }

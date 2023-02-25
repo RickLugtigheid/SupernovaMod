@@ -23,3 +23,6 @@ Verglas Bars can be obtained in mid/late [Pre Hardmode](https://terraria.wiki.gg
 ---
 ### Recipes
 {% include components/recipe.html %}
+
+### Used in
+{% include components/recipe.html recipe=site.data.recipes.verglas_bow %}

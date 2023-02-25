@@ -1,0 +1,92 @@
+<table>
+    <thead class="thead-light">
+        <tr>
+        <th style="text-align: center">{{ page.npc.name | page.name }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if page.npc.icon %}
+        <tr>
+            <td style="text-align: center"><img src="{{page.npc.icon}}" alt="{{ page.npc.name | page.name }}"></td>
+        </tr>
+        {% endif %}
+        {% if page.npc.map_icon %}
+        <tr>
+            <hr>
+            <td style="text-align: center"><img src="{{page.npc.map_icon}}" alt="icon_{{ page.npc.name | page.name }}"><br><b><i>Map Icon</i></b></td>
+        </tr>
+        {% endif %}
+    </tbody>
+
+    <thead class="thead-light">
+        <tr>
+            <th style="text-align: center">Statistics</th>
+        </tr>
+    </thead>
+    <tbody class="tbody-stats">
+        {% if page.npc.type %}
+        <tr>
+            <td>
+                <span><b>Type</b></span>
+                <span>{{page.npc.type}}</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.npc.environment %}
+        <tr>
+            <td>
+                <span><b>Environment</b></span>
+                <span>{{page.npc.environment[0]}}</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.npc.damage %}
+        <tr>
+            <td>
+                <span><b>Damage</b></span>
+                <span>{{page.npc.damage}}</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.npc.defense %}
+        <tr>
+            <td>
+                <span><b>Defense</b></span>
+                <span>{{page.npc.defense}}</span>
+            </td>
+        </tr>
+        {% endif %}
+        {% if page.npc.knockback_resist %}
+        <tr>
+            <td>
+                <span><b><a href="https://terraria.wiki.gg/wiki/Knockback" title="Knockback">KB</a> Resist</b></span>
+                <span>{{page.npc.knockback_resist}}</span>
+            </td>
+        </tr>
+        {% endif %}
+    </tbody>
+
+    <thead class="thead-light">
+        <tr>
+            <th style="text-align: center">Drops</th>
+        </tr>
+    </thead>
+    <tbody class="tbody-stats">
+        {%- for drop in page.npc.drops -%}
+        <td>
+            {% if drop.id %}
+                {% assign drop_data = site.data.ingredients[drop.id] %}
+                {% if drop_data == nil %}
+                {% assign drop_data = site.data.drops[drop.id] %}
+                {% endif %}
+            {% else %}
+                {% assign drop_data = drop %}
+            {% endif %}
+
+            <span title="{{ drop_data.name }}"><a href="{{ drop_data.url }}"><img src="{{ drop_data.icon }}" alt="{{ drop_data.name }}"> {{ drop_data.name }}</a></span>
+            <span>{{ drop.quantity }}</span>
+            <span style="text-align: end">{{ drop.drop_rate }}</span>
+        </td>
+        {%- endfor -%}
+    </tbody>
+</table>

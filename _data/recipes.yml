@@ -53,6 +53,8 @@ verglas_bar:
 # Weapon Recipes |
 #=================
 #
+# Ranged (Guns)
+#
 carnage_rifle:
   result:
       icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/CarnageRifle.png
@@ -180,6 +182,34 @@ wooden_rifle:
       ammount: 2
   station:
     id: workbenches
+
+# Ranged (Bows)
+#
+zirconium_bow:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/ZirconiumBow.png
+    url: /SupernovaMod/wiki/items/weapons/ranged/zirconium_bow/
+    name: Zirconium Bow
+  ingredients:
+    - id: zirconium_bar
+      ammount: 12
+  station:
+    id: anvil_lead
+    or:
+      id: anvil_iron
+
+verglas_bow:
+  result:
+    icon: https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Weapons/Ranged/VerglasBow.png
+    url: /SupernovaMod/wiki/items/weapons/ranged/verglas_bow/
+    name: Verglas Bow
+  ingredients:
+    - id: verglas_bar
+      ammount: 12
+  station:
+    id: anvil_lead
+    or:
+      id: anvil_iron
 
 # Ring Recipes |
 #=================

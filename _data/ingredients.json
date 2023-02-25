@@ -4,6 +4,11 @@
         "url": "/SupernovaMod/wiki/items/materials/zirconium_ore/",
         "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Tiles/ZirconiumOre.png"
     },
+    "zirconium_bar": {
+        "name": "Zirconium bar",
+        "url": "/SupernovaMod/wiki/items/materials/zirconium_bar/",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/ZirconiumBar.png"
+    },
     "blood_shard": {
         "name": "Blood Shard",
         "url": "/SupernovaMod/wiki/items/materials/blood_shards/",
@@ -28,6 +33,11 @@
         "name": "Rime",
         "url": "/SupernovaMod/wiki/items/materials/rime/",
         "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/Rime.png"
+    },
+    "verglas_bar": {
+        "name": "Verglas Bar",
+        "url": "/SupernovaMod/wiki/items/materials/verglas_bar/",
+        "icon": "https://raw.githubusercontent.com/KoekMeneer/SupernovaMod/main/Content/Items/Materials/VerglasBar.png"
     },
 
     "any_iron_bar": {

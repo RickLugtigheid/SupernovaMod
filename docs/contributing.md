@@ -18,6 +18,10 @@ A guide for contributing to the Supernova Mod / Wiki.
 
 ---
 
+## Aplying for dev
+If you want to make sprites, code or music for the mod as a Developer than you will need to aply for dev.
+... TODO
+
 ## Contributing to the Wiki
 
 ### Table of content
@@ -101,6 +105,9 @@ grand_parent: Items
 This is my page...
 ```
 
+{: .tip }
+> Check out other pages for examples.
+
 #### 4. Commit your new page
 ```shell
 $ git commit -m "Change ... and ... on the .. page"
@@ -121,3 +128,6 @@ $ git commit -m "Change ... and ... on the .. page"
 > No documentation written for this yet
 
 ---
+
+### How to: Animate a sprite sheet
+tool: [https://is.si/animator/](https://is.si/animator/)

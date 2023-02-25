@@ -24,3 +24,6 @@ The **Zirconium Bar** is a bar of pink metal used to craft Zirconium armor and Z
 ---
 ### Recipes
 {% include components/recipe.html %}
+
+### Used in
+{% include components/recipe.html recipe=site.data.recipes.zirconium_bow %}
