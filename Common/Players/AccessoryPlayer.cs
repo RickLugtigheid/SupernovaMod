@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Content.Items.Accessories;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,8 +10,9 @@ namespace SupernovaMod.Common.Players
     public class AccessoryPlayer : ModPlayer
 	{
 		/* Accessories */
-		public bool hasBagOfFungus = false;
-		public bool hasInfernalEmblem = false;
+		public bool accHeartOfTheJungle = false;
+		public bool accBagOfFungus = false;
+		public bool accInfernalEmblem = false;
 
 		/* Buffs */
 		private int _buffTypeHellfireRing = ModContent.BuffType<Content.Buffs.Rings.HellfireRingBuff>();
@@ -25,8 +28,9 @@ namespace SupernovaMod.Common.Players
 		{
 			base.ResetEffects();
 
-			hasBagOfFungus		= false;
-			hasInfernalEmblem	= false;
+			accBagOfFungus		= false;
+			accInfernalEmblem = false;
+			accHeartOfTheJungle = false;
 
 			hasMinionVerglasFlake		= false;
 			hasMinionCarnageOrb			= false;
@@ -50,13 +54,33 @@ namespace SupernovaMod.Common.Players
 
 		public override void OnHitByNPC(NPC npc, int damage, bool crit)
 		{
-			if (hasBagOfFungus & Main.rand.NextBool(2))
+			OnHitByAny(npc, damage, crit);
+			if (accBagOfFungus & Main.rand.NextBool(2))
 			{
 				Invoke_BagOfFungus();
 			}
-			else if (hasInfernalEmblem)
+			if (accInfernalEmblem)
 			{
 				Invoke_InfernalEmblem();
+			}
+		}
+		public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+		{
+			OnHitByAny(proj, damage, crit);
+		}
+
+		private void OnHitByAny(Entity entity, int damage, bool crit)
+		{
+			if (accHeartOfTheJungle)
+			{
+				for (int i = 3; i < 8 + Player.extraAccessorySlots; i++)
+				{
+					Item item = Player.armor[i];
+					if (item.type == ModContent.ItemType<HeartOfTheJungle>())
+					{
+						Invoke_HeartOfTheJungle(item.ModItem as HeartOfTheJungle);
+					}
+				}
 			}
 		}
 
@@ -77,6 +101,10 @@ namespace SupernovaMod.Common.Players
 				Main.projectile[i].hostile = false;
 				Main.projectile[i].friendly = true;
 			}
+		}
+		void Invoke_HeartOfTheJungle(HeartOfTheJungle item)
+		{
+			item.ConsumeEnergy(Player);
 		}
 	}
 }

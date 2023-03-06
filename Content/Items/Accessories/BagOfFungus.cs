@@ -26,7 +26,7 @@ namespace SupernovaMod.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            player.GetModPlayer<Common.Players.AccessoryPlayer>().hasBagOfFungus = true;
+            player.GetModPlayer<Common.Players.AccessoryPlayer>().accBagOfFungus = true;
         }
     }
 }

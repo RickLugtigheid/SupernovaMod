@@ -1,6 +1,7 @@
 ﻿using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Content.Items.Accessories
@@ -22,11 +23,12 @@ namespace SupernovaMod.Content.Items.Accessories
             Item.maxStack = 1;
             Item.value = Item.buyPrice(0, 8, 0, 0);
             Item.accessory = true;
+            Item.rare = ItemRarityID.LightRed;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            player.GetModPlayer<AccessoryPlayer>().hasInfernalEmblem = true;
+            player.GetModPlayer<AccessoryPlayer>().accInfernalEmblem = true;
         }
     }
 }
