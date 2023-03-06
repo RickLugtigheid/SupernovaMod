@@ -1,41 +1,49 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
+namespace SupernovaMod.Content.Items.Accessories
 {
-    public class TerrorInABottle : ModItem
+    public class MeteorBoots : ModItem
     {
 
         public override void SetStaticDefaults()
         {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            DisplayName.SetDefault("Terror in a Bottle");
-            Tooltip.SetDefault("Allows you to dash");
+            DisplayName.SetDefault("Meteor boots");
+            Tooltip.SetDefault($"When you double tap 'down_button' in the air you will become a meteor!");
         }
 
         public override void SetDefaults()
         {
-            Item.expert = true;
             Item.width = 16;
             Item.height = 16;
             Item.maxStack = 1;
-            Item.rare = ItemRarityID.Master;
-            Item.value = Item.buyPrice(0, 4, 60, 30);
+            Item.value = Item.buyPrice(0, 7, 0, 0);
             Item.accessory = true;
-            Item.master = true;
         }
 
+        int timer = 0;
+        int power = 0; //power = damage
+        float fallCheck;
+        bool runTimer;
+        bool falling;
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            TerrorDashPlayer mp = player.GetModPlayer<TerrorDashPlayer>();
+            //DO THIS:
+            //you would do an accessory based on the SimpleModPlayer
+            //and then use the PreHurt hook in ModPlayer
+            //basically you need to reimplement vanilla code a bit to detect if you received fall damage
+            //read the adaption guide
+
+            #region dash
+            downDashPlayer mp = player.GetModPlayer<downDashPlayer>();
 
             //If the dash is not active, immediately return so we don't do any of the logic for it
             if (!mp.DashActive)
+			{
                 return;
+            }
 
             //This is where we set the afterimage effect.  You can replace these two lines with whatever you want to happen during the dash
             //Some examples include:  spawning dust where the player is, adding buffs, making the player immune, etc.
@@ -44,27 +52,35 @@ namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
             player.armorEffectDrawShadowEOCShield = true;
 
             //set the dust of the trail
-            int dust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width + 2, player.height + 2, ModContent.DustType<Dusts.TerrorDust>(), player.velocity.X, player.velocity.Y, 15, default, 1.2f);
-            Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width, player.height, ModContent.DustType<Dusts.TerrorDust>(), player.velocity.X * .05f, player.velocity.Y * .05f, 2, default, 1.2f);
+            int dust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width + 2, player.height + 2, DustID.t_Meteor, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 30, default(Color), 1);
 
 
             Main.dust[dust].noGravity = true; //this make so the dust has no gravity
             Main.dust[dust].velocity *= 0f;
 
-            //If the dash has just started, apply the dash velocity in whatever direction we wanted to dash towards
-            if (mp.DashTimer == TerrorDashPlayer.MAX_DASH_TIMER)
+			dust = Dust.NewDust(new Vector2(player.position.X, player.position.Y + 2), player.width, player.height, DustID.FlameBurst, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 2, default(Color), .7f);
+			Main.dust[dust].noGravity = true; //this make so the dust has no gravity
+
+			//If the dash has just started, apply the dash velocity in whatever direction we wanted to dash towards
+			if (mp.DashTimer == downDashPlayer.MAX_DASH_TIMER)
             {
                 Vector2 newVelocity = player.velocity;
 
                 //Only apply the dash velocity if our current speed in the wanted direction is less than DashVelocity
-                if (mp.DashDir == TerrorDashPlayer.DashLeft && player.velocity.X > -mp.DashVelocity || mp.DashDir == TerrorDashPlayer.DashRight && player.velocity.X < mp.DashVelocity)
+                if ((mp.DashDir == downDashPlayer.DashDown && player.velocity.Y < mp.DashVelocity))
                 {
-                    //X-velocity is set here
-                    int dashDirection = mp.DashDir == TerrorDashPlayer.DashRight ? 1 : -1;
-                    newVelocity.X = dashDirection * mp.DashVelocity;
+                    //Y-velocity is set here
+                    //If the direction requested was DashUp, then we adjust the velocity to make the dash appear "faster" due to gravity being immediately in effect
+                    //This adjustment is roughly 1.3x the intended dash velocity
+                    float dashDirection = mp.DashDir == downDashPlayer.DashDown ? 1 : -1.3f;
+                    newVelocity.Y = dashDirection * mp.DashVelocity;
                 }
 
                 player.velocity = newVelocity;
+                int damage = Main.rand.Next(9, 22);
+                Projectile.NewProjectile(Item.GetSource_FromAI(), player.position.X, player.position.Y - 0, Main.rand.NextFloat(0.01f, 1), 4, ProjectileID.Meteor3, damage, 7, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(Item.GetSource_FromAI(), player.position.X, player.position.Y - 25, 0, 4, ProjectileID.Meteor1, damage, 7, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(Item.GetSource_FromAI(), player.position.X, player.position.Y - 50, Main.rand.NextFloat(1, -0.01f), 4, ProjectileID.Meteor2, damage, 7, Main.myPlayer, 0f, 0f);
             }
 
             //Decrement the timers
@@ -74,19 +90,26 @@ namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
             if (mp.DashDelay == 0)
             {
                 //The dash has ended.  Reset the fields
-                mp.DashDelay = TerrorDashPlayer.MAX_DASH_DELAY;
-                mp.DashTimer = TerrorDashPlayer.MAX_DASH_TIMER;
+                mp.DashDelay = downDashPlayer.MAX_DASH_DELAY;
+                mp.DashTimer = downDashPlayer.MAX_DASH_TIMER;
                 mp.DashActive = false;
             }
+            #endregion
+        }
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.MeteoriteBar, 20);
+            recipe.AddIngredient(ItemID.Silk, 15);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
         }
     }
-    public class TerrorDashPlayer : ModPlayer
+    public class downDashPlayer : ModPlayer
     {
         //These indicate what direction is what in the timer arrays used
         public static readonly int DashDown = 0;
         public static readonly int DashUp = 1;
-        public static readonly int DashRight = 2;
-        public static readonly int DashLeft = 3;
 
         //The direction the player is currently dashing towards.  Defaults to -1 if no dash is ocurring.
         public int DashDir = -1;
@@ -96,11 +119,11 @@ namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
         public int DashDelay = MAX_DASH_DELAY;
         public int DashTimer = MAX_DASH_TIMER;
         //The initial velocity.  10 velocity is about 37.5 tiles/second or 50 mph
-        public readonly float DashVelocity = 12f;
+        public readonly float DashVelocity = 50f;
         //These two fields are the max values for the delay between dashes and the length of the dash in that order
         //The time is measured in frames
-        public static readonly int MAX_DASH_DELAY = 80;
-        public static readonly int MAX_DASH_TIMER = 20;
+        public static readonly int MAX_DASH_DELAY = 180;
+        public static readonly int MAX_DASH_TIMER = 35;
 
         public override void ResetEffects()
         {
@@ -119,7 +142,7 @@ namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 
                 //Set the flag for the ExampleDashAccessory being equipped if we have it equipped OR immediately return if any of the accessories are
                 // one of the higher-priority ones
-                if (item.type == ModContent.ItemType<TerrorInABottle>())
+                if (item.type == ModContent.ItemType<MeteorBoots>())
                     dashAccessoryEquipped = true;
                 else if (item.type == ItemID.EoCShield || item.type == ItemID.MasterNinjaGear || item.type == ItemID.Tabi)
                     return;
@@ -132,14 +155,8 @@ namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
 
             //When a directional key is pressed and released, vanilla starts a 15 tick (1/4 second) timer during which a second press activates a dash
             //If the timers are set to 15, then this is the first press just processed by the vanilla logic.  Otherwise, it's a double-tap
-            /*if (player.controlDown && player.releaseDown && player.doubleTapCardinalTimer[DashDown] < 15)
+            if (Player.controlDown && Player.releaseDown && Player.doubleTapCardinalTimer[DashDown] < 15)
                 DashDir = DashDown;
-            else if (player.controlUp && player.releaseUp && player.doubleTapCardinalTimer[DashUp] < 15)
-                DashDir = DashUp;*/
-            if (Player.controlRight && Player.releaseRight && Player.doubleTapCardinalTimer[DashRight] < 15)
-                DashDir = DashRight;
-            else if (Player.controlLeft && Player.releaseLeft && Player.doubleTapCardinalTimer[DashLeft] < 15)
-                DashDir = DashLeft;
             else
                 return;  //No dash was activated, return
 
@@ -148,5 +165,5 @@ namespace SupernovaMod.Content.Npcs.Bosses.FlyingTerror
             //Here you'd be able to set an effect that happens when the dash first activates
             //Some examples include:  the larger smoke effect from the Master Ninja Gear and Tabi
         }
-    }
+	}
 }

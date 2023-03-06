@@ -41,5 +41,5 @@ namespace SupernovaMod.Common
         }
 
         public static float Magnitude(Vector2 mag) => (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
-    }
+	}
 }
