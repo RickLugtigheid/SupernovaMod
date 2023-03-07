@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using SupernovaMod.Common.Systems;
 using SupernovaMod.Content.Items.Rings.BaseRings;
 using System;
@@ -10,12 +10,10 @@ namespace SupernovaMod.Common.Players
 {
     public class RingPlayer : ModAccessorySlotPlayer
 	{
-		internal static AccessorySlotLoader Loader => LoaderManager.Get<AccessorySlotLoader>();
+		private readonly static int _ringCooldownBuffType = ModContent.BuffType<Content.Buffs.RingCooldown>();
 
 		public static float ringCooldownMulti = 1;
 
-		private readonly static int _ringCooldownBuffType = ModContent.BuffType<Content.Buffs.RingCooldown>();
-		
 		/// <summary>
 		/// If our ring is on a cooldown
 		/// </summary>
@@ -31,9 +29,6 @@ namespace SupernovaMod.Common.Players
 
 		public override void PreUpdate()
 		{
-			// Reset the ring cooldown multi to 1
-			// We do this so any accessory(or other) effects don't keep aplying
-			//
 			ringCooldownMulti = 1;
 			base.PreUpdate();
 		}
@@ -122,6 +117,8 @@ namespace SupernovaMod.Common.Players
 			equipedRing = null;
 			return false;
 		}
+
+		private AccessorySlotLoader _slotLoader = null;
 		/// <summary>
 		/// Tries to get the ring Accessory slot.
 		/// </summary>
@@ -132,7 +129,11 @@ namespace SupernovaMod.Common.Players
 			try
 			{
 				ModAccessorySlotPlayer accPlayer = Player.GetModPlayer<ModAccessorySlotPlayer>();
-				ringSlot = Loader.Get(ModContent.GetInstance<SupernovaRingSlot>().Type, Player);
+				if (_slotLoader == null)
+				{
+					_slotLoader = LoaderManager.Get<AccessorySlotLoader>();
+				}
+				ringSlot = _slotLoader.Get(ModContent.GetInstance<SupernovaRingSlot>().Type, Player);
 				return true;
 			}
 			catch
@@ -155,6 +156,7 @@ namespace SupernovaMod.Common.Players
 		// Icon textures. Nominal image size is 32x32. Will be centered on the slot.
 		public override string FunctionalTexture => "SupernovaMod/Assets/Textures/RingSlotBackground";
 		public override string Name => "SupernovaMod/SupernovaRingSlot";
+
 		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
 		{
 			return RingPlayer.ItemIsRing(checkItem);

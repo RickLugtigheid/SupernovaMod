@@ -15,13 +15,20 @@ namespace SupernovaMod.Common.Systems
 		public static bool downedFlyingTerror = false;
 		public static bool downedStormSovereign = false;
 
-		public override void OnWorldLoad()
+		private void ResetDowned()
 		{
 			downedHarbingerOfAnnihilation = false;
 			downedFlyingTerror = false;
 			downedStormSovereign = false;
+		}
 
-			base.OnWorldLoad();
+		public override void OnWorldLoad()
+		{
+			ResetDowned();
+		}
+		public override void OnWorldUnload()
+		{
+			ResetDowned();
 		}
 
 		public override void SaveWorldData(TagCompound tag)
@@ -32,7 +39,7 @@ namespace SupernovaMod.Common.Systems
 			if (downedFlyingTerror) downed.Add("FlyingTerror");
 			if (downedStormSovereign) downed.Add("StormSovereign");
 
-			base.SaveWorldData(tag);
+			tag.Add("downed", downed);
 		}
 
 		public override void LoadWorldData(TagCompound tag)
@@ -42,28 +49,24 @@ namespace SupernovaMod.Common.Systems
 			downedHarbingerOfAnnihilation = downed.Contains("HarbingerOfAnnihilation");
 			downedFlyingTerror = downed.Contains("FlyingTerror");
 			downedStormSovereign = downed.Contains("StormSovereign");
-
-			base.LoadWorldData(tag);
 		}
 
 		public override void NetSend(BinaryWriter writer)
 		{
 			BitsByte flags = new BitsByte();
 			flags[0] = downedHarbingerOfAnnihilation;
-			flags[0] = downedFlyingTerror;
-			flags[0] = downedStormSovereign;
+			flags[1] = downedFlyingTerror;
+			flags[2] = downedStormSovereign;
 
 			writer.Write(flags);
-
-			base.NetSend(writer);
 		}
 
 		public override void NetReceive(BinaryReader reader)
 		{
 			BitsByte flags = reader.ReadByte();
 			downedHarbingerOfAnnihilation = flags[0];
-			downedFlyingTerror = flags[0];
-			downedStormSovereign = flags[0];
+			downedFlyingTerror = flags[1];
+			downedStormSovereign = flags[2];
 
 			base.NetReceive(reader);
 		}
