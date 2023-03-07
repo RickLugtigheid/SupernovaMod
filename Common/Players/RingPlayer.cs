@@ -154,7 +154,7 @@ namespace SupernovaMod.Common.Players
 	{
 		// Icon textures. Nominal image size is 32x32. Will be centered on the slot.
 		public override string FunctionalTexture => "SupernovaMod/Assets/Textures/RingSlotBackground";
-		public override string Name => "SupernovaMod/RingSlot";
+		public override string Name => "SupernovaMod/SupernovaRingSlot";
 		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
 		{
 			return RingPlayer.ItemIsRing(checkItem);
