@@ -12,8 +12,7 @@ namespace SupernovaMod.Common.Players
 		public bool hasInfernalEmblem = false;
 
 		/* Buffs */
-		private int _buffTypeHellfireRing = ModContent.BuffType<Content.Buffs.Rings.HellfireRingBuff>();
-		public bool HasBuffHellfireRing => Player.HasBuff(_buffTypeHellfireRing);
+		public bool HasBuffHellfireRing => Player.HasBuff(ModContent.BuffType<Content.Buffs.Rings.HellfireRingBuff>());
 
 		/* Minions */
 		public bool hasMinionVerglasFlake = false;

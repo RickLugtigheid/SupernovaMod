@@ -8,16 +8,16 @@ using Terraria.ModLoader.Default;
 
 namespace SupernovaMod.Common.Players
 {
-    public class RingPlayer : ModAccessorySlotPlayer
+    public class RingPlayer : ModPlayer
 	{
-		private readonly static int _ringCooldownBuffType = ModContent.BuffType<Content.Buffs.RingCooldown>();
+		public int RingCooldownBuffType { get; } = ModContent.BuffType<Content.Buffs.RingCooldown>();
 
 		public static float ringCooldownMulti = 1;
 
 		/// <summary>
 		/// If our ring is on a cooldown
 		/// </summary>
-		public bool RingOnCooldown => Player.HasBuff(_ringCooldownBuffType);
+		public bool RingOnCooldown => Player.HasBuff(RingCooldownBuffType);
 
 		#region Ring Animation Properties
 		private int _ringAnimationFrame = 0;
@@ -69,7 +69,7 @@ namespace SupernovaMod.Common.Players
 								equipedRing.RingActivate(Player);
 
 								// After the ring is activated give the player a cooldown
-								Player.AddBuff(_ringCooldownBuffType, (int)Math.Ceiling(equipedRing.Cooldown * ringCooldownMulti));
+								Player.AddBuff(RingCooldownBuffType, (int)Math.Ceiling(equipedRing.Cooldown * ringCooldownMulti));
 							}
 						}
 					}
@@ -77,7 +77,7 @@ namespace SupernovaMod.Common.Players
 					{
 						// Call the ring cooldown effect for if the ring should give an effect when cooling down
 						//
-						equipedRing?.OnRingCooldown(Player.buffTime[Player.FindBuffIndex(_ringCooldownBuffType)], Player);
+						equipedRing?.OnRingCooldown(Player.buffTime[Player.FindBuffIndex(RingCooldownBuffType)], Player);
 					}
 				}
 				catch (Exception ex)
