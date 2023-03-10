@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Api;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Terraria;
@@ -16,31 +17,39 @@ namespace SupernovaMod.Common
 		/// <returns></returns>
 		public static string GetKeyTooltip(this ModKeybind hotkey)
 		{
-			if (hotkey == null || Main.dedServ)
+			try
 			{
+				if (hotkey == null || Main.dedServ)
+				{
+					return string.Empty;
+				}
+
+				Queue<string> boundKeys = new Queue<string>(hotkey.GetAssignedKeys(Terraria.GameInput.InputMode.Keyboard));
+
+				// Check if any keys where bound
+				//
+				if (boundKeys.Count == 0)
+				{
+					return "[NONE]";
+				}
+
+				StringBuilder tooltipBuilder = new StringBuilder();
+				// Add our first key
+				tooltipBuilder.Append(boundKeys.Dequeue());
+
+				// Add all additional keys
+				//
+				while (boundKeys.TryDequeue(out string keyName))
+				{
+					tooltipBuilder.Append(" / ").Append(keyName);
+				}
+				return tooltipBuilder.ToString();
+			}
+			catch (System.Exception e)
+			{
+				Console.WriteLine("SupernovaUtils.GetKeyTooltip(): Error '" + e.Message + "'");
 				return string.Empty;
 			}
-
-			Queue<string> boundKeys = new Queue<string>(hotkey.GetAssignedKeys(Terraria.GameInput.InputMode.Keyboard));
-			
-			// Check if any keys where bound
-			//
-			if (boundKeys.Count == 0)
-			{
-				return "[NONE]";
-			}
-
-			StringBuilder tooltipBuilder = new StringBuilder();
-			// Add our first key
-			tooltipBuilder.Append(boundKeys.Dequeue());
-
-			// Add all additional keys
-			//
-			while (boundKeys.TryDequeue(out string keyName))
-			{
-				tooltipBuilder.Append(" / ").Append(keyName);
-			}
-			return tooltipBuilder.ToString();
 		}
 
 
