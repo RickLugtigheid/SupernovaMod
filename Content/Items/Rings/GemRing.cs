@@ -15,9 +15,11 @@ namespace SupernovaMod.Content.Items.Rings
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Gem Ring");
-            Tooltip.SetDefault("When the 'Ring Ability button' is pressed, shoots gem staff projeciltes at the mouse position.");
-        }
-        public override void SetDefaults()
+            Tooltip.SetDefault("When '{0}' is pressed, shoots gem staff projeciltes at the mouse position.");
+
+			base.SetStaticDefaults();
+		}
+		public override void SetDefaults()
         {
             Item.width = 16;
             Item.height = 16;

@@ -24,7 +24,7 @@ namespace SupernovaMod
 					this,
 					"Harbinger of Annihilation",
 					() => SupernovaBosses.downedHarbingerOfAnnihilation,
-					0, //ModContent.NPCType<Npcs.PreHardmode.CosmicAnomaly>(),
+					0,//ModContent.NPCType<Content.Npcs.CosmicAnomaly>(),
 					new List<int> {
 						ModContent.ItemType<Content.Npcs.Bosses.HarbingerOfAnnihilation.HarbingersCrest>(),
 						ModContent.ItemType<Content.Npcs.Bosses.HarbingerOfAnnihilation.HarbingersKnell>(),

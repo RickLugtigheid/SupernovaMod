@@ -16,8 +16,10 @@ namespace SupernovaMod.Content.Items.Rings
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Prospectors Ring");
-            Tooltip.SetDefault("Gives spelunker effect and faster mining speed for 12 seconds when the 'Ring Ability button' is pressed.");
-        }
+            Tooltip.SetDefault("Gives spelunker effect and faster mining speed for 12 seconds when '{0}' is pressed.");
+
+			base.SetStaticDefaults();
+		}
         public override void SetDefaults()
         {
             Item.width = 16;

@@ -82,7 +82,7 @@ namespace SupernovaMod.Common.Players
 				}
 				catch (Exception ex)
 				{
-					Main.NewText("Supernova: Error '" + ex.Message+ "' when using the '" + equipedRing.Name + "' ring", Main.errorColor);
+					Main.NewText("SupernovaMod: Error '" + ex.Message+ "' when using the '" + equipedRing.Name + "' ring", Main.errorColor);
 					Mod.Logger.Error("Error '" + ex.Message+ "' when using the '" + equipedRing.Name + "' ring");
 					Mod.Logger.Error(ex);
 				}

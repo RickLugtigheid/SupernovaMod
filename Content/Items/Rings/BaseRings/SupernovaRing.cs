@@ -1,4 +1,6 @@
-﻿using SupernovaMod.Common.Players;
+﻿using SupernovaMod.Common;
+using SupernovaMod.Common.Players;
+using SupernovaMod.Common.Systems;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -7,10 +9,16 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
 {
     public abstract class SupernovaRingItem : ModItem
     {
-        /// <summary>
-        /// The ring animation length in time
-        /// </summary>
-        public virtual int MaxAnimationFrames { get; } = 1;
+		public override void SetStaticDefaults()
+		{
+            Tooltip.SetDefault(
+                string.Format(Tooltip.GetDefault(), SupernovaKeybinds.RingAbilityButton.GetKeyTooltip())    
+            );
+		}
+		/// <summary>
+		/// The ring animation length in time
+		/// </summary>
+		public virtual int MaxAnimationFrames { get; } = 1;
         /// <summary>
         /// Ring cooldown to aply when ring is activated
         /// </summary>

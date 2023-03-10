@@ -1,11 +1,49 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Api;
+using System.Collections.Generic;
+using System.Text;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace SupernovaMod.Common
 {
 	public static class SupernovaUtils
 	{
+		/// <summary>
+		/// Gets the key(s) name(s) formatted for use in tooltips.
+		/// </summary>
+		/// <param name="hotkey"></param>
+		/// <returns></returns>
+		public static string GetKeyTooltip(this ModKeybind hotkey)
+		{
+			if (hotkey == null || Main.dedServ)
+			{
+				return string.Empty;
+			}
+
+			Queue<string> boundKeys = new Queue<string>(hotkey.GetAssignedKeys(Terraria.GameInput.InputMode.Keyboard));
+			
+			// Check if any keys where bound
+			//
+			if (boundKeys.Count == 0)
+			{
+				return "[NONE]";
+			}
+
+			StringBuilder tooltipBuilder = new StringBuilder();
+			// Add our first key
+			tooltipBuilder.Append(boundKeys.Dequeue());
+
+			// Add all additional keys
+			//
+			while (boundKeys.TryDequeue(out string keyName))
+			{
+				tooltipBuilder.Append(" / ").Append(keyName);
+			}
+			return tooltipBuilder.ToString();
+		}
+
+
 		/// <summary>
 		/// Checks if the chest is empty.
 		/// </summary>

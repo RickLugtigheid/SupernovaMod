@@ -16,10 +16,12 @@ namespace SupernovaMod.Content.Items.Rings
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Ring of Hellfire");
-            Tooltip.SetDefault("When the 'Ring Ability button' is pressed" +
+            Tooltip.SetDefault("When the '{0}' is pressed" +
                 "\n You will gain the inferno and Hellfire Ring buff." +
                 "\n The Hellfire Ring buff gives every attack a chance to spawn a fiery explosion near the target.");
-        }
+
+			base.SetStaticDefaults();
+		}
         public override void SetDefaults()
         {
             Item.width = 16;
