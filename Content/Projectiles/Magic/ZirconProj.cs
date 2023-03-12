@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -27,7 +28,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = true;                 //this make that the projectile does not go thru walls
             Projectile.ignoreWater = false;
-            Projectile.timeLeft = 120;
+            Projectile.timeLeft = 70;
         }
 
         public override void AI()
@@ -58,14 +59,21 @@ namespace SupernovaMod.Content.Projectiles.Magic
             }
         }
 
-
-        public override void Kill(int timeLeft)
-        {
-            for (int k = 0; k < 5; k++)
+		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+            ArmorPlayer player = Main.player[Projectile.owner].GetModPlayer<ArmorPlayer>();
+            if (player.zirconiumArmor)
             {
-                Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, ModContent.DustType<Dusts.ZirconDust>(), Projectile.oldVelocity.X * 0.7f, Projectile.oldVelocity.Y * 0.7f);
+                damage = (int)(damage * 1.05f);
+                target.AddBuff(BuffID.OnFire, Main.rand.Next(2, 6) * 60);
             }
-        }
+		}
+
+		public override void Kill(int timeLeft)
+        {
+            Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<ZicroniumExplosion>(), (int)(Projectile.damage * .7f), Projectile.knockBack, Projectile.owner, 90);
+            SoundEngine.PlaySound(SoundID.Item14);
+		}
     }
 }
 

@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
+using SupernovaMod.Common.Players;
 
 namespace SupernovaMod.Content.Items.Armor.Zirconium
 {
@@ -13,7 +14,7 @@ namespace SupernovaMod.Content.Items.Armor.Zirconium
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Zirconium Headguard");
-            Tooltip.SetDefault("A Zirconium helmet for the magic and summoner classes");
+            Tooltip.SetDefault("5% increased magic and summon damage");
         }
 
         public override void SetDefaults()
@@ -27,14 +28,19 @@ namespace SupernovaMod.Content.Items.Armor.Zirconium
 
         public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<ZirconiumBreastplate>() && legs.type == ModContent.ItemType<ZirconiumBoots>();
 
-        public override void UpdateArmorSet(Player player)
-        {
-            player.GetDamage(DamageClass.Magic) += .03f;
-            player.GetDamage(DamageClass.Summon) += .03f;
-            player.setBonus = "+3% magic/summon damage";
-        }
+		public override void UpdateEquip(Player player)
+		{
+			player.GetDamage(DamageClass.Magic) += .05f;
+			player.GetDamage(DamageClass.Summon) += .05f;
+		}
 
-        public override void AddRecipes()
+		public override void UpdateArmorSet(Player player)
+		{
+			player.setBonus = "Zirconium projectiles deal +5% extra damage.\nZirconium projectiles inflict the OnFire debuff.";
+			player.GetModPlayer<ArmorPlayer>().zirconiumArmor = true;
+		}
+
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.ZirconiumBar>(), 22);

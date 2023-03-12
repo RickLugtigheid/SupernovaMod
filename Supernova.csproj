@@ -2,10 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
   <PropertyGroup>
-    <AssemblyName>Supernova</AssemblyName>
+    <AssemblyName>SupernovaMod</AssemblyName>
     <TargetFramework>net6.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
+    <RootNamespace>SupernovaMod</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
@@ -14,9 +15,7 @@
     <Folder Include="Api\Collections\" />
     <Folder Include="Common\GlobalItems\" />
     <Folder Include="Common\GlobalProjectiles\" />
-    <Folder Include="Content\Buffs\Cooldowns\" />
-    <Folder Include="Content\Projectiles\Enemy\" />
-    <Folder Include="Content\Projectiles\Boss\" />
     <Folder Include="Content\Items\Weapons\Typeless\" />
+    <Folder Include="Content\Projectiles\Enemy\" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
+using SupernovaMod.Common.Players;
 
 namespace SupernovaMod.Content.Items.Armor.Zirconium
 {
@@ -13,7 +14,7 @@ namespace SupernovaMod.Content.Items.Armor.Zirconium
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Zirconium Helmet");
-            Tooltip.SetDefault("A Zirconium helmet for the melee class");
+            Tooltip.SetDefault("5% increased melee damage");
         }
 
         public override void SetDefaults()
@@ -22,18 +23,23 @@ namespace SupernovaMod.Content.Items.Armor.Zirconium
             Item.height = 18;
             Item.value = Item.buyPrice(0, 6, 0, 0);
             Item.rare = ItemRarityID.Green;
-            Item.defense = 2; // The Defence value for this piece of armour.
+            Item.defense = 4; // The Defence value for this piece of armour.
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<ZirconiumBreastplate>() && legs.type == ModContent.ItemType<ZirconiumBoots>();
 
-        public override void UpdateArmorSet(Player player)
-        {
-            player.GetDamage(DamageClass.Melee) += .03f;
-            player.setBonus = "+3% melee damage";
-        }
+		public override void UpdateEquip(Player player)
+		{
+			player.GetDamage(DamageClass.Melee) += .05f;
+		}
 
-        public override void AddRecipes()
+		public override void UpdateArmorSet(Player player)
+		{
+			player.setBonus = "Zirconium projectiles deal +5% extra damage.\nZirconium projectiles inflict the OnFire debuff.";
+			player.GetModPlayer<ArmorPlayer>().zirconiumArmor = true;
+		}
+
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.ZirconiumBar>(), 22);

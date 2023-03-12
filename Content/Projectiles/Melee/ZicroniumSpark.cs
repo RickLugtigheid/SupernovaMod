@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace SupernovaMod.Content.Projectiles.Magic
+namespace SupernovaMod.Content.Projectiles.Melee
 {
     public class ZicroniumSpark : ModProjectile
     {
@@ -23,7 +24,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.penetrate = -1;
             Projectile.timeLeft = 100;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.DamageType = DamageClass.Magic;
+            Projectile.DamageType = DamageClass.Melee;
         }
 
         public override void AI()
@@ -87,7 +88,17 @@ namespace SupernovaMod.Content.Projectiles.Magic
             }
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity) => false;
+		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
+			ArmorPlayer player = Main.player[Projectile.owner].GetModPlayer<ArmorPlayer>();
+			if (player.zirconiumArmor)
+			{
+				damage = (int)(damage * 1.05f);
+				target.AddBuff(BuffID.OnFire, Main.rand.Next(2, 6) * 60);
+			}
+		}
+
+		public override bool OnTileCollide(Vector2 oldVelocity) => false;
     }
 }
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using SupernovaMod.Common.Systems;
 using SupernovaMod.Content.Items.Rings.BaseRings;
 using System;
@@ -8,12 +8,8 @@ using Terraria.ModLoader.Default;
 
 namespace SupernovaMod.Common.Players
 {
-    public class RingPlayer : ModAccessorySlotPlayer
+    public class RingPlayer : ModPlayer
 	{
-		internal static AccessorySlotLoader Loader => LoaderManager.Get<AccessorySlotLoader>();
-
-		public static float ringCooldownMulti = 1;
-
 		private readonly static int _ringCooldownBuffType = ModContent.BuffType<Content.Buffs.RingCooldown>();
 		
 		/// <summary>
@@ -29,17 +25,9 @@ namespace SupernovaMod.Common.Players
 		public bool RingAnimationActive => _ringAnimationFrame > 0;
 		#endregion
 
-		public override void PreUpdate()
-		{
-			// Reset the ring cooldown multi to 1
-			// We do this so any accessory(or other) effects don't keep aplying
-			//
-			ringCooldownMulti = 1;
-			base.PreUpdate();
-		}
-
 		public override void PostUpdateEquips()
 		{
+			ResourcePlayer resourcePlayer = Player.GetModPlayer<ResourcePlayer>();
 			// Check if a ring is equiped by the player
 			//
 			if (HasRing(out SupernovaRingItem equipedRing))
@@ -71,10 +59,10 @@ namespace SupernovaMod.Common.Players
 							if (!RingAnimationActive)
 							{
 								// Activate our ring when our animation is done
-								equipedRing.RingActivate(Player);
+								equipedRing.RingActivate(Player, resourcePlayer.ringPower);
 
 								// After the ring is activated give the player a cooldown
-								Player.AddBuff(_ringCooldownBuffType, (int)Math.Ceiling(equipedRing.Cooldown * ringCooldownMulti));
+								Player.AddBuff(_ringCooldownBuffType, (int)Math.Ceiling(equipedRing.Cooldown * resourcePlayer.ringCoolRegen));
 							}
 						}
 					}
@@ -87,7 +75,7 @@ namespace SupernovaMod.Common.Players
 				}
 				catch (Exception ex)
 				{
-					Main.NewText("Supernova: Error '" + ex.Message+ "' when using the '" + equipedRing.Name + "' ring", Main.errorColor);
+					Main.NewText("SupernovaMod: Error '" + ex.Message+ "' when using the '" + equipedRing.Name + "' ring", Main.errorColor);
 					Mod.Logger.Error("Error '" + ex.Message+ "' when using the '" + equipedRing.Name + "' ring");
 					Mod.Logger.Error(ex);
 				}
@@ -122,6 +110,8 @@ namespace SupernovaMod.Common.Players
 			equipedRing = null;
 			return false;
 		}
+
+		private AccessorySlotLoader _slotLoader = null;
 		/// <summary>
 		/// Tries to get the ring Accessory slot.
 		/// </summary>
@@ -132,7 +122,11 @@ namespace SupernovaMod.Common.Players
 			try
 			{
 				ModAccessorySlotPlayer accPlayer = Player.GetModPlayer<ModAccessorySlotPlayer>();
-				ringSlot = Loader.Get(ModContent.GetInstance<SupernovaRingSlot>().Type, Player);
+				if (_slotLoader == null)
+				{
+					_slotLoader = LoaderManager.Get<AccessorySlotLoader>();
+				}
+				ringSlot = _slotLoader.Get(ModContent.GetInstance<SupernovaRingSlot>().Type, Player);
 				return true;
 			}
 			catch
@@ -155,6 +149,7 @@ namespace SupernovaMod.Common.Players
 		// Icon textures. Nominal image size is 32x32. Will be centered on the slot.
 		public override string FunctionalTexture => "SupernovaMod/Assets/Textures/RingSlotBackground";
 		public override string Name => "SupernovaMod/SupernovaRingSlot";
+
 		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
 		{
 			return RingPlayer.ItemIsRing(checkItem);

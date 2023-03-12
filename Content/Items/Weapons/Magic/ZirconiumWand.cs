@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -17,27 +18,27 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 17;
-            Item.crit = 4;
-            Item.width = 28;
+            Item.damage = 13;
+			Item.crit = 1;
+			Item.width = 28;
             Item.height = 34;
-            Item.useTime = 37;
-            Item.useAnimation = 37;
+            Item.useTime = 42;
+            Item.useAnimation = 42;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.knockBack = 2;
             Item.value = Item.buyPrice(0, 3, 0, 0);
             Item.rare = ItemRarityID.Orange;
-            Item.mana = 5;
+            Item.mana = 7;
             Item.UseSound = SoundID.Item43;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.Magic.ZirconProj>();
-            Item.shootSpeed = 9;
+            Item.shootSpeed = 7;
 
             Item.DamageType = DamageClass.Magic;
         }
 
-        public override void AddRecipes()
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.ZirconiumBar>(), 10);

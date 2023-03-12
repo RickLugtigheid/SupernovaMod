@@ -10,35 +10,38 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 {
     public class ZirconiumSword : ModItem
     {
-        private readonly int _projIdSpark = ModContent.ProjectileType<Projectiles.Magic.ZicroniumSpark>();
+        private readonly int _projIdSpark = ModContent.ProjectileType<Projectiles.Melee.ZicroniumSpark>();
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Zirconium Sword");
-            Tooltip.SetDefault("May release a blast of Zirconium Spark when striking an enemy.\nZirconium Sparks linger for a short while.");
+            Tooltip.SetDefault("Release a blast of Zirconium Sparks every 4 hits.\nZirconium Sparks linger for a short while.");
         }
         public override void SetDefaults()
         {
-            Item.damage = 13;
-            Item.crit = 4;
+            Item.damage = 16;
+            Item.crit = 1;
             Item.width = 48;
             Item.height = 48;
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 23;
+            Item.useAnimation = 23;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 4;
+            Item.knockBack = 7;
             Item.value = Item.buyPrice(0, 3, 0, 0); // Another way to handle value of item.
             Item.rare = ItemRarityID.Green;
             Item.UseSound = SoundID.Item1;
-            Item.autoReuse = false;
+            Item.autoReuse = true;
 
+            Item.scale += .05f;
             Item.DamageType = DamageClass.Melee;
         }
 
+        private int _hits;
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            if (!Main.rand.NextBool(5))
+			_hits++;
+			if (_hits < 4)
             {
                 return;
             }
@@ -50,7 +53,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
                 Vector2 velocity = (Vector2.One * Main.rand.Next(2, 4)).RotatedByRandom(180);
                 Projectile.NewProjectile(Item.GetSource_FromAI(), target.position.X, target.position.Y, velocity.X, velocity.Y, _projIdSpark, Item.damage / 2, 3, player.whoAmI);
             }
-        }
+            _hits = 0;
+		}
 
         public override void AddRecipes()
         {
