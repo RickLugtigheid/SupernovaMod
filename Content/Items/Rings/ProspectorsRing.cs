@@ -27,8 +27,8 @@ namespace SupernovaMod.Content.Items.Rings
             Item.value = Item.buyPrice(0, 5, 0, 0);
             Item.accessory = true;
         }
-        public override int Cooldown => 1800;
-        public override void RingActivate(Player player)
+        public override int BaseCooldown => 1800;
+        public override void RingActivate(Player player, float ringPowerMulti)
         {
             player.AddBuff(BuffID.Spelunker, 720);
 
@@ -45,10 +45,11 @@ namespace SupernovaMod.Content.Items.Rings
         }
         public override void OnRingCooldown(int curentCooldown, Player player)
         {
+            ResourcePlayer resourcePlayer = player.GetModPlayer<ResourcePlayer>();
             // Only run the first 12 seconds (720ms / 60 = 12sec)
             //
-            if (curentCooldown >= Cooldown * RingPlayer.ringCooldownMulti - 720)
-                player.pickSpeed -= .5f;
+            if (curentCooldown >= Cooldown * resourcePlayer.ringCoolRegen - 720)
+                player.pickSpeed -= .5f * resourcePlayer.ringPower;
         }
 
         public override int MaxAnimationFrames => 30;

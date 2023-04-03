@@ -25,8 +25,8 @@ namespace SupernovaMod.Content.Items.Rings
             Item.value = Item.buyPrice(0, 5, 0, 0);
             Item.accessory = true;
         }
-        public override int Cooldown => 7200;
-        public override void RingActivate(Player player)
+        public override int BaseCooldown => 7200;
+        public override void RingActivate(Player player, float ringPowerMulti)
         {
             // Add dust effect
             //
@@ -46,7 +46,8 @@ namespace SupernovaMod.Content.Items.Rings
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statDefense += 2;
+            ResourcePlayer resourcePlayer = player.GetModPlayer<ResourcePlayer>();
+            player.statDefense += (int)(2 * resourcePlayer.ringPower);
             base.UpdateAccessory(player, hideVisual);
         }
 

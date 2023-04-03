@@ -9,11 +9,16 @@ namespace SupernovaMod.Common.Players
 		public int lifeEnergyMax2 = 0;
 		public float lifeEnergyRegen = .01f;
 
+		public float ringPower = 1;
+		public float ringCoolRegen = 1;
+
 		public override void PreUpdate()
 		{
 			// Reset our max values
 			lifeEnergyMax2 = 0;
 			lifeEnergyRegen = .001f;
+			ringPower = 1;
+			ringCoolRegen = 1;
 
 			base.PreUpdate();
 		}
