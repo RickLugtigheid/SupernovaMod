@@ -6,8 +6,10 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
+using Terraria.ModLoader.Utilities;
+using SupernovaMod.Common;
 
-namespace SupernovaMod.Content.Npcs
+namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
     public class FrostFlayer : ModNPC
     {
@@ -38,32 +40,80 @@ namespace SupernovaMod.Content.Npcs
         {
             NPC.width = 40;
             NPC.height = 40;
-            NPC.damage = 30;
-            NPC.defense = 15;
-            NPC.lifeMax = 150;
-            NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.damage = 24;
+            NPC.defense = 6;
+            NPC.lifeMax = 100;
+            NPC.HitSound = SoundID.NPCHit5;
+            NPC.DeathSound = SoundID.NPCDeath7;
             NPC.value = 1200f;
-            NPC.knockBackResist = 1f;
+            NPC.knockBackResist = .25f;
             NPC.noGravity = true; // Not affected by gravity
             NPC.noTileCollide = true; // Will not collide with the tiles.
             NPC.aiStyle = -1; // Will not have any AI from any existing AI styles. 
+
+            NPC.buffImmune[BuffID.Frostburn]  = true;
+            NPC.buffImmune[BuffID.Frostburn2] = true;
+            NPC.buffImmune[BuffID.Confused]   = true;
         }
 
+        private Vector2 _dashTarget;
         public override void AI()
         {
-            NPC.rotation += (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) + MathHelper.ToRadians(10);
-
-            Target(); // Sets the Player Target
+			player = Main.player[NPC.target]; // Sets the Player Target
 
             DespawnHandler(); // Handles if the NPC should despawn.
 
-            Move(new Vector2(-0, -0f)); // Calls the Move Method
+            if (NPC.localAI[0] > 110 || Vector2.Distance(NPC.Center, player.Center) < 600)
+            {
+                NPC.localAI[0]++;
+                if (NPC.localAI[0] >= 120)
+                {
+                    //if (NPC.localAI[0] == 140)
+                    {
+                        NPC.knockBackResist = 0;
+						if (NPC.Center.X < player.Center.X - 2f)
+						{
+							NPC.direction = 1;
+						}
+						if (NPC.Center.X > player.Center.X + 2f)
+						{
+							NPC.direction = -1;
+						}
+						NPC.spriteDirection = NPC.direction;
 
-            Vector2 position = NPC.Center;
-        }
+						_dashTarget = player.Center;
+                    }
 
-        private void DespawnHandler()
+					NPC.rotation += MathHelper.ToRadians(25);
+
+                    Vector2 dustVelocity = NPC.velocity.RotatedBy(NPC.rotation);
+					Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.IceTorch, dustVelocity.X, dustVelocity.Y);
+
+                    if (NPC.localAI[0] > 140 && NPC.localAI[0] < 150)
+                    {
+						float gateValue = 100f;
+						Vector2 distanceFromTarget = _dashTarget - NPC.Center;
+						SupernovaUtils.MoveNPCSmooth(NPC, gateValue, distanceFromTarget, 20, 1, true);
+					}	
+
+					if (NPC.localAI[0] > 190)
+                    {
+                        NPC.localAI[0] = 0;
+						NPC.knockBackResist = .25f;
+					}
+					return;
+				}
+			}
+            else
+            {
+				NPC.localAI[0] = 0;
+			}
+
+			Move(Vector2.Zero); // Calls the Move Method
+            NPC.rotation = NPC.GetTargetLookRotation(player.Center);
+		}
+
+		private void DespawnHandler()
         {
             if (!player.active || player.dead)
             {
@@ -83,7 +133,7 @@ namespace SupernovaMod.Content.Npcs
 
         private void Move(Vector2 offset)
         {
-            speed = 2.2f; // Sets the max speed of the npc.
+            speed = 1.2f; // Sets the max speed of the npc.
             Vector2 moveTo = player.Center; // Gets the point that the npc will be moving to.
             Vector2 move = moveTo - NPC.Center;
             float magnitude = Magnitude(move);
@@ -101,11 +151,6 @@ namespace SupernovaMod.Content.Npcs
             NPC.velocity = move;
         }
 
-        private void Target()
-        {
-            player = Main.player[NPC.target]; // This will get the player target.
-        }
-
         private float Magnitude(Vector2 mag)
         {
             return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
@@ -119,13 +164,19 @@ namespace SupernovaMod.Content.Npcs
             NPC.frame.Y = frame * frameHeight;
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneOverworldHeight == true && spawnInfo.Player.ZoneSnow == true && NPC.downedQueenBee == true ? 0.06f : 0;
+        //public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneOverworldHeight == true && spawnInfo.Player.ZoneSnow == true && NPC.downedQueenBee == true ? 0.06f : 0;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (!spawnInfo.Player.ZoneSnow || spawnInfo.PlayerSafe || !NPC.downedQueenBee || spawnInfo.Player.ZoneDungeon || spawnInfo.PlayerInTown || spawnInfo.Player.ZoneOldOneArmy || Main.snowMoon || Main.pumpkinMoon)
+            {
+                return 0f;
+            }
+            return 0.015f;
+        }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            // 1 in 26 chance to drop
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Rime>(), 26));
-
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Rime>(), 4, maximumDropped: 3));
             npcLoot.Add(ItemDropRule.Common(ItemID.IceBlock, 2, 0, 10));
 
             base.ModifyNPCLoot(npcLoot);

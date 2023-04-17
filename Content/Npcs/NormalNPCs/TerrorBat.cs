@@ -4,8 +4,9 @@ using Terraria.ID;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
+using Terraria.ModLoader.Utilities;
 
-namespace SupernovaMod.Content.Npcs
+namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
     public class TerrorBat : ModNPC // ModNPC is used for Custom NPCs
     {
@@ -32,7 +33,6 @@ namespace SupernovaMod.Content.Npcs
             });
         }
 
-
         public override void SetDefaults()
         {
             NPC.width = 40;
@@ -41,9 +41,9 @@ namespace SupernovaMod.Content.Npcs
             NPC.defense = 13;
             NPC.lifeMax = 47;
             NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.DeathSound = SoundID.NPCDeath4;
             NPC.value = 100f;
-            NPC.knockBackResist = 1f;
+            NPC.knockBackResist = .5f;
             NPC.noGravity = true; // Not affected by gravity
             NPC.noTileCollide = false; // Will not collide with the tiles.
 
@@ -64,7 +64,8 @@ namespace SupernovaMod.Content.Npcs
             NPC.spriteDirection = NPC.direction;
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Lihzahrd && !spawnInfo.Invasion && !spawnInfo.SpiderCave && !spawnInfo.DesertCave && !spawnInfo.Player.ZoneDungeon && spawnInfo.Player.ZoneRockLayerHeight == true ? 0.025f : 0;
+        //public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Lihzahrd && !spawnInfo.Invasion && !spawnInfo.SpiderCave && !spawnInfo.DesertCave && !spawnInfo.Player.ZoneDungeon && spawnInfo.Player.ZoneRockLayerHeight == true ? 0.025f : 0;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.Cavern.Chance * 0.01f;
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
@@ -74,10 +75,12 @@ namespace SupernovaMod.Content.Npcs
             base.ModifyNPCLoot(npcLoot);
         }
 
-        public override void OnKill()
+        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            SoundEngine.PlaySound(SoundID.NPCDeath4);
-            base.OnKill();
+            if (Main.rand.NextBool(8))
+            {
+                target.AddBuff(BuffID.Rabies, Main.rand.Next(30, 80) * 60);
+            }
         }
     }
 }

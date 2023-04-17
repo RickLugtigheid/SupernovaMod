@@ -4,17 +4,17 @@ using Terraria.ID;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
+using Terraria.ModLoader.Utilities;
 
-namespace SupernovaMod.Content.Npcs
+namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
     public class LeafCrab : ModNPC // ModNPC is used for Custom NPCs
     {
-        private Player player;
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Leaf Crab");
             Main.npcFrameCount[NPC.type] = 8;
+
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
@@ -37,20 +37,22 @@ namespace SupernovaMod.Content.Npcs
 
         public override void SetDefaults()
         {
-            NPC.width = 18;
-            NPC.height = 40;
+            NPC.width = 52;
+            NPC.height = 36;
             NPC.damage = 10;
             NPC.defense = 7;
             NPC.lifeMax = 50;
-            NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.HitSound = SoundID.NPCHit33;
+            NPC.DeathSound = SoundID.NPCDeath36;
             NPC.value = 1000f;
-            NPC.knockBackResist = 1f;
+            NPC.knockBackResist = .65f;
             NPC.aiStyle = NPCAIStyleID.Fighter;
-            AIType = NPCID.Harpy;  //NPC behavior
+            AIType = NPCID.Crab;  //NPC behavior
             AnimationType = NPCID.Harpy;
-        }
-        public override void FindFrame(int frameHeight)
+
+			NPC.buffImmune[BuffID.Poisoned] = true;
+		}
+		public override void FindFrame(int frameHeight)
         {
             NPC.frameCounter -= .8F; // Determines the animation speed. Higher value = faster animation.
             NPC.frameCounter %= Main.npcFrameCount[NPC.type];
@@ -61,28 +63,20 @@ namespace SupernovaMod.Content.Npcs
             NPC.spriteDirection = NPC.direction;
         }
 
-        public override void AI()
+        //public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Lihzahrd && !spawnInfo.Invasion && !spawnInfo.Player.ZoneDungeon && spawnInfo.Player.ZoneJungle && spawnInfo.Player.ZoneOverworldHeight || spawnInfo.Player.ZoneBeach ? 0.15f : 0f; //100f is the spown rate so If you want your NPC to be rarer just change that value less the 100f or something.
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            Target(); // Sets the Player Target
+            /*if (spawnInfo.Player.ZoneBeach)
+            {
+				return SpawnCondition.Ocean.Chance * 0.05f;
+			}*/
+            return SpawnCondition.SurfaceJungle.Chance * 0.25f;
         }
-
-        private void Target()
-        {
-            player = Main.player[NPC.target]; // This will get the player target.
-        }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Lihzahrd && !spawnInfo.Invasion && !spawnInfo.Player.ZoneDungeon && spawnInfo.Player.ZoneJungle && spawnInfo.Player.ZoneOverworldHeight || spawnInfo.Player.ZoneBeach ? 0.15f : 0f; //100f is the spown rate so If you want your NPC to be rarer just change that value less the 100f or something.
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.QuarionShard>(), 9, maximumDropped: 2));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.QuarionShard>(), 4, maximumDropped: 2));
             base.ModifyNPCLoot(npcLoot);
-        }
-
-        public override void OnKill()
-        {
-            SoundEngine.PlaySound(SoundID.NPCDeath1);
-            base.OnKill();
         }
     }
 }

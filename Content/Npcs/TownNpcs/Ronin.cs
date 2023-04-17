@@ -15,7 +15,7 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ronin");    //the name displayed when hovering over the npc ingame.
+			DisplayName.SetDefault("Ronin");    //the name displayed when hovering over the npc ingame.
             Main.npcFrameCount[NPC.type] = 25; //this defines how many frames the npc sprite sheet has
             NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
             NPCID.Sets.AttackFrameCount[NPC.type] = 4;
@@ -120,18 +120,22 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
                 nextSlot++;
             }
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.Kama>());  //this is an example of how to add a modded item
-            nextSlot++;
+			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Ranged.Odzutsu>());
+			nextSlot++;
+			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Magic.Tessen>());
+			nextSlot++;
+			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.Kama>());  //this is an example of how to add a modded item
+			nextSlot++;
+			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Throwing.Kunai>());
+			nextSlot++;
 
-            /*if (NPC.downedBoss2)
+			/*if (NPC.downedBoss2)
             {
                 shop.item[nextSlot].SetDefaults(mod.ItemType("samuraiAmulet"));  //this is an example of how to add a modded item
                 nextSlot++;
             }*/
-            if (NPC.downedBoss3)   //this make so when Skeletron is killed the town npc will sell this
+			if (NPC.downedBoss3)   //this make so when Skeletron is killed the town npc will sell this
             {
-                shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Throwing.Kunai>());
-                nextSlot++;
                 shop.item[nextSlot].SetDefaults(ItemID.WormholePotion);
                 nextSlot++;
             }
