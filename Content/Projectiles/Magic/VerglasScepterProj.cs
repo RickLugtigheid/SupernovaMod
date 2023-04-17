@@ -27,22 +27,24 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.tileCollide = true;
             Projectile.DamageType = DamageClass.Magic;
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) => ModifyHit();
+        public override void ModifyHitPvp(Player target, ref int damage, ref bool crit) => ModifyHit();
+        private void ModifyHit()
         {
-            Vector2 perturbedSpeed = new Vector2(Projectile.velocity.X, Projectile.velocity.Y).RotatedByRandom(MathHelper.ToRadians(36));
-            Projectile.velocity = perturbedSpeed;
+			Vector2 perturbedSpeed = new Vector2(Projectile.velocity.X, Projectile.velocity.Y).RotatedByRandom(MathHelper.ToRadians(10));
+			Projectile.velocity = perturbedSpeed;
 
-            // Spawn dust on hit
-            for (int i = 0; i <= Main.rand.Next(4, 8); i++)
-            {
-                int dust = Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, DustID.Ice, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, 20, default, Main.rand.NextFloat(.5f, 1.5f));
-                Main.dust[dust].noGravity = true;
-            }
-            // Ice break sound
-            SoundEngine.PlaySound(SoundID.Item50, Projectile.position);
-        }
+			// Spawn dust on hit
+			for (int i = 0; i <= Main.rand.Next(4, 8); i++)
+			{
+				int dust = Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, DustID.Ice, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, 20, default, Main.rand.NextFloat(.5f, 1.5f));
+				Main.dust[dust].noGravity = true;
+			}
+			// Ice break sound
+			SoundEngine.PlaySound(SoundID.Item50, Projectile.position);
+		}
 
-        private int _bounces;
+		private int _bounces;
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             _bounces++;
@@ -70,7 +72,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
             }
 
             // Add sinewave effect
-            const double amp = 5;
+            const double amp = 2;
             const double freq = .1;
             float sineWave = (float)(Math.Cos(freq * Projectile.timeLeft) * amp * freq) * Projectile.ai[0];
             //projectile.position.Y += sineWave;
@@ -92,7 +94,17 @@ namespace SupernovaMod.Content.Projectiles.Magic
             // Rotate a small bit
             projectile.velocity = projectile.velocity.RotatedByRandom(sineValue);*/
         }
-        public override void Kill(int timeLeft)
+
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+            target.AddBuff(BuffID.Frostburn, 120);
+		}
+		public override void OnHitPvp(Player target, int damage, bool crit)
+		{
+			target.AddBuff(BuffID.Frostburn, 120);
+		}
+
+		public override void Kill(int timeLeft)
         {
             // Spawn dust on hit
             for (int i = 0; i <= Main.rand.Next(10, 20); i++)

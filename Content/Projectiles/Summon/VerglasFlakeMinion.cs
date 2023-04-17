@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 {
     public class VerglasFlakeMinion : SupernovaMinionProjectile
     {
-        protected override int BuffType => ModContent.BuffType<Buffs.Minion.VerglasFlakeBuff>();
+        protected override int BuffType => ModContent.BuffType<Buffs.Summon.VerglasFlakeBuff>();
 
         public override void SetStaticDefaults()
         {
@@ -40,6 +40,9 @@ namespace SupernovaMod.Content.Projectiles.Summon
             Projectile.DamageType = DamageClass.Summon; // Declares the damage type (needed for it to deal damage)
             Projectile.minionSlots = 1f; // Amount of slots this minion occupies from the total minion slots available to the player (more on that later)
             Projectile.penetrate = -1; // Needed so the minion doesn't despawn on collision with enemies or tiles
+
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 16;
         }
 
         // Here you can decide if your minion breaks things like grass or pots

@@ -40,20 +40,10 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Arrows
             base.AI();
         }
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-		{
-			ArmorPlayer player = Main.player[Projectile.owner].GetModPlayer<ArmorPlayer>();
-			if (player.zirconiumArmor)
-			{
-				damage = (int)(damage * 1.05f);
-				target.AddBuff(BuffID.OnFire, Main.rand.Next(2, 6) * 60);
-			}
-		}
-
 		public override void Kill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item14);
-			int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<ZicroniumExplosion>(), (int)(Projectile.damage * .7f), Projectile.knockBack, Projectile.owner, 10);
+			int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<ZicroniumExplosion>(), (int)(Projectile.damage * .6f), Projectile.knockBack, Projectile.owner, 10);
 			Main.projectile[proj].DamageType = Projectile.DamageType;
 			Main.projectile[proj].penetrate = 2;
 		}

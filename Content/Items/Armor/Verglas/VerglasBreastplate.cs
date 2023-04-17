@@ -14,6 +14,7 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Verglas Breastplate"); // Set the name
+            Tooltip.SetDefault("+5% increased damage");
         }
 
         public override void SetDefaults()
@@ -25,7 +26,12 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
             Item.defense = 8; // The Defence value for this piece of armour.
         }
 
-        public override void AddRecipes()
+		public override void UpdateEquip(Player player)
+		{
+			player.GetDamage(DamageClass.Generic) += .05f;
+		}
+
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.VerglasBar>(), 25);

@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using SupernovaMod.Content.Items.Weapons.BaseWeapons;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -13,16 +12,17 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Wood Rifle");
+            DisplayName.SetDefault("Wooden Rifle");
+            Tooltip.SetDefault("18% chance not to consume ammo");
         }
 
         public override void SetDefaults()
         {
             base.SetDefaults();
 
-            Item.damage = 8;
+            Item.damage = 9;
             Item.width = 50;
-            Item.crit = 4;
+            Item.crit = 1;
             Item.height = 28;
             Item.useTime = 15;
             Item.useAnimation = 15;

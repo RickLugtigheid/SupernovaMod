@@ -28,10 +28,7 @@ namespace SupernovaMod.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            player.GetCritChance(DamageClass.Magic) += 5;
-            player.GetCritChance(DamageClass.Melee) += 5;
-            player.GetCritChance(DamageClass.Ranged) += 5;
-            player.GetCritChance(DamageClass.Throwing) += 5;
+            player.GetCritChance(DamageClass.Generic) += 5;
         }
 
         public override void AddRecipes()

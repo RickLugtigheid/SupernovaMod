@@ -34,7 +34,7 @@ namespace SupernovaMod.Content.Items.Misc
         public override bool CanUseItem(Player player)
         {
             // Does NPC already Exist?
-            bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<Npcs.Bosses.FlyingTerror.FlyingTerror>());
+            bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<Npcs.FlyingTerror.FlyingTerror>());
             return !alreadySpawned;
         }
 
@@ -44,7 +44,7 @@ namespace SupernovaMod.Content.Items.Misc
             if (Main.dayTime) return false;
 
             // Than summon the Flying Terror
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Npcs.Bosses.FlyingTerror.FlyingTerror>()); // Spawn the boss within a range of the player. 
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Npcs.FlyingTerror.FlyingTerror>()); // Spawn the boss within a range of the player. 
             SoundEngine.PlaySound(SoundID.Roar, player.position); // Play spawn sound
             return true;
         }

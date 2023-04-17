@@ -17,6 +17,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
         {
             Projectile.CloneDefaults(ProjectileID.ThrowingKnife);
             AIType = ProjectileID.ThrowingKnife;
+            Projectile.penetrate = 1;
         }
 
         public override void Kill(int timeLeft)

@@ -2,6 +2,9 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
+using SupernovaMod.Common.Players;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace SupernovaMod.Content.Items.Armor.Verglas
 {
@@ -13,8 +16,7 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Verglas Helmet");
-            Tooltip.SetDefault("A Verglas helmet for the melee class" +
-                "\n The cold protects you from lava for a short time");
+            Tooltip.SetDefault("10% increased melee damage and speed");
         }
 
         public override void SetDefaults()
@@ -23,30 +25,35 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
             Item.height = 18;
             Item.value = Item.buyPrice(0, 14, 0, 0);
             Item.rare = ItemRarityID.Orange;
-            Item.defense = 9; // The Defence value for this piece of armour.
-        }
+            Item.defense = 10; // The Defence value for this piece of armour.
+		}
 
-        public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<VerglasBreastplate>() && legs.type == ModContent.ItemType<VerglasBoots>();
+		public override bool IsArmorSet(Item head, Item body, Item legs) => body.type == ModContent.ItemType<VerglasBreastplate>() && legs.type == ModContent.ItemType<VerglasBoots>();
 
         public override void UpdateEquip(Player player)
         {
-            player.lavaMax += 210;
+            player.GetDamage(DamageClass.Melee) += .1f;
+            player.GetAttackSpeed(DamageClass.Melee) += .1f;
         }
 
         public override void UpdateArmorSet(Player player)
         {
-            player.GetDamage(DamageClass.Melee) += .08f;
-            if (player.statLife <= 200)
+            player.setBonus = "Grants immunity to OnFire\nThe cold protects you from lava for a short time\nThe cold generates a layer of ice that makes the first hit deal 25% less damage, after that the layer of ice will break and regenrate after 10 seconds.";
+			player.lavaMax += 210;
+            player.buffImmune[BuffID.OnFire] = true;
+			player.GetModPlayer<AccessoryPlayer>().coldArmor = true;
+		}
+
+		public override void ArmorSetShadows(Player player)
+		{
+			player.armorEffectDrawShadowSubtle = true;
+			if (!player.HasBuff<Buffs.Cooldowns.ColdArmorCooldown>())
             {
-                player.statDefense += 3;
-            }
-            player.setBonus = "Increases Defence when under 200 health" +
-                "\n Increases melee damage by 8%";
+				player.armorEffectDrawOutlines = true;
+			}
+		}
 
-            //player.GetModPlayer<Supernova>().VerglasArmour = true;
-        }
-
-        public override void AddRecipes()
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.VerglasBar>(), 10);

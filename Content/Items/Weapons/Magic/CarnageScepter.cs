@@ -18,18 +18,18 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 15;
-            Item.crit = 7;
+            Item.damage = 16;
+            Item.crit = 1;
             Item.width = 28;
             Item.height = 34;
-            Item.useTime = 32;
-            Item.useAnimation = 32;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
             Item.useStyle = ItemUseStyleID.Shoot;        //this is how the item is holded
             Item.noMelee = true;
             Item.knockBack = 2;
             Item.value = Item.buyPrice(0, 3, 0, 0);
             Item.rare = ItemRarityID.Orange;
-            Item.mana = 7;             //mana use
+            Item.mana = 5;             //mana use
             Item.UseSound = SoundID.Item21;            //this is the sound when you use the item
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.Magic.CarnageScepterProj>();

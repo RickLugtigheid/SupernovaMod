@@ -36,17 +36,18 @@ namespace SupernovaMod.Content.Items.Misc
         public override bool CanUseItem(Player player)
         {
             // Does NPC Exist
-            bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<Npcs.Bosses.StoneMantaRay.StoneMantaRay>());
+            //bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<Npcs.Bosses.StoneMantaRay.StoneMantaRay>());
 
             // return NPC.downedQueenBee && Main.hardMode && !NPC.AnyNPCs(mod.NPCType("TutorialBoss")); // NPC will spawn if No existing Tutorial Boss, Queen Bee is downed and it is hardmode 
-            return !alreadySpawned;
+            //return !alreadySpawned;
+            return false;
         }
 
         public override bool? UseItem(Player player)/* tModPorter Suggestion: Return null instead of false */
         {
             if (player.ZoneBeach)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Npcs.Bosses.StoneMantaRay.StoneMantaRay>()); // Spawn the boss within a range of the player. 
+                //NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Npcs.Bosses.StoneMantaRay.StoneMantaRay>()); // Spawn the boss within a range of the player. 
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
                 return true;
             }

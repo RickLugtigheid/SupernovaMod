@@ -17,9 +17,9 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Item.damage = 21;
-            Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useAnimation = 22;
-            Item.useTime = 64;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useAnimation = 40;
+            Item.useTime = 40;
             Item.shootSpeed = 4.18f; // The shoot speed for the spear projectile.
             Item.knockBack = 0.63f;
             Item.width = 32;
@@ -27,15 +27,15 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             Item.rare = ItemRarityID.Green;
             Item.UseSound = SoundID.Item1;
             Item.value = Item.buyPrice(0, 4, 0, 0);
-            Item.autoReuse = false; // Will auto reuse the item.
+            Item.autoReuse = true; // Will auto reuse the item.
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.shoot = ModContent.ProjectileType<Content.Projectiles.Melee.Spears.CarnageJavalinProj>();
+			Item.shootSpeed = 10f;
 
-            Item.DamageType = DamageClass.Melee;
+			Item.DamageType = DamageClass.Melee;
         }
 
-        public override bool CanUseItem(Player player) => player.ownedProjectileCounts[Item.shoot] < 1;
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();

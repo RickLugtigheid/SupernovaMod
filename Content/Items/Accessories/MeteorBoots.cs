@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Api;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,7 +20,8 @@ namespace SupernovaMod.Content.Items.Accessories
             Item.width = 16;
             Item.height = 16;
             Item.maxStack = 1;
-            Item.value = Item.buyPrice(0, 7, 0, 0);
+            Item.value = BuyPrice.RarityBlue;
+            Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
         }
 
@@ -72,12 +74,12 @@ namespace SupernovaMod.Content.Items.Accessories
                     //Y-velocity is set here
                     //If the direction requested was DashUp, then we adjust the velocity to make the dash appear "faster" due to gravity being immediately in effect
                     //This adjustment is roughly 1.3x the intended dash velocity
-                    float dashDirection = mp.DashDir == downDashPlayer.DashDown ? 1 : -1.3f;
+                    float dashDirection = mp.DashDir == downDashPlayer.DashDown ? 1.5f : -1.3f;
                     newVelocity.Y = dashDirection * mp.DashVelocity;
                 }
 
                 player.velocity = newVelocity;
-                int damage = Main.rand.Next(9, 22);
+                int damage = Main.rand.Next(12, 22);
                 Projectile.NewProjectile(Item.GetSource_FromAI(), player.position.X, player.position.Y - 0, Main.rand.NextFloat(0.01f, 1), 4, ProjectileID.Meteor3, damage, 7, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile(Item.GetSource_FromAI(), player.position.X, player.position.Y - 25, 0, 4, ProjectileID.Meteor1, damage, 7, Main.myPlayer, 0f, 0f);
                 Projectile.NewProjectile(Item.GetSource_FromAI(), player.position.X, player.position.Y - 50, Main.rand.NextFloat(1, -0.01f), 4, ProjectileID.Meteor2, damage, 7, Main.myPlayer, 0f, 0f);

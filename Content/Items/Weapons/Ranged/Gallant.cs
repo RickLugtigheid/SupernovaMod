@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SupernovaMod.Content.Buffs.Cooldowns;
 using SupernovaMod.Content.Items.Weapons.BaseWeapons;
 using System.IO;
 using Terraria;
@@ -29,10 +30,10 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             base.SetDefaults();
 
-            Item.damage = 17;
+            Item.damage = 22;
             Item.width = 50;
             Item.height = 24;
-            Item.crit = 3;
+            Item.crit = 1;
             Item.useTime = 10;
             Item.useAnimation = 10;
             Item.knockBack = 3;
@@ -40,7 +41,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             Item.autoReuse = false;
             Item.rare = ItemRarityID.Green;
             Item.UseSound = SoundID.Item41;
-            Item.shootSpeed = 6;
+            Item.shootSpeed = 8;
 
             Item.useAmmo = AmmoID.None;
 
@@ -53,7 +54,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             // Check if our Gallant is cooling down
             //
-            if (player.HasBuff(ModContent.BuffType<Buffs.ReloadDebuff>()))
+            if (player.HasBuff(ModContent.BuffType<ReloadDebuff>()))
             {
                 return false;
             }
@@ -130,7 +131,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         private bool Reload(Player player)
         {
             SoundEngine.PlaySound(SoundID.Item149);
-            player.AddBuff(ModContent.BuffType<Buffs.ReloadDebuff>(), Item.useTime * 10); // The use time will be the ammount of seconds needed for cooldown
+            player.AddBuff(ModContent.BuffType<ReloadDebuff>(), Item.useTime * 10); // The use time will be the ammount of seconds needed for cooldown
 
             Item.useAmmo = AmmoID.Bullet;
 

@@ -23,13 +23,13 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            Item.damage = 24;
+            Item.damage = 27;
             Item.autoReuse = true;
-            Item.crit = 4;
+            Item.crit = 2;
             Item.width = 16;
             Item.height = 24;
-            Item.useTime = 48;
-            Item.useAnimation = 48;
+            Item.useTime = 46;
+            Item.useAnimation = 46;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true; // Doesn't deal damage if an enemy touches at melee range.
             Item.value = Item.buyPrice(0, 9, 47, 0); // Another way to handle value of item.

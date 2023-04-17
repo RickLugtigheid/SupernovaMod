@@ -13,19 +13,18 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             DisplayName.SetDefault("Desert Duster");
             Tooltip.SetDefault("Uses sand to shoot.");
-        }
+		}
 
         public override void SetDefaults()
         {
             base.SetDefaults();
 
-            Item.ArmorPenetration = 2;
-            Item.damage = 17;
+            Item.damage = 24;
             Item.width = 58;
-            Item.crit = 3;
+            Item.crit = 1;
             Item.height = 22;
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 22;
+            Item.useAnimation = 22;
             Item.knockBack = 1.5f;
             Item.value = Item.buyPrice(0, 11, 50, 0);
             Item.autoReuse = true;
@@ -38,9 +37,10 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<Items.Materials.FirearmManual>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<Materials.FirearmManual>(), 2);
             recipe.AddIngredient(ItemID.FossilOre, 12);
-            recipe.AddTile(TileID.WorkBenches);
+			recipe.AddIngredient(ItemID.Amber, 2);
+			recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
         }
 

@@ -14,7 +14,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Hellfire Rifle");
-            Tooltip.SetDefault("Turns Wooden bullets into Molten Bullets");
+            Tooltip.SetDefault("18% chance not to consume ammo\nTurns Wooden bullets into Molten Bullets");
         }
 
         public override Vector2? HoldoutOffset() => new Vector2(-2, -2);
@@ -23,17 +23,17 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             base.SetDefaults();
 
-            Item.damage = 15;
+            Item.damage = 17;
             Item.width = 72;
-            Item.crit = 4;
+            Item.crit = 1;
             Item.height = 26;
-            Item.useTime = 16;
-            Item.useAnimation = 16;
+            Item.useTime = 18;
+            Item.useAnimation = 18;
             Item.noMelee = true; //so the item's animation doesn't do damage
             Item.knockBack = 2.4f;
             Item.value = Item.buyPrice(0, 15, 50, 0);
             Item.autoReuse = true;
-            Item.rare = 2;
+            Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item11;
             Item.shootSpeed = 11f;
             Item.useAmmo = AmmoID.Bullet;

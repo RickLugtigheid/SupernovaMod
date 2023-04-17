@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SupernovaMod.Content.Projectiles.Melee.Swordstaffs;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -17,28 +17,30 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-            Item.damage = 18;    //The damage stat for the Weapon.
-            Item.crit = 8;
-            Item.scale *= 1.56f;
-            Item.width = 80;
-            Item.height = 80;
-            Item.useTime = 6;
-            Item.useAnimation = 6;
-            Item.channel = true;
-            Item.useStyle = 100;
-            Item.knockBack = 6f;
-            Item.value = Item.buyPrice(0, 5, 40, 0);
-            Item.rare = ItemRarityID.Orange;
-            Item.shoot = ModContent.ProjectileType<Projectiles.Melee.BlazingFireProj>();
-            Item.noUseGraphic = true;
+			Item.damage = 18;
+            Item.crit = 1;
+			Item.knockBack = 7;
+			Item.useAnimation = (Item.useTime = 25);
+			Item.DamageType = DamageClass.Melee;
+			Item.noMelee = true;
+			Item.channel = true;
+			Item.autoReuse = true;
+			Item.shootSpeed = 14f;
+			Item.shoot = ModContent.ProjectileType<BlazingFireProj>();
+			Item.width = 128;
+			Item.height = 140;
+			Item.noUseGraphic = true;
+			Item.useStyle = ItemUseStyleID.Shoot;
+			Item.UseSound = SoundID.DD2_SkyDragonsFurySwing;
+			Item.value = Item.buyPrice(0, 5, 40, 0);
+			Item.rare = ItemRarityID.Orange;
+		}
 
-            Item.DamageType = DamageClass.Melee;
-        }
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.HellstoneBar, 15);
-            recipe.AddIngredient(ItemID.Wood, 50);
+            recipe.AddIngredient(ItemID.Wood, 10);
             recipe.AddIngredient(ItemID.Obsidian, 7);
             recipe.AddTile(TileID.Hellforge);
             recipe.Register();

@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Items.Armor.Carnage
 {
@@ -14,17 +15,24 @@ namespace SupernovaMod.Content.Items.Armor.Carnage
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Carnage Breastplate"); // Set the name
+            Tooltip.SetDefault("5% increased damage reduction");
         }
 
         public override void SetDefaults()
         {
             Item.width = 18;
             Item.height = 18;
-            Item.value = Item.buyPrice(0, 7, 0, 0);
+            Item.value = BuyPrice.RarityGreen;
             Item.rare = ItemRarityID.Green;
             Item.defense = 8; // The Defence value for this piece of armour.
         }
-        public override void AddRecipes()
+
+		public override void UpdateEquip(Player player)
+		{
+			player.endurance += 0.05f;
+		}
+
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.BloodShards>(), 30);

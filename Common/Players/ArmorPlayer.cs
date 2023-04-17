@@ -12,6 +12,7 @@ namespace SupernovaMod.Common.Players
     public class ArmorPlayer : ModPlayer
 	{
 		public bool zirconiumArmor = false;
+		public bool carnageArmor = false;
 		public bool coldArmor = false;
 
 		/* Reset */
@@ -20,6 +21,7 @@ namespace SupernovaMod.Common.Players
 			base.ResetEffects();
 
 			zirconiumArmor = false;
+			carnageArmor = false;
 			coldArmor = false;
 		}
 	}

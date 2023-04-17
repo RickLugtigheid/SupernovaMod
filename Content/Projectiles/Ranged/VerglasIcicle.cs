@@ -15,7 +15,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged
         /// </summary>
         private const float TICKS_BEFORE_TARGET_DAMAGE = 30;
         private const int MAX_STICKY_PROJECTILES = 6;
-        private readonly int _stickyDebuffId = ModContent.BuffType<Buffs.Debuffs.VerglasIcicleDebuff>();
+        private readonly int _stickyDebuffId = ModContent.BuffType<Buffs.StatDebuffs.VerglasIcicleDebuff>();
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Verglas Icicle");

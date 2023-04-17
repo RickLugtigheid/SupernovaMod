@@ -1,4 +1,5 @@
-﻿using SupernovaMod.Common.Players;
+using SupernovaMod.Api;
+using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -13,7 +14,7 @@ namespace SupernovaMod.Content.Items.Accessories
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Cooling Element");
-            Tooltip.SetDefault("Decreases ring cooldown by 8%\nWhen your ring is cooling down your movement speed increases by 10%");
+            Tooltip.SetDefault("8% decreased ring cooldown time\n10% increased movement speed when your ring is cooling down");
             ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 
@@ -22,15 +23,17 @@ namespace SupernovaMod.Content.Items.Accessories
             Item.width = 16;
             Item.height = 16;
             Item.maxStack = 1;
-            Item.value = Item.buyPrice(0, 6, 0, 0);
+            Item.value = BuyPrice.RarityGreen;
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            RingPlayer.ringCooldownMulti -= 0.08f;
-            if (player.HasBuff(ModContent.BuffType<Buffs.RingCooldown>()))
+            ResourcePlayer resourcePlayer = player.GetModPlayer<ResourcePlayer>();
+			resourcePlayer.ringCoolRegen -= 0.08f;
+
+            if (player.HasBuff(ModContent.BuffType<Buffs.Cooldowns.RingCooldown>()))
             {
                 player.moveSpeed *= 1.1f;
             }

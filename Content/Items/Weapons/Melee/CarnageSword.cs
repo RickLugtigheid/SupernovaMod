@@ -19,8 +19,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-            Item.damage = 17;
-            Item.crit = 7;
+            Item.damage = 22;
+            Item.crit = 5;
             Item.width = 52;
             Item.height = 62;
             Item.useTime = 20;
@@ -59,7 +59,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 
                     // Heal the player by healAmount
                     //
-                    Projectile.NewProjectile(player.GetSource_FromThis(), target.Center, startVelocity, ProjectileID.SpiritHeal, 1, 0, player.whoAmI, 0, HEAL_AMOUNT);
+                    Projectile.NewProjectile(player.GetSource_FromThis(), target.Center, startVelocity, ProjectileID.VampireHeal, 1, 0, player.whoAmI, 0, HEAL_AMOUNT);
                 }
             }
 

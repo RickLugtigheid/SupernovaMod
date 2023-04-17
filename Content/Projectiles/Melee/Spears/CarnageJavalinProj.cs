@@ -2,77 +2,55 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace SupernovaMod.Content.Projectiles.Melee.Spears
 {
-    public class CarnageJavalinProj : ModProjectile
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Carnage Javalin");
-        }
-        public override void SetDefaults()
-        {
-            Projectile.width = 18;
-            Projectile.height = 18;
-            Projectile.aiStyle = 19; // Spears use this AI Style.
-            Projectile.friendly = true;
-            Projectile.penetrate = -1;
-            Projectile.tileCollide = false; // Does the projectile stop if it has collided with a tile?
-            Projectile.scale = 1.3f; // The scale of the projectile
-            Projectile.hide = true; // Hides the projectile?
-            Projectile.ownerHitCheck = true;
-            Projectile.DamageType = DamageClass.Melee;
-            Projectile.alpha = 0; // The alpha value of the projectile
-        }
+	public class CarnageJavalinProj : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Carnage Javalin");
+		}
+		public override void SetDefaults()
+		{
+			Projectile.width = 18;
+			Projectile.height = 18;
+			Projectile.friendly = true;
+			Projectile.penetrate = 1;
+			//Projectile.hide = true;
+			Projectile.DamageType = DamageClass.Melee;
+			Projectile.timeLeft = 240;
+			AIType = ProjectileID.BoneJavelin;
+		}
 
-        public float movementFactor
-        {
-            get { return Projectile.ai[0]; }
-            set { Projectile.ai[0] = value; }
-        }
-        Vector2 startMousePos = Vector2.Zero;
-        public override void AI()
-        {
-            if (startMousePos == Vector2.Zero) startMousePos = Main.MouseWorld;
-            Player projOwner = Main.player[Projectile.owner];
-            Vector2 ownerMountedCenter = projOwner.RotatedRelativePoint(projOwner.MountedCenter, true);
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+		{
+			// For going through platforms and such, javelins use a tad smaller size
+			width = height = 10; // notice we set the width to the height, the height to 10. so both are 10
+			return true;
+		}
 
-            Projectile.direction = projOwner.direction;
-            projOwner.heldProj = Projectile.whoAmI;
-            projOwner.itemTime = projOwner.itemAnimation;
-            Projectile.position.X = ownerMountedCenter.X - Projectile.width / 2;
-            Projectile.position.Y = ownerMountedCenter.Y - Projectile.height / 2;
+		public override void AI()
+		{
+			if (Utils.NextBool(Main.rand, 4))
+			{
+				Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Blood, base.Projectile.velocity.X * 0.5f, base.Projectile.velocity.Y * 0.5f, 0, default(Color), 1f);
+			}
+			base.Projectile.rotation = (float)Math.Atan2((double)base.Projectile.velocity.Y, (double)base.Projectile.velocity.X) + 0.785f;
+			if (base.Projectile.spriteDirection == -1)
+			{
+				base.Projectile.rotation -= 1.57f;
+			}
+		}
 
-            if (!projOwner.frozen)
-            {
-                if (movementFactor == 0f)
-                {
-                    movementFactor = 3f;
-                    Projectile.netUpdate = true;
-                }
-                else if (projOwner.itemAnimation == projOwner.itemAnimationMax / 2)
-                {
-                    Vector2 diff = startMousePos - projOwner.Center;
-
-                    diff.Normalize();
-                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position.X, Projectile.position.Y, diff.X * 16, diff.Y * 16, ProjectileID.NettleBurstRight, (int)(Projectile.damage * .45f), 2, Main.myPlayer, 0f, 0f);
-                }
-                if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3)
-                {
-                    movementFactor -= 2.4f;
-                }
-                else
-                {
-                    movementFactor += 2.4f;
-                }
-            }
-            Projectile.position += Projectile.velocity * movementFactor;
-
-            if (projOwner.itemAnimation == 0)
-            {
-                Projectile.Kill();
-            }
-        }
-    }
+		public override void Kill(int timeLeft)
+		{
+			Vector2 velocity = Vector2.One * 10;
+			velocity = velocity.RotatedBy(Projectile.rotation - MathHelper.ToRadians(90));
+			Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, velocity, ProjectileID.NettleBurstRight, (int)(Projectile.damage * .45f), 2, Main.myPlayer, 0f, 0f);
+			base.Kill(timeLeft);
+		}
+	}
 }
+

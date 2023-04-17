@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Common;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -27,6 +28,8 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
                 return;
             }
 
+            Projectile.spriteDirection = Projectile.direction;
+
             GeneralBehavior(owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition);
             SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
 
@@ -54,7 +57,7 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 
         protected virtual void GeneralBehavior(Player owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition)
         {
-            Vector2 idlePosition = owner.Center;
+			Vector2 idlePosition = owner.Center;
             idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles from the center of the player)
 
             // If your minion doesn't aimlessly move around when it's idle, you need to "put" it into the line of other summoned minions
@@ -166,56 +169,86 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 
         protected virtual void UpdateMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {
-            // Default movement parameters (here for attacking)
-            float speed = 8f;
-            float inertia = 20f;
-
             if (foundTarget)
             {
-                // Minion has a target: attack (here, fly towards the enemy)
-                if (distanceFromTarget > 40f)
-                {
-                    // The immediate range around the target (so it doesn't latch onto it when close)
-                    Vector2 direction = targetCenter - Projectile.Center;
-                    direction.Normalize();
-                    direction *= speed;
-
-                    Projectile.velocity = (Projectile.velocity * (inertia - 1) + direction) / inertia;
-                }
+				// Set direction
+				//
+				if (Projectile.Center.X < targetCenter.X - 2f)
+				{
+					Projectile.direction = 1;
+				}
+				if (Projectile.Center.X > targetCenter.X + 2f)
+				{
+					Projectile.direction = -1;
+				}
+				UpdateAttackMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
             }
             else
             {
-                // Minion doesn't have a target: return to player and idle
-                if (distanceToIdlePosition > 600f)
-                {
-                    // Speed up the minion if it's away from the player
-                    speed = 12f;
-                    inertia = 60f;
-                }
-                else
-                {
-                    // Slow down the minion if closer to the player
-                    speed = 4f;
-                    inertia = 80f;
-                }
-
-                if (distanceToIdlePosition > 20f)
-                {
-                    // The immediate range around the player (when it passively floats about)
-
-                    // This is a simple movement formula using the two parameters and its desired direction to create a "homing" movement
-                    vectorToIdlePosition.Normalize();
-                    vectorToIdlePosition *= speed;
-                    Projectile.velocity = (Projectile.velocity * (inertia - 1) + vectorToIdlePosition) / inertia;
-                }
-                else if (Projectile.velocity == Vector2.Zero)
-                {
-                    // If there is a case where it's not moving at all, give it a little "poke"
-                    Projectile.velocity.X = -0.15f;
-                    Projectile.velocity.Y = -0.05f;
-                }
-            }
+                UpdateIdleMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
+				// Set direction
+				//
+				if (Projectile.Center.X < vectorToIdlePosition.X - 2f)
+				{
+					Projectile.direction = -1;
+				}
+				if (Projectile.Center.X > vectorToIdlePosition.X + 2f)
+				{
+					Projectile.direction = 1;
+				}
+			}
         }
+
+		// Default movement parameters (here for attacking)
+		protected float speed = 8f;
+		protected float inertia = 10;
+		protected virtual void UpdateAttackMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
+        {
+			// Minion has a target: attack (here, fly towards the enemy)
+			/*if (distanceFromTarget > 40)
+			{
+                float speedMulti = distanceFromTarget / 100;
+                speedMulti = Utils.Clamp(speedMulti, 1.5f, .75f); // Cap the multiplier
+				SupernovaUtils.MoveProjectileSmooth(Projectile, 100, targetCenter - Projectile.Center, speed * speedMulti, .15f);
+			}*/
+
+			Vector2 vectorToTarget = targetCenter - Projectile.Center;
+			vectorToTarget = Utils.SafeNormalize(vectorToTarget, Vector2.Zero);
+			
+            Projectile.velocity = Vector2.Lerp(Projectile.velocity, vectorToTarget * speed, 0.024390243f);
+		}
+        protected virtual void UpdateIdleMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
+        {
+			// Minion doesn't have a target: return to player and idle
+			if (distanceToIdlePosition > 600f)
+			{
+				// Speed up the minion if it's away from the player
+				speed = 12f;
+				inertia = 60f;
+			}
+			else
+			{
+				// Slow down the minion if closer to the player
+				speed = 4f;
+				inertia = 80f;
+			}
+
+			if (distanceToIdlePosition > 20f)
+			{
+				// The immediate range around the player (when it passively floats about)
+
+				// This is a simple movement formula using the two parameters and its desired direction to create a "homing" movement
+				vectorToIdlePosition.Normalize();
+				vectorToIdlePosition *= speed;
+				Projectile.velocity = (Projectile.velocity * (inertia - 1) + vectorToIdlePosition) / inertia;
+			}
+			else if (Projectile.velocity == Vector2.Zero)
+			{
+				// If there is a case where it's not moving at all, give it a little "poke"
+				Projectile.velocity.X = -0.15f;
+				Projectile.velocity.Y = -0.05f;
+			}
+		}
 
         protected virtual void UpdateVisuals()
         {

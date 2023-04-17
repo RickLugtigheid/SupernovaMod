@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
+using SupernovaMod.Common.Players;
 
 namespace SupernovaMod.Content.Items.Armor.Verglas
 {
@@ -13,8 +14,7 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Verglas Visage");
-            Tooltip.SetDefault("A Zirconium helmet for the ranged and throwing classes" +
-                "\n The cold protects you from lava for a short time");
+            Tooltip.SetDefault("10% increased ranged damage, 20% chance not to consume ammo");
         }
 
         public override void SetDefaults()
@@ -30,19 +30,27 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
 
         public override void UpdateEquip(Player player)
         {
-            player.lavaMax += 210;
-        }
+			player.GetDamage(DamageClass.Ranged) += .1f;
+            player.ammoCost80 = true;
+		}
 
-        public override void UpdateArmorSet(Player player)
-        {
-            player.setBonus = "Increases thrown and ranged damage by 8%\nIncreases velocity by 5%";
-            //player.GetModPlayer<TheGalacticaModPlayer>().VerglasArmour = true;
-            player.GetDamage(DamageClass.Ranged) += .08f;
-            player.GetDamage(DamageClass.Throwing) += .08f;
-            player.ThrownVelocity += .05f;
-        }
+		public override void UpdateArmorSet(Player player)
+		{
+			player.setBonus = "The cold protects you from lava for a short time\nThe cold generates a layer of ice that makes the first hit deal 25% less damage, after that the layer of ice will break and regenrate after 10 seconds.";
+			player.lavaMax += 210;
+			player.GetModPlayer<AccessoryPlayer>().coldArmor = true;
+		}
 
-        public override void AddRecipes()
+		public override void ArmorSetShadows(Player player)
+		{
+			player.armorEffectDrawShadowSubtle = true;
+			if (!player.HasBuff<Buffs.Cooldowns.ColdArmorCooldown>())
+			{
+				player.armorEffectDrawOutlines = true;
+			}
+		}
+
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.VerglasBar>(), 10);

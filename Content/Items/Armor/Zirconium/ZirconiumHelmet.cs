@@ -35,7 +35,7 @@ namespace SupernovaMod.Content.Items.Armor.Zirconium
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Zirconium projectiles deal +5% extra damage.\nZirconium projectiles inflict the OnFire debuff.";
+			player.setBonus = "Zirconium Explosions and sparks deal +5% extra damage.\nZirconium Explosions sparks inflict the OnFire debuff.";
 			player.GetModPlayer<ArmorPlayer>().zirconiumArmor = true;
 		}
 

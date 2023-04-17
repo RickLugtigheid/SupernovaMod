@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
 using System;
+using System.Collections.Generic;
 
 namespace SupernovaMod.Common.GlobalNPCs
 {
@@ -24,6 +25,7 @@ namespace SupernovaMod.Common.GlobalNPCs
 			}
 
 			// Drop from any demon
+			//
 			if (npc.type == NPCID.Demon || npc.type == NPCID.VoodooDemon || npc.type == NPCID.RedDevil)
 			{
 				// 1/30 (3.3333%) Drop chance
@@ -58,13 +60,13 @@ namespace SupernovaMod.Common.GlobalNPCs
 		{
 			// 1/80 (1.25%) Drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Weapons.Magic.StaffOfThorns>(), 80));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Weapons.Magic.StaffOfThorns>(), 80), true);
 		}
 		public void NPCBiomeGlowingMushroomLoot(IItemDropRule conditionalRule)
 		{
 			// 1/50 (2%) Drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.BagOfFungus>(), 50));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.BagOfFungus>(), 50), true);
 		}
 		public void NPCBiomeSnowLoot(IItemDropRule conditionalRule)
 		{
@@ -72,7 +74,7 @@ namespace SupernovaMod.Common.GlobalNPCs
 			//
 			conditionalRule.OnSuccess(GetDropRule<QueenBeeDownedDropCondition>(conditionalRule =>
 			{
-				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.Rime>(), 5, maximumDropped: 2));
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.Rime>(), 5, maximumDropped: 2), true);
 			}));
 			/*if (NPC.downedQueenBee == true)
 			{
@@ -83,7 +85,7 @@ namespace SupernovaMod.Common.GlobalNPCs
 		{
 			// 1/120 (0.83333%) Drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.SacrificialTalisman>(), 120));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.SacrificialTalisman>(), 120), true);
 		}
 		#endregion
 
@@ -92,7 +94,7 @@ namespace SupernovaMod.Common.GlobalNPCs
 		{
 			// 1/10 (10%) drop chance
 			//
-			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.BloodShards>(), 10, maximumDropped: 3));
+			conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.BloodShards>(), 10, maximumDropped: 3), true);
 		}
 		#endregion
 	}

@@ -1,23 +1,50 @@
 using log4net;
-using SupernovaMod.Common.Systems;
-using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.Graphics.Shaders;
+using Terraria.Graphics.Effects;
+using Terraria.ID;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace SupernovaMod
 {
     public class Supernova : Mod
 	{
+		public static Effect ShaderShockwave { get; private set; }
+
 		public static ILog Log { get; private set; }
+
 		public override void Load()
 		{
 			Log = Logger;
+
+			if (Main.netMode != NetmodeID.Server)
+			{
+				LoadShaders();
+			}
+		}
+
+		public override void Unload()
+		{
+			UnloadShaders();
+		}
+
+		private void LoadShaders()
+		{
+			ShaderShockwave = ModContent.Request<Effect>(GetEffectPath("ShockwaveEffect"), ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+			Filters.Scene["Shockwave"] = new Filter(new ScreenShaderData(new Ref<Effect>(ShaderShockwave), "Shockwave"), EffectPriority.VeryHigh);
+			Filters.Scene["Shockwave"].Load();
+		}
+		private void UnloadShaders()
+		{
+			ShaderShockwave = null;
 		}
 
 		public override void PostSetupContent()
 		{
 			// Check if the user has downloaded the bossChecklist mod
 			//
-			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
+			/*if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
 			{
 				bossChecklist.Call("AddBoss", 1.8f,
 					new List<int> { ModContent.NPCType<Content.Npcs.Bosses.HarbingerOfAnnihilation.HarbingerOfAnnihilation>() },
@@ -61,10 +88,15 @@ namespace SupernovaMod
 					},
 					"Use a [i:" + ModContent.ItemType<Content.Items.Misc.HorridChunk>() + "] at night"
 				);
-			}
+			}*/
 
 
 			base.PostSetupContent();
 		}
+
+		#region Statics
+		public static string GetEffectPath(string effectName) => $"SupernovaMod/Assets/Effects/{effectName}";
+		public static string GetTexturePath(string textureName) => $"SupernovaMod/Assets/Textures/{textureName}";
+		#endregion
 	}
 }

@@ -38,7 +38,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.BoneSword);
-            recipe.AddIngredient(ItemID.Bone, 35);
+            recipe.AddIngredient(ItemID.Bone, 12);
             recipe.AddIngredient(ModContent.ItemType<Materials.BoneFragment>(), 10);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();

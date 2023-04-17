@@ -1,4 +1,5 @@
-﻿using SupernovaMod.Common.Players;
+﻿using SupernovaMod.Api;
+using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -21,9 +22,9 @@ namespace SupernovaMod.Content.Items.Accessories
             Item.width = 16;
             Item.height = 16;
             Item.maxStack = 1;
-            Item.value = Item.buyPrice(0, 8, 0, 0);
+            Item.value = BuyPrice.RarityOrange;
             Item.accessory = true;
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Orange;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)

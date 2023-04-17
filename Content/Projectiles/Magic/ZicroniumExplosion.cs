@@ -58,10 +58,10 @@ namespace SupernovaMod.Content.Projectiles.Magic
 		}
 		public override void Kill(int timeLeft)
 		{
-			/*int dustType = ModContent.DustType<Dusts.ZirconDust>();
+			int dustType = ModContent.DustType<Dusts.ZirconDust>();
 			for (int num923 = 0; num923 < 10; num923++)
 			{
-				int num918 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, dustType, 0f, 0f, 0, default(Color), 1.7f);
+				int num918 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, dustType);
 				Dust obj20 = Main.dust[num918];
 				Vector2 center15 = Projectile.Center;
 				Vector2 spinningpoint21 = Vector2.UnitX.RotatedByRandom(3.1415927410125732);
@@ -71,7 +71,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 				Main.dust[num918].noGravity = true;
 				Dust dust24 = Main.dust[num918];
 				dust24.velocity *= 3f;
-			}*/
+			}
 		}
 	}
 }

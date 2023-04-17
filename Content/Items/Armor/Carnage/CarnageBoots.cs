@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Items.Armor.Carnage
 {
@@ -20,16 +21,15 @@ namespace SupernovaMod.Content.Items.Armor.Carnage
         {
             Item.width = 18;
             Item.height = 18;
-            Item.value = Item.buyPrice(0, 7, 0, 0);
-            Item.rare = ItemRarityID.Green;
-            Item.defense = 6; // The Defence value for this piece of armour.
+			Item.value = BuyPrice.RarityGreen;
+			Item.rare = ItemRarityID.Green;
+			Item.defense = 4; // The Defence value for this piece of armour.
         }
 
         public override void UpdateEquip(Player player)
         {
             player.moveSpeed += .03f;
         }
-
 
         public override void AddRecipes()
         {

@@ -22,7 +22,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Ranged;
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 2;
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;

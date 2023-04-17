@@ -53,7 +53,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             Item.autoReuse = false;
             Item.shoot = ProjectileID.Harpoon;
             Item.damage = 28;
-            Item.shootSpeed = 30f;
+            Item.shootSpeed = 14;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 1;
 

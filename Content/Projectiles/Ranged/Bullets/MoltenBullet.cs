@@ -16,8 +16,10 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
         {
             Projectile.width = 8;
             Projectile.height = 8;
-            Projectile.penetrate = Main.rand.Next(1, 4);
             Projectile.CloneDefaults(ProjectileID.Bullet);
+			Projectile.penetrate = 2;
+			Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 12;
             AIType = ProjectileID.Bullet;
         }
 
@@ -26,11 +28,9 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
             //this make that the projectile faces the right way
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X);
         }
-
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            Projectile.penetrate = Main.rand.Next(1, 4);
-            target.AddBuff(BuffID.OnFire, 120);
+            target.AddBuff(Main.rand.NextBool() ? BuffID.OnFire : BuffID.OnFire3, crit ? 240 : 120);
         }
     }
 }

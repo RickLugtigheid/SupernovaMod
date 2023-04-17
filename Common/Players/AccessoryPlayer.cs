@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Content.Items.Accessories;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,6 +24,9 @@ namespace SupernovaMod.Common.Players
 		public bool hasMinionCarnageOrb = false;
 		public bool hasMinionHairbringersKnell = false;
 
+		/* Misc */
+		public bool coldArmor = false;
+
 		/* Reset */
 		public override void ResetEffects()
 		{
@@ -35,6 +39,8 @@ namespace SupernovaMod.Common.Players
 			hasMinionVerglasFlake		= false;
 			hasMinionCarnageOrb			= false;
 			hasMinionHairbringersKnell	= false;
+
+			coldArmor = false;
 		}
 
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit) => OnAnyHitNpc(target, damage, knockback, crit);
@@ -84,6 +90,35 @@ namespace SupernovaMod.Common.Players
 			}
 		}
 
+		public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+		{
+			ModifyHitByAny(npc, ref damage, ref crit);
+		}
+		public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+		{
+			ModifyHitByAny(proj, ref damage, ref crit);
+		}
+		public void ModifyHitByAny(Entity entity, ref int damage, ref bool crit)
+		{
+			if (coldArmor && !Player.HasBuff<Content.Buffs.Cooldowns.ColdArmorCooldown>())
+			{
+				Player.AddBuff(ModContent.BuffType<Content.Buffs.Cooldowns.ColdArmorCooldown>(), 10 * 60);
+				SoundEngine.PlaySound(GetRandomIceStruckSound(), Player.Center);
+
+				// Add dust effect
+				for (int j = 0; j < 5; j++)
+				{
+					int dust = Dust.NewDust(Player.position, Player.width, Player.height, DustID.Ice);
+					Main.dust[dust].scale = 1.5f;
+					Main.dust[dust].noGravity = true;
+					Main.dust[dust].velocity *= 1.5f;
+					Main.dust[dust].velocity *= 1.5f;
+				}
+
+				damage = (int)(damage * .75f);
+			}
+		}
+
 		void Invoke_BagOfFungus()
 		{
 			for (int e = 0; e < 5; e++)
@@ -105,6 +140,19 @@ namespace SupernovaMod.Common.Players
 		void Invoke_HeartOfTheJungle(HeartOfTheJungle item)
 		{
 			item.ConsumeEnergy(Player);
+		}
+
+		private SoundStyle GetRandomIceStruckSound()
+		{
+			switch (Main.rand.Next(0, 2))
+			{
+				default:
+					return SoundID.Item48;
+				case 1:
+					return SoundID.Item49;
+				case 2:
+					return SoundID.Item50;
+			}
 		}
 	}
 }

@@ -13,27 +13,27 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
             DisplayName.SetDefault("Shock Surge");
 
-            Tooltip.SetDefault("Shoots a bolt of lighting at the target");
+            Tooltip.SetDefault("Shoots a bolt of chain lighting. Damage of this chain lightning projectile decreases 25% with every hit.");
         }
         public override void SetDefaults()
         {
-            Item.damage = 14;  //The damage stat for the Weapon.
-            Item.crit = 3;
+            Item.damage = 25;  //The damage stat for the Weapon.
+            Item.crit = 2;
             Item.noMelee = true;  //Setting to True allows the weapon sprite to stop doing damage, so only the projectile does the damge
             Item.noUseGraphic = false;
             Item.channel = true;                            //Channel so that you can held the weapon
             Item.rare = 3;   //The color the title of your Weapon when hovering over it ingame
             Item.width = 28;   //The size of the width of the hitbox in pixels.
             Item.height = 30;    //The size of the height of the hitbox in pixels.
-            Item.UseSound = SoundID.Item20;
-            Item.useTime = 40;
-            Item.useAnimation = 40;
-            Item.shootSpeed = 27;
-            Item.mana = 12;
+            Item.UseSound = SoundID.Item72;
+            Item.useTime = 34;
+            Item.useAnimation = 34;
+            Item.shootSpeed = 1;
+            Item.mana = 5;
             Item.useStyle = ItemUseStyleID.Shoot;   //The way your Weapon will be used, 5 is the Holding Out Used for: Guns, Spellbooks, Drills, Chainsaws, Flails, Spears for example
             Item.value = Item.sellPrice(0, 5, 32, 64);//	How much the item is worth, in copper coins, when you sell it to a merchant. It costs 1/5th of this to buy it back from them. An easy way to remember the value is platinum, gold, silver, copper or PPGGSSCC (so this item price is 3gold)
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<Projectiles.Magic.Lightning>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.Magic.ShockSurgeProj>();
 
             Item.DamageType = DamageClass.Magic;
         }

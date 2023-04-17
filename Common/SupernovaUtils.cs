@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using SupernovaMod.Api;
+using System;
 using Terraria;
 
 namespace SupernovaMod.Common
@@ -65,6 +65,166 @@ namespace SupernovaMod.Common
 				}
 			}
 			player.itemLocation = finalPosition;
+		}
+
+		public static float Magnitude(this Vector2 self) => (float)Math.Sqrt(self.X * self.X + self.Y * self.Y);
+
+		/// <summary>
+		/// Moves an npc to a location smoothly
+		/// </summary>
+		/// <param name="npc"></param>
+		/// <param name="movementDistanceGateValue"></param>
+		/// <param name="distanceFromDestination"></param>
+		/// <param name="baseVelocity"></param>
+		/// <param name="acceleration"></param>
+		/// <param name="useSimpleFlyMovement"></param>
+		public static void MoveNPCSmooth(NPC npc, float movementDistanceGateValue, Vector2 distanceFromDestination, float baseVelocity, float acceleration, bool useSimpleFlyMovement)
+		{
+			float lerpValue = Utils.GetLerpValue(movementDistanceGateValue, 2400f, distanceFromDestination.Length(), true);
+			float minVelocity = distanceFromDestination.Length();
+			if (minVelocity > baseVelocity)
+			{
+				minVelocity = baseVelocity;
+			}
+			Vector2 maxVelocity = distanceFromDestination / 24f;
+			float maxVelocityCap = baseVelocity * 3f;
+			if (maxVelocity.Length() > maxVelocityCap)
+			{
+				maxVelocity = Utils.SafeNormalize(distanceFromDestination, Vector2.Zero) * maxVelocityCap;
+			}
+			Vector2 desiredVelocity = Vector2.Lerp(Utils.SafeNormalize(distanceFromDestination, Vector2.Zero) * minVelocity, maxVelocity, lerpValue);
+			if (useSimpleFlyMovement)
+			{
+				npc.SimpleFlyMovement(desiredVelocity, acceleration);
+				return;
+			}
+			npc.velocity = desiredVelocity;
+		}
+		/// <summary>
+		/// Moves an projectile to a location smoothly
+		/// </summary>
+		/// <param name="npc"></param>
+		/// <param name="movementDistanceGateValue"></param>
+		/// <param name="distanceFromDestination"></param>
+		/// <param name="baseVelocity"></param>
+		/// <param name="acceleration"></param>
+		/// <param name="useSimpleFlyMovement"></param>
+		public static void MoveProjectileSmooth(Projectile proj, float movementDistanceGateValue, Vector2 distanceFromDestination, float baseVelocity, float acceleration)
+		{
+			float lerpValue = Utils.GetLerpValue(movementDistanceGateValue, 2400f, distanceFromDestination.Length(), true);
+			float minVelocity = distanceFromDestination.Length();
+			if (minVelocity > baseVelocity)
+			{
+				minVelocity = baseVelocity;
+			}
+			Vector2 maxVelocity = distanceFromDestination / 24f;
+			float maxVelocityCap = baseVelocity * 3f;
+			if (maxVelocity.Length() > maxVelocityCap)
+			{
+				maxVelocity = Utils.SafeNormalize(distanceFromDestination, Vector2.Zero) * maxVelocityCap;
+			}
+			Vector2 desiredVelocity = Vector2.Lerp(Utils.SafeNormalize(distanceFromDestination, Vector2.Zero) * minVelocity, maxVelocity, lerpValue);
+			proj.velocity = desiredVelocity;
+		}
+		/// <summary>
+		/// Get the required rotation to rotate to the target position.
+		/// </summary>
+		/// <param name="entity"></param>
+		/// <param name="targetPosition"></param>
+		/// <returns></returns>
+		public static float GetTargetLookRotation(this Entity entity, Vector2 targetPosition)
+		{
+			Vector2 direction = entity.Center - targetPosition;
+			float rotation = (float)Math.Atan2(direction.Y, direction.X);
+			return rotation - (float)Math.PI * 0.5f;
+		}
+		/// <summary>
+		/// Get the required rotation to rotate to the target position.
+		/// </summary>
+		/// <param name="entity"></param>
+		/// <param name="targetPosition"></param>
+		/// <returns></returns>
+		public static float GetTargetLookRotation(this Vector2 position, Vector2 targetPosition)
+		{
+			Vector2 direction = position - targetPosition;
+			float rotation = (float)Math.Atan2(direction.Y, direction.X);
+			return rotation - (float)Math.PI * 0.5f;
+		}
+
+		public static bool IntersectsConeSlowMoreAccurate(this Rectangle targetRect, Vector2 coneCenter, float coneLength, float coneRotation, float maximumAngle)
+		{
+			Vector2 point = coneCenter + coneRotation.ToRotationVector2() * coneLength;
+			if (DoesFitInCone(targetRect.ClosestPointInRect(point), coneCenter, coneLength, coneRotation, maximumAngle))
+			{
+				return true;
+			}
+			if (DoesFitInCone(targetRect.TopLeft(), coneCenter, coneLength, coneRotation, maximumAngle))
+			{
+				return true;
+			}
+			if (DoesFitInCone(targetRect.TopRight(), coneCenter, coneLength, coneRotation, maximumAngle))
+			{
+				return true;
+			}
+			if (DoesFitInCone(targetRect.BottomLeft(), coneCenter, coneLength, coneRotation, maximumAngle))
+			{
+				return true;
+			}
+			if (DoesFitInCone(targetRect.BottomRight(), coneCenter, coneLength, coneRotation, maximumAngle))
+			{
+				return true;
+			}
+			return false;
+		}
+		public static bool DoesFitInCone(Vector2 point, Vector2 coneCenter, float coneLength, float coneRotation, float maximumAngle)
+		{
+			Vector2 spinningpoint = point - coneCenter;
+			float num = spinningpoint.RotatedBy(0f - coneRotation).ToRotation();
+			if (num < 0f - maximumAngle || num > maximumAngle)
+			{
+				return false;
+			}
+			return spinningpoint.Length() < coneLength;
+		}
+
+		public static void StartThunderStorm()
+		{
+			int num = 86400;
+			int num2 = num / 24;
+			Main.rainTime = (double)Main.rand.Next(num2 * 8, num);
+			if (Utils.NextBool(Main.rand, 3))
+			{
+				Main.rainTime += (double)Main.rand.Next(0, num2);
+			}
+			if (Utils.NextBool(Main.rand, 4))
+			{
+				Main.rainTime += (double)Main.rand.Next(0, num2 * 2);
+			}
+			if (Utils.NextBool(Main.rand, 5))
+			{
+				Main.rainTime += (double)Main.rand.Next(0, num2 * 2);
+			}
+			if (Utils.NextBool(Main.rand, 6))
+			{
+				Main.rainTime += (double)Main.rand.Next(0, num2 * 3);
+			}
+			if (Utils.NextBool(Main.rand, 7))
+			{
+				Main.rainTime += (double)Main.rand.Next(0, num2 * 4);
+			}
+			if (Utils.NextBool(Main.rand, 8))
+			{
+				Main.rainTime += (double)Main.rand.Next(0, num2 * 5);
+			}
+
+			Main.cloudBGActive = 1f;
+			Main.numCloudsTemp = 200;
+			Main.numClouds = Main.numCloudsTemp;
+			Main.windSpeedCurrent = (float)Main.rand.Next(50, 75) * 0.01f;
+			Main.windSpeedTarget = Main.windSpeedCurrent;
+			Main.weatherCounter = Main.rand.Next(3600, 18000);
+			Main.maxRaining = 0.89f;
+			Main.StartRain();
 		}
 	}
 }
