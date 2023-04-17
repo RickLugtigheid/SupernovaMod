@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SupernovaMod.Content.Npcs.Bosses.HarbingerOfAnnihilation
+namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
 {
     public class HarbingerMissile : ModProjectile
     {

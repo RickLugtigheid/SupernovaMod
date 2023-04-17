@@ -5,9 +5,9 @@ using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
-
-namespace SupernovaMod.Content.Npcs
+namespace SupernovaMod.Content.Npcs.Bloodmoon
 {
     public class Gazer : ModNPC
     {
@@ -65,8 +65,8 @@ namespace SupernovaMod.Content.Npcs
             NPC.aiStyle = 44;
             AIType = NPCID.Harpy;  //npc behavior
             AnimationType = NPCID.Harpy;
-            NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.HitSound = SoundID.NPCHit9;
+            NPC.DeathSound = SoundID.NPCDeath11;
         }
 
         public override void FindFrame(int frameHeight)
@@ -82,7 +82,7 @@ namespace SupernovaMod.Content.Npcs
         public override void AI()
         {
             int radius = 625;
-            if (Vector2.Distance(Main.player[NPC.target].Center, NPC.Center) <= radius)
+            if (!NPC.confused && Vector2.Distance(Main.player[NPC.target].Center, NPC.Center) <= radius)
             {
                 timer++;
                 if (timer >= shootTimer)
@@ -107,12 +107,6 @@ namespace SupernovaMod.Content.Npcs
             Main.projectile[i].tileCollide = true;
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Lihzahrd && !spawnInfo.Invasion && !spawnInfo.SpiderCave && !spawnInfo.DesertCave && !spawnInfo.Player.ZoneDungeon && spawnInfo.Player.ZoneRockLayerHeight ? 0.031f : 0;
-
-        public override void OnKill()
-        {
-            SoundEngine.PlaySound(SoundID.NPCDeath2);
-            base.OnKill();
-        }
+        //public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.Cavern.Chance * 0.02f;
     }
 }

@@ -7,9 +7,9 @@ using SupernovaMod.Common.Systems;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 
-namespace SupernovaMod.Content.Npcs
+namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
-    public class CosmicAnomaly : ModNPC // ModNPC is used for Custom NPCs
+	public class CosmicAnomaly : ModNPC // ModNPC is used for Custom NPCs
     {
         private float speed;
         private Player player;
@@ -122,7 +122,7 @@ namespace SupernovaMod.Content.Npcs
         {
             if (spawnInfo.Player.ZoneSkyHeight == true)
             {
-                if (!SupernovaBosses.downedHarbingerOfAnnihilation)
+                if (!DownedSystem.downedHarbingerOfAnnihilation)
                     return 0.105f;
 
                 else
@@ -134,10 +134,10 @@ namespace SupernovaMod.Content.Npcs
         public override void OnKill()
         {
             // Does NPC already Exist?
-            bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<Bosses.HarbingerOfAnnihilation.HarbingerOfAnnihilation>());
+            bool alreadySpawned = NPC.AnyNPCs(ModContent.NPCType<HarbingerOfAnnihilation>());
             if (!alreadySpawned)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Bosses.HarbingerOfAnnihilation.HarbingerOfAnnihilation>()); // Spawn the boss within a range of the player. 
+                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<HarbingerOfAnnihilation>()); // Spawn the boss within a range of the player. 
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
             }
             else
