@@ -13,24 +13,20 @@ namespace SupernovaMod.Common.Players
 		/// <summary>
 		/// TODO: Add to mod config
 		/// </summary>
-		private float ScreenShakeConfigValue = 1;
+		private bool CanShakeScreen = true;
 
-		public bool effectScreenShake = false;
-		private int _shakeValue = 0;
-
-		public void StartScreenShake(int value)
-		{
-			_shakeValue = value;
-			effectScreenShake = true;
-		}
+		public float ScreenShakePower = 0;
 
 		public override void ModifyScreenPosition()
 		{
-			if (effectScreenShake)
+			if (!CanShakeScreen)
 			{
-				Main.screenPosition.Y += Main.rand.Next(-_shakeValue, _shakeValue) * ScreenShakeConfigValue;
-				Main.screenPosition.X += Main.rand.Next(-_shakeValue, _shakeValue) * ScreenShakeConfigValue;
-				if (_shakeValue > 0) { _shakeValue--; }
+				return;
+			}
+			if (ScreenShakePower > 0)
+			{
+				Main.screenPosition += Main.rand.NextVector2Circular(ScreenShakePower, ScreenShakePower);
+				ScreenShakePower = MathHelper.Clamp(ScreenShakePower - 0.185f, 0f, 20f);
 			}
 		}
 	}
