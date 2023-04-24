@@ -131,7 +131,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					Projectile.rotation = MathHelper.ToRadians(180);
 					Vector2 targetPosition = new Vector2(target.Center.X + (target.velocity.X * target.width), target.Center.Y - 300);
 					Vector2 distanceFromTarget = new Vector2(targetPosition.X, targetPosition.Y) - Projectile.Center;
-					SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 16, .15f);
+					SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 12, .35f);
 				}
 				else if (timer == 81)
 				{
@@ -142,13 +142,16 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				{
 					Projectile.velocity *= 1.015f;
 				}
-				else if (timer >= 140 && ReturnToStartPosition())
+				else if (timer >= 140)
 				{
-					SoundEngine.PlaySound(SoundID.MenuTick, Projectile.Center);
-
 					Projectile.velocity = Vector2.Zero;
-					timer = 0;
-					attackPointer = 0;
+					if (timer >= 180 && ReturnToStartPosition(7))
+					{
+						SoundEngine.PlaySound(SoundID.MenuTick, Projectile.Center);
+
+						timer = 0;
+						attackPointer = 0;
+					}
 				}
 			}
 			else if (attackPointer == HoaArmAI.CirclePlayerAndShoot)
@@ -291,7 +294,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					double rad = (_startDeg + timer) * (Math.PI / 180);    //Convert degrees to radians 
 					double dist = 80;                           //Distance away from the owner 
 
-					Projectile.rotation = MathHelper.ToRadians((_startDeg + timer) - 90);
+					Projectile.rotation = MathHelper.ToRadians((_startDeg + timer) + 90);
 
 					/*Position the owner based on where the owner is, the Sin/Cos of the angle times the / 
 
@@ -358,11 +361,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				{
 					Projectile.rotation = Projectile.GetTargetLookRotation(linkNode.Center);
 					Vector2 distanceFromTarget = new Vector2(customTarget.X, customTarget.Y) - Projectile.Center;
-					SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 8, .002f);
+					SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 6, .002f);
 
 					Dust.NewDustPerfect(Projectile.Center - new Vector2(0, Projectile.width - 10).RotatedBy(Projectile.rotation), DustID.UndergroundHallowedEnemies, Vector2.One.RotatedByRandom(1));
 
-					if (timer > 80 && (int)Projectile.ai[1] > Projectile.whoAmI) // Make sure only one arm is shooting lightning
+					if (timer > 90 && (int)Projectile.ai[1] > Projectile.whoAmI) // Make sure only one arm is shooting lightning
 					{
 						// Link lightning to linkNode
 						//

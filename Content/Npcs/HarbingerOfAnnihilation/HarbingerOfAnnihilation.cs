@@ -10,6 +10,8 @@ using SupernovaMod.Common;
 using Terraria.GameContent;
 using SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles;
 using Filters = Terraria.Graphics.Effects.Filters;
+using SupernovaMod.Content.Npcs.FlyingTerror;
+using System.Reflection;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
@@ -75,6 +77,8 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         protected float acceleration;
         public bool SecondPhase { get; private set; } = false;
 
+		private int _attackPointer2 = 0;
+
 		public override void AI()
         {
             // Run this method once
@@ -99,61 +103,17 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
             // Handle AI
             //
+            if (DespawnAI())
+			{
+				return; // Don't run any other AI
+			}
 			if (DeathAI())
 			{
 				return; // Don't run any other AI
 			}
-            DespawnAI();
 
-            timer++;
+			timer++;
 
-            /*if (timer == 80)
-            {
-                ForeachArm(arm =>
-                {
-                    arm.Projectile.ai[0] = HoaArmAI.CircleHoaAndShoot;
-                    arm.customDuration = 140;
-                });
-            }
-
-            if (timer >= 280)
-            {
-                timer = 0; attackPointer = 0;
-            }
-
-			velocity = Main.masterMode ? 7.5f : 5;
-			acceleration = .04f;
-			MovementAI(GetDesiredDestination(), velocity, acceleration);
-			return;*/
-
-            /*if (timer % 60 == 0)
-            {
-                HarbingerOfAnnihilation_Arm arm = GetRandomArm();
-                arm.Projectile.ai[0] = HoaArmAI.ShootAtPlayer;
-                arm.customDuration   = 140;
-                arm.customTarget     = target.position + Main.rand.NextVector2Circular(200, 200);
-			}
-            return;*/
-			/* Spin around the projectile */
-			/*if (timer >= 80 && timer < 450)
-            {
-                if (timer == 80)
-                {
-					NPC.localAI[0] = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.Boss.HarbingerOrb>(), 28, 4, Main.myPlayer);
-				}
-				ForeachArm(arm =>
-                {
-                    arm.Projectile.ai[0]    = HoaArmAI.CircleTarget;
-                    arm.customTarget        = Main.projectile[(int)NPC.localAI[0]].Center;
-                    arm.customDuration      = 450;
-				});
-            }
-            else if (timer >= 600)
-            {
-				NPC.localAI[0] = 0;
-                timer = 0;
-            }
-            return;*/
             // First phase
             //
 			if (npcLifeRatio > .5)
@@ -251,12 +211,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					ForeachArm(arm => {
 						arm.Projectile.alpha = 250;
 						arm.Projectile.hostile = false;
-						arm.AttackPointer = HoaArmAI.CircleHoa;
+						//arm.AttackPointer = HoaArmAI.CircleHoa;
 					});
                     NPC.dontTakeDamage = true;
 				}
 
-                if (NPC.localAI[0] < 120)
+                if (NPC.localAI[0] < 140)
                 {
 					NPC.velocity = Vector2.Zero;
 					NPC.rotation += (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) + MathHelper.ToRadians(10);
@@ -271,18 +231,14 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					Dust.NewDustPerfect(dustPos, DustID.UndergroundHallowedEnemies, diff * 10).noGravity = true;
 					Dust.NewDustPerfect(dustPos, DustID.Vortex, diff * 10).noGravity = true;
 				}
-				else if (NPC.localAI[0] == 120)
+				else if (NPC.localAI[0] == 140)
 				{
 					NPC.rotation = 0;
-					ForeachArm(arm => {
-						arm.Projectile.alpha = 0;
-						arm.Projectile.hostile = true;
-					});
 				}
 
 				// End animation
 				//
-				if (NPC.localAI[0] > 160)
+				if (NPC.localAI[0] > 160 && WaitForAllArmsToReturn())
 				{
                     NPC.localAI[0] = 0;
                     NPC.ai[0] = 0;
@@ -290,215 +246,152 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					NPC.ai[2] = 0;
 					SecondPhase = true;
                     NPC.dontTakeDamage = false;
+					ForeachArm(arm => {
+						arm.Projectile.alpha = 0;
+						arm.Projectile.hostile = true;
+					});
 				}
 			}
 			else
 			{
                 bool move = true;
-                if (attackPointer == 0 || attackPointer == 4)
-                {
-                    AttackCastOrb(ref timer, ref attackPointer, 1.25f);
-                    return;
-                }
-                else if (attackPointer == 1 || attackPointer == 5)
-                {
-					ref float direction = ref NPC.ai[2];
 
-					if ((NPC.position.X - target.position.X) > 0)
+				if (_attackPointer2 == 0 || _attackPointer2 == 1)
+				{
+					if (attackPointer == 0)
 					{
-						direction = 1;
+						AttackCastOrb(ref timer, ref attackPointer, 1.25f);
+						return;
 					}
-					else
+					else if (attackPointer == 1 && _attackPointer2 == 0)
 					{
-						direction = -1;
-					}
+						ref float direction = ref NPC.ai[2];
 
-					if (timer < 400)
-					{
-						velocity = 15;
-						acceleration = .1f;
+						if ((NPC.position.X - target.position.X) > 0)
+						{
+							direction = 1;
+						}
+						else
+						{
+							direction = -1;
+						}
 
-						NPC.rotation += MathHelper.ToRadians(15) * direction;
-						NPC.rotation = NPC.rotation % 360;
+						if (timer < 400)
+						{
+							velocity = 15;
+							acceleration = .1f;
 
-                        if (timer % 120 == 0)
-                        {
-							//SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
+							NPC.rotation += MathHelper.ToRadians(15) * direction;
+							NPC.rotation = NPC.rotation % 360;
+						}
+						else
+						{
+							NPC.velocity = Vector2.Zero;
+							NPC.rotation = 0;
 
-							/*float rotation = (float)Math.Atan2(NPC.Center.Y - (target.position.Y + target.height * 0.2f), NPC.Center.X - (target.position.X + target.width * 0.15f));
-							
-                            for (int i = -2; i < 3; i++)
-                            {
-                                rotation *= 1 + (i * .05f);
-								Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .5f, (float)-(Math.Sin(rotation) * 18) * .5f);
-								int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity, _projIdMissile, DAMAGE_PROJ_MISSILE, 3, 0);
-								Main.projectile[proj].friendly = false;
-								Main.projectile[proj].hostile = true;
-							}*/
-
-							/*for (int i = 0; i < 3; i++)
+							if (timer > 520 && NPC.rotation == 0 && WaitForAllArmsToReturn())
 							{
-								ShootToPlayer(_projIdMissile, DAMAGE_PROJ_MISSILE, rotationMulti: 1 + Main.rand.NextFloat(-.1f, .1f));
-							}*/
+								timer = 0;
+								direction = 0;
+								attackPointer++;
+							}
 						}
+						MovementAI(GetDesiredDestinationDirect(), velocity, acceleration);
+					}
+					else if (attackPointer == 1)
+					{
+						MovementAI(GetDesiredDestination(), velocity, acceleration);
+						ref float index = ref NPC.ai[2];
+
+						if (timer == 90 || timer == 100 || timer == 110 || timer == 120)
+						{
+							// Set a random arm to shoot to the player
+							_arms[(int)index].Projectile.ai[0] = HoaArmAI.LaunchAtPlayer;
+							index++;
+						}
+						if (timer >= 400 && WaitForAllArmsToReturn())
+						{
+							index = 0;
+							timer = 0;
+							attackPointer++;
+						}
+					}
+					else if (attackPointer == 2 || attackPointer == 3)
+					{
+						if (_attackPointer2 == 0)
+						{
+							AttackLightningArms(ref timer, ref attackPointer);
+						}
+						else if (attackPointer == 2)
+						{
+							AttackBlackHole(ref timer, ref attackPointer);
+						}
+						else if (attackPointer == 3)
+							attackPointer++;
 					}
 					else
 					{
-                        NPC.velocity = Vector2.Zero;
-						NPC.rotation = 0;
-
-						if (timer > 520 && NPC.rotation == 0 && WaitForAllArmsToReturn())
-						{
-							timer = 0;
-							direction = 0;
-							attackPointer++;
-						}
-					}
-					MovementAI(GetDesiredDestinationDirect(), velocity, acceleration);
-				}
-				else if (attackPointer == 2)
-				{
-                    ref float direction = ref NPC.localAI[0];
-                    if (timer < 230)
-                    {
-                        if (direction == 0)
-                        {
-                            direction = Main.rand.NextBool() ? 1 : -1;
-                        }
-                        if (timer <= 221)
-                        {
-							_desiredProjectileDestination = target.Center - new Vector2(0, 500 * direction);
-						}
-						if (timer == 222)
-                        {
-                           _desiredProjectileDestination += new Vector2(0, 1000 * direction);
-						}
-
-                        if (timer < 380)
-                        {
-							HarbingerOfAnnihilation_Arm arm = _arms[0];
-							arm.customTarget = _desiredProjectileDestination - new Vector2(250, 0) * direction;
-							arm.customDuration = 380;
-							arm.Projectile.ai[0] = HoaArmAI.LightningLink;
-							arm.Projectile.ai[1] = _arms[1].Projectile.whoAmI;
-
-							arm = _arms[1];
-							arm.customTarget = _desiredProjectileDestination + new Vector2(250, 0) * direction;
-							arm.customDuration = 380;
-							arm.Projectile.ai[0] = HoaArmAI.LightningLink;
-							arm.Projectile.ai[1] = _arms[0].Projectile.whoAmI;
-						}
-					}
-                    else
-                    {
-                        timer = 0;
-						direction = 0;
-						attackPointer++;
-					}
-				}
-				else if (attackPointer == 3)
-				{
-					ref float direction = ref NPC.localAI[0];
-					if (timer < 480)
-					{
-						if (direction == 0)
-						{
-							direction = Main.rand.NextBool() ? 1 : -1;
-						}
-						if (timer <= 221)
-						{
-							_desiredProjectileDestination = target.Center - new Vector2(500 * direction, 0);
-						}
-						if (timer == 222)
-						{
-							_desiredProjectileDestination += new Vector2(1000 * direction, 0);
-						}
-
-						if (timer < 380)
-						{
-							HarbingerOfAnnihilation_Arm arm = _arms[2];
-							arm.customTarget = _desiredProjectileDestination - new Vector2(0, 250) * direction;
-							arm.customDuration = 380;
-							arm.Projectile.ai[0] = HoaArmAI.LightningLink;
-							arm.Projectile.ai[1] = _arms[3].Projectile.whoAmI;
-
-							arm = _arms[3];
-							arm.customTarget = _desiredProjectileDestination + new Vector2(0, 250) * direction;
-							arm.customDuration = 380;
-							arm.Projectile.ai[0] = HoaArmAI.LightningLink;
-							arm.Projectile.ai[1] = _arms[2].Projectile.whoAmI;
-						}
-					}
-					else if (WaitForAllArmsToReturn())
-					{
 						timer = 0;
-						direction = 0;
-						attackPointer++;
-					}
-				}
-				else if (attackPointer == 6)
-				{
-					/*if (timer == 1)
-					{
-						ForeachArm(arm => arm.Projectile.ai[0] = HoaArmAI.CirclePlayerAndShoot);
-					}
-					if (timer >= 420)
-					{
-						timer = 0;
-						attackPointer++;
-					}*/
-					NPC.rotation = NPC.GetTargetLookRotation(target.Center);
-					Vector2 lookTarget = (NPC.Center - new Vector2(0, 100).RotatedBy(NPC.rotation));
-
-					double dist = 40;
-
-					Dust.NewDust(lookTarget, 5, 5, DustID.BlueTorch);
-
-					// TODO: Create attack that aims a laser at the player for a short time.
-
-					if (timer <= 160)
-					{
-						HarbingerOfAnnihilation_Arm arm = _arms[0];
-						arm.customTarget = NPC.Center + new Vector2(100, -100).RotatedBy(NPC.rotation);
-						arm.customLookTarget = lookTarget;
-						arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
-
-						arm = _arms[1];
-						arm.customTarget = NPC.Center + new Vector2(50, -50).RotatedBy(NPC.rotation);
-						arm.customLookTarget = lookTarget;
-						arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
-
-						arm = _arms[2];
-						arm.customTarget = NPC.Center + new Vector2(-50, -50).RotatedBy(NPC.rotation);
-						arm.customLookTarget = lookTarget;
-						arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
-
-						arm = _arms[3];
-						arm.customTarget = NPC.Center + new Vector2(-100, -100).RotatedBy(NPC.rotation);
-						arm.customLookTarget = lookTarget;
-						arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
-
-						if (timer > 60 && timer % 10 == 0)
-						{
-							ShootToPlayer(_projIdMissile, DAMAGE_PROJ_MISSILE, 1.25f, Main.rand.NextFloat(.88f, 1.12f));
-						}
-					}
-					else if (timer > 180)
-					{
-						NPC.velocity = Vector2.Zero;
-						NPC.rotation = 0;
-
-						if (timer > 240 && NPC.rotation == 0 && WaitForAllArmsToReturn())
-						{
-							timer = 0;
-							attackPointer++;
-						}
+						attackPointer = 0;
+						_attackPointer2 = Main.rand.Next(3);
 					}
 				}
 				else
-                {
-                    attackPointer = 0;
-                }
+				{
+					if (attackPointer == 0)
+					{
+						NPC.velocity = Vector2.Zero;
+						ref float attackCount = ref NPC.ai[2];
+
+						if (timer == 1)
+						{
+							attackCount = 3;
+							if (Main.masterMode || Main.expertMode)
+								attackCount++;
+						}
+
+						if (attackCount > 0 && timer % 80 == 0)
+						{
+							GetRandomArm().Projectile.ai[0] = HoaArmAI.SmashPlayer;
+							attackCount--;
+						}
+
+						if (timer >= 380 && WaitForAllArmsToReturn())
+						{
+							timer = 0;
+							attackPointer++;
+						}
+					}
+					else if (attackPointer == 1)
+					{
+						MovementAI(GetDesiredDestination(), velocity, acceleration);
+
+						if (timer > 120)
+						{
+							timer = 0;
+							attackPointer++;
+						}
+					}
+					else if (attackPointer == 2 || attackPointer == 3)
+					{
+						if (_attackPointer2 == 0)
+						{
+							AttackLightningArms(ref timer, ref attackPointer);
+						}
+						else if (attackPointer == 2)
+						{
+							AttackBlackHole(ref timer, ref attackPointer);
+						}
+						else if (attackPointer == 3)
+							attackPointer++;
+					}
+					else
+					{
+						timer = 0;
+						attackPointer = 0;
+						_attackPointer2 = Main.rand.Next(3);
+					}
+				}
 				//if (move) MovementAI(GetDesiredDestination(), velocity, acceleration);
 				return;
 				if (attackPointer == 0 || attackPointer == 1 || attackPointer == 3 || attackPointer == 4)
@@ -690,7 +583,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			return false;
 		}
-        private void DespawnAI()
+        private bool DespawnAI()
         {
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
@@ -698,7 +591,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
             }
 
             Player player = Main.player[NPC.target];
-            if (NPC.ai[0] != 3f && (player.dead || !player.active))
+            if (player.dead || !player.active)
             {
                 NPC.TargetClosest(true);
                 player = Main.player[NPC.target];
@@ -708,12 +601,45 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
                     NPC.ai[1] = 0f;
                     NPC.ai[2] = 0f;
                     NPC.netUpdate = true;
+
+					NPC.velocity = Vector2.Zero;
+					NPC.ai[3]++;
+
+					if (NPC.alpha < 255)
+					{
+						NPC.alpha++;
+					}
+					if (NPC.ai[3] == 1)
+					{
+						ForeachArm(arm => arm.AttackPointer = HoaArmAI.CircleHoa);
+					}
+					else if (NPC.ai[3] < 180)
+					{
+						
+						// Charge dust effect
+						//
+						SoundEngine.PlaySound(SoundID.Item15);
+						Vector2 dustPos = NPC.Center + new Vector2(Main.rand.Next(110, 130), 0).RotatedByRandom(MathHelper.ToRadians(360));
+						Vector2 diff = NPC.Center - dustPos;
+						diff.Normalize();
+
+						Dust.NewDustPerfect(dustPos, DustID.UndergroundHallowedEnemies, diff * 10, Scale: 2).noGravity = true;
+						Dust.NewDustPerfect(dustPos, DustID.Vortex, diff * 10, Scale: 2).noGravity = true;
+					}
+					else
+					{
+						NPC.timeLeft = 0;
+						NPC.active = false;
+					}
+
+					return true;
                 }
             }
             else if (NPC.timeLeft < 1800)
             {
                 NPC.timeLeft = 1800;
             }
+			return false;
         }
 
         private void MovementAI(Vector2 destination, float velocity, float acceleration)
@@ -784,7 +710,158 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		#endregion
 
 		#region Attack Methods
-        void AttackCastOrb(ref float timer, ref float attackPointer, float timeLeftMulti = 1)
+
+		void AttackLightningArms(ref float timer, ref float attackPointer)
+		{
+			if (attackPointer == 2)
+			{
+				ref float direction = ref NPC.localAI[0];
+				if (timer < 230)
+				{
+					if (direction == 0)
+					{
+						direction = Main.rand.NextBool() ? 1 : -1;
+					}
+					if (timer <= 221)
+					{
+						_desiredProjectileDestination = target.Center - new Vector2(0, 500 * direction);
+					}
+					if (timer == 222)
+					{
+						_desiredProjectileDestination += new Vector2(0, 1000 * direction);
+					}
+
+					if (timer < 380)
+					{
+						HarbingerOfAnnihilation_Arm arm = _arms[0];
+						arm.customTarget = _desiredProjectileDestination - new Vector2(200, 0) * direction;
+						arm.customDuration = 380;
+						arm.Projectile.ai[0] = HoaArmAI.LightningLink;
+						arm.Projectile.ai[1] = _arms[1].Projectile.whoAmI;
+
+						arm = _arms[1];
+						arm.customTarget = _desiredProjectileDestination + new Vector2(200, 0) * direction;
+						arm.customDuration = 380;
+						arm.Projectile.ai[0] = HoaArmAI.LightningLink;
+						arm.Projectile.ai[1] = _arms[0].Projectile.whoAmI;
+					}
+				}
+				else
+				{
+					timer = 0;
+					direction = 0;
+					attackPointer++;
+				}
+			}
+			else if (attackPointer == 3)
+			{
+				ref float direction = ref NPC.localAI[0];
+				if (timer < 480)
+				{
+					if (direction == 0)
+					{
+						direction = Main.rand.NextBool() ? 1 : -1;
+					}
+					if (timer <= 221)
+					{
+						_desiredProjectileDestination = target.Center - new Vector2(500 * direction, 0);
+					}
+					if (timer == 222)
+					{
+						_desiredProjectileDestination += new Vector2(1000 * direction, 0);
+					}
+
+					if (timer < 380)
+					{
+						HarbingerOfAnnihilation_Arm arm = _arms[2];
+						arm.customTarget = _desiredProjectileDestination - new Vector2(0, 200) * direction;
+						arm.customDuration = 380;
+						arm.Projectile.ai[0] = HoaArmAI.LightningLink;
+						arm.Projectile.ai[1] = _arms[3].Projectile.whoAmI;
+
+						arm = _arms[3];
+						arm.customTarget = _desiredProjectileDestination + new Vector2(0, 200) * direction;
+						arm.customDuration = 380;
+						arm.Projectile.ai[0] = HoaArmAI.LightningLink;
+						arm.Projectile.ai[1] = _arms[2].Projectile.whoAmI;
+					}
+				}
+				else if (WaitForAllArmsToReturn())
+				{
+					timer = 0;
+					direction = 0;
+					attackPointer++;
+				}
+			}
+		}
+		void AttackBlackHole(ref float timer, ref float attackPointer)
+		{
+			ref float isAtTarget = ref NPC.localAI[0];
+			ref float angle = ref NPC.localAI[1];
+
+			if (isAtTarget == 1)
+			{
+				// Play Charge effect
+				//
+				if (timer < 90)
+				{
+					NPC.velocity = Vector2.Zero;
+					NPC.rotation = 0;
+
+					if (timer == 20)
+					{
+						SoundEngine.PlaySound(SoundID.ForceRoar, NPC.Center);
+					}
+					Vector2 dustPos = NPC.Center + new Vector2(Main.rand.Next(115, 125), 0).RotatedByRandom(MathHelper.ToRadians(360));
+					Vector2 diff = NPC.Center - dustPos;
+					diff.Normalize();
+
+					Dust.NewDustPerfect(dustPos, DustID.Demonite, diff * 10, Scale: 2).noGravity = true;
+					Dust.NewDustPerfect(dustPos, DustID.Corruption, diff * 10, Scale: 2).noGravity = true;
+					return;
+				}
+
+				if (timer == 90)
+				{
+					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.HoaBlackHole>(), 40, 6, Main.myPlayer, 1200, .25f);
+					Main.projectile[proj].timeLeft = 440;
+					ForeachArm(arm =>
+					{
+						arm.AttackPointer = HoaArmAI.CircleTarget;
+						arm.customTarget = Main.projectile[proj].Center;
+						arm.customDuration = 440;
+					});
+				}
+				else if (timer > 120)
+				{
+					velocity = Main.masterMode ? 7.5f : 5;
+					acceleration = .04f;
+					MovementAI(GetDesiredDestination(), velocity, acceleration);
+					if (timer % 75 == 0)
+					{
+						ShootToPlayer(_projIdMissile, DAMAGE_PROJ_MISSILE, 1.2f, Main.rand.NextFloat(.995f, 1.05f));
+					}
+				}
+
+				if (timer >= 580)
+				{
+					timer = 0;
+					isAtTarget = 0;
+					attackPointer++;
+				}
+			}
+			else
+			{
+				if (Vector2.Distance(NPC.Center, target.Center - new Vector2(0, 250)) <= 75)
+				{
+					isAtTarget = 1;
+				}
+				timer = 0;
+				MovementAI(target.Center - new Vector2(0, 250), velocity * 1.5f, .2f);
+			}
+		}
+
+		void AttackCastOrb(ref float timer, ref float attackPointer, float timeLeftMulti = 1)
         {
 			NPC.velocity = Vector2.Zero;
 
