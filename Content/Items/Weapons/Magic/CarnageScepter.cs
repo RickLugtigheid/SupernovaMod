@@ -18,12 +18,12 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 16;
+            Item.damage = 15;
             Item.crit = 1;
             Item.width = 28;
             Item.height = 34;
-            Item.useTime = 35;
-            Item.useAnimation = 35;
+            Item.useTime = 38;
+            Item.useAnimation = 38;
             Item.useStyle = ItemUseStyleID.Shoot;        //this is how the item is holded
             Item.noMelee = true;
             Item.knockBack = 2;
@@ -33,7 +33,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.UseSound = SoundID.Item21;            //this is the sound when you use the item
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.Magic.CarnageScepterProj>();
-            Item.shootSpeed = 10f;    //projectile speed when shoot
+            Item.shootSpeed = 7.5f;    //projectile speed when shoot
 
             Item.DamageType = DamageClass.Magic;
         }

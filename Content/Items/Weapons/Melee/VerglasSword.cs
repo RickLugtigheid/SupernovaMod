@@ -21,18 +21,18 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 			Item.width = 32;
 			Item.height = 32;
 			Item.UseSound = SoundID.Item1;
-			Item.damage = 48;
-			Item.crit = 1;
+			Item.damage = 45;
+			Item.crit = 2;
 			Item.knockBack = 5.5f;
 			Item.autoReuse = true;
 			Item.scale = 1f;
 			Item.shootSpeed = 6f;
 			Item.rare = ItemRarityID.Orange;
 			Item.noMelee = true;
-			Item.useTime = 29;
-			Item.useAnimation = 29;
+			Item.useTime = 27;
+			Item.useAnimation = 27;
 			Item.shoot = ModContent.ProjectileType<Projectiles.Melee.VerglasSlash>();
-			Item.DamageType = DamageClass.Melee;
+			Item.DamageType = DamageClass.MeleeNoSpeed;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.value = BuyPrice.RarityOrange;
 		}

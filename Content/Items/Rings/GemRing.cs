@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Items.Rings
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Gem Ring");
-            Tooltip.SetDefault("When the 'Ring Ability button' is pressed, shoots gem staff projeciltes at the mouse position.");
+            Tooltip.SetDefault("When the 'Ring Ability button' is pressed, .");
         }
         public override void SetDefaults()
         {
@@ -33,7 +33,7 @@ namespace SupernovaMod.Content.Items.Rings
 
         public override int MaxAnimationFrames => 60;
 
-        public override int BaseCooldown => 2500;
+        public override int BaseCooldown => 4800;
         public override void RingActivate(Player player, float ringPowerMulti)
         {
             // Add dust effect

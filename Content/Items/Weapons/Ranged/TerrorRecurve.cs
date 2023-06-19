@@ -25,7 +25,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         }
         public override void SetDefaults()
         {
-            Item.damage = 16;
+            Item.damage = 15;
             Item.autoReuse = false;
             Item.crit = 1;
             Item.width = 16;
@@ -37,9 +37,9 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             Item.UseSound = SoundID.Item5; // Sound for Bows
             Item.useAmmo = AmmoID.Arrow; // The ammo used with this weapon
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 10;
-            Item.useTime = 18;
-            Item.useAnimation = 18;
+            Item.shootSpeed = 8;
+            Item.useTime = 21;
+            Item.useAnimation = 21;
             Item.DamageType = DamageClass.Ranged;
             Item.autoReuse = true;
         }
@@ -53,10 +53,10 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             _shots++;
-            if (_shots > 6)
+            if (_shots > 4)
             {
 				SoundEngine.PlaySound(SoundID.Item14, player.Center);
-                int num220 = 8;
+                /*int num220 = 8;
 				for (int num221 = 0; num221 < num220; num221++)
 				{
 					// Create velocity for angle
@@ -72,7 +72,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 					Projectile proj = Main.projectile[Projectile.NewProjectile(Item.GetSource_ItemUse(Item), position, value17, ModContent.ProjectileType<Projectiles.Magic.TerrorProjFirendly>(), damage / 2, 1f, player.whoAmI, 1, Main.rand.Next(-45, 1))];
 					proj.DamageType = DamageClass.Ranged;
 					proj.penetrate = 1;
-				}                
+				}*/
+                Projectile.NewProjectile(source, position, velocity, ProjectileID.ClothiersCurse, (int)(damage * 1.5f), 4, player.whoAmI);
                 _shots = 0;
 			}
 			return true;

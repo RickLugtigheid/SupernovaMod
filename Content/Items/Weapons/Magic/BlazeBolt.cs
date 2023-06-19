@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
     {
         public override float SpreadAngle => 8;
 
-        public override int GetShotAmount() => 5;
+        public override int GetShotAmount() => 4;
 
         public override void SetStaticDefaults()
         {
@@ -22,20 +22,20 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         }
         public override void SetDefaults()
         {
-            Item.damage = 8;
-            Item.crit = 3;
-            Item.knockBack = 0.5f;
+            Item.damage = 15;
+            Item.crit = 2;
+            Item.knockBack = 1;
             Item.noMelee = true;
             Item.noUseGraphic = false;
             Item.channel = true;
             Item.rare = ItemRarityID.Green;
-            Item.width = 28;     // The size of the width of the hitbox in pixels.
-            Item.height = 30;    // The size of the height of the hitbox in pixels.
+            Item.width = 28;
+            Item.height = 30;
             Item.UseSound = SoundID.Item20;
-            Item.useTime = 23;
-            Item.useAnimation = 23;
-            Item.shootSpeed = 3.25f;
-            Item.mana = 7;
+            Item.useTime = 25;
+            Item.useAnimation = 25;
+            Item.shootSpeed = 3.5f;
+            Item.mana = 4;
             Item.useStyle = ItemUseStyleID.Shoot;   //The way your Weapon will be used, 5 is the Holding Out Used for: Guns, Spellbooks, Drills, Chainsaws, Flails, Spears for example
             Item.value = Item.sellPrice(0, 3, 35, 64);
             Item.autoReuse = true;
@@ -47,11 +47,10 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Torch, 99);
             recipe.AddIngredient(ItemID.Fireblossom);
-            recipe.AddIngredient(ItemID.LavaBucket, 3);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
+            recipe.AddIngredient(ItemID.LavaBucket, 2);
+			recipe.AddTile(TileID.Bookcases);
+			recipe.Register();
         }
     }
 }

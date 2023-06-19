@@ -55,6 +55,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
             NPC.rarity = 3; // For Lifeform Analyzer
         }
+
         public override void AI()
         {
             NPC.rotation += (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) + MathHelper.ToRadians(80);
@@ -85,7 +86,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         }
         private void Move(Vector2 offset)
         {
-            speed = 1.2f; // Sets the max speed of the npc.
+            speed = 1; // Sets the max speed of the npc.
             Vector2 moveTo = player.Center; // Gets the point that the npc will be moving to.
             Vector2 move = moveTo - NPC.Center;
             float magnitude = Magnitude(move);
@@ -100,6 +101,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
             {
                 move *= speed / magnitude;
             }
+
+            if (NPC.confused)
+            {
+                move = -move;
+            }
+
             NPC.velocity = move;
         }
         private void Target()
@@ -147,16 +154,5 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
             base.OnKill();
         }
-
-        /*public override void NPCLoot()
-        {
-            // Does NPC already Exist?
-            bool alreadySpawned = NPC.AnyNPCs(mod.NPCType("HarbingerOfAnnihilation"));
-            if (!alreadySpawned)
-			{
-                NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("HarbingerOfAnnihilation")); // Spawn the boss within a range of the player. 
-                Main.PlaySound(SoundID.Roar, player.position, 0);
-            }
-        }*/
     }
 }

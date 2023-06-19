@@ -22,7 +22,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
-            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.DamageType = DamageClass.Magic;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 600;
             Projectile.ignoreWater = true;
@@ -42,7 +42,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
                     Vector2 value17 = new Vector2(Main.rand.Next(-75, 76), Main.rand.Next(-75, 76));
                     value17.Normalize();
                     value17 *= Main.rand.Next(20, 51) * 0.1f;
-                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X, Projectile.position.Y, value17.X, value17.Y, ModContent.ProjectileType<CarnageScepterProj2>(), Projectile.damage, 1f, Projectile.owner, 0, Main.rand.Next(-45, 1));
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X, Projectile.position.Y, value17.X, value17.Y, ModContent.ProjectileType<CarnageScepterProj2>(), (int)(Projectile.damage * .7f), 1f, Projectile.owner, 0, Main.rand.Next(-45, 1));
                 }
             }
         }

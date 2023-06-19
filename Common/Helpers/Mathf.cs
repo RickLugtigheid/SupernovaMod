@@ -40,6 +40,13 @@ namespace SupernovaMod.Common
             return move * (speed / (float)Math.Sqrt(move.X * move.X + move.Y * move.Y));
         }
 
-        public static float Magnitude(Vector2 mag) => (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="by"></param>
+        /// <returns></returns>
+        public static float Lerp(float a, float b, float by) => a * (1 - by) + b * by;
 	}
 }

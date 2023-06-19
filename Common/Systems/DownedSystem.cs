@@ -15,11 +15,17 @@ namespace SupernovaMod.Common.Systems
 		public static bool downedFlyingTerror = false;
 		public static bool downedStormSovereign = false;
 
+		// PreHardmode mini-bosses
+		//
+		public static bool downedBloodweaver = false;
+
 		private void ResetDowned()
 		{
 			downedHarbingerOfAnnihilation = false;
 			downedFlyingTerror = false;
 			downedStormSovereign = false;
+
+			downedBloodweaver = false;
 		}
 
 		public override void OnWorldLoad()
@@ -39,6 +45,8 @@ namespace SupernovaMod.Common.Systems
 			if (downedFlyingTerror) downed.Add("FlyingTerror");
 			if (downedStormSovereign) downed.Add("StormSovereign");
 
+			if (downedBloodweaver) downed.Add("Bloodweaver");
+
 			tag.Add("downed", downed);
 		}
 
@@ -49,6 +57,8 @@ namespace SupernovaMod.Common.Systems
 			downedHarbingerOfAnnihilation = downed.Contains("HarbingerOfAnnihilation");
 			downedFlyingTerror = downed.Contains("FlyingTerror");
 			downedStormSovereign = downed.Contains("StormSovereign");
+
+			downedBloodweaver = downed.Contains("Bloodweaver");
 		}
 
 		public override void NetSend(BinaryWriter writer)
@@ -57,6 +67,8 @@ namespace SupernovaMod.Common.Systems
 			flags[0] = downedHarbingerOfAnnihilation;
 			flags[1] = downedFlyingTerror;
 			flags[2] = downedStormSovereign;
+
+			flags[3] = downedBloodweaver;
 
 			writer.Write(flags);
 		}
@@ -67,6 +79,9 @@ namespace SupernovaMod.Common.Systems
 			downedHarbingerOfAnnihilation = flags[0];
 			downedFlyingTerror = flags[1];
 			downedStormSovereign = flags[2];
+
+			downedBloodweaver = flags[3];
+
 
 			base.NetReceive(reader);
 		}

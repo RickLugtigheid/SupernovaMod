@@ -70,6 +70,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
             NPC.DeathSound = SoundID.NPCDeath1;
             Music = MusicID.Boss1;
 
+			NPC.buffImmune[BuffID.Confused] = true;
 			NPC.buffImmune[BuffID.Poisoned] = true;
         }
 
@@ -211,7 +212,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					ForeachArm(arm => {
 						arm.Projectile.alpha = 250;
 						arm.Projectile.hostile = false;
-						//arm.AttackPointer = HoaArmAI.CircleHoa;
+						arm.AttackPointer = HoaArmAI.Reset;
 					});
                     NPC.dontTakeDamage = true;
 				}
@@ -716,7 +717,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			if (attackPointer == 2)
 			{
 				ref float direction = ref NPC.localAI[0];
-				if (timer < 230)
+				if (timer < 300)
 				{
 					if (direction == 0)
 					{
@@ -969,112 +970,6 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
                 }
             }
         }
-		private void AttackBulletHell(ref float timer, ref float attackPointer)
-		{
-			ref float direction = ref NPC.ai[2];
-			ref float rot = ref NPC.localAI[1];
-			velocity = 0;
-
-			if (timer == 1)
-			{
-				if ((NPC.position.X - target.position.X) > 0)
-				{
-					direction = 1;
-				}
-				else
-				{
-					direction = -1;
-				}
-			}
-
-			if (timer < 120)
-			{
-				int timeBtwnShots = 3;
-
-				NPC.rotation += MathHelper.ToRadians(2.5f + timer / 50) * direction;
-				NPC.rotation = NPC.rotation % 360;
-
-				rot += MathHelper.ToRadians(2.5f) * direction;
-
-				if (timer % timeBtwnShots == 0)
-				{
-					Vector2 shootDirection = Vector2.One.RotatedBy(rot) * 2;
-					Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, shootDirection.X, shootDirection.Y, _projIdMissile, 18, 4, Main.myPlayer, 0f, 0f);
-				}
-			}
-			else
-			{
-				NPC.rotation = 0;
-
-				if (timer < 280)
-				{
-					return;
-				}
-				// Wait for the npc rotation to be 0 before ending this attack
-				//
-				if (NPC.rotation == 0)
-				{
-					timer = 0;
-					direction = 0;
-					rot = 0;
-					attackPointer++;
-					//_rotateSpeed = MathHelper.ToRadians(5);
-				}
-			}
-		}
-		/*void AttackBulletHell(ref float timer, ref float attackPointer)
-        {
-            ref float direction = ref NPC.ai[2];
-			ref float rot = ref NPC.ai[3];
-			velocity = 0;
-
-            if (timer == 1)
-            {
-                if ((NPC.position.X - target.position.X) > 0)
-                {
-                    direction = 1;
-                }
-                else
-                {
-                    direction = -1;
-                }
-            }
-
-            if (timer < 400)
-            {
-                int timeBtwnShots = 20 - (int)(timer / 25);
-
-				NPC.rotation += MathHelper.ToRadians(2.5f + timer / 50) * direction;
-                NPC.rotation = NPC.rotation % 360;
-
-                rot += MathHelper.ToRadians(2.5f) * direction;
-
-				if (timer % timeBtwnShots == 0)
-                {
-                    Vector2 shootDirection = Vector2.One.RotatedBy(rot) * 2;
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, shootDirection.X, shootDirection.Y, _projIdMissile, 18, 4, Main.myPlayer, 0f, 0f);
-                }
-            }
-            else
-            {
-                NPC.rotation = 0;
-
-                if (timer < 480)
-                {
-                    return;
-                }
-                // Wait for the npc rotation to be 0 before ending this attack
-                //
-                if (NPC.rotation == 0)
-                {
-                    timer = 0;
-                    direction = 0;
-                    rot = 0;
-					attackPointer++;
-                    //_rotateSpeed = MathHelper.ToRadians(5);
-                }
-            }
-        }*/
 		#endregion
 
 		#region Helper Methods
@@ -1194,14 +1089,15 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
                 }
             }
         }
-        private void RotateNPCToTarget()
-        {
-            if (Main.player[NPC.target] == null) return;
-            Vector2 direction = NPC.Center - Main.player[NPC.target].Center;
-            float rotation = (float)Math.Atan2(direction.Y, direction.X);
-            NPC.rotation = rotation + (float)Math.PI * 0.5f;
-        }
 		#endregion
+
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies, (float)hitDirection, -1f, 0, default(Color), 1f);
+			}
+		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

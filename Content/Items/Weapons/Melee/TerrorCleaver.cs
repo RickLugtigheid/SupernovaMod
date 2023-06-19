@@ -20,13 +20,13 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Item.damage = 22;
-            Item.crit = 4;
+            Item.crit = 1;
             Item.width = 40;
             Item.height = 40;
-            Item.useTime = 42;
-            Item.useAnimation = 42;
+            Item.useTime = 46;
+            Item.useAnimation = 46;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 5;
+            Item.knockBack = 4.5f;
 			Item.value = BuyPrice.RarityGreen;
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item1;

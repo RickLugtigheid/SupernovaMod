@@ -12,6 +12,7 @@ namespace SupernovaMod.Content.Items.Materials
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
 
             DisplayName.SetDefault("Firearm Manual");
+            Tooltip.SetDefault("A guide to making guns");
         }
 
         public override void SetDefaults()
@@ -22,16 +23,5 @@ namespace SupernovaMod.Content.Items.Materials
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(0, 8, 0, 0);
         }
-
-        /*public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.IronBar, 1);
-            recipe.AddIngredient(ItemID.Wood, 6);
-            recipe.AddIngredient(ItemID.Silk, 4);
-            recipe.acceptedGroups = new() { RecipeGroupID.Wood, RecipeGroupID.IronBar };
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
-        }*/
     }
 }

@@ -51,8 +51,8 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             NPC.noTileCollide = true; // Will not collide with the tiles.
             NPC.aiStyle = -1; // Will not have any AI from any existing AI styles. 
 
-            NPC.buffImmune[BuffID.Frostburn]  = true;
-            NPC.buffImmune[BuffID.Frostburn2] = true;
+			NPC.buffImmune[BuffID.Poisoned] = true;
+			NPC.buffImmune[BuffID.Frostburn]  = true;
             NPC.buffImmune[BuffID.Confused]   = true;
         }
 
@@ -174,7 +174,22 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             return 0.015f;
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.IceTorch, (float)hitDirection, -1f, 0, default(Color), 1f);
+			}
+			if (NPC.life <= 0)
+			{
+				for (int j = 0; j < 20; j++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.IceTorch, (float)hitDirection, -1f, 0, default(Color), 1f);
+				}
+			}
+		}
+
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Rime>(), 4, maximumDropped: 3));
             npcLoot.Add(ItemDropRule.Common(ItemID.IceBlock, 2, 0, 10));

@@ -13,11 +13,11 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
             DisplayName.SetDefault("Shock Surge");
 
-            Tooltip.SetDefault("Shoots a bolt of chain lighting. Damage of this chain lightning projectile decreases 25% with every hit.");
+            Tooltip.SetDefault("Shoots a bolt of chain lighting. The damage of this chain lightning projectile decreases 15% with every hit.");
         }
         public override void SetDefaults()
         {
-            Item.damage = 25;  //The damage stat for the Weapon.
+            Item.damage = 23;  //The damage stat for the Weapon.
             Item.crit = 2;
             Item.noMelee = true;  //Setting to True allows the weapon sprite to stop doing damage, so only the projectile does the damge
             Item.noUseGraphic = false;
@@ -26,8 +26,8 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.width = 28;   //The size of the width of the hitbox in pixels.
             Item.height = 30;    //The size of the height of the hitbox in pixels.
             Item.UseSound = SoundID.Item72;
-            Item.useTime = 34;
-            Item.useAnimation = 34;
+            Item.useTime = 29;
+            Item.useAnimation = 29;
             Item.shootSpeed = 1;
             Item.mana = 5;
             Item.useStyle = ItemUseStyleID.Shoot;   //The way your Weapon will be used, 5 is the Holding Out Used for: Guns, Spellbooks, Drills, Chainsaws, Flails, Spears for example
@@ -37,7 +37,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
             Item.DamageType = DamageClass.Magic;
         }
-        public override void AddRecipes()
+        /*public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.RainCloud, 40);
@@ -47,6 +47,6 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             recipe.AddIngredient(ItemID.Wood, 2);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-        }
+        }*/
     }
 }

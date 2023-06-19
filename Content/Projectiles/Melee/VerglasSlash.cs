@@ -37,7 +37,7 @@ namespace SupernovaMod.Content.Projectiles.Melee
 			Projectile.height = 16;
 			Projectile.aiStyle = -1;
 			Projectile.friendly = true;
-			Projectile.DamageType = DamageClass.Melee;
+			Projectile.DamageType = DamageClass.MeleeNoSpeed;
 			Projectile.penetrate = -1;
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.tileCollide = false;

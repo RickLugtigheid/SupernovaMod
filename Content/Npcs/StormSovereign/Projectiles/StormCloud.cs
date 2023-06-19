@@ -2,14 +2,12 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria.Audio;
 
 namespace SupernovaMod.Content.Npcs.StormSovereign.Projectiles
 {
     public class StormCloud : ModProjectile
     {
-		// You can use vanilla textures by using the format: Terraria/Projectile_<ID>
 		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.RainCloudRaining}";
 
 		public override void SetStaticDefaults()

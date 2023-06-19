@@ -22,7 +22,7 @@ namespace SupernovaMod.Content.Items.Weapons.Summon
 
         public override void SetDefaults()
         {
-            Item.damage = 8;
+            Item.damage = 12;
             Item.mana = 10;
             Item.width = 20;
             Item.height = 20;

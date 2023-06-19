@@ -29,10 +29,10 @@ namespace SupernovaMod.Content.Items.Rings
             Item.value = Item.buyPrice(0, 6, 0, 0);
             Item.accessory = true;
         }
-        public override int BaseCooldown => 60 * 140;
+        public override int BaseCooldown => 60 * 200;
         public override void RingActivate(Player player, float ringPowerMulti)
         {
-            int buffTime = 60 * 40;
+            int buffTime = 60 * 30;
             buffTime = (int)(buffTime * ringPowerMulti);
             player.AddBuff(BuffID.Inferno, buffTime);
             player.AddBuff(ModContent.BuffType<Buffs.Rings.HellfireRingBuff>(), buffTime);

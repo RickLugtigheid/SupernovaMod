@@ -34,7 +34,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
             {
                 if (Main.rand.NextBool(3))     //this defines how many dust to spawn
                 {
-                    int dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.BlueTorch, Projectile.velocity.X * 1.2f, Projectile.velocity.Y * 1.2f, 130, default, 4.75f);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
+                    int dust = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.IceTorch, Projectile.velocity.X * 1.2f, Projectile.velocity.Y * 1.2f, 130, default, 4.75f);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
                     Main.dust[dust].noGravity = true; //this make so the dust has no gravity
                     Main.dust[dust].velocity *= 2.5f;
                 }

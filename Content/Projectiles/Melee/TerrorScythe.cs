@@ -23,6 +23,9 @@ namespace SupernovaMod.Content.Projectiles.Melee
             Projectile.penetrate = 3;
             Projectile.tileCollide = true;
             Projectile.scale = 0.9f;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 18;
+            Projectile.DamageType = DamageClass.Melee;
         }
 
         private int _num2475 = 0;

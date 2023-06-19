@@ -43,7 +43,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 18;
 
-            speed = 12;
+            speed = 21;
         }
 
         // Here you can decide if your minion breaks things like grass or pots
@@ -63,7 +63,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 			base.UpdateMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
 
             // Speed up the rotation when getting close to the enemy
-            _rotateSpeed = foundTarget ? 12 : 4;
+            _rotateSpeed = foundTarget ? 21 : 12;
 		}
 
 		protected override void UpdateVisuals()

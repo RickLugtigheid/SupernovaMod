@@ -2,8 +2,6 @@
 using SupernovaMod.Content.Items.Accessories;
 using SupernovaMod.Content.Items.Weapons.Magic;
 using SupernovaMod.Content.Items.Weapons.Ranged;
-using Terraria;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Common.Systems.Generation
@@ -14,7 +12,7 @@ namespace SupernovaMod.Common.Systems.Generation
         {
             // Add the `Starry Night` bow as loot for skyware chests.
             // Give it a '1/5' (20%) spawn rate.
-            chestLoot.Add(ChestFrameType.LockedGoldChest, new ChestLootRule(ModContent.ItemType<StarNight>(), 5, ChestLootInjectRule.ReplaceFirstItem));
+            chestLoot.Add(ChestFrameType.SkywareChest, new ChestLootRule(ModContent.ItemType<StarNight>(), 5, ChestLootInjectRule.ReplaceFirstItem));
 
             // Add the `Magic Star Blade` as loot for gold dungeon chests.
             // Give it a '1/35' (2.8%) spawn rate.

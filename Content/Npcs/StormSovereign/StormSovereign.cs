@@ -12,6 +12,7 @@ using Terraria.GameContent.Bestiary;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
 using SupernovaMod.Common;
 using Terraria.GameContent;
+using Mono.Cecil;
 
 namespace SupernovaMod.Content.Npcs.StormSovereign
 {
@@ -22,7 +23,7 @@ namespace SupernovaMod.Content.Npcs.StormSovereign
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Flying Terror");
+            DisplayName.SetDefault("Storm Sovereign");
             Main.npcFrameCount[NPC.type] = 3;
 			NPCID.Sets.TrailingMode[NPC.type] = 1;
 
@@ -104,20 +105,50 @@ namespace SupernovaMod.Content.Npcs.StormSovereign
 
 			if (npcLifeRatio > .5f)
 			{
+				MovementAI(3, new Vector2(250, 150) * -NPC.direction);
 				if (attackPointer == 0 || attackPointer == 1)
 				{
-					if (timer % 120 == 0)
+					if (timer <= 90 && timer % 30 == 0)
 					{
-						SpawnLightningStrike();
+						//SpawnLightningStrike();
+						NPC.localAI[1] = ShootToPlayer(ModContent.ProjectileType<Projectiles.LightningOrb>(), 35, Main.rand.NextFloat(.9f, 1.3f), Main.rand.NextFloat(.95f, 1.05f), ai0: NPC.localAI[1]);
 					}
-					if (timer >= 340)
+					if (timer >= 250)
 					{
 						timer = 0;
+						NPC.localAI[1] = 0;
 						attackPointer++;
 					}
 				}
 				else if (attackPointer == 2)
 				{
+					NPC.velocity = Vector2.Zero;
+					if (timer > 60 && timer < 100)
+					{
+						for (int m = 0; m < 2; m++)
+						{
+							Vector2 offset2 = new Vector2((float)Main.rand.Next(-100, 101), (float)Main.rand.Next(-100, 101));
+							Dust dust2 = Dust.NewDustDirect(new Vector2(NPC.Center.X, NPC.Center.Y - 20f) + offset2, 20, 20, DustID.Electric, 0f, 0f, 0, default(Color));
+							dust2.noGravity = true;
+							dust2.velocity = -offset2 * 0.05f;
+						}
+					}
+					if (timer == 120)
+					{
+						SoundEngine.PlaySound(SoundID.Item123, new Vector2?(NPC.position));
+						if (Main.netMode != NetmodeID.MultiplayerClient)
+						{
+							Projectile.NewProjectile(NPC.GetSource_FromAI(), target.Center.X, target.Center.Y - 1000f, 5f, 0f, ModContent.ProjectileType<Projectiles.LightningSpawner>(), 0, 0f, Main.myPlayer, 0f, 0f);
+							Projectile.NewProjectile(NPC.GetSource_FromAI(), target.Center.X, target.Center.Y - 1000f, -5f, 0f, ModContent.ProjectileType<Projectiles.LightningSpawner>(), 0, 0f, Main.myPlayer, 0f, 0f);
+						}
+					}
+					if (timer >= 240)
+					{
+						timer = 0;
+						attackPointer++;
+					}
+				}
+				/*{
 					if (timer >= 80 && timer <= 120 && timer % 20 == 0)
 					{
 						SpawnLightningStrike();
@@ -127,13 +158,12 @@ namespace SupernovaMod.Content.Npcs.StormSovereign
 						timer = 0;
 						attackPointer++;
 					}
-				}
+				}*/
 				else
 				{
 					attackPointer = 0;
 				}
 			}
-            //MovementAI(velocity, acceleration, targetOffset.X, targetOffset.Y);
         }
 
 		#region AI Methods
@@ -163,10 +193,8 @@ namespace SupernovaMod.Content.Npcs.StormSovereign
 				NPC.timeLeft = 1800;
 			}
 		}
-		private void MovementAI(Vector2 targetPosition, float velocity, float acceleration)
+		private void MovementAI(float velocity, Vector2 targetOffset)
 		{
-			// Set direction
-			//
 			if (NPC.Center.X < target.Center.X - 2f)
 			{
 				NPC.direction = 1;
@@ -176,13 +204,32 @@ namespace SupernovaMod.Content.Npcs.StormSovereign
 				NPC.direction = -1;
 			}
 			NPC.spriteDirection = NPC.direction;
-			NPC.rotation = (NPC.rotation + (NPC.velocity.X * .25f) % 20) / 10f;
-
-			NPC.rotation = MathHelper.ToRadians(NPC.velocity.X % 15);
-
-			float gateValue = 100f;
-			Vector2 distanceFromTarget = targetPosition - NPC.Center;
-			SupernovaUtils.MoveNPCSmooth(NPC, gateValue, distanceFromTarget, velocity, acceleration, true);
+			NPC.rotation = (NPC.rotation + (NPC.velocity.X * .1f) % 5) / 10f;
+			Vector2 value53 = (target.Center) - NPC.Center;
+			value53.Y -= 200f;
+			if (value53.Length() > 2800f)
+			{
+				NPC.TargetClosest(true);
+				NPC.ai[0] = 0;
+				NPC.ai[1] = 0;
+				NPC.ai[2] = 0;
+			}
+			else if (value53.Length() > 240f)
+			{
+				float scaleFactor17 = velocity;
+				float num1309 = 30;
+				value53.Normalize();
+				value53 *= scaleFactor17;
+				NPC.velocity = (NPC.velocity * (num1309 - 1f) + value53) / num1309;
+			}
+			else if (NPC.velocity.Length() > 2f)
+			{
+				NPC.velocity *= 0.95f;
+			}
+			else if (NPC.velocity.Length() < 1f)
+			{
+				NPC.velocity *= 1.05f;
+			}
 		}
 		private void MovementAI(float velocity, float acceleration, float targetOffsetX = 0, float targetOffsetY = 0)
 		{
@@ -235,26 +282,22 @@ namespace SupernovaMod.Content.Npcs.StormSovereign
 			}
 			return _desiredDestination;
 		}
-		private void ShootToPlayer(int type, int damage, float velocityMulti = 1, float rotationMulti = 1)
-        {
-            //int type = ModContent.ProjectileType<TerrorProj>();
-            SoundEngine.PlaySound(SoundID.Item20, NPC.Center);
+		private int ShootToPlayer(int type, int damage, float velocityMulti = 1, float rotationMulti = 1, float ai0 = 0, float ai1 = 0, SoundStyle? soundId = null)
+		{
+			if (soundId == null)
+			{
+				soundId = SoundID.Item92;
+			}
+			SoundEngine.PlaySound(soundId, NPC.Center);
 
-            Vector2 position = new Vector2(NPC.Center.X + (NPC.width / 2 + 25) * NPC.direction, NPC.Center.Y + NPC.height - 50);
+			Vector2 position = NPC.Center;
 			float rotation = (float)Math.Atan2(position.Y - (target.position.Y + target.height * 0.2f), position.X - (target.position.X + target.width * 0.15f));
 			rotation *= rotationMulti;
 
-            Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .75f, (float)-(Math.Sin(rotation) * 18) * .75f) * velocityMulti;
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, type, damage, 0f, 0);
-
-            for (int x = 0; x < 5; x++)
-            {
-                int dust = Dust.NewDust(position, 50, 50, ModContent.DustType<Dusts.TerrorDust>(), velocity.X, velocity.Y, 80, default, Main.rand.NextFloat(.9f, 1.6f));
-                Main.dust[dust].noGravity = false;
-                Main.dust[dust].velocity *= Main.rand.NextFloat(.3f, .5f);
-            }
-        }
-        #endregion
+			Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 10) * .75f, (float)-(Math.Sin(rotation) * 10) * .75f) * velocityMulti;
+			return Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, type, damage, 0f, Main.myPlayer, ai0, ai1);
+		}
+		#endregion
 
 		private bool _drawMotionBlur;
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

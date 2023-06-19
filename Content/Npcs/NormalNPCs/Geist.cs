@@ -56,6 +56,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             _velocity = 5;
             _acceleration = .01f;
 
+			NPC.buffImmune[BuffID.Poisoned] = true;
 			NPC.buffImmune[BuffID.Confused] = true;
 		}
 
@@ -72,7 +73,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             //
             if (NPC.localAI[0] == 0)
             {
-                if (Vector2.Distance(NPC.Center, player.Center) > 500)
+                if (Vector2.Distance(NPC.Center, player.Center) > 500 && Vector2.Distance(NPC.Center, player.Center) < 1000)
                 {
                     NPC.localAI[0] = 1;
 				}
@@ -85,7 +86,8 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 				if (NPC.alpha > 250)
 				{
                     NPC.alpha = 255;
-					NPC.Center = player.Center + new Vector2(150 * -NPC.direction, 0);
+					NPC.Center = player.Center + new Vector2(250 * -NPC.direction, 0);
+                    NPC.velocity = Vector2.Zero; // Reset velocity
 				}
 			}
             else if (NPC.alpha > 0)
@@ -156,17 +158,32 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             if (spawnInfo.Player.ZoneGraveyard)
             {
-                return 0.05f;
+                return 0.03f;
             }
 
             if (Main.dayTime || spawnInfo.PlayerSafe || spawnInfo.Player.ZoneDungeon || spawnInfo.PlayerInTown || spawnInfo.Player.ZoneOldOneArmy || Main.snowMoon || Main.pumpkinMoon)
             {
                 return 0f;
             }
-            return 0.065f;
+            return 0.045f;
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadewood, (float)hitDirection, -1f, 0, default(Color), 1f);
+			}
+			if (NPC.life <= 0)
+			{
+				for (int j = 0; j < 10; j++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadewood, (float)hitDirection, -1f, 0, default(Color), 1f);
+				}
+			}
+		}
+
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
 
         }

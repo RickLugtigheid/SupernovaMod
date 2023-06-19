@@ -5,6 +5,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
 using Terraria.ModLoader.Utilities;
+using Microsoft.Xna.Framework;
 
 namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
@@ -73,7 +74,22 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             return SpawnCondition.SurfaceJungle.Chance * 0.25f;
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Chlorophyte, (float)hitDirection, -1f, 0, default(Color), 1f);
+			}
+			if (NPC.life <= 0)
+			{
+				for (int j = 0; j < 20; j++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Chlorophyte, (float)hitDirection, -1f, 0, default(Color), 1f);
+				}
+			}
+		}
+
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.QuarionShard>(), 4, maximumDropped: 2));
             base.ModifyNPCLoot(npcLoot);

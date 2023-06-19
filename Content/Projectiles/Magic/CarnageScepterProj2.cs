@@ -27,7 +27,9 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true;
             Projectile.extraUpdates = 1;
-            AIType = 521;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 30;
+			AIType = 521;
         }
         public override void AI()
         {

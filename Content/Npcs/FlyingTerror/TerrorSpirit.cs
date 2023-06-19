@@ -25,6 +25,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			NPC.lifeMax = 45;
 			NPC.damage = 25;
 			NPC.defense = 6;
+			NPC.value = 0;
 		}
 
 		public override void AI()

@@ -14,6 +14,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
     public static class HoaArmAI
 	{
+		public const int Reset			= -1;
 		public const int CircleHoa		= 0;
 		public const int LaunchAtPlayer = 1;
 		public const int SmashPlayer	= 2;
@@ -79,7 +80,18 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 			ref Player target = ref Main.player[owner.NPC.target];
 
-			if (attackPointer == HoaArmAI.CircleHoa)
+			if (attackPointer == HoaArmAI.Reset)
+			{
+				if (ReturnToStartPosition())
+				{
+					SoundEngine.PlaySound(SoundID.MenuTick, Projectile.Center);
+
+					Projectile.velocity = Vector2.Zero;
+					timer = 0;
+					attackPointer = 0;
+				}
+			}
+			else if (attackPointer == HoaArmAI.CircleHoa)
 			{
 				// Factors for calculations
 				float deg = _startDeg;
@@ -102,7 +114,9 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 				if (timer <= 40)
 				{
-					Projectile.rotation = Projectile.GetTargetLookRotation(target.position);
+					float damping = .15f;
+
+					Projectile.rotation = Mathf.Lerp(Projectile.rotation, Projectile.GetTargetLookRotation(target.position), damping);
 					_targetPosition = target.position;
 				}
 				else if (timer == 41)
@@ -140,12 +154,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				}
 				else if (timer >= 81 && timer < 140)
 				{
-					Projectile.velocity *= 1.015f;
+					Projectile.velocity *= 1.01f;
 				}
 				else if (timer >= 140)
 				{
 					Projectile.velocity = Vector2.Zero;
-					if (timer >= 180 && ReturnToStartPosition(7))
+					if (timer >= 180 && ReturnToStartPosition(6))
 					{
 						SoundEngine.PlaySound(SoundID.MenuTick, Projectile.Center);
 
@@ -307,7 +321,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					if (shootTime == 0)
 					{
 						Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, (Vector2.One * 5).RotatedBy(Projectile.rotation + MathHelper.ToRadians(225)), _projIdMissile, (int)(Projectile.damage * .75f), Projectile.knockBack, Main.myPlayer);
-						
+
 						if (shootCooldown == 40)
 						{
 							shootCooldown = 80;
@@ -382,7 +396,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				else
 				{
 					_collideBetweenArms = false;
-					if (ReturnToStartPosition(7))
+					if (ReturnToStartPosition(6))
 					{
 						SoundEngine.PlaySound(SoundID.MenuTick, Projectile.Center);
 
@@ -410,7 +424,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		/// Returns this arm projectile to the start position.
 		/// </summary>
 		/// <returns>If returned to that position</returns>
-		private bool ReturnToStartPosition(float maxVelocity = 10)
+		private bool ReturnToStartPosition(float maxVelocity = 8)
 		{
 			// Factors for calculations
 			double rad = _startDeg * (Math.PI / 180);    //Convert degrees to radians 
@@ -425,6 +439,9 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 			Vector2 distanceFromTarget = new Vector2(targetPosition.X, targetPosition.Y) - Projectile.Center;
 			SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, maxVelocity, .1f);
+
+			// Rotate
+			Projectile.rotation = Mathf.Lerp(Projectile.rotation, MathHelper.ToRadians(_startDeg - 90), .05f);
 
 			// Check if at the target postion
 			//

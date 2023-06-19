@@ -47,7 +47,7 @@ namespace SupernovaMod.Common.GlobalNPCs
 			base.ModifyNPCLoot(npc, npcLoot);
 		}
 
-		private IItemDropRule GetDropRule<T>(Action<IItemDropRule> conditionCallback) where T : IItemDropRuleCondition, new()
+		public static IItemDropRule GetDropRule<T>(Action<IItemDropRule> conditionCallback) where T : IItemDropRuleCondition, new()
 		{
 			T dropCondition = new T();
 			IItemDropRule conditionalRule = new LeadingConditionRule(dropCondition);

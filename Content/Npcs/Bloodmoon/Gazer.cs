@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Common;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 
 namespace SupernovaMod.Content.Npcs.Bloodmoon
 {
@@ -14,9 +14,9 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gazer");
-            Main.npcFrameCount[NPC.type] = 7;
+			Main.npcFrameCount[NPC.type] = 5;
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 PortraitPositionYOverride = -20,
                 // Influences how the NPC looks in the Bestiary
@@ -41,43 +41,47 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
         int shootTimer;
         public override void SetDefaults()
         {
-            // Change stats when in Hardmode
-            //
-            if (Main.hardMode)
-            {
-                NPC.lifeMax = 175;
-                NPC.defense = 35;
-                ShootDamage = 30;
-                shootTimer = 80;
-            }
-            else
-            {
-                NPC.lifeMax = 60;
-                NPC.defense = 12;
-                ShootDamage = 12;
-                shootTimer = 120;
-            }
-            NPC.width = 44;
-            NPC.height = 44;
+            NPC.lifeMax = 60;
+            NPC.defense = 6;
+            ShootDamage = 18;
+            shootTimer = 140;
+            NPC.width = 58;
+            NPC.height = 58;
             NPC.damage = 20;
             NPC.value = 60f;
             NPC.knockBackResist = 0.5f;
             NPC.aiStyle = 44;
             AIType = NPCID.Harpy;  //npc behavior
-            AnimationType = NPCID.Harpy;
+            //AnimationType = NPCID.Harpy;
             NPC.HitSound = SoundID.NPCHit9;
             NPC.DeathSound = SoundID.NPCDeath11;
         }
 
         public override void FindFrame(int frameHeight)
         {
-            NPC.frameCounter -= .8F; // Determines the animation speed. Higher value = faster animation.
+			/*NPC.frameCounter -= .8f; // Determines the animation speed. Higher value = faster animation.
             NPC.frameCounter %= Main.npcFrameCount[NPC.type];
             int frame = (int)NPC.frameCounter;
-            NPC.frame.Y = frame * frameHeight;
+            NPC.frame.Y = frame * frameHeight;*/
 
+			NPC.frameCounter++;
+
+			if (NPC.frameCounter > 8)
+			{
+				NPC.frameCounter = 0;
+				NPC npc = NPC;
+				npc.frame.Y = npc.frame.Y + npc.height;
+
+				// Check if the frame exceeds the height of our sprite sheet.
+				// If so we reset to 0.
+				//
+				if (NPC.frame.Y >= NPC.height * Main.npcFrameCount[NPC.type])
+				{
+					NPC.frame.Y = 0;
+				}
+			}
             NPC.spriteDirection = NPC.direction;
-        }
+		}
 
         public override void AI()
         {
@@ -91,12 +95,57 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
                     timer = 0;
                 }
             }
-        }
 
-        void Shoot()
+			// Fix overlap with other npcs
+			//
+			float overlapVelocity = 0.05f;
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC other = Main.npc[i];
+
+				if (i != NPC.whoAmI && other.active && Math.Abs(NPC.position.X - other.position.X) + Math.Abs(NPC.position.Y - other.position.Y) < NPC.width * 2)
+				{
+					if (NPC.position.X < other.position.X)
+					{
+						NPC.velocity.X -= overlapVelocity;
+					}
+					else
+					{
+						NPC.velocity.X += overlapVelocity;
+					}
+
+					if (NPC.position.Y < other.position.Y)
+					{
+						NPC.velocity.Y -= overlapVelocity;
+					}
+					else
+					{
+						NPC.velocity.Y += overlapVelocity;
+					}
+				}
+			}
+		}
+
+		public override void HitEffect(int hitDirection, double damage)
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, (float)hitDirection, -1f, 0, default(Color), 1f);
+			}
+			if (NPC.life <= 0)
+			{
+				for (int j = 0; j < 20; j++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, (float)hitDirection, -1f, 0, default(Color), 1f);
+				}
+			}
+		}
+
+		void Shoot()
         {
-            int type = ProjectileID.RayGunnerLaser;// 438 || 100
-            Vector2 Velocity = Mathf.VelocityFPTP(NPC.Center, new Vector2(Main.player[NPC.target].Center.X, Main.player[NPC.target].Center.Y), 5);
+            SoundEngine.PlaySound(SoundID.Item12, NPC.Center);
+            int type = ModContent.ProjectileType<Projectiles.Hostile.BloodBoltHostile>();
+            Vector2 Velocity = Mathf.VelocityFPTP(NPC.Center, Main.player[NPC.target].Center, 10);
             int Spread = 1;
             float SpreadMult = 0.15f;
             Velocity.X = Velocity.X + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;

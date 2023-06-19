@@ -1,11 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using SupernovaMod.Common.Players;
+﻿using SupernovaMod.Common.Players;
 using SupernovaMod.Content.Prefixes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 

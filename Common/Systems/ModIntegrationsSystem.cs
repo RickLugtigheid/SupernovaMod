@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
-using static Humanizer.In;
 
 namespace SupernovaMod.Common.Systems
 {
@@ -38,6 +37,16 @@ namespace SupernovaMod.Common.Systems
 				.SetSpawnInfoWithItem(ModContent.ItemType<Content.Items.Misc.HorridChunk>(), "at night")
 				.SetDownedCallback(() => DownedSystem.downedFlyingTerror)
 				.AddBoss(Mod, bossChecklistMod);
+
+			// [Pre-Harmode mini-bosses]
+			//
+			new BossChecklistItemBuilder()
+				.ForBoss(ModContent.NPCType<Content.Npcs.Bloodmoon.Bloodweaver>(), "Bloodweaver")
+				.SetWeight(VanillaWeights.BloodMoon + .25f)   // Just after the Queen bee
+				.SetSpawnInfo("Spawns during Bloodmoon")
+				.SetDownedCallback(() => DownedSystem.downedFlyingTerror)
+				.AddMiniBoss(Mod, bossChecklistMod);
+
 
 			// [Harmode bosses]
 			//
@@ -159,6 +168,41 @@ namespace SupernovaMod.Common.Systems
 		{
 			bossChecklistMod.Call(
 				"AddBoss",
+				forMod,
+				_bossName,
+				_bossType,
+				_weight,
+				_downedCallback,
+				true,               // / If the boss should show up on the checklist in the first place and when (here, always)
+				_collectibles,
+				_spawnInfoItem,
+				_spawnInfo,
+				_despawnInfo,
+				_customPortraitCallback
+			);
+		}
+		public void AddMiniBoss(Mod forMod, Mod bossChecklistMod)
+		{
+			bossChecklistMod.Call(
+				"AddMiniBoss",
+				forMod,
+				_bossName,
+				_bossType,
+				_weight,
+				_downedCallback,
+				true,               // / If the boss should show up on the checklist in the first place and when (here, always)
+				_collectibles,
+				_spawnInfoItem,
+				_spawnInfo,
+				_despawnInfo,
+				_customPortraitCallback
+			);
+		}
+		// TODO:
+		public void AddInvasion(Mod forMod, Mod bossChecklistMod)
+		{
+			bossChecklistMod.Call(
+				"AddEvent",
 				forMod,
 				_bossName,
 				_bossType,

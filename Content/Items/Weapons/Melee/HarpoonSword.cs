@@ -3,19 +3,20 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 
 namespace SupernovaMod.Content.Items.Weapons.Melee
 {
     public class HarpoonSword : ModItem
     {
+        private Asset<Texture2D> _textureShoot;
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Harpoon Blade");
             Tooltip.SetDefault("Right click to shoot a harpoon at your enemies");
-            // Tooltip2.SetDefault("On Hit it lets the enemey bleed.");
-            Item.staff[Item.type] = true;
         }
 
         private int _swordDamage = 24;
@@ -34,7 +35,9 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             SetDefaultsSword();
 
             Item.DamageType = DamageClass.Melee;
-        }
+
+            //_textureShoot = ModContent.Request<Texture2D>(Texture + "_Harpoon");
+		}
 
         private void SetDefaultsSword()
         {
@@ -75,7 +78,17 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             base.UseStyle(player, heldItemFrame);
         }
 
-        public override void AddRecipes()
+		/*public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+		{
+            if (Item.useStyle == ItemUseStyleID.Shoot)
+            {
+                spriteBatch.Draw(_textureShoot.Value, Item.position, lightColor);
+                return false;
+            }
+			return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
+		}*/
+
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.IronBar, 7);

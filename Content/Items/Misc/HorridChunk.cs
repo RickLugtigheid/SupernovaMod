@@ -13,8 +13,7 @@ namespace SupernovaMod.Content.Items.Misc
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 
             DisplayName.SetDefault("Horrid Chunk");
-            Tooltip.SetDefault("dropped by Terror Bat and can only be used at night" +
-                "\nSummons the Flying Terror");
+            Tooltip.SetDefault("Dropped by Terror Bats\nSummons the Flying Terror when used at night");
         }
 
         public override void SetDefaults()

@@ -1,11 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using SupernovaMod.Api;
 using SupernovaMod.Content.Projectiles.BaseProjectiles;
 using SupernovaMod.Common;
+using Terraria.Audio;
 
 namespace SupernovaMod.Content.Projectiles.Summon
 {
@@ -18,7 +17,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
             DisplayName.SetDefault("Gazer");
 
 			// Sets the amount of frames this minion has on its spritesheet
-			Main.projFrames[Projectile.type] = 7;
+			Main.projFrames[Projectile.type] = 5;
 
 			// This is necessary for right-click targeting
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
@@ -62,7 +61,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
                 ref float timer = ref Projectile.localAI[0];
                 timer++;
 
-                if (timer % 80 == 0)
+                if (timer % (80 * Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Summon)) == 0)
                 {
                     Shoot(targetCenter);
                 }
@@ -95,12 +94,10 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
 		void Shoot(Vector2 targetCenter)
 		{
-			int type = ProjectileID.RayGunnerLaser;// 438 || 100
-			Vector2 Velocity = Mathf.VelocityFPTP(Projectile.Center, targetCenter, 5);
-			int Spread = 1;
-			float SpreadMult = 0.15f;
-			Velocity.X = Velocity.X + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
-			Velocity.Y = Velocity.Y + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
+			SoundEngine.PlaySound(SoundID.Item12, Projectile.Center);
+
+			int type = ModContent.ProjectileType<Hostile.BloodBoltHostile>();
+			Vector2 Velocity = Mathf.VelocityFPTP(Projectile.Center, targetCenter, 14);
 			int i = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, type, Projectile.damage, 1.75f, Projectile.owner);
 			Main.projectile[i].hostile = false;
 			Main.projectile[i].friendly = true;

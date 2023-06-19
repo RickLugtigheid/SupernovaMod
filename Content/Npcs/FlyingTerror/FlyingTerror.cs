@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Bestiary;
 using SupernovaMod.Common;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
+using System.IO;
 
 namespace SupernovaMod.Content.Npcs.FlyingTerror
 {
@@ -62,9 +64,13 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             Music = MusicID.Boss1;
-        }
 
-        protected Player target;
+			NPC.buffImmune[BuffID.Confused] = true;
+			NPC.buffImmune[BuffID.OnFire] = true;
+			NPC.buffImmune[BuffID.ShadowFlame] = true;
+		}
+
+		protected Player target;
 		protected float velocity;
 		protected float acceleration;
 		protected Vector2 targetOffset;
@@ -73,6 +79,16 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 		public bool SecondPhase { get; private set; } = false;
 
 		protected float _attackPointer2 = 0;
+
+		/*public override void SendExtraAI(BinaryWriter writer)
+		{
+			writer.Write(_attackPointer2);
+		}
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+			_attackPointer2 = reader.Read();
+		}*/
+
 		public override void AI()
         {
             // Set/Reset all required values
@@ -188,7 +204,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 						if (Main.netMode != NetmodeID.MultiplayerClient)
 						{
-							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ProjectileID.DD2BetsyFlameBreath, 25, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
+							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ModContent.ProjectileType<Projectiles.FlyingTerrorFlameBreath>(), 25, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
 							Main.projectile[proj].tileCollide = false;
 						}
 						SoundEngine.PlaySound(SoundID.DD2_BetsyFlameBreath, NPC.Center);
@@ -261,18 +277,19 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					NPC.ai[2] = 0;
 					SecondPhase = true;
 					NPC.dontTakeDamage = false;
+					_attackPointer2 = Main.rand.Next(0, 2);
 				}
 			}
 			else
 			//if (npcLifeRatio > .75f)
 			{
-				_glowColor = new Color(220, 50, 50, 245);
+				//_glowColor = new Color(220, 50, 50, 245);
 
 				if (attackPointer == 0 || attackPointer == 1 || attackPointer == 4 || attackPointer == 5)
 				{
 					AttackFlyAndShoot(ref timer, ref attackPointer);
 				}
-				else if (attackPointer == 2 || attackPointer == 3)
+				else if (_attackPointer2 < 3 && (attackPointer == 2 || attackPointer == 3))
 				{
 					_trailColor = new Color(180, 50, 50, 245);
 
@@ -300,7 +317,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 						if (Main.netMode != NetmodeID.MultiplayerClient)
 						{
-							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ProjectileID.DD2BetsyFlameBreath, 25, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
+							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ModContent.ProjectileType<Projectiles.FlyingTerrorFlameBreath>(), 25, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
 							Main.projectile[proj].tileCollide = false;
 						}
 						SoundEngine.PlaySound(SoundID.DD2_BetsyFlameBreath, NPC.Center);
@@ -329,6 +346,14 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					{
 						NPC.rotation = (NPC.rotation + (NPC.velocity.X * .25f) % 5) / 10f;
 					}
+				}
+				else if (_attackPointer2 > 2 && (attackPointer == 2))
+				{
+					AttackDive(ref timer, ref attackPointer);
+				}
+				else if (_attackPointer2 > 2 && (attackPointer == 3))
+				{
+					attackPointer++;
 				}
 				else if (attackPointer == 6)
 				{
@@ -359,9 +384,9 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 						// Use a random charge attack
 						//
-						if (_attackPointer2 == 0)
+						if (_attackPointer2 == 0 || _attackPointer2 == 3)
 						{
-							if (timer < 360 && timer % 60 == 0)
+							if (timer < 360 && timer % 50 == 0)
 							{
 								Vector2 randPos = target.Center + Main.rand.NextVector2CircularEdge(250, 250);
 
@@ -385,7 +410,24 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 								attackPointer++;
 							}
 						}
-						else
+						else if (_attackPointer2 == 1 || _attackPointer2 == 4)
+						{
+							if (timer % 30 == 0)
+							{
+								SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
+
+								Vector2 position = target.Center + new Vector2(Main.rand.Next(-600, 600), -1000);
+
+								Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 6, ProjectileID.CultistBossFireBallClone, DAMAGE_PROJECILE, 6, Main.myPlayer);
+							}
+							if (timer >= 310)
+							{
+								timer = 0;
+								isAtTarget = 0;
+								attackPointer++;
+							}
+						}
+						else if (_attackPointer2 == 2 || _attackPointer2 == 5)
 						{
 							if (timer % 40 == 0)
 							{
@@ -429,7 +471,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				else
                 {
                     attackPointer = 0;
-					_attackPointer2 = Main.rand.Next(0, 2);
+					_attackPointer2 = Main.rand.Next(0, 5);
 					Main.NewText(_attackPointer2);
 				}
 			}
@@ -563,10 +605,11 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				}
 				else if (timer == 180)
 				{
+					SoundEngine.PlaySound(SoundID.DD2_DrakinShot);
+
 					for (int i = 0; i < 3; i++)
 					{
-						SoundEngine.PlaySound(SoundID.NPCDeath13);
-						ShootToPlayer(ModContent.ProjectileType<Content.Projectiles.Boss.TerrorBlast>(), DAMAGE_PROJECILE, Main.rand.NextFloat(.7f, .9f), Main.rand.NextFloat(.98f, 1.25f));
+						ShootToPlayer(ModContent.ProjectileType<Content.Projectiles.Boss.TerrorBlast>(), DAMAGE_PROJECILE, Main.rand.NextFloat(.7f, .9f), Main.rand.NextFloat(.99f, 1.1f));
 					}
 				}
 			}
@@ -659,8 +702,8 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					float rotation = (float)Math.Atan2(position.Y - (target.position.Y + target.height * 0.2f), position.X - (target.position.X + target.width * 0.15f));
 					rotation *= 1 + Main.rand.NextFloat(-.15f, .15f);
 
-					Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .75f, (float)-(Math.Sin(rotation) * 18) * .75f) * .55f;
-					Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, ModContent.ProjectileType<Projectiles.TerrorFlame>(), DAMAGE_PROJECILE, 0f, 0, 0, target.whoAmI);
+					Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .75f, (float)-(Math.Sin(rotation) * 18) * .75f) * 1.2f;
+					Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, ModContent.ProjectileType<Content.Projectiles.Boss.TerrorBlast>(), DAMAGE_PROJECILE, 0f, 0, 1, target.whoAmI);
 				}
 			}
 		}
@@ -813,9 +856,9 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
                 Main.dust[dust].velocity *= Main.rand.NextFloat(.3f, .5f);
             }
         }
-        #endregion
+		#endregion
 
-        private readonly Color _glowDefault = new Color(180, 180, 180, 245);
+		private readonly Color _glowDefault = new Color(180, 180, 180, 245);
 		private readonly Color _glowDefault2 = new Color(180, 180, 180, 200);
 		private Color _glowColor;
 		private Color _trailColor;
@@ -876,43 +919,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			// Draw Glowmask
 			spriteBatch.Draw(glowMask, drawPosition, NPC.frame, _glowColor, NPC.rotation, drawOrigin, NPC.scale, effects, 0f);
 			return NPC.IsABestiaryIconDummy;
-
-			// Draw motion blur
-			//
-			/*if (drawMotionBlur)
-			{
-				SpriteEffects spriteEffects = 0;
-				if (NPC.spriteDirection == 1)
-				{
-					spriteEffects = SpriteEffects.FlipHorizontally;
-				}
-				Vector2 vector11 = new Vector2((float)(texture.Width / 2), (float)(texture.Height / Main.npcFrameCount[base.NPC.type] / 2));
-				Color color = _trailColor;
-				Color color2 = _trailColor;
-				float amount9 = 0f;
-				int num150 = 120;
-				int num151 = 60;
-				int num153 = 10;
-				int num154 = 2;
-				for (int num155 = 1; num155 < num153; num155 += num154)
-				{
-					Color color3 = color;
-					color3 = Color.Lerp(color3, color2, amount9);
-					color3 = base.NPC.GetAlpha(color3);
-					color3 *= (float)(num153 - num155) / 15f;
-					Vector2 vector12 = base.NPC.oldPos[num155] + new Vector2((float)base.NPC.width, (float)base.NPC.height) / 2f - screenPos;
-					vector12 -= new Vector2((float)texture.Width, (float)(texture.Height / Main.npcFrameCount[base.NPC.type])) * base.NPC.scale / 2f;
-					vector12 += vector11 * base.NPC.scale + new Vector2(0f, base.NPC.gfxOffY);
-					spriteBatch.Draw(texture, vector12, new Rectangle?(base.NPC.frame), color3, base.NPC.rotation, vector11, base.NPC.scale, spriteEffects, 0f);
-				}
-			}*/
-			// Main glowmask
-			/*Vector2 drawPos = NPC.Center - Main.screenPosition;
-			Vector2 drawOrigin = new Vector2((float)(texture.Width / 2), (float)(texture.Height / Main.npcFrameCount[base.NPC.type] / 2));
-
-			SpriteEffects effects = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-			spriteBatch.Draw(texture, drawPos, NPC.frame, _glowDefault, NPC.rotation, drawOrigin, 1f, effects, 0f);*/
-			return NPC.IsABestiaryIconDummy;
         }
 
         private bool _playAnimation = true;
@@ -920,13 +926,29 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
         {
             if (_playAnimation)
             {
-                NPC.frameCounter += 1;
+				NPC.frameCounter++;
                 NPC.frameCounter %= 30;
 
                 int frame = (int)(NPC.frameCounter / 6.7);
                 if (frame >= Main.npcFrameCount[NPC.type] - 1) frame = 0;
                 NPC.frame.Y = frame * frameHeight;
-            }
+				/*NPC.frameCounter++;
+
+				if (NPC.frameCounter > 14)
+				{
+					NPC.frameCounter = 0;
+					NPC npc = NPC;
+					npc.frame.Y = npc.frame.Y + frameHeight;
+
+					// Check if the frame exceeds the height of our sprite sheet.
+					// If so we reset to 0.
+					//
+					if (NPC.frame.Y >= frameHeight * (Main.npcFrameCount[NPC.type]-2))
+					{
+						NPC.frame.Y = 0;
+					}
+				}*/
+			}
             else
             {
                 int frame = (int)(FRAME_DASH_DOWN / 6.7);
@@ -939,9 +961,18 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			int i = 0;
 			while ((double)i < damage / (double)base.NPC.lifeMax * 100.0)
 			{
-				Dust.NewDust(base.NPC.position, base.NPC.width, base.NPC.height, 5, (float)hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(base.NPC.position, base.NPC.width, base.NPC.height, DustID.Shadowflame, (float)hitDirection, -1f, 0, default(Color), 1f);
 				i++;
 			}
+		}
+
+		public override void BossLoot(ref string name, ref int potionType)
+		{
+			potionType = ItemID.HealingPotion;
+		}
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Consumables.BossBags.FlyingTerrorBossBag>()));
 		}
 
 		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

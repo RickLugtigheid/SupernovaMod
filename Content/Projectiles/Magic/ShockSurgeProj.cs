@@ -6,6 +6,7 @@ using Terraria.ID;
 using SupernovaMod.Api.Drawing;
 using System.Collections.Generic;
 using Terraria.Audio;
+using SupernovaMod.Common;
 
 namespace SupernovaMod.Content.Projectiles.Magic
 {
@@ -24,9 +25,8 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.aiStyle = -1;
             Projectile.hostile = false;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 3;
-            Projectile.ArmorPenetration = 5;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.penetrate = 4;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 1;  //The amount of time the projectile is alive for
@@ -49,6 +49,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			Player player = Main.player[Projectile.owner];
 			if (_point == Vector2.Zero)
             {
+				//Projectile.Center = Collision.AnyCollision(Projectile.position, Main.player[Projectile.owner].Center - Main.MouseWorld, 1, 1);
 				Projectile.Center = Main.MouseWorld;
 				_point = Main.player[Projectile.owner].Center;
 				SearchForTargets(player, out bool foundTarget, out float distFromTarget, out Vector2 targetCenter);
@@ -67,11 +68,6 @@ namespace SupernovaMod.Content.Projectiles.Magic
 		{
 			_hitNPCs.Add(target);
 			SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, Projectile.position);
-
-			if (Main.rand.NextBool(10))
-			{
-				target.AddBuff(BuffID.OnFire, Main.rand.Next(1, 3) * 60);
-			}
 
 			// Spawn dust
 			//
@@ -95,7 +91,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			if (foundTarget)
 			{
 				Projectile.position = targetCenter;
-                Projectile.damage = (int)(Projectile.damage * .75f);
+                Projectile.damage = (int)(Projectile.damage * .85f);
 			}
 		}
 

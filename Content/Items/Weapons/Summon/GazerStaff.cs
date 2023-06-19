@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Api;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -18,7 +17,7 @@ namespace SupernovaMod.Content.Items.Weapons.Summon
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 
 			DisplayName.SetDefault("Gazer Staff");
-            Tooltip.SetDefault("Summons a Gazer flake to fight for you");
+            Tooltip.SetDefault("Summons a Gazer to fight for you");
         }
 
         public override void SetDefaults()
@@ -45,13 +44,5 @@ namespace SupernovaMod.Content.Items.Weapons.Summon
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) => player.altFunctionUse != 2;
-
-        public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<Materials.VerglasBar>(), 12);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
-        }
     }
 }
