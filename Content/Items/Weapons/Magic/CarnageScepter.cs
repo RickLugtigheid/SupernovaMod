@@ -18,7 +18,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 15;
+            Item.damage = 17;
             Item.crit = 1;
             Item.width = 28;
             Item.height = 34;

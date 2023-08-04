@@ -10,8 +10,6 @@ using SupernovaMod.Common;
 using Terraria.GameContent;
 using SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles;
 using Filters = Terraria.Graphics.Effects.Filters;
-using SupernovaMod.Content.Npcs.FlyingTerror;
-using System.Reflection;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
@@ -84,7 +82,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         {
             // Run this method once
             //
-            if (_arms[0] == null)
+            if (_arms[0] == null && Main.netMode != NetmodeID.MultiplayerClient)
             {
 				int deg = 360 / _arms.Length;
 				for (int i = 0; i < _arms.Length; i++)

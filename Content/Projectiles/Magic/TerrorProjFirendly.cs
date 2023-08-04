@@ -1,10 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SupernovaMod.Common.Players;
 using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,6 +13,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
         {
             DisplayName.SetDefault("Terror Blast");
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // Make the cultist resistant to this projectile, as it's resistant to all homing projectiles.
+			Main.projFrames[Projectile.type] = 5;
 		}
 
 		public override void SetDefaults()
@@ -28,14 +26,24 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = true;
             Projectile.ignoreWater = false;
-			Projectile.timeLeft = 720;
+			Projectile.timeLeft = 620;
 			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 8;
+			Projectile.localNPCHitCooldown = 16;
 		}
 
 		private float _speed = 8.5f;
 		public override void AI()
         {
+			// Loop through the 5 animation frames, spending 3 ticks on each
+			// Projectile.frame — index of current frame
+			if (++Projectile.frameCounter >= 3)
+			{
+				Projectile.frameCounter = 0;
+				// Or more compactly Projectile.frame = ++Projectile.frame % Main.projFrames[Projectile.type];
+				if (++Projectile.frame >= Main.projFrames[Projectile.type])
+					Projectile.frame = 0;
+			}
+
 			Projectile.ai[0] += 1f;
 			Projectile.ai[1] += 1f;
 			if (Projectile.ai[1] >= 3f)
@@ -89,7 +97,51 @@ namespace SupernovaMod.Content.Projectiles.Magic
 				}
 			}
 		}
-		public override void PostDraw(Color lightColor)
+
+		public override bool PreDraw(ref Color lightColor)
+		{
+			// SpriteEffects helps to flip texture horizontally and vertically
+			SpriteEffects spriteEffects = SpriteEffects.None;
+			if (Projectile.spriteDirection == -1)
+				spriteEffects = SpriteEffects.FlipHorizontally;
+
+			// Getting texture of projectile
+			Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+
+			// Calculating frameHeight and current Y pos dependence of frame
+			// If texture without animation frameHeight is always texture.Height and startY is always 0
+			int frameHeight = texture.Height / Main.projFrames[Projectile.type];
+			int startY = frameHeight * Projectile.frame;
+
+			// Get this frame on texture
+			Rectangle sourceRectangle = new Rectangle(0, startY, texture.Width, frameHeight);
+
+			// Alternatively, you can skip defining frameHeight and startY and use this:
+			// Rectangle sourceRectangle = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
+
+			Vector2 origin = sourceRectangle.Size() / 2f;
+
+			// If image isn't centered or symmetrical you can specify origin of the sprite
+			// (0,0) for the upper-left corner
+			float offsetX = 20f;
+			origin.X = (float)(Projectile.spriteDirection == 1 ? sourceRectangle.Width - offsetX : offsetX);
+
+			// If sprite is vertical
+			// float offsetY = 20f;
+			// origin.Y = (float)(Projectile.spriteDirection == 1 ? sourceRectangle.Height - offsetY : offsetY);
+
+
+			// Applying lighting and draw current frame
+			Color drawColor = Projectile.GetAlpha(lightColor);
+			Main.EntitySpriteDraw(texture,
+				Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY),
+				sourceRectangle, drawColor, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0);
+
+			// It's important to return false, otherwise we also draw the original texture.
+			return false;
+		}
+
+		/*public override void PostDraw(Color lightColor)
 		{
 			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
 			Rectangle source = new Rectangle(0, 0, texture.Width, texture.Height);
@@ -98,7 +150,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			lightColor.A = 205;
 			float a = ((float)Math.Sin((double)(Projectile.ai[0] / 15f)) + 1.15f) / 4f;
 			Main.spriteBatch.Draw(texture, Projectile.position + value - Main.screenPosition, new Rectangle?(source), lightColor * a, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
-		}
+		}*/
 
 		public override bool? CanCutTiles() => false;
 

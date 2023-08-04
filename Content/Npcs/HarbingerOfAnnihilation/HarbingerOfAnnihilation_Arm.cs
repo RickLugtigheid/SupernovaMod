@@ -317,7 +317,6 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					Projectile.position.X = customTarget.X - (int)(Math.Cos(rad) * dist) - Projectile.width / 2;
 					Projectile.position.Y = customTarget.Y - (int)(Math.Sin(rad) * dist) - Projectile.height / 2;
 
-
 					if (shootTime == 0)
 					{
 						Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, (Vector2.One * 5).RotatedBy(Projectile.rotation + MathHelper.ToRadians(225)), _projIdMissile, (int)(Projectile.damage * .75f), Projectile.knockBack, Main.myPlayer);

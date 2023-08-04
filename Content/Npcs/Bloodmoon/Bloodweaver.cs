@@ -370,7 +370,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 					// Check if the gazer saved to position i in the array is still active
 					//
 					int index = _gazersOwned[i];
-					if (index == 0 || !Main.npc[index].active || Main.npc[index].timeLeft < 1)
+					if (Main.netMode != NetmodeID.MultiplayerClient && ( index == 0 || !Main.npc[index].active || Main.npc[index].timeLeft < 1))
 					{
 						Vector2 summonOffset = Main.rand.NextVector2Circular(140, 40);
 						Vector2 summonPosition = new Vector2(NPC.Center.X - summonOffset.X, NPC.Center.Y - (summonOffset.Y + 60));
@@ -442,13 +442,11 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				{
 					if (Timer < 71 && Timer % 10 == 0)
 					{
-						// TODO: Shoot better projectile
 						ShootToPlayer(ModContent.ProjectileType<Projectiles.Hostile.BloodBoltHostile>(), 12, 28, .4f);
 					}
 				}
 				else if (Timer % 15 == 0)
 				{
-					// TODO: Shoot better projectile
 					ShootToPlayer(ModContent.ProjectileType<Projectiles.Hostile.BloodBoltHostile>(), 10, 24, .4f);
 				}
 			}
@@ -536,7 +534,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			//
 			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<EoCDownedDropCondition>(conditionalRule =>
 			{
-				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Materials.BoneFragment>(), 1, maximumDropped: 6));
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Materials.BoneFragment>(), 3, maximumDropped: 8));
 			}));
 		}
 

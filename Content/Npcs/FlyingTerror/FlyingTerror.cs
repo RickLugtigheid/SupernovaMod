@@ -161,7 +161,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					attackPointer = 0;
 				}
 			}
-			else if (npcLifeRatio > .45f)
+			else if (npcLifeRatio > .5f)
 			{
 				if (attackPointer == 0 || attackPointer == 1 && (_attackPointer2 == 0 || _attackPointer2 == 1) || attackPointer == 3 || attackPointer == 4 && (_attackPointer2 == 0 || _attackPointer2 == 1))
 				{
@@ -204,7 +204,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 						if (Main.netMode != NetmodeID.MultiplayerClient)
 						{
-							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ModContent.ProjectileType<Projectiles.FlyingTerrorFlameBreath>(), 25, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
+							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ProjectileID.DD2BetsyFlameBreath, 25, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
 							Main.projectile[proj].tileCollide = false;
 						}
 						SoundEngine.PlaySound(SoundID.DD2_BetsyFlameBreath, NPC.Center);
@@ -284,6 +284,18 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			//if (npcLifeRatio > .75f)
 			{
 				//_glowColor = new Color(220, 50, 50, 245);
+				if (npcLifeRatio < .35f && (attackPointer == 1 || attackPointer == 5))
+				{
+					attackPointer++;
+				}
+				if (npcLifeRatio < .2f && (attackPointer == 2 || attackPointer == 3))
+				{
+					attackPointer++;
+				}
+				if (npcLifeRatio < .05f && (attackPointer == 0 || attackPointer == 4))
+				{
+					attackPointer++;
+				}
 
 				if (attackPointer == 0 || attackPointer == 1 || attackPointer == 4 || attackPointer == 5)
 				{
@@ -317,7 +329,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 						if (Main.netMode != NetmodeID.MultiplayerClient)
 						{
-							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ModContent.ProjectileType<Projectiles.FlyingTerrorFlameBreath>(), 25, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
+							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ProjectileID.DD2BetsyFlameBreath, 28, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
 							Main.projectile[proj].tileCollide = false;
 						}
 						SoundEngine.PlaySound(SoundID.DD2_BetsyFlameBreath, NPC.Center);
@@ -412,13 +424,13 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 						}
 						else if (_attackPointer2 == 1 || _attackPointer2 == 4)
 						{
-							if (timer % 30 == 0)
+							if (timer % 25 == 0)
 							{
 								SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
 
-								Vector2 position = target.Center + new Vector2(Main.rand.Next(-600, 600), -1000);
+								Vector2 position = target.Center + new Vector2(Main.rand.Next(-500, 500), -1000);
 
-								Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 6, ProjectileID.CultistBossFireBallClone, DAMAGE_PROJECILE, 6, Main.myPlayer);
+								Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 6.2f, ProjectileID.CultistBossFireBallClone, DAMAGE_PROJECILE + 7, 6, Main.myPlayer);
 							}
 							if (timer >= 310)
 							{

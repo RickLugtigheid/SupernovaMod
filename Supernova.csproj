@@ -12,10 +12,16 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".csgendoc\src\" />
     <Folder Include="Api\Collections\" />
     <Folder Include="Common\GlobalItems\" />
     <Folder Include="Common\GlobalProjectiles\" />
     <Folder Include="Content\Buffs\DamageOverTime\" />
     <Folder Include="Content\Items\Weapons\Typeless\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".csgendoc\.config" />
+    <None Include=".csgendoc\ItemBuilder.lua" />
+    <None Include=".csgendoc\template\item.md" />
   </ItemGroup>
 </Project>
