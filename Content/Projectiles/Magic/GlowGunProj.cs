@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Glowing Projectile");
+            // DisplayName.SetDefault("Glowing Projectile");
         }
 
         public override void SetDefaults()
@@ -34,15 +34,16 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.extraUpdates = 1;
             AIType = 521;
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             // Vanilla explosions do less damage to Eater of Worlds in expert mode, so for balance we will too.
+            //
             if (Main.expertMode)
             {
                 if (target.type >= NPCID.EaterofWorldsHead && target.type <= NPCID.EaterofWorldsTail)
                 {
-                    damage /= 5;
-                }
+                    modifiers.FinalDamage /= 5;
+				}
             }
         }
         public override void Kill(int timeLeft)

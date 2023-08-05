@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Magnifying Glass");
-            Tooltip.SetDefault("Increases critical strike chance by 5%");
+            // DisplayName.SetDefault("Magnifying Glass");
+            // Tooltip.SetDefault("Increases critical strike chance by 5%");
         }
 
         public override void SetDefaults()

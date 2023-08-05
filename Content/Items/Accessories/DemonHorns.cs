@@ -12,9 +12,9 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Demon Horn");
-            Tooltip.SetDefault("Reduces damage taken by 8%\n" +
-                "Immumity to OnFire");
+            // DisplayName.SetDefault("Demon Horn");
+            /* Tooltip.SetDefault("Reduces damage taken by 8%\n" +
+                "Immumity to OnFire"); */
         }
 
         public override void SetDefaults()

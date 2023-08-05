@@ -15,7 +15,7 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
 
         public override void SetStaticDefaults()
         {
-			DisplayName.SetDefault("Ronin");    //the name displayed when hovering over the npc ingame.
+			// DisplayName.SetDefault("Ronin");    //the name displayed when hovering over the npc ingame.
             Main.npcFrameCount[NPC.type] = 25; //this defines how many frames the npc sprite sheet has
             NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
             NPCID.Sets.AttackFrameCount[NPC.type] = 4;
@@ -71,7 +71,7 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
                 .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money) // Whether or not the conditions have been met for this town NPC to be able to move into town.
+        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */ // Whether or not the conditions have been met for this town NPC to be able to move into town.
         {
             if (NPC.downedBoss1)  //so after the EoC is killed this town npc can spawn
                 return true;
@@ -100,58 +100,44 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
         {
             button = "Buy";   //this defines the buy button name
         }
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop) //Allows you to make something happen whenever a button is clicked on this town NPC's chat window. The firstButton parameter tells whether the first button or second button (button and button2 from SetChatButtons) was clicked. Set the shop parameter to true to open this NPC's shop.
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName) //Allows you to make something happen whenever a button is clicked on this town NPC's chat window. The firstButton parameter tells whether the first button or second button (button and button2 from SetChatButtons) was clicked. Set the shop parameter to true to open this NPC's shop.
         {
             if (firstButton)
-                shop = true;   //so when you click on buy button opens the shop
+            {
+                shopName = "Shop";
+
+			}
         }
 
-        public override void SetupShop(Chest shop, ref int nextSlot)       //Allows you to add items to this town NPC's shop. Add an item by setting the defaults of shop.item[nextSlot] then incrementing nextSlot.
-        {
+		public override void AddShops()
+		{
+            NPCShop shop = new NPCShop(Type);
+
+            // Add modded weapons to the shop
+            shop.Add<Items.Weapons.Ranged.Odzutsu>()
+				.Add<Items.Weapons.Magic.Tessen>()
+				.Add<Items.Weapons.Melee.Kama>()
+				.Add<Items.Weapons.Throwing.Kunai>();
+
+			// If King Slime is downed, we add the ninja set to the shop
+            //
             if (NPC.downedSlimeKing)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.NinjaPants);
-                nextSlot++;
-                shop.item[nextSlot].SetDefaults(ItemID.NinjaShirt);
-                nextSlot++;
-                shop.item[nextSlot].SetDefaults(ItemID.NinjaHood);
-                nextSlot++;
-                shop.item[nextSlot].SetDefaults(ItemID.Katana);
-                nextSlot++;
+                shop.Add(ItemID.NinjaPants)
+                    .Add(ItemID.NinjaShirt)
+                    .Add(ItemID.NinjaHood)
+                    .Add(ItemID.Katana);
+			}
+
+			// Check if Skeletron is downed
+            //
+            if (NPC.downedBoss3)
+            {
+                shop.Add(ItemID.WormholePotion);
             }
 
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Ranged.Odzutsu>());
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Magic.Tessen>());
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Melee.Kama>());  //this is an example of how to add a modded item
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Weapons.Throwing.Kunai>());
-			nextSlot++;
-
-			/*if (NPC.downedBoss2)
-            {
-                shop.item[nextSlot].SetDefaults(mod.ItemType("samuraiAmulet"));  //this is an example of how to add a modded item
-                nextSlot++;
-            }*/
-			if (NPC.downedBoss3)   //this make so when Skeletron is killed the town npc will sell this
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.WormholePotion);
-                nextSlot++;
-            }
-            /*if(Main.hardMode == true)
-            {
-                shop.item[nextSlot].SetDefaults(mod.ItemType("Zorna"));
-                nextSlot++;
-				shop.item[nextSlot].SetDefaults(mod.ItemType("Magnitrix"));
-				nextSlot++;
-                if (Main.bloodMoon == true)
-                {
-                    shop.item[nextSlot].SetDefaults(mod.ItemType("BrokenSwordShards"));
-                    nextSlot++;
-                }
-            }*/
-        }
+			shop.Register();
+		}
 
         public override string GetChat()       //Allows you to give this town NPC a chat message when a player talks to it.
         {

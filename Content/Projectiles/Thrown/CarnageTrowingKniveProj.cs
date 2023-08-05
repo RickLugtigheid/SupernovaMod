@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Carnage Trowing Knive");
+            // DisplayName.SetDefault("Carnage Trowing Knive");
         }
 
         public override void SetDefaults()
@@ -100,9 +100,9 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             behindProjectiles.Add(index);
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            base.ModifyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
+            base.ModifyHitNPC(target, ref modifiers);
 
             // we are sticking to a target
             IsStickingToTarget = true;

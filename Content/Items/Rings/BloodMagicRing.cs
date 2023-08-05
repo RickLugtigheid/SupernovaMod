@@ -17,9 +17,9 @@ namespace SupernovaMod.Content.Items.Rings
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Ring of Blood magic");
-            Tooltip.SetDefault("When the 'Ring Ability button' is pressed" +
-                "\n You will drain life from the 10 nearest enemies.");
+            // DisplayName.SetDefault("Ring of Blood magic");
+            /* Tooltip.SetDefault("When the 'Ring Ability button' is pressed" +
+                "\n You will drain life from the 10 nearest enemies."); */
         }
         public override void SetDefaults()
         {

@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ebonsand Ball");
+            // DisplayName.SetDefault("Ebonsand Ball");
         }
 
         public override void AI()
@@ -21,7 +21,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Main.rand.NextBool(2))
             {

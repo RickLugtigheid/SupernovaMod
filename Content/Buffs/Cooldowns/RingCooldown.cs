@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Buffs.Cooldowns
         {
             Main.buffNoTimeDisplay[Type] = false;
 
-            DisplayName.SetDefault("Ring Cooldown");
-            Description.SetDefault("Waiting for the power of your ring to come back");
+            // DisplayName.SetDefault("Ring Cooldown");
+            // Description.SetDefault("Waiting for the power of your ring to come back");
 
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;

@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.ClothiersCurse}";
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Terror Spirit");
+			// DisplayName.SetDefault("Terror Spirit");
 			Main.npcFrameCount[NPC.type] = Main.projFrames[ProjectileID.ClothiersCurse];
 			NPCID.Sets.TrailingMode[NPC.type] = 1;
 		}

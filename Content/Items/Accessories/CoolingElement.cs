@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Cooling Element");
-            Tooltip.SetDefault("8% decreased ring cooldown time\n10% increased movement speed when your ring is cooling down");
+            // DisplayName.SetDefault("Cooling Element");
+            // Tooltip.SetDefault("8% decreased ring cooldown time\n10% increased movement speed when your ring is cooling down");
             ItemID.Sets.ItemNoGravity[Item.type] = true;
         }
 

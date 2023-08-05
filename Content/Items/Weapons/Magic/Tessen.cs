@@ -14,7 +14,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Tessen");
+            // DisplayName.SetDefault("Tessen");
         }
 
         public override void SetDefaults()

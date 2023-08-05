@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Npcs.StormSovereign.Projectiles
 		public override string Texture => Supernova.GetTexturePath("InvisibleProjectile");
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lightning");
+            // DisplayName.SetDefault("Lightning");
         }
         public override void SetDefaults()
         {

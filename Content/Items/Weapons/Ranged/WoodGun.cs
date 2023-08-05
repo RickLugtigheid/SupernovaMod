@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Wooden Handgun");
+            // DisplayName.SetDefault("Wooden Handgun");
         }
         public override Vector2? HoldoutOffset() => new Vector2(-1, 0);
 

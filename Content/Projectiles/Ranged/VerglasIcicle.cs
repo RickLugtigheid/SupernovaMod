@@ -18,7 +18,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged
         private readonly int _stickyDebuffId = ModContent.BuffType<Buffs.StatDebuffs.VerglasIcicleDebuff>();
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Verglas Icicle");
+            // DisplayName.SetDefault("Verglas Icicle");
             Main.projFrames[Projectile.type] = 5;
         }
         public override void SetDefaults()
@@ -98,7 +98,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Main.rand.NextBool(2))
             {
@@ -153,9 +153,9 @@ namespace SupernovaMod.Content.Projectiles.Ranged
             behindProjectiles.Add(index);
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            base.ModifyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
+            base.ModifyHitNPC(target, ref modifiers);
 
             // we are sticking to a target
             IsStickingToTarget = true;

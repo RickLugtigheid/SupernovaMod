@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
-            DisplayName.SetDefault("Thrown Stone");
+            // DisplayName.SetDefault("Thrown Stone");
         }
 
         public override void SetDefaults()

@@ -14,8 +14,8 @@ namespace SupernovaMod.Content.Items.Armor.Carnage
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Carnage Helmet");
-            Tooltip.SetDefault("7% increased melee damage and speed");
+            // DisplayName.SetDefault("Carnage Helmet");
+            // Tooltip.SetDefault("7% increased melee damage and speed");
         }
 
         public override void SetDefaults()

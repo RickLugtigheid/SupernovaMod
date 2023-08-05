@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Harbinger Orb");
+            // DisplayName.SetDefault("Harbinger Orb");
             Main.projFrames[Projectile.type] = 5;
         }
 
@@ -115,10 +115,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             Projectile.timeLeft = 0;
-            base.OnHitPlayer(target, damage, crit);
+            base.OnHitPlayer(target, info);
         }
 
         public override void Kill(int timeLeft)

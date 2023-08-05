@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Disc of the Desert");
+            // DisplayName.SetDefault("Disc of the Desert");
         }
 
         public override void SetDefaults()

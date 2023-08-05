@@ -11,9 +11,9 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Shock Surge");
+            // DisplayName.SetDefault("Shock Surge");
 
-            Tooltip.SetDefault("Shoots a bolt of chain lighting. The damage of this chain lightning projectile decreases 15% with every hit.");
+            // Tooltip.SetDefault("Shoots a bolt of chain lighting. The damage of this chain lightning projectile decreases 15% with every hit.");
         }
         public override void SetDefaults()
         {

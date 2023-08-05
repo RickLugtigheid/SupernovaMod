@@ -14,7 +14,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Harbingers Arm");
+            // DisplayName.SetDefault("Harbingers Arm");
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 1;
 
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;	// This is necessary for right-click targeting
@@ -221,10 +221,10 @@ namespace SupernovaMod.Content.Projectiles.Summon
 				Projectile.timeLeft = 2;
 			}
 		}
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			target.AddBuff(BuffID.Frozen, 300);
-			base.ModifyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
+			base.ModifyHitNPC(target, ref modifiers);
 		}
 		public override void Kill(int timeLeft)
         {

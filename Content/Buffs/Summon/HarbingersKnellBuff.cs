@@ -9,8 +9,8 @@ namespace SupernovaMod.Content.Buffs.Summon
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Omen");
-            Description.SetDefault("A galactic spawn that will fight for you");
+            // DisplayName.SetDefault("Omen");
+            // Description.SetDefault("A galactic spawn that will fight for you");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

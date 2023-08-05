@@ -9,7 +9,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Carnage Scepter");
+            // DisplayName.SetDefault("Carnage Scepter");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 3;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

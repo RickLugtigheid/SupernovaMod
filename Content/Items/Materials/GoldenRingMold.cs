@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Items.Materials
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
             ItemID.Sets.SortingPriorityMaterials[Item.type] = 59; // Influences the inventory sort order. 59 is PlatinumBar, higher is more valuable.
 
-            DisplayName.SetDefault("Golden Ring Mold");
+            // DisplayName.SetDefault("Golden Ring Mold");
         }
 
         public override void SetDefaults()

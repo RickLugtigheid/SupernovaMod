@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sand Ball");
+            // DisplayName.SetDefault("Sand Ball");
         }
 
         public override void SetDefaults()
@@ -40,7 +40,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
             base.AI();
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Main.rand.NextBool(2))
             {

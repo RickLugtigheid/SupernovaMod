@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Melee.Spears
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Carnage Javalin");
+			// DisplayName.SetDefault("Carnage Javalin");
 		}
 		public override void SetDefaults()
 		{

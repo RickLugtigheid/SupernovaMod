@@ -6,7 +6,7 @@ namespace SupernovaMod.Api.ChestLoot
 {
 	public abstract class CustomChestLootSystem : ModSystem
 	{
-		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
 		{
 			// Fill our chest loot
 			ChestLoot loot = new ChestLoot();

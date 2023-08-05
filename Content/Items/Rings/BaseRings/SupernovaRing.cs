@@ -168,11 +168,10 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
 		}
 
 		#region Reforge Methods
-		public override bool PreReforge()
+		public override void PreReforge()
 		{
-            coolRegen = 1;
+			coolRegen = 1;
 			damageBonusMulti = 1;
-			return true;
 		}
 
 		// Make rings only be able to get ring prefixes

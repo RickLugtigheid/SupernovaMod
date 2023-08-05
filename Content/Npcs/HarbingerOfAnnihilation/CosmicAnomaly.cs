@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Anomaly");
+            // DisplayName.SetDefault("Cosmic Anomaly");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {

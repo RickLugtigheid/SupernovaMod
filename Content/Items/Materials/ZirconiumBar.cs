@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Materials
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
             ItemID.Sets.SortingPriorityMaterials[Item.type] = 55; // Influences the inventory sort order. 59 is PlatinumBar, higher is more valuable.
 
-            DisplayName.SetDefault("Zirconium Bar");
-            Tooltip.SetDefault("A bar of pink metal");
+            // DisplayName.SetDefault("Zirconium Bar");
+            // Tooltip.SetDefault("A bar of pink metal");
         }
 
         public override void SetDefaults()

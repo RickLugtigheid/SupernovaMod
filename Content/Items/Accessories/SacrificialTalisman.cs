@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Sacrificial Talisman");
-            Tooltip.SetDefault("When your mana is lower than 15\nyou will lose 25 health but gain 50 mana");
+            // DisplayName.SetDefault("Sacrificial Talisman");
+            // Tooltip.SetDefault("When your mana is lower than 15\nyou will lose 25 health but gain 50 mana");
         }
 
         public override void SetDefaults()

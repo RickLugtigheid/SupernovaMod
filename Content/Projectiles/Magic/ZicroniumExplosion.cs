@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Zicronium Explosion");
+            // DisplayName.SetDefault("Zicronium Explosion");
 			Main.projFrames[Projectile.type] = 5;
 		}
         public override void SetDefaults()
@@ -47,14 +47,10 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			}
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			ArmorPlayer player = Main.player[Projectile.owner].GetModPlayer<ArmorPlayer>();
-			if (player.zirconiumArmor)
-			{
-				damage = (int)(damage * 1.05f);
-				target.AddBuff(BuffID.OnFire, Main.rand.Next(2, 6) * 60);
-			}
+			player.ZirconiumArmor_ModifyHitNPC(target, ref modifiers);
 		}
 		public override void Kill(int timeLeft)
 		{

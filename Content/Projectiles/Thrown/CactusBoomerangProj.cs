@@ -7,7 +7,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cactus Boomerang");
+            // DisplayName.SetDefault("Cactus Boomerang");
 
         }
         public override void SetDefaults()

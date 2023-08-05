@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 		public override string Texture => Supernova.GetTexturePath("InvisibleProjectile");
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lightning");
+            // DisplayName.SetDefault("Lightning");
         }
         public override void SetDefaults()
         {
@@ -64,7 +64,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			DrawDust.Electricity(_point, Projectile.position, DustID.Electric, 1, 80);
         }
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			_hitNPCs.Add(target);
 			SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap, Projectile.position);

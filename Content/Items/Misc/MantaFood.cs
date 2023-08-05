@@ -13,10 +13,10 @@ namespace SupernovaMod.Content.Items.Misc
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 
-            DisplayName.SetDefault("MantaFood");
-            Tooltip.SetDefault("Dropped by Dungeon enemies\n" +
+            // DisplayName.SetDefault("MantaFood");
+            /* Tooltip.SetDefault("Dropped by Dungeon enemies\n" +
                 "Use underground" +
-                "\n Summons the Stone Manta Ray");
+                "\n Summons the Stone Manta Ray"); */
         }
 
         public override void SetDefaults()

@@ -15,8 +15,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Starry Night");
-            Tooltip.SetDefault("This weapon charges up when you shoot.\nWhen fully charged it will shoot 4 deadly stars at your enemies");
+            // DisplayName.SetDefault("Starry Night");
+            // Tooltip.SetDefault("This weapon charges up when you shoot.\nWhen fully charged it will shoot 4 deadly stars at your enemies");
         }
         public override Vector2? HoldoutOffset()
         {

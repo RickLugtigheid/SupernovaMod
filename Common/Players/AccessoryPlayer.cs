@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Api;
 using SupernovaMod.Content.Items.Accessories;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,10 +10,13 @@ namespace SupernovaMod.Common.Players
 {
     public class AccessoryPlayer : ModPlayer
 	{
-		/* Accessories */
-		public bool accHeartOfTheJungle = false;
-		public bool accBagOfFungus = false;
-		public bool accInfernalEmblem = false;
+		#region [Flags]
+
+		public bool hasHeartOfTheJungle = false;
+		public bool hasBagOfFungus		= false;
+		public bool hasInfernalEmblem	= false;
+
+		#endregion
 
 		/* Buffs */
 		private int _buffTypeHellfireRing = ModContent.BuffType<Content.Buffs.Rings.HellfireRingBuff>();
@@ -32,9 +35,9 @@ namespace SupernovaMod.Common.Players
 		{
 			base.ResetEffects();
 
-			accBagOfFungus		= false;
-			accInfernalEmblem = false;
-			accHeartOfTheJungle = false;
+			hasHeartOfTheJungle	= false;
+			hasBagOfFungus		= false;
+			hasInfernalEmblem	= false;
 
 			hasMinionVerglasFlake		= false;
 			hasMinionCarnageOrb			= false;
@@ -43,10 +46,12 @@ namespace SupernovaMod.Common.Players
 			coldArmor = false;
 		}
 
-		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit) => OnAnyHitNpc(target, damage, knockback, crit);
-		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) => OnAnyHitNpc(target, damage, knockback, crit, proj.type);
+		#region [OnHit methods]
 
-		private void OnAnyHitNpc(NPC target, int damage, float knockback, bool crit, int? projType = null)
+		public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Item, consider using OnHitNPC instead */ => OnAnyHitNpc(target, damageDone, hit);
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ => OnAnyHitNpc(target, damageDone, hit, proj.type);
+
+		private void OnAnyHitNpc(NPC target, int damageDone, NPC.HitInfo hit, int? projType = null)
 		{
 			if (HasBuffHellfireRing && Main.rand.NextBool(3) && (projType != null && projType != ProjectileID.InfernoFriendlyBlast))
 			{
@@ -54,56 +59,51 @@ namespace SupernovaMod.Common.Players
 				Vector2 position = target.Center + new Vector2(Main.rand.Next(-target.width, target.width), Main.rand.Next(-target.height, target.height));
 
 				// Spawn a fire blast at the position with a max of 20 damage
-				Projectile.NewProjectile(Player.GetSource_FromThis(), position, Vector2.Zero, ProjectileID.InfernoFriendlyBlast, (damage / 2) % 20, knockback, Player.whoAmI);
+				Projectile.NewProjectile(Player.GetSource_FromThis(), position, Vector2.Zero, ProjectileID.InfernoFriendlyBlast, (damageDone / 2) % 20, hit.Knockback, Player.whoAmI);
 			}
 		}
 
-		public override void OnHitByNPC(NPC npc, int damage, bool crit)
+		public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
 		{
-			OnHitByAny(npc, damage, crit);
-			if (accBagOfFungus & Main.rand.NextBool(2))
+			OnHitByAny(npc, hurtInfo);
+
+			if (hasBagOfFungus)
 			{
-				Invoke_BagOfFungus();
+				BagOfFungus_OnHitByNPC();
 			}
-			if (accInfernalEmblem)
+
+			if (hasInfernalEmblem)
 			{
-				Invoke_InfernalEmblem();
+				InfernalEmblem_OnHitByNPC();
 			}
 		}
-		public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+		public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
 		{
-			OnHitByAny(proj, damage, crit);
+			OnHitByAny(proj, hurtInfo);
 		}
 
-		private void OnHitByAny(Entity entity, int damage, bool crit)
+		private void OnHitByAny(Entity entity, Player.HurtInfo hurtInfo)
 		{
-			if (accHeartOfTheJungle)
+			if (hasHeartOfTheJungle)
 			{
-				for (int i = 3; i < 8 + Player.extraAccessorySlots; i++)
-				{
-					Item item = Player.armor[i];
-					if (item.type == ModContent.ItemType<HeartOfTheJungle>())
-					{
-						Invoke_HeartOfTheJungle(item.ModItem as HeartOfTheJungle);
-					}
-				}
+				HeartOfTheJungle_OnHitByAny();
 			}
 		}
 
-		public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+		public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
 		{
-			ModifyHitByAny(npc, ref damage, ref crit);
+			ModifyHitByAny(npc, ref modifiers);
 		}
-		public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+		public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
 		{
-			ModifyHitByAny(proj, ref damage, ref crit);
+			ModifyHitByAny(proj, ref modifiers);
 		}
-		public void ModifyHitByAny(Entity entity, ref int damage, ref bool crit)
+		public void ModifyHitByAny(Entity entity, ref Player.HurtModifiers modifiers)
 		{
 			if (coldArmor && !Player.HasBuff<Content.Buffs.Cooldowns.ColdArmorCooldown>())
 			{
 				Player.AddBuff(ModContent.BuffType<Content.Buffs.Cooldowns.ColdArmorCooldown>(), 10 * 60);
-				SoundEngine.PlaySound(GetRandomIceStruckSound(), Player.Center);
+				SoundEngine.PlaySound(TerrariaRandom.NextSoundIceStruck(), Player.Center);
 
 				// Add dust effect
 				for (int j = 0; j < 5; j++)
@@ -115,12 +115,42 @@ namespace SupernovaMod.Common.Players
 					Main.dust[dust].velocity *= 1.5f;
 				}
 
-				damage = (int)(damage * .75f);
+				// Reduce the final damage by 25%
+				modifiers.FinalDamage *= .75f;
 			}
 		}
 
-		void Invoke_BagOfFungus()
+		#endregion
+
+		private void HeartOfTheJungle_OnHitByAny()
 		{
+			// Check each accessory slot for the HeartOfTheJungle accessory
+			//
+			for (int i = 3; i < 8 + Player.extraAccessorySlots; i++)
+			{
+				// Check if slot 'i' contains the HeartOfTheJungle accessory
+				//
+				Item item = Player.armor[i];
+				if (item.type == ModContent.ItemType<HeartOfTheJungle>())
+				{
+					// OnHit the HeartOfTheJungle should consume enery and heal the player
+					//
+					(item.ModItem as HeartOfTheJungle).ConsumeEnergy(Player);
+				}
+			}
+		}
+
+		private void BagOfFungus_OnHitByNPC()
+		{
+			// Trigger this effect 1 in 3 times (3 because we start at 0)
+			//
+			if (!Main.rand.NextBool(2))
+			{
+				return;
+			}
+
+			// Summon '5' Mushroom projectiles around the player
+			//
 			for (int e = 0; e < 5; e++)
 			{
 				int i = Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center.X, Player.Center.Y, 1 - Main.rand.Next(-Player.width, Player.width) / 2, Main.rand.Next(-Player.height, Player.height) / 2, ProjectileID.Mushroom, Main.rand.Next(5, 15), 0f, Player.whoAmI, 3f, 3f);
@@ -128,30 +158,17 @@ namespace SupernovaMod.Common.Players
 				Main.projectile[i].friendly = true;
 			}
 		}
-		void Invoke_InfernalEmblem()
+
+		private void InfernalEmblem_OnHitByNPC()
 		{
-			for (int e = 0; e < Main.rand.Next(2, 5); e++)
+			// Summon between '2' and '4' MolotovFire projectiles around the player
+			//
+			for (int e = 0; e < Main.rand.Next(2, 4); e++)
 			{
-				int i = Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center.X, Player.Center.Y, 1 - Main.rand.Next(-5, 5), 1 - Main.rand.Next(-5, 5), ProjectileID.MolotovFire3, Main.rand.Next(3, 12), 0f, Player.whoAmI, 2f, 2f);
+				short anyMolotovFireID = TerrariaRandom.NextProjectileIDMolotovFire();
+				int i = Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center.X, Player.Center.Y, 1 - Main.rand.Next(-5, 5), 1 - Main.rand.Next(-5, 5), anyMolotovFireID, Main.rand.Next(3, 12), 0f, Player.whoAmI, 2f, 2f);
 				Main.projectile[i].hostile = false;
 				Main.projectile[i].friendly = true;
-			}
-		}
-		void Invoke_HeartOfTheJungle(HeartOfTheJungle item)
-		{
-			item.ConsumeEnergy(Player);
-		}
-
-		private SoundStyle GetRandomIceStruckSound()
-		{
-			switch (Main.rand.Next(0, 2))
-			{
-				default:
-					return SoundID.Item48;
-				case 1:
-					return SoundID.Item49;
-				case 2:
-					return SoundID.Item50;
 			}
 		}
 	}

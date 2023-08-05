@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -17,8 +18,8 @@ namespace SupernovaMod.Content.Tiles
             //TileObjectData.newTile.StyleHorizontal = true;
             //TileObjectData.newTile.StyleWrapLimit = 36;
             TileObjectData.addTile(Type);
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Ring Forge");
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Ring Forge");
             AnimationFrameHeight = 34;
             AddMapEntry(new Color(120, 85, 60), name);
         }

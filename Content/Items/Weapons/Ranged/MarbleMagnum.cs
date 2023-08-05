@@ -14,8 +14,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Marble Magnum");
-            Tooltip.SetDefault("Fires a dense spread of bullets");
+            // DisplayName.SetDefault("Marble Magnum");
+            // Tooltip.SetDefault("Fires a dense spread of bullets");
         }
 
         public override void SetDefaults()

@@ -14,7 +14,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Splitter");
+            // DisplayName.SetDefault("Verglas Splitter");
         }
         public override void SetDefaults()
         {

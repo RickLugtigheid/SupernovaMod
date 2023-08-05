@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Items.Armor.Zirconium
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Zirconium Leggings");
+            // DisplayName.SetDefault("Zirconium Leggings");
         }
 
         public override void SetDefaults()

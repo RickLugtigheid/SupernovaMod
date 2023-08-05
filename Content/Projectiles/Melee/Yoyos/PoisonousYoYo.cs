@@ -9,7 +9,7 @@ namespace SupernovaMod.Content.Projectiles.Melee.Yoyos
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Poisonous YoYo");
+            // DisplayName.SetDefault("Poisonous YoYo");
         }
         public override void SetDefaults()
         {
@@ -35,7 +35,7 @@ namespace SupernovaMod.Content.Projectiles.Melee.Yoyos
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Poisoned, 170);
         }

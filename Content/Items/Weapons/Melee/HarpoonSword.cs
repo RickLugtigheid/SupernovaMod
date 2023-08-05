@@ -15,8 +15,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Harpoon Blade");
-            Tooltip.SetDefault("Right click to shoot a harpoon at your enemies");
+            // DisplayName.SetDefault("Harpoon Blade");
+            // Tooltip.SetDefault("Right click to shoot a harpoon at your enemies");
         }
 
         private int _swordDamage = 24;

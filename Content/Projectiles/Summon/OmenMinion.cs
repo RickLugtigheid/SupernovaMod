@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Omen");
+            // DisplayName.SetDefault("Omen");
 
             // This is necessary for right-click targeting
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;

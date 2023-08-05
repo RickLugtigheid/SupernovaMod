@@ -9,8 +9,8 @@ namespace SupernovaMod.Content.Buffs.Summon
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Verglas Flake");
-            Description.SetDefault("A verglas flake that will fight for you");
+            // DisplayName.SetDefault("Verglas Flake");
+            // Description.SetDefault("A verglas flake that will fight for you");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

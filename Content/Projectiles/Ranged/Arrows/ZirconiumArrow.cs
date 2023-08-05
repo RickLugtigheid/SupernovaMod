@@ -1,21 +1,17 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Audio;
 using SupernovaMod.Content.Projectiles.Magic;
 using Microsoft.Xna.Framework;
-using SupernovaMod.Common.Players;
 
 namespace SupernovaMod.Content.Projectiles.Ranged.Arrows
 {
     public class ZirconiumArrow : ModProjectile
     {
-        private readonly int _dustId = ModContent.DustType<Dusts.ZirconDust>();
-
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Zirconium Arrow");
+            // DisplayName.SetDefault("Zirconium Arrow");
         }
         public override void SetDefaults()
         {
@@ -31,13 +27,13 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Arrows
 		}
 		public override void AI()
         {
-            //if (Main.rand.NextBool(4))
-            /*{
-                int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.width, _dustId, Projectile.velocity.X * .5f, Projectile.velocity.Y * .5f);
+			//if (Main.rand.NextBool(4))
+			/*{
+                int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.width, ModContent.DustType<Dusts.ZirconDust>();, Projectile.velocity.X * .5f, Projectile.velocity.Y * .5f);
                 Main.dust[dust].noGravity = true;
             }*/
 
-            base.AI();
+			base.AI();
         }
 
 		public override void Kill(int timeLeft)

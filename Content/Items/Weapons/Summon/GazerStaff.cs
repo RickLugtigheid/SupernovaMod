@@ -16,8 +16,8 @@ namespace SupernovaMod.Content.Items.Weapons.Summon
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 
-			DisplayName.SetDefault("Gazer Staff");
-            Tooltip.SetDefault("Summons a Gazer to fight for you");
+			// DisplayName.SetDefault("Gazer Staff");
+            // Tooltip.SetDefault("Summons a Gazer to fight for you");
         }
 
         public override void SetDefaults()

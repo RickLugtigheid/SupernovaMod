@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Ruby Ball Bearings");
-            Tooltip.SetDefault("Increases yoyo speed by 50% and damage by 5%.");
+            // DisplayName.SetDefault("Ruby Ball Bearings");
+            // Tooltip.SetDefault("Increases yoyo speed by 50% and damage by 5%.");
         }
 
         public override void SetDefaults()

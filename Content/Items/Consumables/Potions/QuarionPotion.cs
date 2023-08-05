@@ -11,9 +11,9 @@ namespace SupernovaMod.Content.Items.Consumables.Potions
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 
-            DisplayName.SetDefault("Quarion Potion");
-            Tooltip.SetDefault("Grealy increases damage and speed" +
-                "\nYou lose half of your health");
+            // DisplayName.SetDefault("Quarion Potion");
+            /* Tooltip.SetDefault("Grealy increases damage and speed" +
+                "\nYou lose half of your health"); */
         }
 
         public override void SetDefaults()

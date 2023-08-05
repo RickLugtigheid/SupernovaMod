@@ -13,7 +13,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Odzutsu");
+            // DisplayName.SetDefault("Odzutsu");
         }
 
         public override void SetDefaults()

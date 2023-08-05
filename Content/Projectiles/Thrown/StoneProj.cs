@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("A Stone");
+            // DisplayName.SetDefault("A Stone");
         }
 
         public override void SetDefaults()
@@ -73,7 +73,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             set { Projectile.ai[1] = value; }
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             Projectile.ai[0] = 1f;
             Projectile.ai[1] = target.whoAmI;

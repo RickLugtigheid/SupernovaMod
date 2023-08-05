@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Bow");
-            Tooltip.SetDefault("Shoots 2 Verglas Icicles that stick to the target and inflict the FrozenArmor and Frostburn debuff.\nThe FrozenArmor debuff decreases the targets defense by 1 per sticking Verglass Icicle, with a maximum of 6.");
+            // DisplayName.SetDefault("Verglas Bow");
+            // Tooltip.SetDefault("Shoots 2 Verglas Icicles that stick to the target and inflict the FrozenArmor and Frostburn debuff.\nThe FrozenArmor debuff decreases the targets defense by 1 per sticking Verglass Icicle, with a maximum of 6.");
         }
         public override Vector2? HoldoutOffset()
         {

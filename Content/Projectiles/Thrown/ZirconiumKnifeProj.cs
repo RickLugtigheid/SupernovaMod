@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Zirconium Trowing Knive");
+            // DisplayName.SetDefault("Zirconium Trowing Knive");
         }
 
         public override void SetDefaults()

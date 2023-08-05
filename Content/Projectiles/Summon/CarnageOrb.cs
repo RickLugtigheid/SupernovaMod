@@ -15,7 +15,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
         private const int MAX_REGEN_VALUE = 180;
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Carnage Drain Orb");
+            // DisplayName.SetDefault("Carnage Drain Orb");
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 1;
 		}
 		public override void SetDefaults()
@@ -85,15 +85,18 @@ namespace SupernovaMod.Content.Projectiles.Summon
 				Dust.NewDustPerfect(dustPos, DustID.LifeDrain, diff * 2).noGravity = true;
 			}
         }
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
             if (Projectile.localAI[1] < MAX_REGEN_VALUE)
 			    Projectile.localAI[1] += 120;
 		}
-		public override void OnHitPvp(Player target, int damage, bool crit)
+		public override void OnHitPlayer(Player target, Player.HurtInfo info)
 		{
-			if (Projectile.localAI[1] < MAX_REGEN_VALUE)
-				Projectile.localAI[1] += 120;
+			if (info.PvP)
+            {
+				if (Projectile.localAI[1] < MAX_REGEN_VALUE)
+					Projectile.localAI[1] += 120;
+			}
 		}
 
 		public void CheckActive()

@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Buffs.Cooldowns
         {
             Main.buffNoTimeDisplay[Type] = false;
 
-            DisplayName.SetDefault("Cold armor regen");
-            Description.SetDefault("Waiting for the Verglas armor to freeze again");
+            // DisplayName.SetDefault("Cold armor regen");
+            // Description.SetDefault("Waiting for the Verglas armor to freeze again");
 
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;

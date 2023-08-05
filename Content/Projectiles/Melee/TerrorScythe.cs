@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Melee
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Terror Scythe");
+			// DisplayName.SetDefault("Terror Scythe");
 		}
 		public override void SetDefaults()
         {

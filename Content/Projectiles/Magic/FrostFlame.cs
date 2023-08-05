@@ -9,7 +9,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frost Fire");
+            // DisplayName.SetDefault("Frost Fire");
         }
 
         public override void SetDefaults()
@@ -43,7 +43,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
                 Projectile.ai[0]++;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Frostburn, 180);   //this make so when the projectile/flame hit a npc, gives it the buff  onfire , 80 = 3 seconds
         }

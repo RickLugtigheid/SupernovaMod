@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Materials
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
 
-            DisplayName.SetDefault("Firearm Manual");
-            Tooltip.SetDefault("A guide to making guns");
+            // DisplayName.SetDefault("Firearm Manual");
+            // Tooltip.SetDefault("A guide to making guns");
         }
 
         public override void SetDefaults()

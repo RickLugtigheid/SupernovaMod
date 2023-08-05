@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Wooden Rifle");
-            Tooltip.SetDefault("18% chance not to consume ammo");
+            // DisplayName.SetDefault("Wooden Rifle");
+            // Tooltip.SetDefault("18% chance not to consume ammo");
         }
 
         public override void SetDefaults()

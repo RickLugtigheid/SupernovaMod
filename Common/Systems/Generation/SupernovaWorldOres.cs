@@ -10,7 +10,7 @@ namespace SupernovaMod.Common.Systems.Generation
     public class SupernovaWorldOres : ModSystem
     {
         /* World Generation */
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
             // We use FindIndex to locate the index of the vanilla world generation task called "Shinies".
             // This ensures our code runs at the correct step.
@@ -41,7 +41,7 @@ namespace SupernovaMod.Common.Systems.Generation
                 // We randomly choose an x and y coordinate. The x coordinate is choosen from the far left to the far right coordinates. The y coordinate, however, is choosen from between WorldGen.worldSurfaceLow and the bottom of the map. We can use this technique to determine the depth that our ore should spawn at.
                 //s
                 int x = WorldGen.genRand.Next(0, Main.maxTilesX);
-                int y = WorldGen.genRand.Next((int)WorldGen.worldSurfaceLow, Main.maxTilesY);
+                int y = WorldGen.genRand.Next((int)GenVars.worldSurfaceLow, Main.maxTilesY);
 
                 // Finally, we do the actual world generation code. In this example, we use the WorldGen.TileRunner method. This method spawns splotches of the Tile type we provide to the method. The behavior of TileRunner is detailed in the Useful Methods section below.
                 //

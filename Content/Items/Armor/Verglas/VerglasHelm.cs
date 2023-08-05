@@ -15,8 +15,8 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Helmet");
-            Tooltip.SetDefault("10% increased melee damage and speed");
+            // DisplayName.SetDefault("Verglas Helmet");
+            // Tooltip.SetDefault("10% increased melee damage and speed");
         }
 
         public override void SetDefaults()

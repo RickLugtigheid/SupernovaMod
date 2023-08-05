@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Terror Blast");
+            // DisplayName.SetDefault("Terror Blast");
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // Make the cultist resistant to this projectile, as it's resistant to all homing projectiles.
 			Main.projFrames[Projectile.type] = 5;
 		}
@@ -154,7 +154,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 
 		public override bool? CanCutTiles() => false;
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Projectile.ai[0] = 0f;
 			target.immune[Projectile.owner] = 10;

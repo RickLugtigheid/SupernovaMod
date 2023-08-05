@@ -13,7 +13,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Cactus Boomerang");
+            // DisplayName.SetDefault("Cactus Boomerang");
         }
         public override void SetDefaults()
         {

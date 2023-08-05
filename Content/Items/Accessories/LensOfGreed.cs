@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Lens of Greed");
-            Tooltip.SetDefault("Provides spelunker to the user");
+            // DisplayName.SetDefault("Lens of Greed");
+            // Tooltip.SetDefault("Provides spelunker to the user");
         }
 
         public override void SetDefaults()

@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Snow Glove");
+            // DisplayName.SetDefault("Snow Glove");
         }
 
         public override void SetDefaults()

@@ -16,9 +16,9 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Ice Bolt");
+            // DisplayName.SetDefault("Ice Bolt");
 
-            Tooltip.SetDefault("Shoots frostburn to burn your enemies with -196º(77kelvin)");
+            // Tooltip.SetDefault("Shoots frostburn to burn your enemies with -196º(77kelvin)");
         }
         public override void SetDefaults()
         {

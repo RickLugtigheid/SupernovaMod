@@ -9,7 +9,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Verglas Throwing Axe");
+            // DisplayName.SetDefault("Verglas Throwing Axe");
 
         }
 
@@ -25,7 +25,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             Projectile.DamageType = DamageClass.Throwing;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Frostburn, 120);   //this make so when the projectile/flame hit a npc, gives it the buff  onfire , 80 = 3 seconds
 

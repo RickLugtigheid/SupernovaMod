@@ -9,7 +9,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Molten Bullet");
+            // DisplayName.SetDefault("Molten Bullet");
         }
 
         public override void SetDefaults()
@@ -28,9 +28,10 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
             //this make that the projectile faces the right way
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X);
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(Main.rand.NextBool() ? BuffID.OnFire : BuffID.OnFire3, crit ? 240 : 120);
+			// Inflict OnFire for 2 seconds or 4 seconds if crit
+			target.AddBuff(Main.rand.NextBool() ? BuffID.OnFire : BuffID.OnFire3, hit.Crit ? 240 : 120);
         }
     }
 }

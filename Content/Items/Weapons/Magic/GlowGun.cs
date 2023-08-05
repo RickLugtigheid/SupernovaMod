@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Glow Gun");
+            // DisplayName.SetDefault("Glow Gun");
         }
         public override Vector2? HoldoutOffset() => new Vector2(-4, -2);
 

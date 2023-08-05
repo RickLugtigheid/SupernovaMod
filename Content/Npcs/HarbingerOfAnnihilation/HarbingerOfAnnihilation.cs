@@ -28,7 +28,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Harbinger of Annihilation");
+            // DisplayName.SetDefault("Harbinger of Annihilation");
             NPCID.Sets.TrailingMode[NPC.type] = 1;
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -1089,11 +1089,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         }
 		#endregion
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies, (float)hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies, hit.HitDirection, -1f, 0, default(Color), 1f);
 			}
 		}
 
@@ -1134,9 +1134,9 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			return NPC.IsABestiaryIconDummy;
 		}
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+       /* public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)*//* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) *//*
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.8f * bossLifeScale);
-        }
+        }*/
     }
 }

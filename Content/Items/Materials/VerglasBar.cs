@@ -13,7 +13,7 @@ namespace SupernovaMod.Content.Items.Materials
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
             ItemID.Sets.SortingPriorityMaterials[Item.type] = 59; // Influences the inventory sort order. 59 is PlatinumBar, higher is more valuable.
 
-            DisplayName.SetDefault("Verglas Bar");
+            // DisplayName.SetDefault("Verglas Bar");
         }
 
         public override void SetDefaults()

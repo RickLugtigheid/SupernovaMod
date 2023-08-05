@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Verglas Scepter");
+            // DisplayName.SetDefault("Verglas Scepter");
         }
 
         public override void SetDefaults()
@@ -27,9 +27,15 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.tileCollide = true;
             Projectile.DamageType = DamageClass.Magic;
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) => ModifyHit();
-        public override void ModifyHitPvp(Player target, ref int damage, ref bool crit) => ModifyHit();
-        private void ModifyHit()
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) => ModifyHit();
+		public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
+		{
+            if (modifiers.PvP)
+            {
+                ModifyHit();
+            }
+		}
+		private void ModifyHit()
         {
 			Vector2 perturbedSpeed = new Vector2(Projectile.velocity.X, Projectile.velocity.Y).RotatedByRandom(MathHelper.ToRadians(10));
 			Projectile.velocity = perturbedSpeed;
@@ -95,13 +101,16 @@ namespace SupernovaMod.Content.Projectiles.Magic
             projectile.velocity = projectile.velocity.RotatedByRandom(sineValue);*/
         }
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
             target.AddBuff(BuffID.Frostburn, 120);
 		}
-		public override void OnHitPvp(Player target, int damage, bool crit)
+		public override void OnHitPlayer(Player target, Player.HurtInfo info)
 		{
-			target.AddBuff(BuffID.Frostburn, 120);
+            if (info.PvP)
+            {
+				target.AddBuff(BuffID.Frostburn, 120);
+			}
 		}
 
 		public override void Kill(int timeLeft)

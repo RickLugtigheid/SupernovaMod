@@ -15,8 +15,8 @@ namespace SupernovaMod.Content.Items.Rings
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Gem Ring");
-            Tooltip.SetDefault("When the 'Ring Ability button' is pressed, .");
+            // DisplayName.SetDefault("Gem Ring");
+            // Tooltip.SetDefault("When the 'Ring Ability button' is pressed, .");
         }
         public override void SetDefaults()
         {

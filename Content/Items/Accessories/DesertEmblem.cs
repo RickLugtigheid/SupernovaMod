@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Desert Emblem");
-            Tooltip.SetDefault("8% increased movementspeed\nIn a sandstorm 16% increased movementspeed");
+            // DisplayName.SetDefault("Desert Emblem");
+            // Tooltip.SetDefault("8% increased movementspeed\nIn a sandstorm 16% increased movementspeed");
         }
 
         public override void SetDefaults()

@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Rings
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Ring of Protection");
-            Tooltip.SetDefault("When the 'Ring Ability button' is pressed you will dodge the next attack.\n+2 defence when equiped.");
+            // DisplayName.SetDefault("Ring of Protection");
+            // Tooltip.SetDefault("When the 'Ring Ability button' is pressed you will dodge the next attack.\n+2 defence when equiped.");
         }
         public override void SetDefaults()
         {

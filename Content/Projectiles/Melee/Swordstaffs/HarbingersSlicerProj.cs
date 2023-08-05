@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Harbingers Slicer");
+			// DisplayName.SetDefault("Harbingers Slicer");
 		}
 		public override void SetDefaults()
 		{

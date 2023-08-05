@@ -14,7 +14,7 @@ namespace SupernovaMod.Content.Projectiles.Melee
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Zicronium Spark");
+            // DisplayName.SetDefault("Zicronium Spark");
         }
         public override void SetDefaults()
         {
@@ -88,14 +88,10 @@ namespace SupernovaMod.Content.Projectiles.Melee
             }
         }
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			ArmorPlayer player = Main.player[Projectile.owner].GetModPlayer<ArmorPlayer>();
-			if (player.zirconiumArmor)
-			{
-				damage = (int)(damage * 1.05f);
-				target.AddBuff(BuffID.OnFire, Main.rand.Next(2, 6) * 60);
-			}
+            player.ZirconiumArmor_ModifyHitNPC(target, ref modifiers);
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity) => false;

@@ -13,7 +13,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Terror Tome");
+            // DisplayName.SetDefault("Terror Tome");
         }
         public override void SetDefaults()
         {

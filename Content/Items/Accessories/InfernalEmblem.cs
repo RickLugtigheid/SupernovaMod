@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Emblem of inferno");
-            Tooltip.SetDefault("Spaws fire when you get hit");
+            // DisplayName.SetDefault("Emblem of inferno");
+            // Tooltip.SetDefault("Spaws fire when you get hit");
         }
 
         public override void SetDefaults()
@@ -29,7 +29,7 @@ namespace SupernovaMod.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            player.GetModPlayer<AccessoryPlayer>().accInfernalEmblem = true;
+            player.GetModPlayer<AccessoryPlayer>().hasInfernalEmblem = true;
         }
     }
 }

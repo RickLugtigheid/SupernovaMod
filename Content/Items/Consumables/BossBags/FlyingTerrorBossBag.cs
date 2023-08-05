@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Consumables.BossBags
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Bag");
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+            // DisplayName.SetDefault("Treasure Bag");
+            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 
 			// This set is one that every boss bag should have.
 			// It will create a glowing effect around the item when dropped in the world.

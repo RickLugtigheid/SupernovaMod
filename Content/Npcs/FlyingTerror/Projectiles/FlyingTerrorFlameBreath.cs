@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror.Projectiles
 		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.DD2BetsyFlameBreath}";
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Fire Breath");
+			// DisplayName.SetDefault("Fire Breath");
 			Main.projFrames[Projectile.type] = Main.projFrames[ProjectileID.DD2BetsyFlameBreath];
 			Main.projFrames[Projectile.type] = 7;
 		}
@@ -23,7 +23,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror.Projectiles
 			//AIType = ProjectileID.DD2BetsyFlameBreath;	
 		}
 
-		public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
+		public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
 		{
 			target.AddBuff(24, 60 * Main.rand.Next(7, 11), true, false);
 		}

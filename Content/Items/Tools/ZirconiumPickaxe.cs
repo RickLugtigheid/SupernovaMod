@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Tools
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Zirconium Pickaxe");
+            // DisplayName.SetDefault("Zirconium Pickaxe");
         }
 
         public override void SetDefaults()

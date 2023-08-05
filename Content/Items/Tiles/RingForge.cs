@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Tiles
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Ring Forge");
-            Tooltip.SetDefault("A forge where you can make all the rings of power.");
+            // DisplayName.SetDefault("Ring Forge");
+            // Tooltip.SetDefault("A forge where you can make all the rings of power.");
         }
 
         public override void SetDefaults()

@@ -9,8 +9,8 @@ namespace SupernovaMod.Content.Items.Accessories
     {
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Heart of the Jungle");
-            Tooltip.SetDefault("Stores up to 60 life energy with an increase of 1 per second.\nGetting hit consumes life energy and heals you for the amount of energy you have / 2.");
+            // DisplayName.SetDefault("Heart of the Jungle");
+            // Tooltip.SetDefault("Stores up to 60 life energy with an increase of 1 per second.\nGetting hit consumes life energy and heals you for the amount of energy you have / 2.");
         }
 
         public override void SetDefaults()
@@ -35,7 +35,7 @@ namespace SupernovaMod.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            player.GetModPlayer<AccessoryPlayer>().accHeartOfTheJungle = true;
+            player.GetModPlayer<AccessoryPlayer>().hasHeartOfTheJungle = true;
 			player.GetModPlayer<ResourcePlayer>().lifeEnergyMax2 = 60;
 			player.GetModPlayer<ResourcePlayer>().lifeEnergyRegen += .01f;
 		}

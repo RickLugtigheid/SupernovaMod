@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Ammo
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Molten Bullet");
+            // DisplayName.SetDefault("Molten Bullet");
         }
 
         public override void SetDefaults()

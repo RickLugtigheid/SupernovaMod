@@ -37,7 +37,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Bloodweaver");
+			// DisplayName.SetDefault("Bloodweaver");
 			Main.npcFrameCount[NPC.type] = 5;
 
 			NPCID.Sets.BossBestiaryPriority.Add(NPC.type);
@@ -507,17 +507,17 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			Main.projectile[i].tileCollide = true;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 6; i++)
 			{
-				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CrimsonTorch, (float)hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CrimsonTorch, hit.HitDirection, -1f, 0, default(Color), 1f);
 			}
 			if (NPC.life <= 0)
 			{
 				for (int j = 0; j < 20; j++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, (float)hitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection, -1f, 0, default(Color), 1f);
 				}
 			}
 		}

@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Visage");
-            Tooltip.SetDefault("10% increased ranged damage, 20% chance not to consume ammo");
+            // DisplayName.SetDefault("Verglas Visage");
+            // Tooltip.SetDefault("10% increased ranged damage, 20% chance not to consume ammo");
         }
 
         public override void SetDefaults()

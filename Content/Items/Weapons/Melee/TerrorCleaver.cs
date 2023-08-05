@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Terror Cleaver");
-            Tooltip.SetDefault("Shoots scythes of terror");
+            // DisplayName.SetDefault("Terror Cleaver");
+            // Tooltip.SetDefault("Shoots scythes of terror");
             //Tooltip.SetDefault("A big cleaver as strong as the bones of the Flying Terror");
         }
 

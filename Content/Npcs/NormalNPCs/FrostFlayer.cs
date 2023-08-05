@@ -18,7 +18,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frost Flayer");
+            // DisplayName.SetDefault("Frost Flayer");
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
@@ -174,17 +174,17 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             return 0.015f;
         }
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.IceTorch, (float)hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.IceTorch, hit.HitDirection, -1f, 0, default(Color), 1f);
 			}
 			if (NPC.life <= 0)
 			{
 				for (int j = 0; j < 20; j++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.IceTorch, (float)hitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.IceTorch, hit.HitDirection, -1f, 0, default(Color), 1f);
 				}
 			}
 		}

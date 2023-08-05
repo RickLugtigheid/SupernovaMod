@@ -13,7 +13,7 @@ namespace SupernovaMod.Content.Projectiles.Hostile
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Lightning");
+			// DisplayName.SetDefault("Lightning");
 		}
 
 		public override void SetDefaults()
@@ -27,7 +27,7 @@ namespace SupernovaMod.Content.Projectiles.Hostile
 			Projectile.timeLeft = 10;
 			Projectile.tileCollide = false;
 		}
-		public override void OnHitPlayer(Player target, int damage, bool crit)
+		public override void OnHitPlayer(Player target, Player.HurtInfo info)
 		{
 			if (Main.rand.NextBool(4))
 			{

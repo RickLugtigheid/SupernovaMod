@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Materials
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 
-            DisplayName.SetDefault("Blood Shard");
+            // DisplayName.SetDefault("Blood Shard");
         }
 
         public override void SetDefaults()

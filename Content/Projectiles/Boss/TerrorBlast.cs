@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Boss
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Terror");
+            // DisplayName.SetDefault("Terror");
         }
 
         public override void SetDefaults()

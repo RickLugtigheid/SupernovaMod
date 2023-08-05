@@ -8,8 +8,8 @@ namespace SupernovaMod.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cosmic Clock");
-            Tooltip.SetDefault("A item that can change the time");
+            // DisplayName.SetDefault("Cosmic Clock");
+            // Tooltip.SetDefault("A item that can change the time");
         }
 
         public override void SetDefaults()

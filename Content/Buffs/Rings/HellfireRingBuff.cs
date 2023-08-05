@@ -9,8 +9,8 @@ namespace SupernovaMod.Content.Buffs.Rings
         {
             Main.buffNoTimeDisplay[Type] = false;
 
-            DisplayName.SetDefault("Ring of Hellfire");
-            Description.SetDefault("Attacks now have a chance to cause an fiery explosion.");
+            // DisplayName.SetDefault("Ring of Hellfire");
+            // Description.SetDefault("Attacks now have a chance to cause an fiery explosion.");
 
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;

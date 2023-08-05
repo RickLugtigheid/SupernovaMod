@@ -22,8 +22,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Gallant");
-            Tooltip.SetDefault("Can shoot 6 bullets before having to reload.\nRight-click to manualy reload.");
+            // DisplayName.SetDefault("Gallant");
+            // Tooltip.SetDefault("Can shoot 6 bullets before having to reload.\nRight-click to manualy reload.");
         }
 
         public override void SetDefaults()

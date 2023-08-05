@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Bone Crusher");
-            Tooltip.SetDefault("Throws your enemies a bone.");
+            // DisplayName.SetDefault("Bone Crusher");
+            // Tooltip.SetDefault("Throws your enemies a bone.");
         }
         public override void SetDefaults()
         {

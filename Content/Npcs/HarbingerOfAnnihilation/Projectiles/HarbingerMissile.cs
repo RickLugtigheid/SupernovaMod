@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Harbinger Missile");
+            // DisplayName.SetDefault("Harbinger Missile");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 7;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }

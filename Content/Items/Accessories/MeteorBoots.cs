@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Accessories
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Meteor boots");
-            Tooltip.SetDefault($"When you double tap 'down_button' in the air you will become a meteor!");
+            // DisplayName.SetDefault("Meteor boots");
+            // Tooltip.SetDefault($"When you double tap 'down_button' in the air you will become a meteor!");
         }
 
         public override void SetDefaults()

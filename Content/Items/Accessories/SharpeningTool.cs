@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Sharpening tool");
-            Tooltip.SetDefault("Increases melee and thrown damage by 5%");
+            // DisplayName.SetDefault("Sharpening tool");
+            // Tooltip.SetDefault("Increases melee and thrown damage by 5%");
         }
 
         public override void SetDefaults()

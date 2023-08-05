@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Tiles
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
             ItemID.Sets.SortingPriorityMaterials[Item.type] = 54;
 
-            DisplayName.SetDefault("Zirconium Ore");
-            Tooltip.SetDefault("A shiny pink ore chunk");
+            // DisplayName.SetDefault("Zirconium Ore");
+            // Tooltip.SetDefault("A shiny pink ore chunk");
         }
 
         public override void SetDefaults()

@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Verglas Scepter");
+            // DisplayName.SetDefault("Verglas Scepter");
             Item.staff[Item.type] = true;
         }
 

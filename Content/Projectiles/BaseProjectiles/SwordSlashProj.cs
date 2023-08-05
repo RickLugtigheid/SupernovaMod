@@ -92,7 +92,7 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 			return false;
 		}
 		public override bool? CanCutTiles() => true;
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Vector2 positionInWorld = Main.rand.NextVector2FromRectangle(target.Hitbox);
 			ParticleOrchestraSettings particleOrchestraSettings = default(ParticleOrchestraSettings);

@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Glowing Spore Bag");
-            Tooltip.SetDefault("Has a chance to release Glowing Mushrooms when damaged");
+            // DisplayName.SetDefault("Glowing Spore Bag");
+            // Tooltip.SetDefault("Has a chance to release Glowing Mushrooms when damaged");
         }
 
         public override void SetDefaults()
@@ -26,7 +26,7 @@ namespace SupernovaMod.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            player.GetModPlayer<Common.Players.AccessoryPlayer>().accBagOfFungus = true;
+            player.GetModPlayer<Common.Players.AccessoryPlayer>().hasBagOfFungus = true;
         }
     }
 }

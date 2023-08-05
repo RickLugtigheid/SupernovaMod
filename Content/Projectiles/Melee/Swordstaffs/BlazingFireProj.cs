@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blazing Fire");
+            // DisplayName.SetDefault("Blazing Fire");
         }
         public override void SetDefaults()
         {
@@ -44,7 +44,7 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 			}
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire3, Main.rand.Next(2, 4) * 60);
         }

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using SupernovaMod.Api;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -13,8 +14,8 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Magic Starblade");
-            Tooltip.SetDefault("Shoots a random star projectile.");
+            // DisplayName.SetDefault("Magic Starblade");
+            // Tooltip.SetDefault("Shoots a random star projectile.");
         }
         public override Vector2? HoldoutOffset()
         {
@@ -43,14 +44,13 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.DamageType = DamageClass.Magic;
         }
 
-        private int[] _starProjectiles = new int[] { ProjectileID.HallowStar, ProjectileID.StarCannonStar, ProjectileID.StarCloakStar, ProjectileID.StarVeilStar };
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             // Add random spread to our projectile
             velocity = velocity.RotatedByRandom(MathHelper.ToRadians(7));
 
             // Set the projectile type to a random star projectile
-            type = _starProjectiles[Main.rand.Next(_starProjectiles.Length - 1)];
+            type = TerrariaRandom.NextProjectileIDAnyStar();
 
             base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }

@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Npcs.StormSovereign.Projectiles
 		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.SharknadoBolt}";
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Storm Bolt");
+			// DisplayName.SetDefault("Storm Bolt");
 		}
 		public override void SetDefaults()
 		{

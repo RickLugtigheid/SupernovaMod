@@ -1,4 +1,4 @@
-﻿Mods: {
+Mods: {
 	SupernovaMod: {
 		Ring: Ring
 		SocialRing: Social Ring
@@ -8,6 +8,7 @@
 		ShowCustomLocationPanel_Label: Show custom location panel
 		ResetCustomSlotLocation_Tooltip: Reset custom panel location if it disappears from the screen
 		ResetCustomSlotLocation_Label: Reset custom location
+
 		TownNPCMood: {
 			Ronin: {
 				Content: I feel pretty fine right now.
@@ -17,15 +18,711 @@
 				DislikeCrowded: There is no peace here, to many people.
 				HateCrowded: I can't think with so many people around!
 				LikeBiome: "{BiomeName} is a very nice place to practice."
-				LoveBiome: "I love {BiomeName}."
-
-				DislikeBiome: "It's way too cold in {BiomeName}, I'm freezing!"
-				HateBiome: "Its kind of hard to think while being attacked by monsters in {BiomeName}."
-				LikeNPC: "I can respect {NPCName} as a fellow guide and educator!"
-				LoveNPC: "Do you think {NPCName} notices me?"
+				LoveBiome: I love {BiomeName}.
+				DislikeBiome: It's way too cold in {BiomeName}, I'm freezing!
+				HateBiome: Its kind of hard to think while being attacked by monsters in {BiomeName}.
+				LikeNPC: I can respect {NPCName} as a fellow guide and educator!
+				LoveNPC: Do you think {NPCName} notices me?
 				DislikeNPC: '''"{NPCName} keeps rambling on about "payed mods"... Wish I could convince him how terrible of an idea that is."'''
-				HateNPC: "I hate all the loud noises caused by {NPCName} and his explosives! I just want peace and quiet."
+				HateNPC: I hate all the loud noises caused by {NPCName} and his explosives! I just want peace and quiet.
 			}
+		}
+
+		"Keybinds.Ring Ability.DisplayName": Ring  Ability
+
+		Tiles: {
+			RingForge.MapEntry: Ring Forge
+			ZirconiumOreTile.MapEntry: Zirconium Ore Tile
+		}
+
+		NPCs: {
+			HarbingerOfAnnihilation: {
+				DisplayName: Harbinger Of Annihilation
+
+				BossChecklistIntegration: {
+					EntryName: Harbinger of Annihilation
+					SpawnInfo: Kill a Cosmic Anomaly in Space
+				}
+			}
+
+			FlyingTerror: {
+				DisplayName: Flying Terror
+				BossChecklistIntegration.SpawnInfo: Use a [i:5580] at night
+			}
+
+			Bloodweaver: {
+				DisplayName: Bloodweaver
+				BossChecklistIntegration.SpawnInfo: Spawns during Bloodmoon
+			}
+
+			Gazer.DisplayName: Gazer
+			TerrorSpirit.DisplayName: Terror Spirit
+			CosmicAnomaly.DisplayName: Cosmic Anomaly
+			FrostFlayer.DisplayName: Frost Flayer
+			Geist.DisplayName: Geist
+			LeafCrab.DisplayName: Leaf Crab
+			TerrorBat.DisplayName: Terror Bat
+			StormSovereign.DisplayName: Storm Sovereign
+
+			Ronin: {
+				DisplayName: Ronin
+
+				TownNPCMood: {
+					Content: "{$Mods.SupernovaMod.TownNPCMood.Ronin.Content}"
+					NoHome: "{$Mods.SupernovaMod.TownNPCMood.Ronin.NoHome}"
+					FarFromHome: "{$Mods.SupernovaMod.TownNPCMood.Ronin.FarFromHome}"
+					LoveSpace: "{$Mods.SupernovaMod.TownNPCMood.Ronin.LoveSpace}"
+					DislikeCrowded: "{$Mods.SupernovaMod.TownNPCMood.Ronin.DislikeCrowded}"
+					HateCrowded: "{$Mods.SupernovaMod.TownNPCMood.Ronin.HateCrowded}"
+					LoveBiome: "{$Mods.SupernovaMod.TownNPCMood.Ronin.LoveBiome}"
+					LikeBiome: "{$Mods.SupernovaMod.TownNPCMood.Ronin.LikeBiome}"
+					DislikeBiome: "{$Mods.SupernovaMod.TownNPCMood.Ronin.DislikeBiome}"
+					HateBiome: "{$Mods.SupernovaMod.TownNPCMood.Ronin.HateBiome}"
+					LoveNPC: "{$Mods.SupernovaMod.TownNPCMood.Ronin.LoveNPC}"
+					LikeNPC: "{$Mods.SupernovaMod.TownNPCMood.Ronin.LikeNPC}"
+					DislikeNPC: "{$Mods.SupernovaMod.TownNPCMood.Ronin.DislikeNPC}"
+					HateNPC: "{$Mods.SupernovaMod.TownNPCMood.Ronin.HateNPC}"
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+			}
+		}
+
+		Buffs: {
+			ColdArmorCooldown: {
+				DisplayName: Cold Armor Cooldown
+				Description: Mods.SupernovaMod.Buffs.ColdArmorCooldown.Description
+			}
+
+			ReloadDebuff: {
+				DisplayName: Reload Debuff
+				Description: Mods.SupernovaMod.Buffs.ReloadDebuff.Description
+			}
+
+			RingCooldown: {
+				DisplayName: Ring Cooldown
+				Description: Mods.SupernovaMod.Buffs.RingCooldown.Description
+			}
+
+			QuarionBuff: {
+				DisplayName: Quarion Buff
+				Description: Mods.SupernovaMod.Buffs.QuarionBuff.Description
+			}
+
+			HellfireRingBuff: {
+				DisplayName: Hellfire Ring Buff
+				Description: Mods.SupernovaMod.Buffs.HellfireRingBuff.Description
+			}
+
+			VerglasIcicleDebuff: {
+				DisplayName: Verglas Icicle Debuff
+				Description: Mods.SupernovaMod.Buffs.VerglasIcicleDebuff.Description
+			}
+
+			GazerMinionBuff: {
+				DisplayName: Gazer Minion Buff
+				Description: Mods.SupernovaMod.Buffs.GazerMinionBuff.Description
+			}
+
+			HarbingersArmBuff: {
+				DisplayName: Harbingers Arm Buff
+				Description: Mods.SupernovaMod.Buffs.HarbingersArmBuff.Description
+			}
+
+			HarbingersKnellBuff: {
+				DisplayName: Harbingers Knell Buff
+				Description: Mods.SupernovaMod.Buffs.HarbingersKnellBuff.Description
+			}
+
+			VerglasFlakeBuff: {
+				DisplayName: Verglas Flake Buff
+				Description: Mods.SupernovaMod.Buffs.VerglasFlakeBuff.Description
+			}
+		}
+
+		Items: {
+			BagOfFungus: {
+				DisplayName: Bag Of Fungus
+				Tooltip: ""
+			}
+
+			CoolingElement: {
+				DisplayName: Cooling Element
+				Tooltip: ""
+			}
+
+			DemonHorns: {
+				DisplayName: Demon Horns
+				Tooltip: ""
+			}
+
+			DesertEmblem: {
+				DisplayName: Desert Emblem
+				Tooltip: ""
+			}
+
+			HarbingersCrest: {
+				DisplayName: Harbingers Crest
+				Tooltip: ""
+			}
+
+			HeartOfTheJungle: {
+				DisplayName: Heart Of The Jungle
+				Tooltip: ""
+			}
+
+			HellFireBoots: {
+				DisplayName: Hell Fire Boots
+				Tooltip: ""
+			}
+
+			InfernalEmblem: {
+				DisplayName: Infernal Emblem
+				Tooltip: ""
+			}
+
+			LensOfGreed: {
+				DisplayName: Lens Of Greed
+				Tooltip: ""
+			}
+
+			MagnifyingGlass: {
+				DisplayName: Magnifying Glass
+				Tooltip: ""
+			}
+
+			MeteorBoots: {
+				DisplayName: Meteor Boots
+				Tooltip: ""
+			}
+
+			RubyBallBearings: {
+				DisplayName: Ruby Ball Bearings
+				Tooltip: ""
+			}
+
+			SacrificialTalisman: {
+				DisplayName: Sacrificial Talisman
+				Tooltip: ""
+			}
+
+			SharpeningTool: {
+				DisplayName: Sharpening Tool
+				Tooltip: ""
+			}
+
+			WoodenTarget: {
+				DisplayName: Wooden Target
+				Tooltip: ""
+			}
+
+			MoltenBullet: {
+				DisplayName: Molten Bullet
+				Tooltip: ""
+			}
+
+			WoodenBullet: {
+				DisplayName: Wooden Bullet
+				Tooltip: ""
+			}
+
+			CarnageBoots: {
+				DisplayName: Carnage Boots
+				Tooltip: ""
+			}
+
+			CarnageBreastplate: {
+				DisplayName: Carnage Breastplate
+				Tooltip: ""
+			}
+
+			CarnageHelm: {
+				DisplayName: Carnage Helm
+				Tooltip: ""
+			}
+
+			VerglasBoots: {
+				DisplayName: Verglas Boots
+				Tooltip: ""
+			}
+
+			VerglasBreastplate: {
+				DisplayName: Verglas Breastplate
+				Tooltip: ""
+			}
+
+			VerglasHelm: {
+				DisplayName: Verglas Helm
+				Tooltip: ""
+			}
+
+			VerglasVeil: {
+				DisplayName: Verglas Veil
+				Tooltip: ""
+			}
+
+			VerglasVisage: {
+				DisplayName: Verglas Visage
+				Tooltip: ""
+			}
+
+			ZirconiumBoots: {
+				DisplayName: Zirconium Boots
+				Tooltip: ""
+			}
+
+			ZirconiumBreastplate: {
+				DisplayName: Zirconium Breastplate
+				Tooltip: ""
+			}
+
+			ZirconiumCasque: {
+				DisplayName: Zirconium Casque
+				Tooltip: ""
+			}
+
+			ZirconiumHeadguard: {
+				DisplayName: Zirconium Headguard
+				Tooltip: ""
+			}
+
+			ZirconiumHelmet: {
+				DisplayName: Zirconium Helmet
+				Tooltip: ""
+			}
+
+			FlyingTerrorBossBag: {
+				DisplayName: Flying Terror Boss Bag
+				Tooltip: ""
+			}
+
+			QuarionPotion: {
+				DisplayName: Quarion Potion
+				Tooltip: ""
+			}
+
+			BloodShards: {
+				DisplayName: Blood Shards
+				Tooltip: ""
+			}
+
+			BoneFragment: {
+				DisplayName: Bone Fragment
+				Tooltip: ""
+			}
+
+			FirearmManual: {
+				DisplayName: Firearm Manual
+				Tooltip: ""
+			}
+
+			GoldenRingMold: {
+				DisplayName: Golden Ring Mold
+				Tooltip: ""
+			}
+
+			QuarionShard: {
+				DisplayName: Quarion Shard
+				Tooltip: ""
+			}
+
+			Rime: {
+				DisplayName: Rime
+				Tooltip: ""
+			}
+
+			VerglasBar: {
+				DisplayName: Verglas Bar
+				Tooltip: ""
+			}
+
+			ZirconiumBar: {
+				DisplayName: Zirconium Bar
+				Tooltip: ""
+			}
+
+			CosmicClock: {
+				DisplayName: Cosmic Clock
+				Tooltip: ""
+			}
+
+			EyeOfDeath: {
+				DisplayName: Eye Of Death
+				Tooltip: ""
+			}
+
+			HorridChunk: {
+				DisplayName: Horrid Chunk
+				Tooltip: ""
+			}
+
+			MantaFood: {
+				DisplayName: Manta Food
+				Tooltip: ""
+			}
+
+			BloodMagicRing: {
+				DisplayName: Blood Magic Ring
+				Tooltip: ""
+			}
+
+			GemRing: {
+				DisplayName: Gem Ring
+				Tooltip: ""
+			}
+
+			ProspectorsRing: {
+				DisplayName: Prospectors Ring
+				Tooltip: ""
+			}
+
+			RingOfHellfire: {
+				DisplayName: Ring Of Hellfire
+				Tooltip: ""
+			}
+
+			RingOfProtection: {
+				DisplayName: Ring Of Protection
+				Tooltip: ""
+			}
+
+			RingForge: {
+				DisplayName: Ring Forge
+				Tooltip: ""
+			}
+
+			ZirconiumOre: {
+				DisplayName: Zirconium Ore
+				Tooltip: ""
+			}
+
+			VerglasHamaxe: {
+				DisplayName: Verglas Hamaxe
+				Tooltip: ""
+			}
+
+			VerglasPick: {
+				DisplayName: Verglas Pick
+				Tooltip: ""
+			}
+
+			ZirconiumAxe: {
+				DisplayName: Zirconium Axe
+				Tooltip: ""
+			}
+
+			ZirconiumPickaxe: {
+				DisplayName: Zirconium Pickaxe
+				Tooltip: ""
+			}
+
+			BlazeBolt: {
+				DisplayName: Blaze Bolt
+				Tooltip: ""
+			}
+
+			CarnageScepter: {
+				DisplayName: Carnage Scepter
+				Tooltip: ""
+			}
+
+			GlowGun: {
+				DisplayName: Glow Gun
+				Tooltip: ""
+			}
+
+			GraniteStorm: {
+				DisplayName: Granite Storm
+				Tooltip: ""
+			}
+
+			IceBolt: {
+				DisplayName: Ice Bolt
+				Tooltip: ""
+			}
+
+			MagicStarBlade: {
+				DisplayName: Magic Star Blade
+				Tooltip: ""
+			}
+
+			ShockSurge: {
+				DisplayName: Shock Surge
+				Tooltip: ""
+			}
+
+			StaffOfThorns: {
+				DisplayName: Staff Of Thorns
+				Tooltip: ""
+			}
+
+			TerrorTome: {
+				DisplayName: Terror Tome
+				Tooltip: ""
+			}
+
+			Tessen: {
+				DisplayName: Tessen
+				Tooltip: ""
+			}
+
+			TomeOfIceAndFire: {
+				DisplayName: Tome Of Ice And Fire
+				Tooltip: ""
+			}
+
+			VerglasScepter: {
+				DisplayName: Verglas Scepter
+				Tooltip: ""
+			}
+
+			ZirconiumWand: {
+				DisplayName: Zirconium Wand
+				Tooltip: ""
+			}
+
+			BlazingFire: {
+				DisplayName: Blazing Fire
+				Tooltip: ""
+			}
+
+			BoneCrusher: {
+				DisplayName: Bone Crusher
+				Tooltip: ""
+			}
+
+			CarnageJavalin: {
+				DisplayName: Carnage Javalin
+				Tooltip: ""
+			}
+
+			CarnageSword: {
+				DisplayName: Carnage Sword
+				Tooltip: ""
+			}
+
+			HarbingersSlicer: {
+				DisplayName: Harbingers Slicer
+				Tooltip: ""
+			}
+
+			HarpoonSword: {
+				DisplayName: Harpoon Sword
+				Tooltip: ""
+			}
+
+			Kama: {
+				DisplayName: Kama
+				Tooltip: ""
+			}
+
+			PoisonousYoYo: {
+				DisplayName: Poisonous Yo Yo
+				Tooltip: ""
+			}
+
+			StormBrand: {
+				DisplayName: Storm Brand
+				Tooltip: ""
+			}
+
+			TerrorCleaver: {
+				DisplayName: Terror Cleaver
+				Tooltip: ""
+			}
+
+			VerglasSword: {
+				DisplayName: Verglas Sword
+				Tooltip: ""
+			}
+
+			ZirconiumSword: {
+				DisplayName: Zirconium Sword
+				Tooltip: ""
+			}
+
+			CarnageRifle: {
+				DisplayName: Carnage Rifle
+				Tooltip: ""
+			}
+
+			DesertDuster: {
+				DisplayName: Desert Duster
+				Tooltip: ""
+			}
+
+			Gallant: {
+				DisplayName: Gallant
+				Tooltip: ""
+			}
+
+			HellfireRifle: {
+				DisplayName: Hellfire Rifle
+				Tooltip: ""
+			}
+
+			MarbleMagnum: {
+				DisplayName: Marble Magnum
+				Tooltip: ""
+			}
+
+			Odzutsu: {
+				DisplayName: Odzutsu
+				Tooltip: ""
+			}
+
+			StarNight: {
+				DisplayName: Star Night
+				Tooltip: ""
+			}
+
+			TerrorRecurve: {
+				DisplayName: Terror Recurve
+				Tooltip: ""
+			}
+
+			VerglasBow: {
+				DisplayName: Verglas Bow
+				Tooltip: ""
+			}
+
+			WoodenRifle: {
+				DisplayName: Wooden Rifle
+				Tooltip: ""
+			}
+
+			WoodGun: {
+				DisplayName: Wood Gun
+				Tooltip: ""
+			}
+
+			ZirconiumBow: {
+				DisplayName: Zirconium Bow
+				Tooltip: ""
+			}
+
+			GazerStaff: {
+				DisplayName: Gazer Staff
+				Tooltip: ""
+			}
+
+			HarbingersKnell: {
+				DisplayName: Harbingers Knell
+				Tooltip: ""
+			}
+
+			VerglasStaff: {
+				DisplayName: Verglas Staff
+				Tooltip: ""
+			}
+
+			CactusBoomerang: {
+				DisplayName: Cactus Boomerang
+				Tooltip: ""
+			}
+
+			CarnageTrowingKnive: {
+				DisplayName: Carnage Trowing Knive
+				Tooltip: ""
+			}
+
+			DiscOfTheDesert: {
+				DisplayName: Disc Of The Desert
+				Tooltip: ""
+			}
+
+			Kunai: {
+				DisplayName: Kunai
+				Tooltip: ""
+			}
+
+			SnowGlove: {
+				DisplayName: Snow Glove
+				Tooltip: ""
+			}
+
+			TrowingStone: {
+				DisplayName: Trowing Stone
+				Tooltip: ""
+			}
+
+			VerglasThrowingAxe: {
+				DisplayName: Verglas Throwing Axe
+				Tooltip: ""
+			}
+
+			ZirconiumKnife: {
+				DisplayName: Zirconium Knife
+				Tooltip: ""
+			}
+		}
+
+		Prefixes: {
+			Angry.DisplayName: Angry
+			Chilly.DisplayName: Chilly
+			Cooled.DisplayName: Cooled
+			Fiery.DisplayName: Fiery
+			Frigid.DisplayName: Frigid
+			Heated.DisplayName: Heated
+			Menacing.DisplayName: Menacing
+			Scorching.DisplayName: Scorching
+			Spiked.DisplayName: Spiked
+		}
+
+		Projectiles: {
+			FlyingTerrorFlameBreath.DisplayName: Flying Terror Flame Breath
+			TerrorFlame.DisplayName: Terror Flame
+			HarbingerOfAnnihilation_Arm.DisplayName: Harbinger Of Annihilation_ Arm
+			HarbingerMissile.DisplayName: Harbinger Missile
+			HarbingerOrb.DisplayName: Harbinger Orb
+			HoaBlackHole.DisplayName: Hoa Black Hole
+			ChainLightningHostile.DisplayName: Chain Lightning Hostile
+			LightningOrb.DisplayName: Lightning Orb
+			LightningSpawner.DisplayName: Lightning Spawner
+			StormBolt.DisplayName: Storm Bolt
+			StormCloud.DisplayName: Storm Cloud
+			TerrorBlast.DisplayName: Terror Blast
+			BloodBoltHostile.DisplayName: Blood Bolt Hostile
+			LightningHostile.DisplayName: Lightning Hostile
+			CarnageScepterProj.DisplayName: Carnage Scepter Proj
+			CarnageScepterProj2.DisplayName: Carnage Scepter Proj2
+			FrostFlame.DisplayName: Frost Flame
+			GlowGunProj.DisplayName: Glow Gun Proj
+			GraniteProj.DisplayName: Granite Proj
+			ShockSurgeProj.DisplayName: Shock Surge Proj
+			TerrorProjFirendly.DisplayName: Terror Proj Firendly
+			VerglasScepterProj.DisplayName: Verglas Scepter Proj
+			ZicroniumExplosion.DisplayName: Zicronium Explosion
+			ZirconProj.DisplayName: Zircon Proj
+			BlazingFireball.DisplayName: Blazing Fireball
+			CarnageJavalinProj.DisplayName: Carnage Javalin Proj
+			BlazingFireProj.DisplayName: Blazing Fire Proj
+			HarbingersSlicerProj.DisplayName: Harbingers Slicer Proj
+			TerrorScythe.DisplayName: Terror Scythe
+			VerglasSlash.DisplayName: Verglas Slash
+			VerglasSlash2.DisplayName: Verglas Slash2
+			PoisonousYoYo.DisplayName: Poisonous Yo Yo
+			ZicroniumSpark.DisplayName: Zicronium Spark
+			ZirconiumArrow.DisplayName: Zirconium Arrow
+			CrimsandBullet.DisplayName: Crimsand Bullet
+			EbonsandBullet.DisplayName: Ebonsand Bullet
+			MoltenBullet.DisplayName: Molten Bullet
+			PearlsandBullet.DisplayName: Pearlsand Bullet
+			SandBullet.DisplayName: Sand Bullet
+			WoodenBullet.DisplayName: Wooden Bullet
+			VerglasIcicle.DisplayName: Verglas Icicle
+			CarnageOrb.DisplayName: Carnage Orb
+			GazerMinion.DisplayName: Gazer Minion
+			HarbingersArmSummon.DisplayName: Harbingers Arm Summon
+			OmenMinion.DisplayName: Omen Minion
+			VerglasFlakeMinion.DisplayName: Verglas Flake Minion
+			CactusBoomerangProj.DisplayName: Cactus Boomerang Proj
+			CarnageTrowingKniveProj.DisplayName: Carnage Trowing Knive Proj
+			DiscOfTheDesertProj.DisplayName: Disc Of The Desert Proj
+			KunaiProj.DisplayName: Kunai Proj
+			StoneProj.DisplayName: Stone Proj
+			VerglasThrowingAxe.DisplayName: Verglas Throwing Axe
+			ZirconiumKnifeProj.DisplayName: Zirconium Knife Proj
 		}
 	}
 }

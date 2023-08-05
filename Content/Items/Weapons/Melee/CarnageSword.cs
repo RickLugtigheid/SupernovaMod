@@ -13,9 +13,9 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Carnage Sword");
+            // DisplayName.SetDefault("Carnage Sword");
             //Tooltip.SetDefault("Killing enemies will heal the player by " + 4 * HEAL_AMOUNT + '.');
-            Tooltip.SetDefault("Landing crits on enemies will heal the player by " + 3 * HEAL_AMOUNT + "hp.");
+            // Tooltip.SetDefault("Landing crits on enemies will heal the player by " + 3 * HEAL_AMOUNT + "hp.");
         }
         public override void SetDefaults()
         {
@@ -42,12 +42,11 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
                 Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Blood, Scale: 1.4f);
             }
         }
-        public override void ModifyHitNPC(Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
+        public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
         {
-            // Check if the npc will be killed by this strike
-            //
-            //if ((target.life - damage) <= 0)
-            if (crit)
+			// Check if the user got a crit
+			//
+			if (modifiers.CritDamage.Flat != 0)
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -63,7 +62,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
                 }
             }
 
-            base.ModifyHitNPC(player, target, ref damage, ref knockBack, ref crit);
+            base.ModifyHitNPC(player, target, ref modifiers);
         }
         public override void AddRecipes()
         {

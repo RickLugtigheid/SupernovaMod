@@ -8,9 +8,9 @@ namespace SupernovaMod.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
-            DisplayName.SetDefault("Harbingers Crest");
-            Tooltip.SetDefault("Summons a Harbinger Arm to fight for you.");
+            Item.ResearchUnlockCount = 1;
+            // DisplayName.SetDefault("Harbingers Crest");
+            // Tooltip.SetDefault("Summons a Harbinger Arm to fight for you.");
         }
 
         public override void SetDefaults()

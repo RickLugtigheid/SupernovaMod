@@ -9,8 +9,8 @@ namespace SupernovaMod.Content.Buffs.Cooldowns
         {
             Main.buffNoTimeDisplay[Type] = false;
 
-            DisplayName.SetDefault("Reloading");
-            Description.SetDefault("Waiting for the weapon to be reload.");
+            // DisplayName.SetDefault("Reloading");
+            // Description.SetDefault("Waiting for the weapon to be reload.");
 
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;

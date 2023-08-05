@@ -6,16 +6,18 @@ namespace SupernovaMod.Common.GlobalNPCs
 {
     public class ShopNPC : GlobalNPC
 	{
-		public override void SetupShop(int type, Chest shop, ref int nextSlot)
+		public override void ModifyShop(NPCShop shop)
 		{
-			switch (type)
+			// Call the ModifyShop method for the given NPC
+			//
+			switch (shop.NpcType)
 			{
 				case NPCID.ArmsDealer:
-					SetupShopArmsDealer(shop, ref nextSlot);
+					ModifyShopArmsDealer(shop);
 					break;
 			}
 
-			base.SetupShop(type, shop, ref nextSlot);
+			base.ModifyShop(shop);
 		}
 
 		/// <summary>
@@ -24,11 +26,13 @@ namespace SupernovaMod.Common.GlobalNPCs
 		/// <param name="type"></param>
 		/// <param name="shop"></param>
 		/// <param name="nextSlot"></param>
-		private void SetupShopArmsDealer(Chest shop, ref int nextSlot)
+		private void ModifyShopArmsDealer(NPCShop shop)
 		{
 			// Add the FirearmManual to the shop
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Content.Items.Materials.FirearmManual>());
-			nextSlot++;
+			//
+			shop.Add(new Item(
+				ModContent.ItemType<Content.Items.Materials.FirearmManual>()
+			));
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Wooden Bullet");
+            // DisplayName.SetDefault("Wooden Bullet");
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
@@ -45,7 +45,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.timeLeft <= 35 && Main.rand.NextBool(3)) target.AddBuff(BuffID.OnFire, 60);
         }

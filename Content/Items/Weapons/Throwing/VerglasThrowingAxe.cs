@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Throwing Axe");
+            // DisplayName.SetDefault("Verglas Throwing Axe");
         }
 
         public override void SetDefaults()

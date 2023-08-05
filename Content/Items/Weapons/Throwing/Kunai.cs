@@ -14,8 +14,8 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
-            DisplayName.SetDefault("Kunai");
-            Tooltip.SetDefault("May throw 2 or 3 for the price of 1");
+            // DisplayName.SetDefault("Kunai");
+            // Tooltip.SetDefault("May throw 2 or 3 for the price of 1");
         }
 
         public override void SetDefaults()

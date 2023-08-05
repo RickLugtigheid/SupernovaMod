@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Carnage Javalin");
+            // DisplayName.SetDefault("Carnage Javalin");
         }
 
         public override void SetDefaults()

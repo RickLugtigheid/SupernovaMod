@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Kama");
-            Tooltip.SetDefault("The kama is a traditional Japanese farming implement similar to a sickle used for reaping crops and also employed as a weapon.");
+            // DisplayName.SetDefault("Kama");
+            // Tooltip.SetDefault("The kama is a traditional Japanese farming implement similar to a sickle used for reaping crops and also employed as a weapon.");
         }
 
         public override void SetDefaults()

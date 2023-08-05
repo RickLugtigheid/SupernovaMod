@@ -28,7 +28,7 @@ namespace SupernovaMod.Content.Projectiles.Melee
 
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Verglas Splitter");
+            // DisplayName.SetDefault("Verglas Splitter");
 			Main.projFrames[Type] = 4;
 		}
 		public override void SetDefaults()
@@ -50,7 +50,7 @@ namespace SupernovaMod.Content.Projectiles.Melee
 			Projectile.alpha = 255;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Frostburn, Main.rand.Next(3, 7) * 60);
 

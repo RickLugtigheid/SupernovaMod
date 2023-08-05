@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 
-            DisplayName.SetDefault("Carnage Trowing Knive");
+            // DisplayName.SetDefault("Carnage Trowing Knive");
         }
 
         public override void SetDefaults()

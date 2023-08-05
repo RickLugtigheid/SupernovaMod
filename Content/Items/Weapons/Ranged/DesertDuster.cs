@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Desert Duster");
-            Tooltip.SetDefault("Uses sand to shoot.");
+            // DisplayName.SetDefault("Desert Duster");
+            // Tooltip.SetDefault("Uses sand to shoot.");
 		}
 
         public override void SetDefaults()

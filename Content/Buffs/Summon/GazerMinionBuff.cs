@@ -9,8 +9,8 @@ namespace SupernovaMod.Content.Buffs.Summon
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Gazer");
-            Description.SetDefault("A Gazer that will fight for you");
+            // DisplayName.SetDefault("Gazer");
+            // Description.SetDefault("A Gazer that will fight for you");
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }

@@ -22,7 +22,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Flying Terror");
+            // DisplayName.SetDefault("Flying Terror");
             Main.npcFrameCount[NPC.type] = 5;
 			NPCID.Sets.TrailingMode[NPC.type] = 1;
 
@@ -968,12 +968,12 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
             }
         }
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			int i = 0;
-			while ((double)i < damage / (double)base.NPC.lifeMax * 100.0)
+			while ((double)i < hit.Damage / (double)base.NPC.lifeMax * 100.0)
 			{
-				Dust.NewDust(base.NPC.position, base.NPC.width, base.NPC.height, DustID.Shadowflame, (float)hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(base.NPC.position, base.NPC.width, base.NPC.height, DustID.Shadowflame, hit.HitDirection, -1f, 0, default(Color), 1f);
 				i++;
 			}
 		}
@@ -992,9 +992,9 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
             scale = 1.5f;
             return null;
         }
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		/*public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)*//* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) *//*
 		{
 			NPC.lifeMax = (int)(NPC.lifeMax * 0.8f * bossLifeScale);
-		}
+		}*/
 	}
 }

@@ -16,9 +16,9 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Blaze Bolt");
+            // DisplayName.SetDefault("Blaze Bolt");
 
-            Tooltip.SetDefault("Shoots fire to burn your enemies");
+            // Tooltip.SetDefault("Shoots fire to burn your enemies");
         }
         public override void SetDefaults()
         {

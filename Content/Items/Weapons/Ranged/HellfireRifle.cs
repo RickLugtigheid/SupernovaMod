@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Hellfire Rifle");
-            Tooltip.SetDefault("18% chance not to consume ammo\nTurns Wooden bullets into Molten Bullets");
+            // DisplayName.SetDefault("Hellfire Rifle");
+            // Tooltip.SetDefault("18% chance not to consume ammo\nTurns Wooden bullets into Molten Bullets");
         }
 
         public override Vector2? HoldoutOffset() => new Vector2(-2, -2);

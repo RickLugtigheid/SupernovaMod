@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Zirconium Wand");
+            // DisplayName.SetDefault("Zirconium Wand");
             Item.staff[Item.type] = true;
         }
 

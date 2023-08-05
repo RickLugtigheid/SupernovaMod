@@ -15,8 +15,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Storm Brand");
-            Tooltip.SetDefault("Some description about what this weapon does.");
+            // DisplayName.SetDefault("Storm Brand");
+            // Tooltip.SetDefault("Some description about what this weapon does.");
         }
         public override void SetDefaults()
         {

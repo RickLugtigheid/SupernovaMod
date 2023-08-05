@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Npcs.StormSovereign.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lightning Orb");
+            // DisplayName.SetDefault("Lightning Orb");
             //ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
             //ProjectileID.Sets.TrailingMode[projectile.type] = 0;
         }
@@ -56,7 +56,7 @@ namespace SupernovaMod.Content.Npcs.StormSovereign.Projectiles
             Lighting.AddLight(Projectile.Center, ((255 - Projectile.alpha) * 0.15f) / 255f, ((255 - Projectile.alpha) * 0.45f) / 255f, ((255 - Projectile.alpha) * 0.05f) / 255f);   //this is the light colors
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Electrified, 120);   //this make so when the projectile/flame hit a npc, gives it the buff  onfire , 80 = 3 seconds
         }

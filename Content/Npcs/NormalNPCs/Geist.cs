@@ -18,7 +18,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Geist");
+            // DisplayName.SetDefault("Geist");
 			Main.npcFrameCount[NPC.type] = 3;
 
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -135,7 +135,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 		}
 		#endregion
 
-		public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
+		public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
 		{
             if (Main.rand.NextBool(4))
             {
@@ -168,17 +168,17 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             return 0.045f;
         }
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 3; i++)
 			{
-				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadewood, (float)hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadewood, hit.HitDirection, -1f, 0, default(Color), 1f);
 			}
 			if (NPC.life <= 0)
 			{
 				for (int j = 0; j < 10; j++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadewood, (float)hitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadewood, hit.HitDirection, -1f, 0, default(Color), 1f);
 				}
 			}
 		}

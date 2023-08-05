@@ -17,9 +17,9 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Tome of Frost and Fire");
+            // DisplayName.SetDefault("Tome of Frost and Fire");
 
-            Tooltip.SetDefault("Shoots fire and frostburn");
+            // Tooltip.SetDefault("Shoots fire and frostburn");
         }
 
         private bool _frostFlame = true;
@@ -72,9 +72,9 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             }
             return base.CanUseItem(player);
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(player, target, damage, knockBack, crit);
+            base.OnHitNPC(player, target, hit, damageDone);
         }
         public override void AddRecipes()
         {

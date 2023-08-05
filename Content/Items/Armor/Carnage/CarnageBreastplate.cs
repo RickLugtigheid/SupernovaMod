@@ -14,8 +14,8 @@ namespace SupernovaMod.Content.Items.Armor.Carnage
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Carnage Breastplate"); // Set the name
-            Tooltip.SetDefault("5% increased damage reduction");
+            // DisplayName.SetDefault("Carnage Breastplate"); // Set the name
+            // Tooltip.SetDefault("5% increased damage reduction");
         }
 
         public override void SetDefaults()

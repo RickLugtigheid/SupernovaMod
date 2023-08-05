@@ -151,31 +151,6 @@ namespace SupernovaMod.Common
 			return rotation - (float)Math.PI * 0.5f;
 		}
 
-		public static bool IntersectsConeSlowMoreAccurate(this Rectangle targetRect, Vector2 coneCenter, float coneLength, float coneRotation, float maximumAngle)
-		{
-			Vector2 point = coneCenter + coneRotation.ToRotationVector2() * coneLength;
-			if (DoesFitInCone(targetRect.ClosestPointInRect(point), coneCenter, coneLength, coneRotation, maximumAngle))
-			{
-				return true;
-			}
-			if (DoesFitInCone(targetRect.TopLeft(), coneCenter, coneLength, coneRotation, maximumAngle))
-			{
-				return true;
-			}
-			if (DoesFitInCone(targetRect.TopRight(), coneCenter, coneLength, coneRotation, maximumAngle))
-			{
-				return true;
-			}
-			if (DoesFitInCone(targetRect.BottomLeft(), coneCenter, coneLength, coneRotation, maximumAngle))
-			{
-				return true;
-			}
-			if (DoesFitInCone(targetRect.BottomRight(), coneCenter, coneLength, coneRotation, maximumAngle))
-			{
-				return true;
-			}
-			return false;
-		}
 		public static bool DoesFitInCone(Vector2 point, Vector2 coneCenter, float coneLength, float coneRotation, float maximumAngle)
 		{
 			Vector2 spinningpoint = point - coneCenter;

@@ -23,7 +23,7 @@ namespace SupernovaMod.Content.Npcs.StormSovereign
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Storm Sovereign");
+            // DisplayName.SetDefault("Storm Sovereign");
             Main.npcFrameCount[NPC.type] = 3;
 			NPCID.Sets.TrailingMode[NPC.type] = 1;
 
@@ -353,9 +353,9 @@ namespace SupernovaMod.Content.Npcs.StormSovereign
             scale = 1.5f;
             return null;
         }
-		public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+		/*public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)*//* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) *//*
 		{
 			NPC.lifeMax = (int)(NPC.lifeMax * 0.8f * bossLifeScale);
-		}
+		}*/
 	}
 }

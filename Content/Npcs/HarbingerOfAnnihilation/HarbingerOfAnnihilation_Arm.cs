@@ -40,7 +40,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Harbinger of Annihilation Arm");
+			// DisplayName.SetDefault("Harbinger of Annihilation Arm");
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 1;
 		}
 
@@ -450,7 +450,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		}
 		#endregion
 
-		public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
+		public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
 		{
 			if (_collideBetweenArms && Main.rand.NextBool(2))
 			{

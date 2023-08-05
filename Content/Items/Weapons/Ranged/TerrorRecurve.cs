@@ -16,8 +16,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Terror Recurve");
-            Tooltip.SetDefault("");
+            // DisplayName.SetDefault("Terror Recurve");
+            // Tooltip.SetDefault("");
         }
         public override Vector2? HoldoutOffset()
         {

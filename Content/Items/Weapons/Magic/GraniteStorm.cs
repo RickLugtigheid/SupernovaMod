@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Granite Storm");
-            Tooltip.SetDefault("Shoots chunks of granite at your enemies");
+            // DisplayName.SetDefault("Granite Storm");
+            // Tooltip.SetDefault("Shoots chunks of granite at your enemies");
         }
 
         public override void SetDefaults()

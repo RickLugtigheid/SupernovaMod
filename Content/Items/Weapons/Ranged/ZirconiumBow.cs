@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Zirconium Bow");
-            Tooltip.SetDefault("Wooden arrows turn into Zirconium Arrows.\nZirconium Arrows explode on impact.");
+            // DisplayName.SetDefault("Zirconium Bow");
+            // Tooltip.SetDefault("Wooden arrows turn into Zirconium Arrows.\nZirconium Arrows explode on impact.");
         }
         public override Vector2? HoldoutOffset()
         {

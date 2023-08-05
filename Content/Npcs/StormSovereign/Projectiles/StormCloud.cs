@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Npcs.StormSovereign.Projectiles
 
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Storm Cloud");
+            // DisplayName.SetDefault("Storm Cloud");
 			Main.projFrames[Projectile.type] = 6;
 		}
 

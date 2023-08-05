@@ -14,7 +14,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Gazer");
+            // DisplayName.SetDefault("Gazer");
 
 			// Sets the amount of frames this minion has on its spritesheet
 			Main.projFrames[Projectile.type] = 5;

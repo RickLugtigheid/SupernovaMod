@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Projectiles.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blazing Fireball");
+            // DisplayName.SetDefault("Blazing Fireball");
         }
         public override void SetDefaults()
         {

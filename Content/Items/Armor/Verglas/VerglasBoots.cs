@@ -12,8 +12,8 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Boots");
-            Tooltip.SetDefault("7% increased critical strike chance");
+            // DisplayName.SetDefault("Verglas Boots");
+            // Tooltip.SetDefault("7% increased critical strike chance");
         }
 
         public override void SetDefaults()

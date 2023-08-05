@@ -8,8 +8,8 @@ namespace SupernovaMod.Content.Buffs.Potions
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = false;
-            DisplayName.SetDefault("Quarion Potion");
-            Description.SetDefault("Greatly increased damage and speed but halved health");
+            // DisplayName.SetDefault("Quarion Potion");
+            // Description.SetDefault("Greatly increased damage and speed but halved health");
         }
         public override void Update(Player player, ref int buffIndex)
         {

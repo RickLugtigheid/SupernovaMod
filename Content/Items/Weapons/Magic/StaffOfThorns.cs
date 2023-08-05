@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Staff of Thorns");
-            Tooltip.SetDefault("Shoots a spread of armor piercing thorns.");
+            // DisplayName.SetDefault("Staff of Thorns");
+            // Tooltip.SetDefault("Shoots a spread of armor piercing thorns.");
             Item.staff[Item.type] = true;
         }
 

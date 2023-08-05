@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Veil");
-            Tooltip.SetDefault("15% increased magic and minion damage, 5% decreased mana cost, +30 max mana, +2 max minion number");
+            // DisplayName.SetDefault("Verglas Veil");
+            // Tooltip.SetDefault("15% increased magic and minion damage, 5% decreased mana cost, +30 max mana, +2 max minion number");
         }
 
         public override void SetDefaults()

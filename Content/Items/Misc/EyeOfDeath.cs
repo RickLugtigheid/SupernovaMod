@@ -9,8 +9,8 @@ namespace SupernovaMod.Content.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Eye Of Death");
-            Tooltip.SetDefault("Stare into the Eye of Death and go back to where you died");
+            // DisplayName.SetDefault("Eye Of Death");
+            // Tooltip.SetDefault("Stare into the Eye of Death and go back to where you died");
         }
 
         public override void SetDefaults()
@@ -48,7 +48,7 @@ namespace SupernovaMod.Content.Items.Misc
 
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.Teleport, -1, -1, null, 0, (float)player.whoAmI, player.lastDeathPostion.X, player.lastDeathPostion.Y, 3);
+                        NetMessage.SendData(MessageID.TeleportEntity, -1, -1, null, 0, (float)player.whoAmI, player.lastDeathPostion.X, player.lastDeathPostion.Y, 3);
                     }
 
                     for (int index = 0; index < 70; ++index)

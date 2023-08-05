@@ -11,8 +11,8 @@ namespace SupernovaMod.Content.Items.Materials
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 
-            DisplayName.SetDefault("Bone Fragment");
-            Tooltip.SetDefault("Drops from any zombies after the Brain of Cthulhu/Eater of Worlds is defeated");
+            // DisplayName.SetDefault("Bone Fragment");
+            // Tooltip.SetDefault("Drops from any zombies after the Brain of Cthulhu/Eater of Worlds is defeated");
         }
 
         public override void SetDefaults()

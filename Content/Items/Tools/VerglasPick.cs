@@ -11,7 +11,7 @@ namespace SupernovaMod.Content.Items.Tools
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Pick");
+            // DisplayName.SetDefault("Verglas Pick");
         }
 
         public override void SetDefaults()

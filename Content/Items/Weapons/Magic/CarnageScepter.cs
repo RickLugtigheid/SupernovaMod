@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Carnage Scepter");
+            // DisplayName.SetDefault("Carnage Scepter");
             Item.staff[Item.type] = true;
         }
 

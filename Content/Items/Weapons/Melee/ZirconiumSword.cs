@@ -15,8 +15,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Zirconium Sword");
-            Tooltip.SetDefault("Release a blast of Zirconium Sparks every 4 hits.\nZirconium Sparks linger for a short while.");
+            // DisplayName.SetDefault("Zirconium Sword");
+            // Tooltip.SetDefault("Release a blast of Zirconium Sparks every 4 hits.\nZirconium Sparks linger for a short while.");
         }
         public override void SetDefaults()
         {
@@ -38,7 +38,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         }
 
         private int _hits;
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
 			_hits++;
 			if (_hits < 4)

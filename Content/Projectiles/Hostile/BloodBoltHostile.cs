@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Projectiles.Hostile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blood Bolt");
+            // DisplayName.SetDefault("Blood Bolt");
         }
 
         public override void SetDefaults()

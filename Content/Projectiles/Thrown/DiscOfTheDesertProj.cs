@@ -8,7 +8,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Disc of the Desert");
+            // DisplayName.SetDefault("Disc of the Desert");
 
         }
         public override void SetDefaults()

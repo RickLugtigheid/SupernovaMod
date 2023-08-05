@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Carnage Rifle");
+            // DisplayName.SetDefault("Carnage Rifle");
         }
 
         public override Vector2? HoldoutOffset()

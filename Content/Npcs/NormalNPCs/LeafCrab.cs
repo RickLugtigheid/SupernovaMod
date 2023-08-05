@@ -13,7 +13,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Leaf Crab");
+            // DisplayName.SetDefault("Leaf Crab");
             Main.npcFrameCount[NPC.type] = 8;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
@@ -74,17 +74,17 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             return SpawnCondition.SurfaceJungle.Chance * 0.25f;
         }
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 5; i++)
 			{
-				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Chlorophyte, (float)hitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Chlorophyte, hit.HitDirection, -1f, 0, default(Color), 1f);
 			}
 			if (NPC.life <= 0)
 			{
 				for (int j = 0; j < 20; j++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Chlorophyte, (float)hitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Chlorophyte, hit.HitDirection, -1f, 0, default(Color), 1f);
 				}
 			}
 		}

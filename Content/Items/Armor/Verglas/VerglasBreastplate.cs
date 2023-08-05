@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Verglas Breastplate"); // Set the name
-            Tooltip.SetDefault("+5% increased damage");
+            // DisplayName.SetDefault("Verglas Breastplate"); // Set the name
+            // Tooltip.SetDefault("+5% increased damage");
         }
 
         public override void SetDefaults()

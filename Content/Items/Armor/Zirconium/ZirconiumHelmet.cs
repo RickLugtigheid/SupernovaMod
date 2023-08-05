@@ -13,8 +13,8 @@ namespace SupernovaMod.Content.Items.Armor.Zirconium
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Zirconium Helmet");
-            Tooltip.SetDefault("5% increased melee damage");
+            // DisplayName.SetDefault("Zirconium Helmet");
+            // Tooltip.SetDefault("5% increased melee damage");
         }
 
         public override void SetDefaults()
@@ -36,7 +36,7 @@ namespace SupernovaMod.Content.Items.Armor.Zirconium
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Zirconium Explosions and sparks deal +5% extra damage.\nZirconium Explosions sparks inflict the OnFire debuff.";
-			player.GetModPlayer<ArmorPlayer>().zirconiumArmor = true;
+			player.GetModPlayer<ArmorPlayer>().isWearingZirconiumArmor = true;
 		}
 
 		public override void AddRecipes()

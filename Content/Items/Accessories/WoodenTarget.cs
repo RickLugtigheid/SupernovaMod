@@ -11,9 +11,9 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Wooden Target");
-            Tooltip.SetDefault("Increases trown and ranged damage by 4%" +
-                                "\n Increases trown velocity by 3%");
+            // DisplayName.SetDefault("Wooden Target");
+            /* Tooltip.SetDefault("Increases trown and ranged damage by 4%" +
+                                "\n Increases trown velocity by 3%"); */
         }
 
         public override void SetDefaults()
