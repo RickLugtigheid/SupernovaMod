@@ -3,6 +3,8 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using SupernovaMod.Api;
 using Terraria.GameContent.Creative;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace SupernovaMod.Content.Items.Weapons.Magic
 {
@@ -37,14 +39,15 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.shootSpeed = 3.5f;
             Item.mana = 4;
             Item.useStyle = ItemUseStyleID.Shoot;   //The way your Weapon will be used, 5 is the Holding Out Used for: Guns, Spellbooks, Drills, Chainsaws, Flails, Spears for example
-            Item.value = Item.sellPrice(0, 3, 35, 64);
+            Item.value = BuyPrice.RarityGreen;
             Item.autoReuse = true;
-            Item.shoot = ProjectileID.Flames;
+            //Item.shoot = ProjectileID.Flames;
+            Item.shoot = ModContent.ProjectileType<Projectiles.Magic.BlazeBoltFlames>();
 
             Item.DamageType = DamageClass.Magic;
         }
 
-        public override void AddRecipes()
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Fireblossom);

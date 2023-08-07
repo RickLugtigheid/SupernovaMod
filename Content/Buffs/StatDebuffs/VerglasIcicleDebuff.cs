@@ -15,31 +15,31 @@ namespace SupernovaMod.Content.Buffs.StatDebuffs
             {
                 int stickyProjectiles = 0;
                 int projType = ModContent.ProjectileType<Projectiles.Ranged.VerglasIcicle>();
-                for (int n = 0; n < 1000; n++)
+
+				// Find all sticking VerglasIcicles
+                //
+				for (int n = 0; n < 1000; n++)
                 {
                     if (
                         Main.projectile[n].active                       // Is the found projectile active?
                         &&
                         Main.projectile[n].type == projType             // Is the found projectile a VerglasIcicle?
-                                                                        //&& 
-                                                                        //Main.projectile[n].ai[0] == 1f				// Idk
                         &&
-                        Main.projectile[n].ai[1] == npc.whoAmI   // Is the found projectile sticking to our npc?
+                        Main.projectile[n].ai[1] == npc.whoAmI          // Is the found projectile sticking to our npc?
                     )
                     {
                         stickyProjectiles++;
                     }
                 }
 
-                int newDefense = npc.defDefense - (int)(stickyProjectiles * _defenceDecreaseMulti);
-                if (newDefense < 0)
+                // Calculate the new defense
+                //
+                int newDefense = npc.defense - (int)(stickyProjectiles * _defenceDecreaseMulti);
+                if (newDefense > 0)
                 {
-                    newDefense = 0;
-                }
-                npc.defense = newDefense;
+                    npc.defDefense = newDefense;
+				}
             }
-
-            base.Update(npc, ref buffIndex);
         }
     }
 }

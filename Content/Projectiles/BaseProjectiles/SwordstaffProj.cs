@@ -16,6 +16,13 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 		/// </summary>
 		public float SwingCycleTime { get; protected set; } = 50;
 
+		public override void SetStaticDefaults()
+		{
+			// If a Jellyfish is zapping and we attack it with this projectile, it will deal damage to us.
+			// This set has the projectiles for the Night's Edge, Excalibur, Terra Blade (close range), and The Horseman's Blade (close range).
+			ProjectileID.Sets.AllowsContactDamageFromJellyfish[Type] = true;
+		}
+
 		public override void SetDefaults()
 		{
 			Projectile.width = 100;		//Set the hitbox width
@@ -153,7 +160,19 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 		public override bool PreDraw(ref Color lightColor)  //this make the projectile sprite rotate perfectaly around the player 
 		{
 			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
-			Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, new Vector2(texture.Width / 2, texture.Height / 2), Projectile.scale, Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
+			Vector2 position = Projectile.Center - Main.screenPosition;
+			Vector2 origin = new Vector2(texture.Width / 2, texture.Height / 2);
+			SpriteEffects spriteEffects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+
+			Main.spriteBatch.Draw(texture, position, null, Color.White, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0f);
+
+			// DEBUG: this line for a visual representation of the projectile's size.
+			//
+			if (Supernova.DebugMode)
+			{
+				Main.EntitySpriteDraw(TextureAssets.MagicPixel.Value, position, texture.Bounds, Color.Orange * 0.75f, Projectile.rotation, origin, Projectile.scale, spriteEffects, 0f);
+			}
+
 			return false;
 		}
 

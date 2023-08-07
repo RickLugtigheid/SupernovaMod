@@ -14,7 +14,6 @@
   <ItemGroup>
     <Folder Include=".csgendoc\src\" />
     <Folder Include="Api\Collections\" />
-    <Folder Include="Common\GlobalItems\" />
     <Folder Include="Common\GlobalProjectiles\" />
     <Folder Include="Content\Buffs\DamageOverTime\" />
     <Folder Include="Content\Items\Weapons\Typeless\" />

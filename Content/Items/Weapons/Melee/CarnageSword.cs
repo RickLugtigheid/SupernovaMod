@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
+using Terraria.WorldBuilding;
 
 namespace SupernovaMod.Content.Items.Weapons.Melee
 {
@@ -42,29 +43,29 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
                 Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Blood, Scale: 1.4f);
             }
         }
-        public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
-        {
+
+		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+		{
 			// Check if the user got a crit
 			//
-			if (modifiers.CritDamage.Flat != 0)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    // Get a random starting velocity so not all projectiles will start the same direction.
-                    Vector2 startVelocity = new Vector2(
-                        Main.rand.Next(-10, 10),
-                        Main.rand.Next(-10, 10)
-                    );
+			if (hit.Crit)
+			{
+				for (int i = 0; i < 3; i++)
+				{
+					// Get a random starting velocity so not all projectiles will start the same direction.
+					Vector2 startVelocity = new Vector2(
+						Main.rand.Next(-10, 10),
+						Main.rand.Next(-10, 10)
+					);
 
-                    // Heal the player by healAmount
-                    //
-                    Projectile.NewProjectile(player.GetSource_FromThis(), target.Center, startVelocity, ProjectileID.VampireHeal, 1, 0, player.whoAmI, 0, HEAL_AMOUNT);
-                }
-            }
+					// Heal the player by healAmount
+					//
+					Projectile.NewProjectile(player.GetSource_FromThis(), target.Center, startVelocity, ProjectileID.VampireHeal, 1, 0, player.whoAmI, 0, HEAL_AMOUNT);
+				}
+			}
+		}
 
-            base.ModifyHitNPC(player, target, ref modifiers);
-        }
-        public override void AddRecipes()
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ModContent.ItemType<Materials.BloodShards>(), 8);

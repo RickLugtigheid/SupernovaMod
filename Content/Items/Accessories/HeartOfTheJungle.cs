@@ -58,6 +58,13 @@ namespace SupernovaMod.Content.Items.Accessories
                 energyUsed++;
             }
 
+            // Check if our energy used will heal the player by at least 1 hp
+            //
+            if (energyUsed <= 0 || (energyUsed / 2) < 1)
+            {
+                return false;
+            }
+
 			resourcePlayer.lifeEnergy -= energyUsed;
             player.Heal(energyUsed / 2);
             return true;

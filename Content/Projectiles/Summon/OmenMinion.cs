@@ -41,7 +41,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
             Projectile.penetrate = -1; // Needed so the minion doesn't despawn on collision with enemies or tiles
 
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 18;
+            Projectile.localNPCHitCooldown = 21;
 
             speed = 21;
         }

@@ -14,6 +14,8 @@ namespace SupernovaMod
 
 		public static ILog Log { get; private set; }
 
+		public static bool DebugMode => ModContent.GetInstance<Common.Configs.SupernovaModConfig>().debugMode;
+
 		public override void Load()
 		{
 			Log = Logger;

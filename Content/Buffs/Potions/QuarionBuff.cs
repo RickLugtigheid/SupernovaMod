@@ -18,7 +18,7 @@ namespace SupernovaMod.Content.Buffs.Potions
             player.GetDamage(DamageClass.Ranged) += 0.52f;
             player.GetDamage(DamageClass.Throwing) += 0.52f;
             player.statLifeMax2 /= 2;
-            player.moveSpeed += 2;
+            player.moveSpeed *= .1f;
             //player.statDefense /= 2;
         }
     }

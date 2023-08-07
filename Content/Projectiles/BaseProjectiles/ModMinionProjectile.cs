@@ -201,21 +201,23 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 
 		// Default movement parameters (here for attacking)
 		protected float speed = 8f;
+        protected float attackSpeedMuli = 1.5f;
 		protected float inertia = 10;
 		protected virtual void UpdateAttackMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {
 			// Minion has a target: attack (here, fly towards the enemy)
-			/*if (distanceFromTarget > 40)
+            //
+			if (distanceFromTarget > 55)
 			{
                 float speedMulti = distanceFromTarget / 100;
-                speedMulti = Utils.Clamp(speedMulti, 1.5f, .75f); // Cap the multiplier
+                speedMulti = Utils.Clamp(speedMulti, 1.2f, .7f); // Cap the multiplier
 				SupernovaUtils.MoveProjectileSmooth(Projectile, 100, targetCenter - Projectile.Center, speed * speedMulti, .15f);
-			}*/
+			}
 
 			Vector2 vectorToTarget = targetCenter - Projectile.Center;
-			vectorToTarget = Utils.SafeNormalize(vectorToTarget, Vector2.Zero);
+			vectorToTarget = Utils.SafeNormalize(vectorToTarget, Vector2.Zero) * (speed * attackSpeedMuli);
 			
-            Projectile.velocity = Vector2.Lerp(Projectile.velocity, vectorToTarget * speed, 0.024390243f);
+            Projectile.velocity = Vector2.Lerp(Projectile.velocity, vectorToTarget, 0.024390243f);
 		}
         protected virtual void UpdateIdleMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {

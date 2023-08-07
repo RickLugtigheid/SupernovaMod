@@ -19,11 +19,11 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.friendly = true;  //Tells the game whether it is friendly to players/friendly npcs or not
             Projectile.ignoreWater = true;  //Tells the game whether or not projectile will be affected by water
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.penetrate = -1; //Tells the game how many enemies it can hit before being destroyed, -1 infinity
+            Projectile.penetrate = 2; //Tells the game how many enemies it can hit before being destroyed, -1 infinity
             Projectile.timeLeft = 150;  //The amount of time the projectile is alive for  
             Projectile.extraUpdates = 3;
             Projectile.alpha = 255;
-        }
+		}
 
         public override void AI()
         {

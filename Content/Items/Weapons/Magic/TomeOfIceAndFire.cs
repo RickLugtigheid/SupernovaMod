@@ -3,7 +3,6 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using SupernovaMod.Api;
 using Terraria.GameContent.Creative;
-using SupernovaMod.Content.Projectiles.Magic;
 
 namespace SupernovaMod.Content.Items.Weapons.Magic
 {
@@ -45,7 +44,18 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.autoReuse = true;
             Item.DamageType = DamageClass.Magic;
 
-			// TODO: Check why and if still necessary
+			// TODO: Check why, and if still necessary
+			UpdateShootType();
+		}
+
+		public override bool CanUseItem(Player player)
+        {
+            UpdateShootType();
+            return base.CanUseItem(player);
+        }
+
+        private void UpdateShootType()
+        {
 			if (_frostFlame)
 			{
 				Item.shoot = ModContent.ProjectileType<Projectiles.Magic.FrostFlame>();
@@ -53,25 +63,12 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 			}
 			else
 			{
-				Item.shoot = ProjectileID.Flames;
+				//Item.shoot = ProjectileID.Flames;
+				Item.shoot = ModContent.ProjectileType<Projectiles.Magic.BlazeBoltFlames>();
 				_frostFlame = true;
 			}
 		}
 
-        public override bool CanUseItem(Player player)
-        {
-            if (_frostFlame)
-            {
-                Item.shoot = ModContent.ProjectileType<Projectiles.Magic.FrostFlame>();
-				_frostFlame = false;
-            }
-            else
-            {
-                Item.shoot = ProjectileID.Flames;
-				_frostFlame = true;
-            }
-            return base.CanUseItem(player);
-        }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             base.OnHitNPC(player, target, hit, damageDone);

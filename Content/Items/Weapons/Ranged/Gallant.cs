@@ -104,7 +104,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             for (int i = 0; i < _storedShots; i++)
             {
                 spriteBatch.Draw(bulletTexture,
-                    position: new Vector2(position.X + bulletTexture.Width / 2 * i, position.Y + bulletTexture.Height * 1.2f),
+                    position: new Vector2(position.X + bulletTexture.Width / 2 * (i - 3), position.Y + bulletTexture.Height * 1.2f),
                     sourceRectangle: new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height),
                     Color.White,
                     rotation: 0f,

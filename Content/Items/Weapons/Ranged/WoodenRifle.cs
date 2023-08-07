@@ -54,7 +54,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         public override void OnConsumeAmmo(Item ammo, Player player)
         {
             // An 18% chance not to consume ammo
-            if (Main.rand.NextFloat() >= .18f)
+            if (Main.rand.NextFloat() >= .12f)
             {
                 base.OnConsumeAmmo(ammo, player);
             }

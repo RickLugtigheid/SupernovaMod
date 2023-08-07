@@ -5,6 +5,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria.Audio;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Projectiles.Ranged
 {
@@ -24,13 +25,14 @@ namespace SupernovaMod.Content.Projectiles.Ranged
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.Blizzard);
-            //Projectile.width = 14;
-            //Projectile.height = 34;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 3;
             Projectile.tileCollide = true;
             Projectile.timeLeft = 800;  //The amount of time the projectile is alive for
             AIType = ProjectileID.Blizzard;
+
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 48;
         }
         public override void AI()
         {
@@ -102,11 +104,23 @@ namespace SupernovaMod.Content.Projectiles.Ranged
         {
             if (Main.rand.NextBool(2))
             {
-                target.AddBuff(BuffID.Frostburn, 80);
+                target.AddBuff(BuffID.Frostburn, 110);
             }
-        }
+			// Makes sure the sticking projectiles do not deal damage anymore
+			Projectile.damage = 0;
+		}
+		public override void OnHitPlayer(Player target, Player.HurtInfo info)
+		{
+            if (info.PvP)
+            {
+				target.AddBuff(BuffID.Frostburn, 110);
 
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+				// Makes sure the sticking projectiles do not deal damage anymore
+				Projectile.damage = 0;
+			}
+		}
+
+		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             if (targetHitbox.Width > 8 && targetHitbox.Height > 8)
             {
@@ -173,12 +187,9 @@ namespace SupernovaMod.Content.Projectiles.Ranged
             // netUpdate this projectile
             Projectile.netUpdate = true;
 
-            // Makes sure the sticking projectiles do not deal damage anymore
-            Projectile.damage = 0;
-
-            // Update our sticking projectiles
-            UpdateStickyProjectiles(target);
-        }
+			// Update our sticking projectiles
+			UpdateStickyProjectiles(target);
+		}
 
         private readonly Point[] _stickingJavelins = new Point[MAX_STICKY_PROJECTILES];
         private void UpdateStickyProjectiles(NPC target)
@@ -231,20 +242,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged
                 Main.dust[dust].velocity *= Main.rand.NextFloat(.2f, .4f);
             }
 
-            SoundEngine.PlaySound(GetRandomIceStruckSound(), Projectile.position);
-        }
-
-        private SoundStyle GetRandomIceStruckSound()
-        {
-            switch (Main.rand.Next(0, 2))
-            {
-                default:
-                    return SoundID.Item48;
-                case 1:
-                    return SoundID.Item49;
-                case 2:
-                    return SoundID.Item50;
-            }
+            SoundEngine.PlaySound(TerrariaRandom.NextSoundIceStruck(), Projectile.position);
         }
     }
 }

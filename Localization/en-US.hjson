@@ -91,27 +91,27 @@ Mods: {
 		Buffs: {
 			ColdArmorCooldown: {
 				DisplayName: Cold Armor Cooldown
-				Description: Mods.SupernovaMod.Buffs.ColdArmorCooldown.Description
+				Description: Waiting for the Verglas armor to freeze solid again
 			}
 
 			ReloadDebuff: {
 				DisplayName: Reload Debuff
-				Description: Mods.SupernovaMod.Buffs.ReloadDebuff.Description
+				Description: Waiting for the weapon to be reload
 			}
 
 			RingCooldown: {
 				DisplayName: Ring Cooldown
-				Description: Mods.SupernovaMod.Buffs.RingCooldown.Description
+				Description: Waiting for the power of your ring to come back
 			}
 
 			QuarionBuff: {
 				DisplayName: Quarion Buff
-				Description: Mods.SupernovaMod.Buffs.QuarionBuff.Description
+				Description: Greatly increased damage and speed but halved health
 			}
 
 			HellfireRingBuff: {
 				DisplayName: Hellfire Ring Buff
-				Description: Mods.SupernovaMod.Buffs.HellfireRingBuff.Description
+				Description: Attacks now have a chance to cause an fiery explosion
 			}
 
 			VerglasIcicleDebuff: {
@@ -121,99 +121,129 @@ Mods: {
 
 			GazerMinionBuff: {
 				DisplayName: Gazer Minion Buff
-				Description: Mods.SupernovaMod.Buffs.GazerMinionBuff.Description
+				Description: A Gazer that will fight for you
 			}
 
 			HarbingersArmBuff: {
 				DisplayName: Harbingers Arm Buff
-				Description: Mods.SupernovaMod.Buffs.HarbingersArmBuff.Description
+				Description: A arm ripped from the Harbinger that will fight for you
 			}
 
 			HarbingersKnellBuff: {
 				DisplayName: Harbingers Knell Buff
-				Description: Mods.SupernovaMod.Buffs.HarbingersKnellBuff.Description
+				Description: A galactic spawn that will fight for you
 			}
 
 			VerglasFlakeBuff: {
 				DisplayName: Verglas Flake Buff
-				Description: Mods.SupernovaMod.Buffs.VerglasFlakeBuff.Description
+				Description: A verglas flake that will fight for you
 			}
 		}
 
 		Items: {
 			BagOfFungus: {
 				DisplayName: Bag Of Fungus
-				Tooltip: ""
+				Tooltip:
+					'''
+					A bag filled with Glowing Fungus.
+					Has a chance to release Glowing Mushrooms when damaged
+					'''
 			}
 
 			CoolingElement: {
 				DisplayName: Cooling Element
-				Tooltip: ""
+				Tooltip:
+					'''
+					8% decreased ring cooldown time.
+					10% increased movement speed when your ring is cooling down.
+					'''
 			}
 
 			DemonHorns: {
 				DisplayName: Demon Horns
-				Tooltip: ""
+				Tooltip:
+					'''
+					Reduces damage taken by 8%
+					Immumity to OnFire
+					'''
 			}
 
 			DesertEmblem: {
 				DisplayName: Desert Emblem
-				Tooltip: ""
+				Tooltip:
+					'''
+					8% increased movementspeed.
+					In a sandstorm 16% increased movementspeed.
+					'''
 			}
 
 			HarbingersCrest: {
 				DisplayName: Harbingers Crest
-				Tooltip: ""
+				Tooltip: Summons a Harbinger Arm to fight for you.
 			}
 
 			HeartOfTheJungle: {
 				DisplayName: Heart Of The Jungle
-				Tooltip: ""
+				Tooltip:
+					'''
+					Stores up to 60 life energy with an increase of 1 per second.
+					Getting hit consumes life energy and heals you for the amount of energy you have / 2.
+					'''
 			}
 
 			HellFireBoots: {
 				DisplayName: Hell Fire Boots
-				Tooltip: ""
+				Tooltip:
+					'''
+					Provides the ability to walk on water and lava
+					Grants immunity to fire blocks and 7 seconds of immunity to lava
+					Inflicts fire damage on attack
+					Reduces damage from touching lava
+					'''
 			}
 
 			InfernalEmblem: {
-				DisplayName: Infernal Emblem
-				Tooltip: ""
+				DisplayName: Emblem of inferno
+				Tooltip: Spawns fire when you get hit
 			}
 
 			LensOfGreed: {
 				DisplayName: Lens Of Greed
-				Tooltip: ""
+				Tooltip: Provides spelunker to the user
 			}
 
 			MagnifyingGlass: {
 				DisplayName: Magnifying Glass
-				Tooltip: ""
+				Tooltip: Increases critical strike chance by 5%
 			}
 
 			MeteorBoots: {
 				DisplayName: Meteor Boots
-				Tooltip: ""
+				Tooltip: When you double tap 'down_button' in the air you will become a meteor!
 			}
 
 			RubyBallBearings: {
 				DisplayName: Ruby Ball Bearings
-				Tooltip: ""
+				Tooltip: Increases yoyo speed by 50% and damage by 5%.
 			}
 
 			SacrificialTalisman: {
 				DisplayName: Sacrificial Talisman
-				Tooltip: ""
+				Tooltip:
+					'''
+					When your mana is lower than 15
+					you will lose 25 health but gain 50 mana
+					'''
 			}
 
 			SharpeningTool: {
 				DisplayName: Sharpening Tool
-				Tooltip: ""
+				Tooltip: Increases melee damage by 5%
 			}
 
 			WoodenTarget: {
 				DisplayName: Wooden Target
-				Tooltip: ""
+				Tooltip: Increases ranged damage by 4%
 			}
 
 			MoltenBullet: {
@@ -228,42 +258,42 @@ Mods: {
 
 			CarnageBoots: {
 				DisplayName: Carnage Boots
-				Tooltip: ""
+				Tooltip: Increases speed by 3%
 			}
 
 			CarnageBreastplate: {
 				DisplayName: Carnage Breastplate
-				Tooltip: ""
+				Tooltip: 5% increased damage reduction
 			}
 
 			CarnageHelm: {
 				DisplayName: Carnage Helm
-				Tooltip: ""
+				Tooltip: 7% increased melee damage and speed
 			}
 
 			VerglasBoots: {
 				DisplayName: Verglas Boots
-				Tooltip: ""
+				Tooltip: 7% increased critical strike chance
 			}
 
 			VerglasBreastplate: {
 				DisplayName: Verglas Breastplate
-				Tooltip: ""
+				Tooltip: +5% increased damage
 			}
 
 			VerglasHelm: {
 				DisplayName: Verglas Helm
-				Tooltip: ""
+				Tooltip: 10% increased melee damage and speed
 			}
 
 			VerglasVeil: {
 				DisplayName: Verglas Veil
-				Tooltip: ""
+				Tooltip: 15% increased magic and minion damage, 5% decreased mana cost, +30 max mana, +2 max minion number
 			}
 
 			VerglasVisage: {
 				DisplayName: Verglas Visage
-				Tooltip: ""
+				Tooltip: 10% increased ranged damage, 20% chance not to consume ammo
 			}
 
 			ZirconiumBoots: {
@@ -278,32 +308,32 @@ Mods: {
 
 			ZirconiumCasque: {
 				DisplayName: Zirconium Casque
-				Tooltip: ""
+				Tooltip: 5% increased ranged damage
 			}
 
 			ZirconiumHeadguard: {
 				DisplayName: Zirconium Headguard
-				Tooltip: ""
+				Tooltip: 5% increased magic and summon damage
 			}
 
 			ZirconiumHelmet: {
 				DisplayName: Zirconium Helmet
-				Tooltip: ""
+				Tooltip: 5% increased melee damage
 			}
 
 			FlyingTerrorBossBag: {
 				DisplayName: Flying Terror Boss Bag
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			QuarionPotion: {
 				DisplayName: Quarion Potion
-				Tooltip: ""
+				Tooltip: Grealy increases damage and speed, but halves your health
 			}
 
 			BloodShards: {
 				DisplayName: Blood Shards
-				Tooltip: ""
+				Tooltip: Shards of blood dropped by bloodmoon enemies
 			}
 
 			BoneFragment: {
@@ -313,12 +343,12 @@ Mods: {
 
 			FirearmManual: {
 				DisplayName: Firearm Manual
-				Tooltip: ""
+				Tooltip: A guide to making firearms
 			}
 
 			GoldenRingMold: {
 				DisplayName: Golden Ring Mold
-				Tooltip: ""
+				Tooltip: A mold used for crafting rings
 			}
 
 			QuarionShard: {
@@ -328,7 +358,7 @@ Mods: {
 
 			Rime: {
 				DisplayName: Rime
-				Tooltip: ""
+				Tooltip: Droped by creatures in the snow Biome
 			}
 
 			VerglasBar: {
@@ -338,22 +368,26 @@ Mods: {
 
 			ZirconiumBar: {
 				DisplayName: Zirconium Bar
-				Tooltip: ""
+				Tooltip: A bar of pink metal said to have magical properties
 			}
 
 			CosmicClock: {
 				DisplayName: Cosmic Clock
-				Tooltip: ""
+				Tooltip: A item that can change the time
 			}
 
 			EyeOfDeath: {
 				DisplayName: Eye Of Death
-				Tooltip: ""
+				Tooltip: Stare into the Eye of Death and go back to where you died
 			}
 
 			HorridChunk: {
 				DisplayName: Horrid Chunk
-				Tooltip: ""
+				Tooltip:
+					'''
+					Dropped by Terror Bats
+					Summons the Flying Terror when used at night
+					'''
 			}
 
 			MantaFood: {
@@ -363,37 +397,50 @@ Mods: {
 
 			BloodMagicRing: {
 				DisplayName: Blood Magic Ring
-				Tooltip: ""
+				Tooltip:
+					'''
+					When the 'Ring Ability button' is pressed
+					You will drain life from the 10 nearest enemies
+					'''
 			}
 
 			GemRing: {
 				DisplayName: Gem Ring
-				Tooltip: ""
+				Tooltip: When the 'Ring Ability button' is pressed, shoots gem projectiles to the direction you are looking at
 			}
 
 			ProspectorsRing: {
 				DisplayName: Prospectors Ring
-				Tooltip: ""
+				Tooltip: Gives spelunker effect and faster mining speed for 12 seconds when the 'Ring Ability button' is pressed.
 			}
 
 			RingOfHellfire: {
 				DisplayName: Ring Of Hellfire
-				Tooltip: ""
+				Tooltip:
+					'''
+					When the 'Ring Ability button' is pressed
+					You will gain the inferno and Hellfire Ring buff
+					The Hellfire Ring buff gives every attack a chance to spawn a fiery explosion near the target
+					'''
 			}
 
 			RingOfProtection: {
 				DisplayName: Ring Of Protection
-				Tooltip: ""
+				Tooltip:
+					'''
+					When the 'Ring Ability button' is pressed you will dodge the next attack
+					+2 defence when equiped
+					'''
 			}
 
 			RingForge: {
 				DisplayName: Ring Forge
-				Tooltip: ""
+				Tooltip: A forge where rings of power can be forged
 			}
 
 			ZirconiumOre: {
 				DisplayName: Zirconium Ore
-				Tooltip: ""
+				Tooltip: A shiny pink ore chunk
 			}
 
 			VerglasHamaxe: {
@@ -418,7 +465,7 @@ Mods: {
 
 			BlazeBolt: {
 				DisplayName: Blaze Bolt
-				Tooltip: ""
+				Tooltip: Shoots fire to burn your enemies
 			}
 
 			CarnageScepter: {
@@ -438,22 +485,22 @@ Mods: {
 
 			IceBolt: {
 				DisplayName: Ice Bolt
-				Tooltip: ""
+				Tooltip: Shoots frostburn to burn your enemies with -196º(77kelvin)
 			}
 
 			MagicStarBlade: {
 				DisplayName: Magic Star Blade
-				Tooltip: ""
+				Tooltip: Shoots a random star projectile when used
 			}
 
 			ShockSurge: {
 				DisplayName: Shock Surge
-				Tooltip: ""
+				Tooltip: Shoots a bolt of chain lighting. The damage of this chain lightning projectile decreases 15% with every hit
 			}
 
 			StaffOfThorns: {
 				DisplayName: Staff Of Thorns
-				Tooltip: ""
+				Tooltip: Shoots a barrage of armor piercing thorns
 			}
 
 			TerrorTome: {
@@ -483,12 +530,12 @@ Mods: {
 
 			BlazingFire: {
 				DisplayName: Blazing Fire
-				Tooltip: ""
+				Tooltip: Creates a fire aura around you
 			}
 
 			BoneCrusher: {
 				DisplayName: Bone Crusher
-				Tooltip: ""
+				Tooltip: Throws your enemies a bone
 			}
 
 			CarnageJavalin: {
@@ -498,7 +545,7 @@ Mods: {
 
 			CarnageSword: {
 				DisplayName: Carnage Sword
-				Tooltip: ""
+				Tooltip: Landing crits on enemies will heal the player by 6 hp
 			}
 
 			HarbingersSlicer: {
@@ -508,12 +555,12 @@ Mods: {
 
 			HarpoonSword: {
 				DisplayName: Harpoon Sword
-				Tooltip: ""
+				Tooltip: Right click to shoot a harpoon at your enemies
 			}
 
 			Kama: {
 				DisplayName: Kama
-				Tooltip: ""
+				Tooltip: The kama is a traditional Japanese farming implement similar to a sickle used for reaping crops and also employed as a weapon
 			}
 
 			PoisonousYoYo: {
@@ -528,17 +575,21 @@ Mods: {
 
 			TerrorCleaver: {
 				DisplayName: Terror Cleaver
-				Tooltip: ""
+				Tooltip: Shoots scythes of terror
 			}
 
 			VerglasSword: {
-				DisplayName: Verglas Sword
+				DisplayName: Verglas Splitter
 				Tooltip: ""
 			}
 
 			ZirconiumSword: {
 				DisplayName: Zirconium Sword
-				Tooltip: ""
+				Tooltip:
+					'''
+					Release a blast of Zirconium Sparks every 4 hits
+					Zirconium Sparks linger for a short while
+					'''
 			}
 
 			CarnageRifle: {
@@ -548,22 +599,30 @@ Mods: {
 
 			DesertDuster: {
 				DisplayName: Desert Duster
-				Tooltip: ""
+				Tooltip: Uses sand to shoot
 			}
 
 			Gallant: {
 				DisplayName: Gallant
-				Tooltip: ""
+				Tooltip:
+					'''
+					Can shoot 6 bullets before having to reload
+					Right-click to manualy reload
+					'''
 			}
 
 			HellfireRifle: {
 				DisplayName: Hellfire Rifle
-				Tooltip: ""
+				Tooltip:
+					'''
+					18% chance not to consume ammo
+					Turns Wooden bullets into Molten Bullets
+					'''
 			}
 
 			MarbleMagnum: {
 				DisplayName: Marble Magnum
-				Tooltip: ""
+				Tooltip: Fires a dense spread of bullets
 			}
 
 			Odzutsu: {
@@ -572,8 +631,12 @@ Mods: {
 			}
 
 			StarNight: {
-				DisplayName: Star Night
-				Tooltip: ""
+				DisplayName: Starry Night
+				Tooltip:
+					'''
+					This weapon charges up when you shoot
+					When fully charged it will shoot 4 deadly stars at your enemies
+					'''
 			}
 
 			TerrorRecurve: {
@@ -583,42 +646,50 @@ Mods: {
 
 			VerglasBow: {
 				DisplayName: Verglas Bow
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots 2 icicles that stick to the target and inflict the FrozenArmor and Frostburn debuffs
+					The FrozenArmor debuff decreases the targets defense by 1 per icicle sticking to the target, with a maximum of 6
+					'''
 			}
 
 			WoodenRifle: {
 				DisplayName: Wooden Rifle
-				Tooltip: ""
+				Tooltip: 12% chance not to consume ammo
 			}
 
 			WoodGun: {
-				DisplayName: Wood Gun
+				DisplayName: Wood Handgun
 				Tooltip: ""
 			}
 
 			ZirconiumBow: {
 				DisplayName: Zirconium Bow
-				Tooltip: ""
+				Tooltip:
+					'''
+					Wooden arrows turn into Zirconium Arrows
+					Zirconium Arrows explode on impact
+					'''
 			}
 
 			GazerStaff: {
 				DisplayName: Gazer Staff
-				Tooltip: ""
+				Tooltip: Summons a Gazer to fight for you
 			}
 
 			HarbingersKnell: {
 				DisplayName: Harbingers Knell
-				Tooltip: ""
+				Tooltip: Summons a Omen to fight for you
 			}
 
 			VerglasStaff: {
 				DisplayName: Verglas Staff
-				Tooltip: ""
+				Tooltip: Summons a verglas flake to fight for you
 			}
 
 			CactusBoomerang: {
 				DisplayName: Cactus Boomerang
-				Tooltip: ""
+				Tooltip: Cactus Boomerang
 			}
 
 			CarnageTrowingKnive: {
@@ -627,13 +698,13 @@ Mods: {
 			}
 
 			DiscOfTheDesert: {
-				DisplayName: Disc Of The Desert
+				DisplayName: Disc of the Desert
 				Tooltip: ""
 			}
 
 			Kunai: {
 				DisplayName: Kunai
-				Tooltip: ""
+				Tooltip: May throw 2 or 3 Kunai's for the price of 1
 			}
 
 			SnowGlove: {
@@ -723,6 +794,19 @@ Mods: {
 			StoneProj.DisplayName: Stone Proj
 			VerglasThrowingAxe.DisplayName: Verglas Throwing Axe
 			ZirconiumKnifeProj.DisplayName: Zirconium Knife Proj
+			BlazeBoltFlames.DisplayName: Blaze Bolt Flames
+		}
+
+		Configs: {
+			SupernovaModConfig: {
+				DisplayName: Supernova Mod Config
+				Headers.Misc: Misc Header
+
+				debugMode: {
+					Label: debug Mode
+					Tooltip: ""
+				}
+			}
 		}
 	}
 }
