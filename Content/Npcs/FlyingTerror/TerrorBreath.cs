@@ -9,7 +9,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 {
     public class TerrorBreath : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_" + ProjectileID.Flames;
+        public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.Flames;
         public override void SetDefaults()
         {
             Projectile.width = 4;
