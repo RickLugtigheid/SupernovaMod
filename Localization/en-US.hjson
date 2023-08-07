@@ -86,6 +86,9 @@ Mods: {
 					Princess_LovesNPC: I like {NPCName}.
 				}
 			}
+
+			StoneMantaRay.DisplayName: Stone Manta Ray
+			StoneRayChild.DisplayName: Stone Ray Child
 		}
 
 		Buffs: {
@@ -726,6 +729,46 @@ Mods: {
 				DisplayName: Zirconium Knife
 				Tooltip: ""
 			}
+
+			BlunderBuss: {
+				DisplayName: Blunder Buss
+				Tooltip: ""
+			}
+
+			TerrorInABottle: {
+				DisplayName: Terror In A Bottle
+				Tooltip: ""
+			}
+
+			TerrorKnife: {
+				DisplayName: Terror Knife
+				Tooltip: ""
+			}
+
+			TerrorTuft: {
+				DisplayName: Terror Tuft
+				Tooltip: ""
+			}
+
+			HarbingersPick: {
+				DisplayName: Harbingers Pick
+				Tooltip: ""
+			}
+
+			StoneGlove: {
+				DisplayName: Stone Glove
+				Tooltip: ""
+			}
+
+			StoneRepeater: {
+				DisplayName: Stone Repeater
+				Tooltip: ""
+			}
+
+			SurgestoneSword: {
+				DisplayName: Surgestone Sword
+				Tooltip: ""
+			}
 		}
 
 		Prefixes: {
@@ -762,6 +805,7 @@ Mods: {
 			GraniteProj.DisplayName: Granite Proj
 			ShockSurgeProj.DisplayName: Shock Surge Proj
 			TerrorProjFirendly.DisplayName: Terror Proj Firendly
+			TerrorProj.DisplayName: Terror Proj
 			VerglasScepterProj.DisplayName: Verglas Scepter Proj
 			ZicroniumExplosion.DisplayName: Zicronium Explosion
 			ZirconProj.DisplayName: Zircon Proj
@@ -795,6 +839,10 @@ Mods: {
 			VerglasThrowingAxe.DisplayName: Verglas Throwing Axe
 			ZirconiumKnifeProj.DisplayName: Zirconium Knife Proj
 			BlazeBoltFlames.DisplayName: Blaze Bolt Flames
+			TerrorBomb.DisplayName: Terror Bomb
+			TerrorBreath.DisplayName: Terror Breath
+			TerrorKniveProj.DisplayName: Terror Knive Proj
+			StoneSpear.DisplayName: Stone Spear
 		}
 
 		Configs: {

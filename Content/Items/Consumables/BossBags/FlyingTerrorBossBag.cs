@@ -1,4 +1,5 @@
 ﻿using SupernovaMod.Content.Items.BaseItems;
+using SupernovaMod.Content.Npcs.FlyingTerror;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
@@ -39,13 +40,13 @@ namespace SupernovaMod.Content.Items.Consumables.BossBags
         {
 			// TODO: itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<FlyingTerrorMask>(), 7));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModContent.NPCType<Npcs.FlyingTerror.FlyingTerror>()));
-            //itemLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TerrorInABottle>()));
+            itemLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TerrorInABottle>()));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
             {
                 ModContent.ItemType<Items.Weapons.Melee.TerrorCleaver>(),
                 ModContent.ItemType<Items.Weapons.Ranged.TerrorRecurve>(),
                 ModContent.ItemType<Items.Weapons.Magic.TerrorTome>(),
-               // ModContent.ItemType<Items.Weapons.Melee.BlunderBuss>()
+                ModContent.ItemType<BlunderBuss>()
             }));
         }
     }

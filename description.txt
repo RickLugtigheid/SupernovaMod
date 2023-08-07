@@ -13,5 +13,8 @@ A detailed list of currently added content:
 
 Plans:
 
+[version 0.1.8] Boss Rework:
+This version will rework the modded bosses, and will add a new mini boss.
+
 [version 0.2] Early Hardmode:
 For this version new hardmode items and 1 new boss will be added for early hardmode.

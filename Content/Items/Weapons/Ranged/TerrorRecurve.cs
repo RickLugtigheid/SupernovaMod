@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using SupernovaMod.Api;
 using Terraria.Audio;
-using SupernovaMod.Content.Projectiles.Boss;
+using SupernovaMod.Content.Npcs.FlyingTerror;
 
 namespace SupernovaMod.Content.Items.Weapons.Ranged
 {
@@ -80,12 +80,12 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 			}
 			return true;
         }
-        /*public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<TerrorTuft>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.Register();
-        }*/
-    }
+		public override void AddRecipes()
+		{
+			Recipe recipe = CreateRecipe();
+			recipe.AddIngredient(ModContent.ItemType<TerrorTuft>());
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.Register();
+		}
+	}
 }

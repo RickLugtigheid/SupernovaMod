@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using SupernovaMod.Api;
+using SupernovaMod.Content.Npcs.FlyingTerror;
 
 namespace SupernovaMod.Content.Items.Weapons.Melee
 {
@@ -36,20 +37,12 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             Item.DamageType = DamageClass.Melee;
         }
 
-        /*private bool _canShoot = true;
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		public override void AddRecipes()
 		{
-			// Flip our canShoot bool so we shoot once every 2 swings
-			_canShoot = !_canShoot;
-			return _canShoot;
-		}*/
-
-        /*public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<TerrorTuft>(), 6);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.Register();
-        }*/
-    }
+			Recipe recipe = CreateRecipe();
+			recipe.AddIngredient(ModContent.ItemType<TerrorTuft>());
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.Register();
+		}
+	}
 }

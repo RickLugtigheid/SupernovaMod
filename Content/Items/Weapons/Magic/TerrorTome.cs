@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using SupernovaMod.Api;
+using SupernovaMod.Content.Npcs.FlyingTerror;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -41,12 +42,12 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             velocity = velocity.RotatedByRandom(.2f);
 		}
 
-		/*public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<TerrorTuft>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.Register();
-        }*/
+		public override void AddRecipes()
+		{
+			Recipe recipe = CreateRecipe();
+			recipe.AddIngredient(ModContent.ItemType<TerrorTuft>());
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.Register();
+		}
 	}
 }

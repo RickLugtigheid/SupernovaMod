@@ -40,13 +40,6 @@ namespace SupernovaMod.Common.Systems
 
 			// [Pre-Harmode mini-bosses]
 			//
-			new BossChecklistItemBuilder()
-				.ForBoss(ModContent.NPCType<Content.Npcs.Bloodmoon.Bloodweaver>(), "Bloodweaver")
-				.SetWeight(VanillaWeights.BloodMoon + .25f)   // Just after the Queen bee
-				.SetSpawnInfo("Spawns during Bloodmoon")
-				.SetDownedCallback(() => DownedSystem.downedFlyingTerror)
-				.AddMiniBoss(Mod, bossChecklistMod);
-
 
 			// [Harmode bosses]
 			//
