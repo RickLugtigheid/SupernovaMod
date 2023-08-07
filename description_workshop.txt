@@ -1,0 +1,32 @@
+﻿[h1]Supernova Mod[/h1]
+[url=https://discord.com/invite/T68d6t2bG6]Discord[/url]
+
+The Supernova mod is yet another content mod that adds a few new bosses, over a hundred new items, and new NPCs with more content planned in the future.
+
+The mod also adds a new Ring system, where you can add a ring to the so-called ring slot and use a hotkey to activate the rings ability.
+After that the ring will need to cool down before it can be used again.
+
+[i]Note: this mod does [b]NOT[/b] include the Supernova Mod soundtrack! You will need to download the music mod for the full intended experience![/i]
+https://steamcommunity.com/sharedfiles/filedetails/?id=2935906789
+
+[hr]
+
+A detailed list of currently added content:
+[olist]
+[*] 3 Bosses
+[*] 105+ items
+[*] 40+ weapons
+[*] 3 rings
+[*] 1 ore
+[*] 10 npcs
+[/olist]
+
+[hr]
+
+Future plans:
+
+[version 0.1.8] Boss Rework:
+This version will rework the modded bosses, and will add a new mini boss.
+
+[version 0.2] Early Hardmode:
+For this version new hardmode items and 1 new boss will be added for early hardmode.
