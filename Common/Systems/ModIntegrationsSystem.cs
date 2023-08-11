@@ -1,7 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
+﻿using SupernovaMod.Api.Integration.BossChecklist;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Common.Systems
@@ -24,27 +22,46 @@ namespace SupernovaMod.Common.Systems
 
 			// [Pre-Harmode bosses]
 			//
+			// Harbinger of Annihilation
+			//
 			new BossChecklistItemBuilder()
-				.ForBoss(ModContent.NPCType<Content.Npcs.HarbingerOfAnnihilation.HarbingerOfAnnihilation>(), "Harbinger of Annihilation")
+				.ForBoss<Content.Npcs.HarbingerOfAnnihilation.HarbingerOfAnnihilation>()
 				.SetWeight(VanillaWeights.EyeOfCthulhu + .5f)   // After the Eye of Cthulhu
-				.SetSpawnInfo("Kill a Cosmic Anomaly in Space")
 				.SetDownedCallback(() => DownedSystem.downedHarbingerOfAnnihilation)
+				/*.SetAdditionalEntryData(
+					new BossChecklistAdditionalEntryDataBuilder()
+						//.SetSpawnInfo("Kill a Cosmic Anomaly in Space")
+						.SetSpawnInfo(LocalizedText.)
+				)*/
 				.AddBoss(Mod, bossChecklistMod);
 
+			// Flying Terror
+			//
 			new BossChecklistItemBuilder()
-				.ForBoss(ModContent.NPCType<Content.Npcs.FlyingTerror.FlyingTerror>(), "Flying Terror")
+				.ForBoss<Content.Npcs.FlyingTerror.FlyingTerror>()
 				.SetWeight(VanillaWeights.QueenBee + .1f)   // Just after the Queen bee
-				.SetSpawnInfoWithItem(ModContent.ItemType<Content.Items.Misc.HorridChunk>(), "at night")
+				//.SetSpawnInfoWithItem(ModContent.ItemType<Content.Items.Misc.HorridChunk>(), "at night")
+				.SetAdditionalEntryData(
+					new BossChecklistAdditionalEntryDataBuilder()
+						//.SetSpawnInfo("Use a '' at night")
+						.AddSpawnItem<Content.Items.Misc.HorridChunk>()
+				)
 				.SetDownedCallback(() => DownedSystem.downedFlyingTerror)
 				.AddBoss(Mod, bossChecklistMod);
 
 			// [Pre-Harmode mini-bosses]
 			//
+			// Bloodweaver
+			//
 			new BossChecklistItemBuilder()
-				.ForBoss(ModContent.NPCType<Content.Npcs.Bloodmoon.Bloodweaver>(), "Bloodweaver")
+				.ForBoss<Content.Npcs.Bloodmoon.Bloodweaver>()
 				.SetWeight(VanillaWeights.BloodMoon + .25f)   // Just after the Queen bee
-				.SetSpawnInfo("Spawns during Bloodmoon")
-				.SetDownedCallback(() => DownedSystem.downedFlyingTerror)
+				//.SetSpawnInfo("Spawns during Bloodmoon")
+				/*.SetAdditionalEntryData(
+					new BossChecklistAdditionalEntryDataBuilder()
+						.SetSpawnInfo("Spawns during Bloodmoon")
+				)*/
+				.SetDownedCallback(() => DownedSystem.downedBloodweaver)
 				.AddMiniBoss(Mod, bossChecklistMod);
 
 
@@ -99,122 +116,5 @@ namespace SupernovaMod.Common.Systems
 		public const float MartianMadness = 13.75f;
 		public const float MartianSaucer = MartianMadness + 0.01f;
 		public const float LunarEvent = LunaticCultist + 0.01f; // Happens immediately after the defeation of the Lunatic Cultist
-	}
-
-	public class BossChecklistItemBuilder
-	{
-		private string _name;
-		public BossChecklistItemBuilder() { }
-
-		private int _bossType;
-		private string _bossName;
-		private string _spawnInfo = null;
-		private int _spawnInfoItem;
-		private string _despawnInfo = null;
-		private object _customPortraitCallback = null;
-		private Func<bool> _downedCallback = () => false;
-		private List<int> _collectibles;
-
-		/// <summary>
-		/// Gets the boss for this item and adds it's info to this item.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <returns></returns>
-		public BossChecklistItemBuilder ForBoss(int type, string name)
-		{
-			_bossType = type;
-			_bossName = name;
-			return this;
-		}
-		public BossChecklistItemBuilder SetSpawnInfoWithItem(int itemType, string additionalInfo = "")
-		{
-			_spawnInfo = $"Use a [i:{itemType}] {additionalInfo}";
-			_spawnInfoItem = itemType;
-			return this;
-		}
-		public BossChecklistItemBuilder SetSpawnInfo(string info)
-		{
-			_spawnInfo = info;
-			return this;
-		}
-		public BossChecklistItemBuilder SetDespawnInfo(string info)
-		{
-			_despawnInfo = info;
-			return this;
-		}
-		public BossChecklistItemBuilder SetCustomPortrait(Action<SpriteBatch, Rectangle, Color> callback)
-		{
-			_customPortraitCallback = callback;
-			return this;
-		}
-		public BossChecklistItemBuilder SetDownedCallback(Func<bool> callback)
-		{
-			_downedCallback = callback;
-			return this;
-		}
-		public BossChecklistItemBuilder SetCollectibles(List<int> collectibleTypes)
-		{
-			_collectibles = collectibleTypes;
-			return this;
-		}
-		private float _weight = 0;
-		public BossChecklistItemBuilder SetWeight(float weight)
-		{
-			_weight = weight;
-			return this;
-		}
-
-		public void AddBoss(Mod forMod, Mod bossChecklistMod)
-		{
-			bossChecklistMod.Call(
-				"AddBoss",
-				forMod,
-				_bossName,
-				_bossType,
-				_weight,
-				_downedCallback,
-				true,               // / If the boss should show up on the checklist in the first place and when (here, always)
-				_collectibles,
-				_spawnInfoItem,
-				_spawnInfo,
-				_despawnInfo,
-				_customPortraitCallback
-			);
-		}
-		public void AddMiniBoss(Mod forMod, Mod bossChecklistMod)
-		{
-			bossChecklistMod.Call(
-				"AddMiniBoss",
-				forMod,
-				_bossName,
-				_bossType,
-				_weight,
-				_downedCallback,
-				true,               // / If the boss should show up on the checklist in the first place and when (here, always)
-				_collectibles,
-				_spawnInfoItem,
-				_spawnInfo,
-				_despawnInfo,
-				_customPortraitCallback
-			);
-		}
-		// TODO:
-		public void AddInvasion(Mod forMod, Mod bossChecklistMod)
-		{
-			bossChecklistMod.Call(
-				"AddEvent",
-				forMod,
-				_bossName,
-				_bossType,
-				_weight,
-				_downedCallback,
-				true,               // / If the boss should show up on the checklist in the first place and when (here, always)
-				_collectibles,
-				_spawnInfoItem,
-				_spawnInfo,
-				_despawnInfo,
-				_customPortraitCallback
-			);
-		}
 	}
 }

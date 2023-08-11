@@ -152,10 +152,8 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
             Velocity.Y = Velocity.Y + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
             int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, type, ShootDamage, 1.75f);
             Main.projectile[i].hostile = true;
-            Main.projectile[i].friendly = true;
+            Main.projectile[i].friendly = false;
             Main.projectile[i].tileCollide = true;
         }
-
-        //public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.Cavern.Chance * 0.02f;
     }
 }

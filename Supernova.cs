@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace SupernovaMod
 {
-    public class Supernova : Mod
+    public sealed partial class Supernova : Mod
 	{
 		public static Effect ShaderShockwave { get; private set; }
 

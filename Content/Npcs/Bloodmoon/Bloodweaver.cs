@@ -200,6 +200,16 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			//
 			isFocused = (NPC.life / (float)NPC.lifeMax) <= .5f;
 
+			// When changing from not focused to focused,
+			// we should reset the AI to idle.
+			//
+			if (isFocused && !wasFocused)
+			{
+				isIdle = true;
+				isCasting = false;
+				isTaunting = false;
+				wasFocused = true;
+			}
 
 			if (!NPC.HasValidTarget || isIdle)
 			{
@@ -503,7 +513,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			Velocity.Y = Velocity.Y + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
 			int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), GetHandPosition(), Velocity, type, damage, 1.75f);
 			Main.projectile[i].hostile = true;
-			Main.projectile[i].friendly = true;
+			Main.projectile[i].friendly = false;
 			Main.projectile[i].tileCollide = true;
 		}
 
@@ -551,5 +561,6 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		public bool isTaunting = false;
 		public bool isCasting = false;
 		public bool isFocused = false;
+		public bool wasFocused = false;
 	}
 }

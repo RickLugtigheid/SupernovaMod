@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Common;
+using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Api
 {
+	[Obsolete("Use Supernova gun item instead.")]
 	public abstract class ModShotgun : ModItem
 	{
 		public abstract float SpreadAngle { get; }
