@@ -307,6 +307,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					SecondPhase = true;
 					NPC.dontTakeDamage = false;
 					_attackPointer2 = Main.rand.Next(0, 2);
+					_playAnimation = true;
 				}
 			}
 			else
@@ -527,11 +528,11 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			}
 
 			Player player = Main.player[NPC.target];
-			if (Main.dayTime || NPC.ai[0] != 3f && (player.dead || !player.active))
+			if (Main.dayTime || NPC.ai[0] != 3f && (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2250))
 			{
 				NPC.TargetClosest(true);
 				player = Main.player[NPC.target];
-				if (Main.dayTime || player.dead || !player.active)
+				if (Main.dayTime || player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2500)
 				{
 					if (NPC.timeLeft > 130)
 					{
@@ -543,7 +544,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					NPC.ai[3] = 0f;
 					NPC.netUpdate = true;
 
-					NPC.velocity = new Vector2(7 * NPC.direction, -5);
+					NPC.velocity = new Vector2(7, -5);
 					return true;
 				}
 			}

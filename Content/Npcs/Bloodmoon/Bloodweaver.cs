@@ -111,10 +111,8 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				int rowHeight = height * 4;
 				NPC.frame.X = width * 2;
 
-				if (NPC.frame.Y == 0)
+				if (NPC.frame.Y == 0 || NPC.frameCounter == 15)
 				{
-					SoundEngine.PlaySound(SoundID.NPCHit48, NPC.position);
-					SoundEngine.PlaySound(SoundID.NPCHit48, NPC.position);
 					SoundEngine.PlaySound(SoundID.NPCHit48, NPC.position);
 				}
 
