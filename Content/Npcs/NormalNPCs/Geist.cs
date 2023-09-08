@@ -6,7 +6,8 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
-using SupernovaMod.Common;
+using Terraria.DataStructures;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
@@ -20,7 +21,14 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             // DisplayName.SetDefault("Geist");
 			Main.npcFrameCount[NPC.type] = 3;
-
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused,
+					BuffID.Poisoned
+				}
+			};
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
@@ -44,7 +52,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             NPC.height = 40;
             NPC.damage = 10;
             NPC.defense = 6;
-            NPC.lifeMax = 50;
+            NPC.lifeMax = 30;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath6;
             NPC.value = 1200f;
@@ -55,9 +63,6 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
             _velocity = 5;
             _acceleration = .01f;
-
-			NPC.buffImmune[BuffID.Poisoned] = true;
-			NPC.buffImmune[BuffID.Confused] = true;
 		}
 
 		#region AI

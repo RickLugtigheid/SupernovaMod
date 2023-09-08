@@ -6,10 +6,13 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Bestiary;
-using SupernovaMod.Common;
 using Terraria.GameContent;
 using SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles;
 using Filters = Terraria.Graphics.Effects.Filters;
+using Terraria.GameContent.ItemDropRules;
+using SupernovaMod.Common.ItemDropRules.DropConditions;
+using Terraria.DataStructures;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
@@ -19,17 +22,28 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         protected float npcLifeRatio;
         public Player target;
 
-		private const int DAMAGE_PROJ_MISSILE = 18;
-		private const int DAMAGE_PROJ_ORB = 31;
+		private const int DAMAGE_PROJ_MISSILE = 21;
+		private const int DAMAGE_PROJ_ORB = 34;
 
 		private readonly int _projIdMissile = ModContent.ProjectileType<HarbingerMissile>();
 
         private readonly HarbingerOfAnnihilation_Arm[] _arms = new HarbingerOfAnnihilation_Arm[4];
 
-        public override void SetStaticDefaults()
+		private const float ExpertDamageMultiplier = .75f;
+
+		public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Harbinger of Annihilation");
-            NPCID.Sets.TrailingMode[NPC.type] = 1;
+			NPCID.Sets.MPAllowedEnemies[NPC.type] = true;
+			NPCID.Sets.CantTakeLunchMoney[Type] = true;
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused,
+					BuffID.Poisoned
+				}
+			};
+			NPCID.Sets.TrailingMode[NPC.type] = 1;
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
@@ -53,7 +67,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         {
             NPC.aiStyle = -1; // Will not have any AI from any existing AI styles. 
             NPC.lifeMax = 2600; // The Max HP the boss has on Normal
-            NPC.damage = 25; // The base damage value the boss has on Normal
+            NPC.damage = 13; // The base damage value the boss has on Normal
             NPC.defense = 8; // The base defense on Normal
             NPC.knockBackResist = 0f; // No knockback
             NPC.width = 68;
@@ -67,12 +81,22 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             Music = MusicID.Boss1;
-
-			NPC.buffImmune[BuffID.Confused] = true;
-			NPC.buffImmune[BuffID.Poisoned] = true;
         }
 
-        protected float velocity;
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<ExpertModeDropCondition>(conditionalRule =>
+			{
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.HarbingersCrest>()));
+			}));
+			npcLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
+			{
+				ModContent.ItemType<Items.Weapons.Summon.HarbingersKnell>(),
+				ModContent.ItemType<Items.Weapons.Melee.HarbingersSlicer>(),
+			}));
+		}
+
+		protected float velocity;
         protected float acceleration;
         public bool SecondPhase { get; private set; } = false;
 
@@ -87,7 +111,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				int deg = 360 / _arms.Length;
 				for (int i = 0; i < _arms.Length; i++)
                 {
-					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, 0, 0, ModContent.ProjectileType<HarbingerOfAnnihilation_Arm>(), 20, 5, Main.myPlayer, ai0: NPC.whoAmI, ai1: deg * i);
+					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, 0, 0, ModContent.ProjectileType<HarbingerOfAnnihilation_Arm>(), (int)(17 * ExpertDamageMultiplier), 7, Main.myPlayer, ai0: NPC.whoAmI, ai1: deg * i);
                     _arms[i] = Main.projectile[proj].ModProjectile as HarbingerOfAnnihilation_Arm;
 				}
 			}
@@ -113,12 +137,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 			timer++;
 
-            // First phase
-            //
+			// First phase
+			//
 			if (npcLifeRatio > .5)
 			{
-				velocity = Main.masterMode ? 7.5f : 5;
-				acceleration = .04f;
+				velocity = Main.masterMode ? 6f : Main.expertMode ? 5f : 4.5f;
+				acceleration = .02f;
 
 				ref float index = ref NPC.ai[2];
 
@@ -130,7 +154,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 						_arms[(int)index].Projectile.ai[0] = HoaArmAI.LaunchAtPlayer;
 						index++;
 					}
-					if (timer >= 400 && WaitForAllArmsToReturn())
+					if (timer >= 460 && WaitForAllArmsToReturn())
 					{
 						index = 0;
 						timer = 0;
@@ -154,7 +178,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 							attackCount++;
 					}
 
-					if (attackCount > 0 && timer % 80 == 0)
+					if (attackCount > 0 && timer % 90 == 0)
 					{
 						GetRandomArm().Projectile.ai[0] = HoaArmAI.SmashPlayer;
 						attackCount--;
@@ -169,7 +193,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
                         GetRandomArm().Projectile.ai[0] = 2;
 					}*/
 
-					if (timer >= 380 && WaitForAllArmsToReturn())
+					if (timer >= 440 && WaitForAllArmsToReturn())
 					{
 						index = 0;
 						timer = 0;
@@ -182,7 +206,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					{
 						ForeachArm(arm => arm.Projectile.ai[0] = HoaArmAI.CirclePlayerAndShoot);
 					}
-					if (timer >= 420 && WaitForAllArmsToReturn())
+					if (timer >= 480 && WaitForAllArmsToReturn())
 					{
 						index = 0;
 						timer = 0;
@@ -190,8 +214,8 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					}
 				}
 				else if (attackPointer == 4)
-                {
-                    AttackCastOrb(ref timer, ref attackPointer);
+				{
+					AttackCastOrb(ref timer, ref attackPointer);
 					return;
 				}
 				else
@@ -205,18 +229,19 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			{
 				NPC.localAI[0]++;
 
-                if (NPC.localAI[0] == 1)
-                {
-					ForeachArm(arm => {
+				if (NPC.localAI[0] == 1)
+				{
+					ForeachArm(arm =>
+					{
 						arm.Projectile.alpha = 250;
 						arm.Projectile.hostile = false;
 						arm.AttackPointer = HoaArmAI.Reset;
 					});
-                    NPC.dontTakeDamage = true;
+					NPC.dontTakeDamage = true;
 				}
 
-                if (NPC.localAI[0] < 140)
-                {
+				if (NPC.localAI[0] < 140)
+				{
 					NPC.velocity = Vector2.Zero;
 					NPC.rotation += (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) + MathHelper.ToRadians(10);
 
@@ -239,13 +264,14 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				//
 				if (NPC.localAI[0] > 160 && WaitForAllArmsToReturn())
 				{
-                    NPC.localAI[0] = 0;
-                    NPC.ai[0] = 0;
+					NPC.localAI[0] = 0;
+					NPC.ai[0] = 0;
 					NPC.ai[1] = 0;
 					NPC.ai[2] = 0;
 					SecondPhase = true;
-                    NPC.dontTakeDamage = false;
-					ForeachArm(arm => {
+					NPC.dontTakeDamage = false;
+					ForeachArm(arm =>
+					{
 						arm.Projectile.alpha = 0;
 						arm.Projectile.hostile = true;
 					});
@@ -253,7 +279,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else
 			{
-                bool move = true;
+				bool move = true;
 
 				if (_attackPointer2 == 0 || _attackPointer2 == 1)
 				{
@@ -277,6 +303,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 						if (timer < 400)
 						{
+							if (timer == 401)
+							{
+								ForeachArm(arm => arm.canDealDamage = true);
+							}
 							velocity = 15;
 							acceleration = .1f;
 
@@ -391,56 +421,6 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 						_attackPointer2 = Main.rand.Next(3);
 					}
 				}
-				//if (move) MovementAI(GetDesiredDestination(), velocity, acceleration);
-				return;
-				if (attackPointer == 0 || attackPointer == 1 || attackPointer == 3 || attackPointer == 4)
-                {
-                    if (timer >= 80)
-                    {
-						NPC.alpha += 2;
-						ForeachArm(arm => arm.Projectile.alpha += 2);
-						if (NPC.alpha >= 255)
-						{
-							SpawnPortal();
-                            NPC.position = target.position + (50 * NPC.velocity);
-                            NPC.alpha = 0;
-							ForeachArm(arm => arm.Projectile.alpha = 0);
-
-							timer = 0;
-                            attackPointer++;
-                        }
-					}
-                }
-                else if (attackPointer == 2)
-                {
-					if (timer == 1)
-					{
-						ForeachArm(arm => arm.Projectile.ai[0] = 1);
-					}
-					if (timer >= 420)
-					{
-						timer = 0;
-						attackPointer++;
-					}
-				}
-				else if (attackPointer == 5)
-				{
-					if (timer == 1)
-					{
-						ForeachArm(arm => arm.Projectile.ai[0] = 3);
-					}
-					if (timer >= 420)
-					{
-						timer = 0;
-						attackPointer++;
-					}
-				}
-				else
-                {
-                    attackPointer = 0;
-                }
-
-                if (move) MovementAI(target.position, velocity, acceleration);
 			}
         }
 
@@ -610,7 +590,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					}
 					if (NPC.ai[3] == 1)
 					{
-						ForeachArm(arm => arm.AttackPointer = HoaArmAI.CircleHoa);
+						ForeachArm(arm => arm.AttackPointer = HoaArmAI.Reset);
 					}
 					else if (NPC.ai[3] < 180)
 					{
@@ -669,7 +649,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			if (_desiredDestination == Vector2.Zero ||
 				Vector2.Distance(target.position, _desiredDestination) >= 350 ||    // Make sure the boss will not get to far from the player
-				Vector2.Distance(NPC.position, _desiredDestination) <= 50           // Pick a new target destination when in 25 blocks of the prev target
+				Vector2.Distance(NPC.position, _desiredDestination) <= 50           // Pick a new target destination when in 50 blocks of the prev target
 			)
 			{
 				_desiredDestination = target.position;
@@ -697,11 +677,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 				if (Main.rand.NextBool())
                 {
-                    _desiredDestination.X += Main.rand.Next(0, 250) * -NPC.direction;
+                    _desiredDestination.X += Main.rand.Next(15, 250) * -NPC.direction;
 				}
                 else
                 {
-					_desiredDestination.Y += Main.rand.Next(0, 250) * -NPC.direction;
+					_desiredDestination.Y += Main.rand.Next(15, 250) * -NPC.direction;
 				}
 			}
 			return _desiredDestination;
@@ -730,7 +710,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 						_desiredProjectileDestination += new Vector2(0, 1000 * direction);
 					}
 
-					if (timer < 380)
+					if (timer < 400)
 					{
 						HarbingerOfAnnihilation_Arm arm = _arms[0];
 						arm.customTarget = _desiredProjectileDestination - new Vector2(200, 0) * direction;
@@ -822,7 +802,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 				if (timer == 90)
 				{
-					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.HoaBlackHole>(), 40, 6, Main.myPlayer, 1200, .25f);
+					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<HoaBlackHole>(), (int)(30 * ExpertDamageMultiplier), 4, Main.myPlayer, 1200, .2f);
 					Main.projectile[proj].timeLeft = 440;
 					ForeachArm(arm =>
 					{
@@ -836,13 +816,13 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					velocity = Main.masterMode ? 7.5f : 5;
 					acceleration = .04f;
 					MovementAI(GetDesiredDestination(), velocity, acceleration);
-					if (timer % 75 == 0)
+					if (timer % 90 == 0)
 					{
 						ShootToPlayer(_projIdMissile, DAMAGE_PROJ_MISSILE, 1.2f, Main.rand.NextFloat(.995f, 1.05f));
 					}
 				}
 
-				if (timer >= 580)
+				if (timer >= 600)
 				{
 					timer = 0;
 					isAtTarget = 0;
@@ -899,7 +879,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 			if (timer == 50)
 			{
-				Projectile proj = Main.projectile[Projectile.NewProjectile(NPC.GetSource_FromAI(), lookTarget, Vector2.Zero, ModContent.ProjectileType<HarbingerOrb>(), DAMAGE_PROJ_ORB, 4, Main.myPlayer)];
+				Projectile proj = Main.projectile[Projectile.NewProjectile(NPC.GetSource_FromAI(), lookTarget, Vector2.Zero, ModContent.ProjectileType<HarbingerOrb>(), (int)(DAMAGE_PROJ_ORB * .65f), 6, Main.myPlayer)];
 				proj.timeLeft = (int)(proj.timeLeft * timeLeftMulti);
 			}
 
@@ -909,65 +889,6 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				attackPointer++;
 			}
 		}
-
-		void AttackTripleStrike(ref float timer, ref float attackPointer)
-        {
-            ref float direction = ref NPC.ai[2];
-            if (timer >= 220)
-            {
-				velocity = Main.masterMode ? 50 : Main.expertMode ? 40 : 30;
-
-				acceleration = .3f;
-            }
-            if (timer >= 220 && timer <= 300)
-            {
-                if (direction == 0)
-                {
-                    direction = -target.direction;
-                }
-
-                SetNPCRotation(-45 * direction);
-                //targetOffset.X = (200 + target.velocity.X) * direction;
-                //targetOffset.X -= target.velocity.X * direction;
-
-                if (timer == 240)
-                {
-					ShootPatternCross(22);
-                }
-            }
-            else if (timer >= 340 && timer <= 420)
-            {
-                SetNPCRotation(0);
-
-                if (timer == 360)
-                {
-					ShootPatternPlus(22);
-                }
-            }
-            else if (timer >= 460 && timer <= 520)
-            {
-                SetNPCRotation(45 * direction);
-                //targetOffset.X = (200 + target.velocity.X) * -direction;
-
-                if (timer == 500)
-                {
-                    ShootPatternCross(22);
-                }
-            }
-            else if (timer > 520)
-            {
-                SetNPCRotation(0);
-
-                // Wait for the npc rotation to be 0 before ending this attack
-                //
-                if (NPC.rotation == 0)
-                {
-                    timer = 0;
-                    direction = 0;
-                    attackPointer++;
-                }
-            }
-        }
 		#endregion
 
 		#region Helper Methods
@@ -981,7 +902,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			rotation *= rotationMulti;
 
 			Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .75f, (float)-(Math.Sin(rotation) * 18) * .75f) * velocityMulti;
-			Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, type, damage, 0f, 0);
+			Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, type, (int)(damage * ExpertDamageMultiplier), 0f, 0);
 
 			for (int x = 0; x < 5; x++)
 			{
@@ -1023,78 +944,27 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			return true;
 		}
-        void SpawnPortal()
-        {
-            /*int portalId = ModContent.ProjectileType<HarbingerMeteorPortal>();
-
-			if (Main.rand.NextBool())
-            {
-                portalId = ModContent.ProjectileType<HarbingerBeamPortal>();
-			}
-
-			Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.position, Vector2.Zero, portalId, 35, 0f, ai0: 120, ai1: NPC.target);*/
-		}
-		void ShootPatternCross(int damage, float knockback = 4)
-        {
-            const int ShootDirection = 9;
-
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -ShootDirection, -ShootDirection, _projIdMissile, damage, knockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, ShootDirection, -ShootDirection, _projIdMissile, damage, knockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -ShootDirection, ShootDirection, _projIdMissile, damage, knockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, ShootDirection, ShootDirection, _projIdMissile, damage, knockback, Main.myPlayer, 0f, 0f);
-        }
-        void ShootPatternPlus(int damage, float knockback = 4)
-        {
-            const int ShootDirection = 9;
-
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, -ShootDirection, 0, _projIdMissile, damage, knockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, ShootDirection, 0, _projIdMissile, damage, knockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, ShootDirection, _projIdMissile, damage, knockback, Main.myPlayer, 0f, 0f);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, 0, -ShootDirection, _projIdMissile, damage, knockback, Main.myPlayer, 0f, 0f);
-        }
-
-        private float _rotateSpeed = MathHelper.ToRadians(5);
-        private void SetNPCRotation(float degrees)
-        {
-            float targetRotation = MathHelper.ToRadians(degrees);
-
-            if (NPC.rotation == targetRotation)
-            {
-                return;
-            }
-
-            if (NPC.rotation > targetRotation)
-            {
-                if (NPC.rotation + _rotateSpeed > targetRotation)
-                {
-                    NPC.rotation -= _rotateSpeed;
-                }
-                else
-                {
-                    NPC.rotation = targetRotation;
-                }
-            }
-
-            else if (NPC.rotation < targetRotation)
-            {
-                if (NPC.rotation + _rotateSpeed < targetRotation)
-                {
-                    NPC.rotation += _rotateSpeed;
-                }
-                else
-                {
-                    NPC.rotation = targetRotation;
-                }
-            }
-        }
 		#endregion
 
 		public override void HitEffect(NPC.HitInfo hit)
 		{
-			for (int i = 0; i < 5; i++)
+			if (Main.netMode == NetmodeID.Server)
 			{
-				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies, hit.HitDirection, -1f, 0, default(Color), 1f);
+				return;
 			}
+
+			int m = 0;
+			while ((double)m < hit.Damage / (double)NPC.lifeMax * 50.0)
+			{
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies, hit.HitDirection, -1f, 0, default, 1.2f);
+				m++;
+			}
+		}
+
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
+		{
+			NPC.lifeMax = (int)((float)NPC.lifeMax * 0.8f * balance);
+			NPC.damage = (int)((double)NPC.damage * ExpertDamageMultiplier);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -1133,10 +1003,5 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
             }
 			return NPC.IsABestiaryIconDummy;
 		}
-
-       /* public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)*//* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) *//*
-        {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.8f * bossLifeScale);
-        }*/
     }
 }

@@ -5,10 +5,11 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SupernovaMod.Common;
 using Terraria.GameContent;
 using SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles;
-using SupernovaMod.Api.Drawing;
+using SupernovaMod.Api.Effects;
+using SupernovaMod.Api.Helpers;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
@@ -34,6 +35,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		public int customDuration = 1;
 
 		public float AttackPointer { get => Projectile.ai[0]; set => Projectile.ai[0] = value; }
+		public bool canDealDamage = false;
 
 		protected HarbingerOfAnnihilation owner;
 		private float _startDeg = 0;
@@ -110,16 +112,16 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.LaunchAtPlayer)
 			{
+				canDealDamage = true;
 				timer++;
 
-				if (timer <= 40)
+				if (timer <= 65)
 				{
-					float damping = .15f;
-
-					Projectile.rotation = Mathf.Lerp(Projectile.rotation, Projectile.GetTargetLookRotation(target.position), damping);
+					float damping = .1f;
+					Projectile.rotation = MathHelper.Lerp(Projectile.rotation, Projectile.GetTargetLookRotation(target.position), damping);
 					_targetPosition = target.position;
 				}
-				else if (timer == 41)
+				else if (timer == 66)
 				{
 					SoundEngine.PlaySound(SoundID.Item117, Projectile.Center);
 					Vector2 velocity = (_targetPosition - Projectile.Center);
@@ -138,23 +140,25 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.SmashPlayer)
 			{
+				canDealDamage = true;
 				timer++;
 
-				if (timer <= 80)
+				if (timer <= 85)
 				{
 					Projectile.rotation = MathHelper.ToRadians(180);
 					Vector2 targetPosition = new Vector2(target.Center.X + (target.velocity.X * target.width), target.Center.Y - 300);
 					Vector2 distanceFromTarget = new Vector2(targetPosition.X, targetPosition.Y) - Projectile.Center;
-					SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 12, .35f);
+					SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 12, .3f);
 				}
-				else if (timer == 81)
+				else if (timer == 86)
 				{
 					SoundEngine.PlaySound(SoundID.Item117, Projectile.Center);
 					Projectile.velocity = new Vector2(0, 10);
 				}
-				else if (timer >= 81 && timer < 140)
+				else if (timer >= 86 && timer < 140)
 				{
-					Projectile.velocity *= 1.01f;
+					float multi = Main.masterMode ? 1.0095f : Main.expertMode ? 1.009f : 1.0085f;
+					Projectile.velocity *= multi;
 				}
 				else if (timer >= 140)
 				{
@@ -170,6 +174,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.CirclePlayerAndShoot)
 			{
+				canDealDamage = false;
 				timer++;
 
 				ref float shootCooldown = ref Projectile.ai[1];
@@ -232,6 +237,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.GotoTarget)
 			{
+				if (timer == 0)
+				{
+					canDealDamage = false;
+				}
 				timer++;
 
 				if (timer <= 180)
@@ -251,6 +260,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.CircleHoaAndShoot)
 			{
+				canDealDamage = true;
 				timer++;
 
 				if (timer <= 10)
@@ -292,6 +302,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.CircleTarget)
 			{
+				canDealDamage = true;
 				timer += 4;
 				ref float shootCooldown = ref Projectile.localAI[0];
 				ref float shootTime = ref Projectile.ai[1];
@@ -345,6 +356,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.ShootAtPlayer)
 			{
+				canDealDamage = true;
 				timer++;
 				if (timer <= customDuration)
 				{
@@ -368,6 +380,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.LightningLink)
 			{
+				canDealDamage = true;
 				Projectile linkNode = Main.projectile[(int)Projectile.ai[1]];
 				timer++;
 				if (timer <= customDuration)
@@ -378,7 +391,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					Dust.NewDustPerfect(Projectile.Center - new Vector2(0, Projectile.width - 10).RotatedBy(Projectile.rotation), DustID.UndergroundHallowedEnemies, Vector2.One.RotatedByRandom(1));
 
-					if (timer > 90 && (int)Projectile.ai[1] > Projectile.whoAmI) // Make sure only one arm is shooting lightning
+					if (timer > 120 && (int)Projectile.ai[1] > Projectile.whoAmI) // Make sure only one arm is shooting lightning
 					{
 						// Link lightning to linkNode
 						//
@@ -423,8 +436,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		/// Returns this arm projectile to the start position.
 		/// </summary>
 		/// <returns>If returned to that position</returns>
-		private bool ReturnToStartPosition(float maxVelocity = 8)
+		private bool ReturnToStartPosition(float maxVelocity = 16)
 		{
+			Projectile.alpha = 130;
+			canDealDamage = false;
+
 			// Factors for calculations
 			double rad = _startDeg * (Math.PI / 180);    //Convert degrees to radians 
 			double dist = 80;
@@ -437,16 +453,23 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			);
 
 			Vector2 distanceFromTarget = new Vector2(targetPosition.X, targetPosition.Y) - Projectile.Center;
-			SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, maxVelocity, .1f);
+			SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, maxVelocity, .01f);
 
 			// Rotate
-			Projectile.rotation = Mathf.Lerp(Projectile.rotation, MathHelper.ToRadians(_startDeg - 90), .05f);
+			Projectile.rotation = MathHelper.Lerp(Projectile.rotation, MathHelper.ToRadians(_startDeg - 90), .01f);
 
 			// Check if at the target postion
 			//
 			bool atPosX = Projectile.Center.X <= targetPosition.X + Projectile.width && Projectile.Center.X >= targetPosition.X - Projectile.width;
 			bool atPosY = Projectile.Center.Y <= targetPosition.Y + Projectile.height && Projectile.Center.Y >= targetPosition.Y - Projectile.height;
-			return atPosX && atPosY;
+			bool atPosition = atPosX && atPosY;
+
+			if (atPosition)
+			{
+				// Reset
+				Projectile.alpha = 0;
+			}
+			return atPosition;
 		}
 		#endregion
 
@@ -461,6 +484,15 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		private bool _collideBetweenArms = false;
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
 		{
+			// Check if the projectile is allowed to deal damage
+			//
+			if (!canDealDamage)
+			{
+				return false;
+			}
+
+			// Check if we do not want to calculate collision for the lightning between the arms
+			//
 			if (!_collideBetweenArms)
 			{
 				return base.Colliding(projHitbox, targetHitbox);

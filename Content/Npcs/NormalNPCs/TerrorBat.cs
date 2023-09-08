@@ -3,7 +3,6 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
-using Terraria.Audio;
 using Terraria.ModLoader.Utilities;
 using Microsoft.Xna.Framework;
 
@@ -78,6 +77,11 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
 		public override void HitEffect(NPC.HitInfo hit)
 		{
+			if (Main.netMode == NetmodeID.Server)
+			{
+				return;
+			}
+
 			for (int i = 0; i < 5; i++)
 			{
 				Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Dusts.TerrorDust>(), hit.HitDirection, -1f, 0, default(Color), 1f);

@@ -5,8 +5,9 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
-using SupernovaMod.Common;
 using Terraria.Audio;
+using SupernovaMod.Api.Helpers;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Projectiles.Summon
 {
@@ -94,7 +95,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 			if (timer <= 80)
 			{
 				float damping = .1f;
-				Projectile.rotation = Mathf.Lerp(Projectile.rotation, Projectile.GetTargetLookRotation(targetCenter), damping);
+				Projectile.rotation = MathHelper.Lerp(Projectile.rotation, Projectile.GetTargetLookRotation(targetCenter), damping);
 				return false;
 			}
 			else if (timer == 81)

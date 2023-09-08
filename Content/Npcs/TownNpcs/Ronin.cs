@@ -114,8 +114,8 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
             NPCShop shop = new NPCShop(Type);
 
             // Add modded weapons to the shop
-            shop.Add<Items.Weapons.Ranged.Odzutsu>()
-				.Add<Items.Weapons.Magic.Tessen>()
+            shop//.Add<Items.Weapons.Ranged.Odzutsu>()
+				//.Add<Items.Weapons.Magic.Tessen>()
 				.Add<Items.Weapons.Melee.Kama>()
 				.Add<Items.Weapons.Throwing.Kunai>();
 

@@ -2,10 +2,20 @@
 using System.Linq;
 using Terraria;
 
-namespace SupernovaMod.Api.Drawing
+namespace SupernovaMod.Api.Effects
 {
 	public static class DrawDust
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="point1"></param>
+		/// <param name="point2"></param>
+		/// <param name="dusttype"></param>
+		/// <param name="scale"></param>
+		/// <param name="armLength"></param>
+		/// <param name="color"></param>
+		/// <param name="density"></param>
 		public static void Electricity(Vector2 point1, Vector2 point2, int dusttype, float scale = 1, int armLength = 30, Color color = default, float density = 0.05f)
 		{
 			int nodeCount = (int)Vector2.Distance(point1, point2) / armLength;

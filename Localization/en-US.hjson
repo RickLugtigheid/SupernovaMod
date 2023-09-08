@@ -395,8 +395,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			BloodMagicRing: {
-				DisplayName: Blood Magic Ring
+			BloodweaversRing: {
+				DisplayName: Bloodweaver's Ring
 				Tooltip:
 					'''
 					When the 'Ring Ability button' is pressed
@@ -726,6 +726,16 @@ Mods: {
 				DisplayName: Zirconium Knife
 				Tooltip: ""
 			}
+
+			ConquerorsBladeStaff: {
+				DisplayName: Conquerors Blade Staff
+				Tooltip: ""
+			}
+
+			TerrorTuft: {
+				DisplayName: Terror Tuft
+				Tooltip: ""
+			}
 		}
 
 		Prefixes: {
@@ -795,6 +805,7 @@ Mods: {
 			VerglasThrowingAxe.DisplayName: Verglas Throwing Axe
 			ZirconiumKnifeProj.DisplayName: Zirconium Knife Proj
 			BlazeBoltFlames.DisplayName: Blaze Bolt Flames
+			ConquerorsBladeStaffProj.DisplayName: Conquerors Blade Staff Proj
 		}
 
 		Configs: {

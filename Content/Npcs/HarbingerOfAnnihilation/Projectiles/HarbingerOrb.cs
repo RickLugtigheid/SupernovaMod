@@ -2,8 +2,8 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using SupernovaMod.Common;
 using Terraria.Audio;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
 {
@@ -111,7 +111,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
                 // Move
                 _targetPosition = target.position;
                 Vector2 distanceFromTarget = new Vector2(_targetPosition.X, _targetPosition.Y) - Projectile.Center;
-                SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 4, .001f);
+                SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 3.5f, .001f);
             }
         }
 

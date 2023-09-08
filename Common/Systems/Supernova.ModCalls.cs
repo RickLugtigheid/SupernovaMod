@@ -5,22 +5,22 @@ using Terraria.ModLoader;
 
 namespace SupernovaMod.Common.Systems
 {
-	public sealed partial class Supernova : Mod
+	public class SupernovaModCalls
 	{
-		public override object Call(params object[] args)
+		public object Call(params object[] args)
 		{
 			// Check if the first argument (the function name) was given
 			//
 			if (args == null || args.Length == 0)
 			{
-				Logger.Error("ModCallError: No function name specified. First argument must be a function name.");
+				Supernova.Log.Error("ModCallError: No function name specified. First argument must be a function name.");
 				return null;
 			}
 			// Enforce the function name to be of type string
 			//
 			if (!(args[0] is string))
 			{
-				Logger.Error("ModCallError: Invalid type for function name given. First argument must be a string.");
+				Supernova.Log.Error("ModCallError: Invalid type for function name given. First argument must be a string.");
 				return null;
 			}
 
@@ -36,7 +36,7 @@ namespace SupernovaMod.Common.Systems
 			//
 			if (callMethod == null)
 			{
-				Logger.Error($"ModCallError: Invalid function name '{function}' given. Please check the documentation for all valid ModCall functions.");
+				Supernova.Log.Error($"ModCallError: Invalid function name '{function}' given. Please check the documentation for all valid ModCall functions.");
 				return null;
 			}
 
@@ -49,12 +49,12 @@ namespace SupernovaMod.Common.Systems
 		{
 			if (args.Length < 1)
 			{
-				Logger.Error($"ModCallError: Call({args[0]}) - No boss name specified. First argument of a '{args[0]}' call must be a boss name.");
+				Supernova.Log.Error($"ModCallError: Call({args[0]}) - No boss name specified. First argument of a '{args[0]}' call must be a boss name.");
 				return null;
 			}
 			if (!(args[1] is string))
 			{
-				Logger.Error($"ModCallError: Call({args[0]}) - Invalid type for boss name given. First argument of a '{args[0]}' call must be a string.");
+				Supernova.Log.Error($"ModCallError: Call({args[0]}) - Invalid type for boss name given. First argument of a '{args[0]}' call must be a string.");
 				return null;
 			}
 
@@ -70,7 +70,7 @@ namespace SupernovaMod.Common.Systems
 				case "StormSovereign":
 					return DownedSystem.downedStormSovereign;
 				default:
-					Logger.Error($"ModCallError: Call({args[0]}) - No boss with name '{args[1]}' found. Please check the documentation for valid boss names.");
+					Supernova.Log.Error($"ModCallError: Call({args[0]}) - No boss with name '{args[1]}' found. Please check the documentation for valid boss names.");
 					return null;
 			}
 		}
@@ -85,7 +85,7 @@ namespace SupernovaMod.Common.Systems
 			//
 			if (args.Length < playerArgIndex)
 			{
-				Logger.Error($"ModCallError: Call({args[0]}) - No Player specified.");
+				Supernova.Log.Error($"ModCallError: Call({args[0]}) - No Player specified.");
 				return false;
 			}
 
@@ -93,7 +93,7 @@ namespace SupernovaMod.Common.Systems
 			//
 			if (!(args[playerArgIndex] is Player))
 			{
-				Logger.Error($"ModCallError: Call({args[0]}) - No Player object given for Player argument.");
+				Supernova.Log.Error($"ModCallError: Call({args[0]}) - No Player object given for Player argument.");
 				return false;
 			}
 			player = (Player)args[playerArgIndex];
@@ -117,7 +117,7 @@ namespace SupernovaMod.Common.Systems
 			//
 			if (args.Length < 2)
 			{
-				Logger.Error($"ModCallError: Call({args[0]}) - No value specified.");
+				Supernova.Log.Error($"ModCallError: Call({args[0]}) - No value specified.");
 				return false;
 			}
 
@@ -125,7 +125,7 @@ namespace SupernovaMod.Common.Systems
 			//
 			if (!(args[2] is T))
 			{
-				Logger.Error($"ModCallError: Call({args[0]}) - No {typeof(T).Name} object given for value argument.");
+				Supernova.Log.Error($"ModCallError: Call({args[0]}) - No {typeof(T).Name} object given for value argument.");
 				return false;
 			}
 			value = (T)args[2];
@@ -142,12 +142,12 @@ namespace SupernovaMod.Common.Systems
 		{
 			if (args.Length < 1)
 			{
-				Logger.Error($"ModCallError: Call({args[0]}) - No Item specified.");
+				Supernova.Log.Error($"ModCallError: Call({args[0]}) - No Item specified.");
 				return null;
 			}
 			if (!(args[1] is Item))
 			{
-				Logger.Error($"ModCallError: Call({args[0]}) - Invalid type for Item to check given. First argument of a '{args[0]}' call must be a Item.");
+				Supernova.Log.Error($"ModCallError: Call({args[0]}) - Invalid type for Item to check given. First argument of a '{args[0]}' call must be a Item.");
 				return null;
 			}
 

@@ -56,23 +56,6 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             if (_shots > 2)
             {
 				SoundEngine.PlaySound(SoundID.Item14, player.Center);
-                /*int num220 = 8;
-				for (int num221 = 0; num221 < num220; num221++)
-				{
-					// Create velocity for angle
-					Vector2 value17 = -Vector2
-						// Normalize so the velocity ammount of the projectile doesn't matter
-						.Normalize(velocity)
-						// Rotate by angle
-						.RotatedBy(MathHelper.ToRadians(360 / num220 * (num221 - 2)))
-						// Make the velocity 6
-						* 6;
-
-					// Create a projectile for velocity
-					Projectile proj = Main.projectile[Projectile.NewProjectile(Item.GetSource_ItemUse(Item), position, value17, ModContent.ProjectileType<Projectiles.Magic.TerrorProjFirendly>(), damage / 2, 1f, player.whoAmI, 1, Main.rand.Next(-45, 1))];
-					proj.DamageType = DamageClass.Ranged;
-					proj.penetrate = 1;
-				}*/
                 int proj = Projectile.NewProjectile(source, position, velocity.RotatedByRandom(MathHelper.ToRadians(6)), ModContent.ProjectileType<Projectiles.Magic.TerrorProjFirendly>(), (int)(damage * 1.5f), 4, player.whoAmI);
                 Main.projectile[proj].DamageType = DamageClass.Ranged;
                 Main.projectile[proj].penetrate  = 1;
@@ -80,12 +63,12 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 			}
 			return true;
         }
-        /*public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<TerrorTuft>());
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.Register();
-        }*/
-    }
+		public override void AddRecipes()
+		{
+			Recipe recipe = CreateRecipe();
+			recipe.AddIngredient<Materials.TerrorTuft>(3);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.Register();
+		}
+	}
 }

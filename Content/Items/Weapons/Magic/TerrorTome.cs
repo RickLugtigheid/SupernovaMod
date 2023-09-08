@@ -41,12 +41,12 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             velocity = velocity.RotatedByRandom(.2f);
 		}
 
-		/*public override void AddRecipes()
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<TerrorTuft>());
+            recipe.AddIngredient<Materials.TerrorTuft>(3);
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
-        }*/
+        }
 	}
 }

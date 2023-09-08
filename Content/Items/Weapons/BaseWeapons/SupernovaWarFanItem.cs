@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using SupernovaMod.Common;
+using SupernovaMod.Api;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace SupernovaMod.Content.Items.Weapons.BaseWeapons
 {
-	public abstract class SupernovaWarFanItem : ModItem
+    public abstract class SupernovaWarFanItem : ModItem
 	{
 		protected virtual Vector2 HandlePosition => new Vector2(-15, 1);
 		protected virtual float SwingDegree => 1;

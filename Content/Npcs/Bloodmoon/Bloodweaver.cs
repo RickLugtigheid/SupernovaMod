@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SupernovaMod.Common;
+using SupernovaMod.Api.Helpers;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,9 +16,11 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 	[AutoloadBossHead]
 	public class Bloodweaver : ModNPC
 	{
-		private enum BloodweaverSpell { Shoot, SummonGazers }
-		private const int SPRITE_SHEET_HEIGHT = 410;
-		private const int SPRITE_SHEET_WIDTH = 370;
+		private enum BloodweaverSpell { Shoot, SummonGazers, Dash }
+		//private const int SPRITE_SHEET_HEIGHT = 410;
+		//private const int SPRITE_SHEET_WIDTH = 370;
+
+		private const float ProjectileExpertDamageMultiplier = .6f;
 
 		private Player Target
 		{
@@ -37,22 +41,27 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 		public override void SetStaticDefaults()
 		{
-			// DisplayName.SetDefault("Bloodweaver");
 			Main.npcFrameCount[NPC.type] = 5;
 
+			NPCID.Sets.MPAllowedEnemies[NPC.type] = true;
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused,
+					BuffID.Poisoned
+				}
+			};
 			NPCID.Sets.BossBestiaryPriority.Add(NPC.type);
-
 			NPCID.Sets.NPCBestiaryDrawModifiers npcbestiaryDrawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0);
 			npcbestiaryDrawModifiers.PortraitPositionYOverride = new float?((float)-5);
-			NPCID.Sets.NPCBestiaryDrawModifiers value = npcbestiaryDrawModifiers;
-			value.Position.Y = value.Position.Y + 20f;
-			NPCID.Sets.NPCBestiaryDrawOffset[NPC.type] = value;
+			npcbestiaryDrawModifiers.Scale = .75f;
 		}
 		public override void SetDefaults()
 		{
 			NPC.width = 74;
 			NPC.height = 82;
-			NPC.damage = 24;
+			NPC.damage = 18;
 			NPC.defense = 7;
 			NPC.rarity = 5;
 			NPC.lifeMax = 600;
@@ -63,9 +72,21 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			NPC.scale = 1.25f;
 			NPC.aiStyle = NPCAIStyleID.HoveringFighter;
 			NPC.noGravity = true;
-			NPC.buffImmune[BuffID.Confused] = true;
-			NPC.buffImmune[BuffID.Poisoned] = true;
+			NPC.noTileCollide = true;
 			//AIType = 3;
+		}
+
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of NPC NPC that is listed in the bestiary.
+				//BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.BloodMoon,
+
+				// Sets the description of NPC NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement(""),
+			});
 		}
 
 		// Draw a health bar even tho NPC.boss == false.
@@ -77,25 +98,6 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 		public override void FindFrame(int frameHeight)
 		{
-			/*if (this.isCasting || base.NPC.IsABestiaryIconDummy)
-			{
-				this.counter = 1;
-			}
-			else
-			{
-				base.NPC.frameCounter += 1.0;
-				if (base.NPC.frameCounter > 8.0)
-				{
-					this.counter++;
-					if (this.counter >= Main.npcFrameCount[NPC.type])
-					{
-						this.counter = 0;
-					}
-					base.NPC.frameCounter = 0.0;
-				}
-			}
-			NPC.frame.Y = this.counter * frameHeight;*/
-
 			int width = 74;
 			int height = 82;
 			NPC.frame.Width = width;
@@ -111,7 +113,9 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 				if (NPC.frame.Y == 0)
 				{
-					SoundEngine.PlaySound(GetRandomTaunt(), NPC.position);
+					SoundEngine.PlaySound(SoundID.NPCHit48, NPC.position);
+					SoundEngine.PlaySound(SoundID.NPCHit48, NPC.position);
+					SoundEngine.PlaySound(SoundID.NPCHit48, NPC.position);
 				}
 
 				if (NPC.frameCounter > 15)
@@ -135,8 +139,31 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				NPC.frameCounter++;
 
 				// Select the row in our sprite sheet.
-				int rowHeight = height * 4;
+				int rowHeight = height * 5;
 				NPC.frame.X = isFocused ? width : (width * 3);
+
+				if (NPC.frameCounter > 7)
+				{
+					NPC.frameCounter = 0;
+					NPC npc = NPC;
+					npc.frame.Y = npc.frame.Y + height;
+
+					// Check if the frame exceeds the height of our sprite sheet.
+					// If so we reset to 0.
+					//
+					if (NPC.frame.Y >= rowHeight)
+					{
+						NPC.frame.Y = 0;
+					}
+				}
+			}
+			else if (isDashing)
+			{
+				NPC.frameCounter++;
+
+				// Select the row in our sprite sheet.
+				int rowHeight = height * 2;
+				NPC.frame.X = width * 4;
 
 				if (NPC.frameCounter > 7)
 				{
@@ -187,11 +214,11 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			if (spawnInfo.Player.ZoneOverworldHeight || !Main.bloodMoon || NPC.AnyNPCs(ModContent.NPCType<Bloodweaver>()))
+			if (!spawnInfo.Player.ZoneOverworldHeight || !Main.bloodMoon || NPC.AnyNPCs(ModContent.NPCType<Bloodweaver>()))
 			{
 				return 0f;
 			}
-			return 0.2f;
+			return 0.075f;
 		}
 
 		public override void AI()
@@ -207,6 +234,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			{
 				isIdle = true;
 				isCasting = false;
+				isDashing = false;
 				isTaunting = false;
 				wasFocused = true;
 			}
@@ -247,6 +275,12 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				UpdateCasting();
 				return;
 			}
+			else if (isDashing)
+			{
+				Timer++;
+				Update_Dash();
+				return;
+			}
 			else
 			{
 				TargetAI();
@@ -262,7 +296,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 		private void TargetAI()
 		{
-			// Use walking AI
+			// Use HoveringFighter AI
 			NPC.aiStyle = NPCAIStyleID.HoveringFighter;
 
 			// Wait for the cast cooldown to be less than 1 before casting a new spell
@@ -289,25 +323,23 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				StartCasting(spell.Value);
 			}
 		}
-		private SoundStyle GetRandomTaunt()
-		{
-			switch (Main.rand.Next(1))
-			{
-				case 0:
-					return SoundID.Zombie90;
-				default:
-					return SoundID.Zombie88;
-			}
-		}
 		private BloodweaverSpell? SelectSpell()
 		{
 			float distance = Vector2.Distance(NPC.position, Target.position);
 
-			if (distance < 1750 && Main.rand.NextBool(2) && GazersActive() < Main.rand.Next(2, 4))
+			if (distance < 2000 && Main.rand.NextBool(2) && GazersActive() < Main.rand.Next(2, 4))
 			{
 				return BloodweaverSpell.SummonGazers;
 			}
-			if (distance > 250)
+			if (
+				distance < 300 && Main.rand.NextBool()
+				// Check if the player is not below or above the NPC
+				&& (Target.Center.Y < (NPC.Center.Y + NPC.height)) && (Target.Center.Y > (NPC.Center.Y - NPC.height))
+			)
+			{
+				return BloodweaverSpell.Dash;
+			}
+			if (distance > 100)
 			{
 				return BloodweaverSpell.Shoot;
 			}
@@ -315,6 +347,14 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		}
 		private bool CanCast(BloodweaverSpell spell)
 		{
+			// If the distance from the target is to high
+			// we should not cast a spell.
+			//
+			if (MathHelper.Distance(NPC.position.X, Target.position.X) > 3000)
+			{
+				return false;
+			}
+
 			switch (spell)
 			{
 				case BloodweaverSpell.Shoot:
@@ -337,6 +377,10 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 					break;
 				case BloodweaverSpell.Shoot:
 					UpdateSpell_Shoot();
+					break;
+				case BloodweaverSpell.Dash:
+					isDashing = true;
+					isCasting = false;
 					break;
 			}
 		}
@@ -452,12 +496,12 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				{
 					if (Timer < 71 && Timer % 10 == 0)
 					{
-						ShootToPlayer(ModContent.ProjectileType<Projectiles.Hostile.BloodBoltHostile>(), 12, 28, .4f);
+						ShootToPlayer(ModContent.ProjectileType<Projectiles.Hostile.BloodBoltHostile>(), 12, 18, .4f);
 					}
 				}
 				else if (Timer % 15 == 0)
 				{
-					ShootToPlayer(ModContent.ProjectileType<Projectiles.Hostile.BloodBoltHostile>(), 10, 24, .4f);
+					ShootToPlayer(ModContent.ProjectileType<Projectiles.Hostile.BloodBoltHostile>(), 10, 14, .4f);
 				}
 			}
 			else
@@ -481,6 +525,33 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 					Dust.NewDustPerfect(dustPos, dustType, diff, Scale: 1.75f).noGravity = true;
 				}
 				rotation += MathHelper.ToRadians(1);
+			}
+		}
+		private void Update_Dash()
+		{
+			if (Timer == 2)
+			{
+				NPC.knockBackResist = 0;
+				for (int i = 0; i < 8; i++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CrimsonTorch, Main.rand.NextFloatDirection() * 2.5f, Main.rand.NextFloatDirection() * 2.5f, 0, default(Color), 1.5f);
+				}
+			}
+			if (Timer == 8)
+			{
+				NPC.velocity = Vector2.UnitX * NPC.direction;
+				NPC.velocity *= 12;
+			}
+			NPC.velocity *= .98f;
+			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CrimsonTorch, -NPC.direction * 1.5f, Main.rand.NextFloatDirection(), 0, default(Color), 1.5f);
+
+			if (Timer > 68)
+			{
+				NPC.knockBackResist = 0.15f;
+
+				isDashing = false; // Stop dashing
+				CastCooldown = 120;
+				NPC.velocity = Vector2.Zero;
 			}
 		}
 
@@ -511,7 +582,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			int Spread = 2;
 			Velocity.X = Velocity.X + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
 			Velocity.Y = Velocity.Y + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
-			int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), GetHandPosition(), Velocity, type, damage, 1.75f);
+			int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), GetHandPosition(), Velocity, type, (int)(damage * ProjectileExpertDamageMultiplier), 3);
 			Main.projectile[i].hostile = true;
 			Main.projectile[i].friendly = false;
 			Main.projectile[i].tileCollide = true;
@@ -537,7 +608,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			npcLoot.Add(ItemDropRule.OneFromOptions(3, new int[]
 				{
 					ModContent.ItemType<Items.Weapons.Summon.GazerStaff>(),
-					ModContent.ItemType<Items.Rings.BloodMagicRing>()
+					ModContent.ItemType<Items.Rings.BloodweaversRing>()
 				}
 			));
 			// Drops after the EoC is downed
@@ -547,7 +618,11 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Materials.BoneFragment>(), 3, maximumDropped: 8));
 			}));
 		}
-
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
+		{
+			NPC.lifeMax = (int)((float)NPC.lifeMax * 0.8f * balance);
+			NPC.damage = (int)((double)NPC.damage * .8f);
+		}
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
 			Vector2 position = NPC.position - screenPos;
@@ -560,6 +635,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		public bool isIdle = true;
 		public bool isTaunting = false;
 		public bool isCasting = false;
+		public bool isDashing = false;
 		public bool isFocused = false;
 		public bool wasFocused = false;
 	}

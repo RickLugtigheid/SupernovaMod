@@ -5,11 +5,10 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace SupernovaMod.Content.Items.Rings
 {
-    public class BloodMagicRing : SupernovaRingItem
+    public class BloodweaversRing : SupernovaRingItem
     {
 		public override RingType RingType => RingType.Projectile;
 
@@ -17,7 +16,6 @@ namespace SupernovaMod.Content.Items.Rings
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            // DisplayName.SetDefault("Ring of Blood magic");
             /* Tooltip.SetDefault("When the 'Ring Ability button' is pressed" +
                 "\n You will drain life from the 10 nearest enemies."); */
         }
@@ -44,7 +42,7 @@ namespace SupernovaMod.Content.Items.Rings
 
                 // Check if hostile
                 //
-				if (!target.friendly && target.active)
+				if (target.CanBeChasedBy())
 				{
 					// Get a random starting velocity so not all projectiles will start the same direction.
 					Vector2 startVelocity = new Vector2(
@@ -63,9 +61,9 @@ namespace SupernovaMod.Content.Items.Rings
 					targets++;
 				}
 
-				// Stop if the amount of targets is 10
+				// Stop if the amount of targets is 6
 				//
-				if (targets >= 10)
+				if (targets >= 6)
                 {
                     break;
                 }
@@ -82,16 +80,57 @@ namespace SupernovaMod.Content.Items.Rings
 			}
         }
 
-        public override int MaxAnimationFrames => 50;
-        public override void RingUseAnimation(Player player)
+        public override int MaxAnimationFrames => 75;
+
+		private float _rot = 0;
+		public override void RingUseAnimation(Player player)
         {
             SoundEngine.PlaySound(SoundID.Item15);
-            Vector2 dustPos = player.Center + new Vector2(30, 0).RotatedByRandom(MathHelper.ToRadians(360));
+
+			/*Vector2 dustPos = player.Center + new Vector2(30, 0).RotatedByRandom(MathHelper.ToRadians(360));
             Vector2 diff = player.Center - dustPos;
             diff.Normalize();
 
 			Dust.NewDustPerfect(dustPos, DustID.CrimsonTorch, diff * 3, Scale: 1.5f).noGravity = true;
-			Dust.NewDustPerfect(dustPos, DustID.Blood, diff * 2).noGravity = true;
-        }
+			Dust.NewDustPerfect(dustPos, DustID.Blood, diff * 2).noGravity = true;*/
+
+			/*Vector2 dustPos = player.Center + new Vector2(15, 0).RotatedBy(_rot);
+
+			for (int i = 0; i < 2; i++)
+			{
+				_rot += MathHelper.ToRadians(67.5f); // 45
+				_rot = _rot % MathHelper.ToRadians(360);
+
+				dustPos = dustPos.RotatedBy(_rot);
+				Vector2 diff = dustPos - player.Center;
+				diff.Normalize();
+
+				int dustType = DustID.CrimsonTorch;
+				Dust.NewDustPerfect(dustPos, dustType, diff, Scale: 1.75f).noGravity = true;
+
+				dustType = DustID.Blood;
+				Dust.NewDustPerfect(dustPos, dustType, diff, Scale: 1.5f).noGravity = true;
+			}
+			_rot += MathHelper.ToRadians(1);*/
+
+			// Spawn gem dust on the player
+			//
+			for (int i = 0; i < 2; i++)
+			{
+				_rot += MathHelper.ToRadians(67.5f);
+				_rot = _rot % MathHelper.ToRadians(360);
+
+				Vector2 dustPos = player.Center + new Vector2(35, 0).RotatedBy(_rot);
+				Vector2 diff = player.Center - dustPos;
+				diff.Normalize();
+
+				int dustType = DustID.CrimsonTorch;
+				Dust.NewDustPerfect(dustPos, dustType, diff * 2, Scale: 1.75f).noGravity = true;
+
+				dustType = DustID.Blood;
+				Dust.NewDustPerfect(dustPos, dustType, diff * 2, Scale: 1f).noGravity = true;
+			}
+			_rot += MathHelper.ToRadians(1);
+		}
     }
 }

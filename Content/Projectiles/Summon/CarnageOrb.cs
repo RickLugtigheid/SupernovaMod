@@ -99,6 +99,11 @@ namespace SupernovaMod.Content.Projectiles.Summon
 			}
 		}
 
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+		{
+            modifiers.HitDirectionOverride = Vector2.Distance(Projectile.Center, Main.player[Projectile.owner].Center) > 0 ? -1 : 1;
+		}
+
 		public void CheckActive()
         {
             Player player = Main.player[Projectile.owner];

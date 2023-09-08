@@ -3,13 +3,13 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace SupernovaMod.Common.ItemDropRules.DropConditions
 {
-	internal class ExpertModDropCondition : IItemDropRuleCondition
+	internal class ExpertModeDropCondition : IItemDropRuleCondition
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
 			if (!info.IsInSimulation)
 			{
-				return Main.expertMode;
+				return info.IsExpertMode;
 			}
 			return false;
 		}
@@ -22,6 +22,27 @@ namespace SupernovaMod.Common.ItemDropRules.DropConditions
 		public string GetConditionDescription()
 		{
 			return "Drops in expert mode";
+		}
+	}
+	internal class NormalModeDropCondition : IItemDropRuleCondition
+	{
+		public bool CanDrop(DropAttemptInfo info)
+		{
+			if (!info.IsInSimulation)
+			{
+				return !info.IsExpertMode;
+			}
+			return false;
+		}
+
+		public bool CanShowItemDropInUI()
+		{
+			return false;
+		}
+
+		public string GetConditionDescription()
+		{
+			return "Drops in normal mode";
 		}
 	}
 }

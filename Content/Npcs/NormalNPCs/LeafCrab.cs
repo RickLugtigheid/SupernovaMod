@@ -6,6 +6,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
 using Terraria.ModLoader.Utilities;
 using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
@@ -15,8 +16,14 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             // DisplayName.SetDefault("Leaf Crab");
             Main.npcFrameCount[NPC.type] = 8;
-
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Poisoned
+				}
+			};
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
             };
@@ -50,8 +57,6 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             NPC.aiStyle = NPCAIStyleID.Fighter;
             AIType = NPCID.Crab;  //NPC behavior
             AnimationType = NPCID.Harpy;
-
-			NPC.buffImmune[BuffID.Poisoned] = true;
 		}
 		public override void FindFrame(int frameHeight)
         {

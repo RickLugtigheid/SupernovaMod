@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using SupernovaMod.Common;
+using SupernovaMod.Api;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -43,22 +43,21 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
             if (owner.dead || !owner.active)
             {
                 owner.ClearBuff(BuffType);
-
-                return false;
             }
 
             if (owner.HasBuff(BuffType))
             {
                 Projectile.timeLeft = 2;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         protected virtual void GeneralBehavior(Player owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition)
         {
 			Vector2 idlePosition = owner.Center;
-            idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles from the center of the player)
+            ModifyIdlePosition(ref idlePosition);
 
             // If your minion doesn't aimlessly move around when it's idle, you need to "put" it into the line of other summoned minions
             // The index is projectile.minionPos
@@ -111,7 +110,12 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
             }
         }
 
-        protected virtual void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter)
+        protected virtual void ModifyIdlePosition(ref Vector2 idlePosition)
+        {
+			idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles from the center of the player)
+		}
+
+		protected virtual void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter)
         {
             // Starting search distance
             distanceFromTarget = 700f;
@@ -199,18 +203,20 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 			}
         }
 
-		// Default movement parameters (here for attacking)
+        // Default movement parameters (here for attacking)
+        protected float speedMax = 8;
 		protected float speed = 8f;
         protected float attackSpeedMuli = 1.5f;
 		protected float inertia = 10;
 		protected virtual void UpdateAttackMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {
+            speed = speedMax;
 			// Minion has a target: attack (here, fly towards the enemy)
             //
 			if (distanceFromTarget > 55)
 			{
                 float speedMulti = distanceFromTarget / 100;
-                speedMulti = Utils.Clamp(speedMulti, 1.2f, .7f); // Cap the multiplier
+                speedMulti = Utils.Clamp(speedMulti, 1f, .5f); // Cap the multiplier
 				SupernovaUtils.MoveProjectileSmooth(Projectile, 100, targetCenter - Projectile.Center, speed * speedMulti, .15f);
 			}
 
@@ -218,6 +224,25 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 			vectorToTarget = Utils.SafeNormalize(vectorToTarget, Vector2.Zero) * (speed * attackSpeedMuli);
 			
             Projectile.velocity = Vector2.Lerp(Projectile.velocity, vectorToTarget, 0.024390243f);
+
+            // Cap the velocity at the max speed
+            //
+            if (Projectile.velocity.X > speedMax)
+            {
+				Projectile.velocity.X = speedMax;
+			}
+			else if (Projectile.velocity.X < -speedMax)
+			{
+				Projectile.velocity.X = -speedMax;
+			}
+			if (Projectile.velocity.Y > speedMax)
+			{
+				Projectile.velocity.Y = speedMax;
+			}
+			if (Projectile.velocity.Y < -speedMax)
+			{
+				Projectile.velocity.Y = -speedMax;
+			}
 		}
         protected virtual void UpdateIdleMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {

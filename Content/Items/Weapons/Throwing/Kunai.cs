@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using SupernovaMod.Common;
+using SupernovaMod.Api.Helpers;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

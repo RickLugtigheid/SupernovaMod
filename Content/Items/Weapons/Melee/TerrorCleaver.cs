@@ -3,6 +3,8 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using SupernovaMod.Api;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace SupernovaMod.Content.Items.Weapons.Melee
 {
@@ -23,10 +25,10 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             Item.crit = 1;
             Item.width = 40;
             Item.height = 40;
-            Item.useTime = 46;
-            Item.useAnimation = 46;
+            Item.useTime = 42;
+            Item.useAnimation = 42;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 4.5f;
+            Item.knockBack = 6;
 			Item.value = BuyPrice.RarityGreen;
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item1;
@@ -36,20 +38,17 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             Item.DamageType = DamageClass.Melee;
         }
 
-        /*private bool _canShoot = true;
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			// Flip our canShoot bool so we shoot once every 2 swings
-			_canShoot = !_canShoot;
-			return _canShoot;
-		}*/
+			return base.Shoot(player, source, position, velocity, type, (int)(damage * .8f), knockback * .5f);
+		}
 
-        /*public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<TerrorTuft>(), 6);
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.Register();
-        }*/
-    }
+		public override void AddRecipes()
+		{
+			Recipe recipe = CreateRecipe();
+			recipe.AddIngredient<Materials.TerrorTuft>(3);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.Register();
+		}
+	}
 }

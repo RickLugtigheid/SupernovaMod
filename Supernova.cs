@@ -5,6 +5,7 @@ using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
+using SupernovaMod.Common.Systems;
 
 namespace SupernovaMod
 {
@@ -15,6 +16,10 @@ namespace SupernovaMod
 		public static ILog Log { get; private set; }
 
 		public static bool DebugMode => ModContent.GetInstance<Common.Configs.SupernovaModConfig>().debugMode;
+
+		private SupernovaModCalls _calls = new SupernovaModCalls();
+
+		public override object Call(params object[] args) => _calls.Call(args);
 
 		public override void Load()
 		{

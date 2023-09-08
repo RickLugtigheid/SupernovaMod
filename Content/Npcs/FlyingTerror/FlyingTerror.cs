@@ -6,10 +6,12 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Bestiary;
-using SupernovaMod.Common;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
-using System.IO;
+using SupernovaMod.Common.ItemDropRules.DropConditions;
+using SupernovaMod.Content.Items.Materials;
+using Terraria.DataStructures;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Npcs.FlyingTerror
 {
@@ -18,14 +20,27 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
     {
         private const int FRAME_DASH_DOWN = 29;
 
-		private const int DAMAGE_PROJECILE = 25;
+		private const int DAMAGE_PROJECILE = 24;
+		private const int DAMAGE_PROJ_FIRE_BREATH = 27;
 
-        public override void SetStaticDefaults()
+		private const float ExpertDamageMultiplier = .9f;
+		private const float ProjectileExpertDamageMultiplier = .6f;
+
+		public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Flying Terror");
             Main.npcFrameCount[NPC.type] = 5;
 			NPCID.Sets.TrailingMode[NPC.type] = 1;
-
+			NPCID.Sets.CantTakeLunchMoney[Type] = true;
+			NPCID.Sets.MPAllowedEnemies[NPC.type] = true;
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused,
+					BuffID.OnFire,
+					BuffID.ShadowFlame
+				}
+			};
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
@@ -50,7 +65,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
         {
             NPC.aiStyle = -1; // Will not have any AI from any existing AI styles. 
             NPC.lifeMax = 4000; // The Max HP the boss has on Normal
-            NPC.damage = 38; // The NPC damage value the boss has on Normal
+            NPC.damage = 34; // The NPC damage value the boss has on Normal
             NPC.defense = 12; // The NPC defense on Normal
             NPC.knockBackResist = 0f; // No knockback
             NPC.width = 200;
@@ -64,10 +79,21 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             Music = MusicID.Boss1;
+		}
 
-			NPC.buffImmune[BuffID.Confused] = true;
-			NPC.buffImmune[BuffID.OnFire] = true;
-			NPC.buffImmune[BuffID.ShadowFlame] = true;
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Consumables.BossBags.FlyingTerrorBossBag>()));
+			/*npcLoot.Add(ItemDropRule.OneFromOptions(3, new int[]
+				{
+					ModContent.ItemType<Items.Weapons.Summon.GazerStaff>(),
+					ModContent.ItemType<Items.Rings.BloodweaversRing>()
+				}
+			));*/
+			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<NormalModeDropCondition>(conditionalRule =>
+			{
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
+			}));
 		}
 
 		protected Player target;
@@ -110,7 +136,10 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 			// Handle AI
 			//
-			DespawnAI();
+			if (DespawnAI())
+			{
+				return; // Don't run any other AI
+			}
 			timer++;
 
 			if (npcLifeRatio > .92f)
@@ -204,7 +233,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 						if (Main.netMode != NetmodeID.MultiplayerClient)
 						{
-							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ProjectileID.DD2BetsyFlameBreath, 25, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
+							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ProjectileID.DD2BetsyFlameBreath, (int)(DAMAGE_PROJ_FIRE_BREATH * ProjectileExpertDamageMultiplier), 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
 							Main.projectile[proj].tileCollide = false;
 						}
 						SoundEngine.PlaySound(SoundID.DD2_BetsyFlameBreath, NPC.Center);
@@ -329,7 +358,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 						if (Main.netMode != NetmodeID.MultiplayerClient)
 						{
-							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ProjectileID.DD2BetsyFlameBreath, 28, 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
+							int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ProjectileID.DD2BetsyFlameBreath, (int)(DAMAGE_PROJ_FIRE_BREATH * ProjectileExpertDamageMultiplier), 0f, Main.myPlayer, 0f, (float)NPC.whoAmI);
 							Main.projectile[proj].tileCollide = false;
 						}
 						SoundEngine.PlaySound(SoundID.DD2_BetsyFlameBreath, NPC.Center);
@@ -412,7 +441,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 									Dust.NewDustPerfect(dustPos, DustID.Shadowflame, diff * 5, Scale: 1.5f).noGravity = true;
 								}
 
-								//Projectile.NewProjectile(NPC.GetSource_FromAI(), randPosition, Vector2.Zero, ModContent.ProjectileType<>(), DAMAGE_PROJECILE, 1);
 								NPC.NewNPC(NPC.GetSource_FromAI(), (int)randPos.X, (int)randPos.Y, ModContent.NPCType<TerrorSpirit>());
 							}
 							if (timer >= 420)
@@ -430,7 +458,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 								Vector2 position = target.Center + new Vector2(Main.rand.Next(-500, 500), -1000);
 
-								Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 6.2f, ProjectileID.CultistBossFireBallClone, DAMAGE_PROJECILE + 7, 6, Main.myPlayer);
+								Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 6.2f, ProjectileID.CultistBossFireBallClone, (int)(DAMAGE_PROJECILE * ProjectileExpertDamageMultiplier), 6, Main.myPlayer);
 							}
 							if (timer >= 310)
 							{
@@ -456,7 +484,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 									// Create a projectile for velocity
 									SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
-									int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, value17.X, value17.Y, ModContent.ProjectileType<Projectiles.TerrorFlame>(), DAMAGE_PROJECILE, 1f, Main.myPlayer, 1, Main.rand.Next(-45, 1));
+									int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, value17.X, value17.Y, ModContent.ProjectileType<Projectiles.TerrorFlame>(), (int)(DAMAGE_PROJECILE * ProjectileExpertDamageMultiplier), 1f, Main.myPlayer, 1, Main.rand.Next(-45, 1));
 									Main.projectile[proj].timeLeft *= 2;
 								}
 								angle += 25;
@@ -491,7 +519,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
         }
 
 		#region AI Methods
-		private void DespawnAI()
+		private bool DespawnAI()
 		{
 			if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
 			{
@@ -499,23 +527,31 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			}
 
 			Player player = Main.player[NPC.target];
-			if (NPC.ai[0] != 3f && (player.dead || !player.active))
+			if (Main.dayTime || NPC.ai[0] != 3f && (player.dead || !player.active))
 			{
 				NPC.TargetClosest(true);
 				player = Main.player[NPC.target];
-				if (player.dead || !player.active)
+				if (Main.dayTime || player.dead || !player.active)
 				{
+					if (NPC.timeLeft > 130)
+					{
+						NPC.timeLeft = 130;
+					}
 					NPC.ai[0] = 0;
 					NPC.ai[1] = 0f;
 					NPC.ai[2] = 0f;
 					NPC.ai[3] = 0f;
 					NPC.netUpdate = true;
+
+					NPC.velocity = new Vector2(7 * NPC.direction, -5);
+					return true;
 				}
 			}
 			else if (NPC.timeLeft < 1800)
 			{
 				NPC.timeLeft = 1800;
 			}
+			return false;
 		}
 		private void MovementAI(Vector2 targetPosition, float velocity, float acceleration)
 		{
@@ -715,7 +751,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					rotation *= 1 + Main.rand.NextFloat(-.15f, .15f);
 
 					Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .75f, (float)-(Math.Sin(rotation) * 18) * .75f) * 1.2f;
-					Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, ModContent.ProjectileType<Content.Projectiles.Boss.TerrorBlast>(), DAMAGE_PROJECILE, 0f, 0, 1, target.whoAmI);
+					Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, ModContent.ProjectileType<Content.Projectiles.Boss.TerrorBlast>(), (int)(DAMAGE_PROJ_FIRE_BREATH * ProjectileExpertDamageMultiplier), 0f, 0, 1, target.whoAmI);
 				}
 			}
 		}
@@ -859,7 +895,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			rotation *= rotationMulti;
 
             Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .75f, (float)-(Math.Sin(rotation) * 18) * .75f) * velocityMulti;
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, type, damage, 0,0,0,0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, type, (int)(damage * ProjectileExpertDamageMultiplier), 0,0,0,0);
 
             for (int x = 0; x < 5; x++)
             {
@@ -890,7 +926,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				{
 					spriteEffects = SpriteEffects.FlipHorizontally;
 				}
-				Vector2 origin = new Vector2((float)(texture.Width / 2), (float)(texture.Height / Main.npcFrameCount[base.NPC.type] / 2));
+				Vector2 origin = new Vector2((float)(texture.Width / 2), (float)(texture.Height / Main.npcFrameCount[NPC.type] / 2));
 				Color color = NPC.GetAlpha(drawColor);
 				Color color2 = NPC.GetAlpha(drawColor);
 				float amount9 = 0f;
@@ -970,21 +1006,33 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 		public override void HitEffect(NPC.HitInfo hit)
 		{
-			int i = 0;
-			while ((double)i < hit.Damage / (double)base.NPC.lifeMax * 100.0)
+			if (Main.netMode == NetmodeID.Server)
 			{
-				Dust.NewDust(base.NPC.position, base.NPC.width, base.NPC.height, DustID.Shadowflame, hit.HitDirection, -1f, 0, default(Color), 1f);
+				return;
+			}
+			if (NPC.life <= 0)
+			{
+				for (int j = 0; j < 20; j++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Dusts.TerrorDust>(), hit.HitDirection, -1f, 0, default(Color), 1f);
+				}
+			}
+
+			int i = 0;
+			while ((double)i < hit.Damage / (double)NPC.lifeMax * 100.0)
+			{
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hit.HitDirection, -1f, 0, default(Color), 1.2f);
 				i++;
 			}
 		}
-
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
+		{
+			NPC.lifeMax = (int)((float)NPC.lifeMax * 0.8f * balance);
+			NPC.damage = (int)((double)NPC.damage * ExpertDamageMultiplier);
+		}
 		public override void BossLoot(ref string name, ref int potionType)
 		{
 			potionType = ItemID.HealingPotion;
-		}
-		public override void ModifyNPCLoot(NPCLoot npcLoot)
-		{
-			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Consumables.BossBags.FlyingTerrorBossBag>()));
 		}
 
 		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)

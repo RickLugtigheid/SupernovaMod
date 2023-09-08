@@ -3,14 +3,13 @@ using SupernovaMod.Common.Players;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using SupernovaMod.Api;
 using SupernovaMod.Content.Projectiles.BaseProjectiles;
 
 namespace SupernovaMod.Content.Projectiles.Summon
 {
     public class OmenMinion : SupernovaMinionProjectile
     {
-        protected override int BuffType => ModContent.BuffType<Buffs.Summon.VerglasFlakeBuff>();
+        protected override int BuffType => ModContent.BuffType<Buffs.Summon.HarbingersKnellBuff>();
 
         private int _rotateSpeed = 3;
 
@@ -43,7 +42,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 21;
 
-            speed = 21;
+            speedMax = 10;
         }
 
         // Here you can decide if your minion breaks things like grass or pots

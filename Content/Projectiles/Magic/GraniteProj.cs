@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using SupernovaMod.Common;
+using SupernovaMod.Api;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

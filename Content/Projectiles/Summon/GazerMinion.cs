@@ -3,8 +3,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using SupernovaMod.Content.Projectiles.BaseProjectiles;
-using SupernovaMod.Common;
 using Terraria.Audio;
+using SupernovaMod.Api.Helpers;
 
 namespace SupernovaMod.Content.Projectiles.Summon
 {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Api.Helpers;
 using SupernovaMod.Common;
 using System;
 using Terraria;
@@ -11,7 +12,8 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 {
     public class Gazer : ModNPC
     {
-        public override void SetStaticDefaults()
+		private const float ProjectileExpertDamageMultiplier = .5f;
+		public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Gazer");
 			Main.npcFrameCount[NPC.type] = 5;
@@ -41,13 +43,15 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
         int shootTimer;
         public override void SetDefaults()
         {
-            NPC.lifeMax = 60;
+            NPC.lifeMax = 36;
             NPC.defense = 6;
-            ShootDamage = 18;
+            ShootDamage = 12;
             shootTimer = 140;
-            NPC.width = 58;
+
+            NPC.width = 54;
             NPC.height = 58;
-            NPC.damage = 20;
+
+            NPC.damage = 12;
             NPC.value = 60f;
             NPC.knockBackResist = 0.5f;
             NPC.aiStyle = 44;
@@ -150,10 +154,15 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
             float SpreadMult = 0.15f;
             Velocity.X = Velocity.X + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
             Velocity.Y = Velocity.Y + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
-            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, type, ShootDamage, 1.75f);
+            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center.X, NPC.Center.Y, Velocity.X, Velocity.Y, type, (int)(ShootDamage * ProjectileExpertDamageMultiplier), 1.75f);
             Main.projectile[i].hostile = true;
             Main.projectile[i].friendly = false;
             Main.projectile[i].tileCollide = true;
         }
-    }
+		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
+		{
+			NPC.lifeMax = (int)((float)NPC.lifeMax * .5f * balance);
+			NPC.damage = (int)((double)NPC.damage * .8f);
+		}
+	}
 }

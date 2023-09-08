@@ -7,7 +7,8 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
 using Terraria.ModLoader.Utilities;
-using SupernovaMod.Common;
+using Terraria.DataStructures;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
@@ -18,8 +19,16 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Frost Flayer");
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
+			{
+				SpecificallyImmuneTo = new int[]
+				{
+					BuffID.Confused,
+					BuffID.Poisoned,
+					BuffID.Frostburn
+				}
+			};
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 // Influences how the NPC looks in the Bestiary
                 Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
@@ -50,10 +59,6 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             NPC.noGravity = true; // Not affected by gravity
             NPC.noTileCollide = true; // Will not collide with the tiles.
             NPC.aiStyle = -1; // Will not have any AI from any existing AI styles. 
-
-			NPC.buffImmune[BuffID.Poisoned] = true;
-			NPC.buffImmune[BuffID.Frostburn]  = true;
-            NPC.buffImmune[BuffID.Confused]   = true;
         }
 
         private Vector2 _dashTarget;

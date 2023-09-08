@@ -136,7 +136,7 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
 			Cooldown = (int)(Cooldown * coolRegen);
 
 			int seconds = Cooldown / 60;
-            int minutes = seconds / 60;
+            float minutes = seconds / 60;
 
             if (minutes > 0)
             {
@@ -178,6 +178,7 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
 		//
 		private static int[] _ringPrefixes = ModContent.GetContent<RingPrefix>().Select(pre => pre.Type).ToArray();
 		public override int ChoosePrefix(UnifiedRandom rand) => Main.rand.NextFromList(_ringPrefixes);
+		public override bool AllowPrefix(int pre) => _ringPrefixes.Contains(pre);
 		#endregion
 	}
 }

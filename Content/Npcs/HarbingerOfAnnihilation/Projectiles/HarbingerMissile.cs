@@ -4,6 +4,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework.Graphics;
+using SupernovaMod.Common;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
 {
