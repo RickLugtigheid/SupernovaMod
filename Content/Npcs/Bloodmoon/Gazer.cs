@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Api.Helpers;
-using SupernovaMod.Common;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -12,7 +11,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 {
     public class Gazer : ModNPC
     {
-		private const float ProjectileExpertDamageMultiplier = .5f;
+		private const float ProjectileExpertDamageMultiplier = .6f;
 		public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Gazer");

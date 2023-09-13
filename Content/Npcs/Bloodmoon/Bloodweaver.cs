@@ -20,7 +20,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		//private const int SPRITE_SHEET_HEIGHT = 410;
 		//private const int SPRITE_SHEET_WIDTH = 370;
 
-		private const float ProjectileExpertDamageMultiplier = .6f;
+		private const float ProjectileExpertDamageMultiplier = .62f;
 
 		private Player Target
 		{
@@ -137,7 +137,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				NPC.frameCounter++;
 
 				// Select the row in our sprite sheet.
-				int rowHeight = height * 5;
+				int rowHeight = height * 4;
 				NPC.frame.X = isFocused ? width : (width * 3);
 
 				if (NPC.frameCounter > 7)
@@ -230,7 +230,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			//
 			if (isFocused && !wasFocused)
 			{
-				isIdle = true;
+				isIdle = false;
 				isCasting = false;
 				isDashing = false;
 				isTaunting = false;
@@ -296,6 +296,13 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		{
 			// Use HoveringFighter AI
 			NPC.aiStyle = NPCAIStyleID.HoveringFighter;
+
+			// If we are lower than the player we should add some Y velocity
+			//
+			if ((Target.Center.Y - (Target.height / 2)) < (NPC.Center.Y + (NPC.height / 2)))
+			{
+				NPC.velocity.Y -= .09f;
+			}
 
 			// Wait for the cast cooldown to be less than 1 before casting a new spell
 			//
@@ -537,8 +544,9 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			}
 			if (Timer == 8)
 			{
+				SoundEngine.PlaySound(SoundID.Item20, NPC.Center);
 				NPC.velocity = Vector2.UnitX * NPC.direction;
-				NPC.velocity *= 12;
+				NPC.velocity *= 14;
 			}
 			NPC.velocity *= .98f;
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CrimsonTorch, -NPC.direction * 1.5f, Main.rand.NextFloatDirection(), 0, default(Color), 1.5f);

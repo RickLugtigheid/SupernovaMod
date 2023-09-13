@@ -10,6 +10,12 @@ namespace SupernovaMod.Api.Helpers
     public static class Mathf
 	{
 		/// <summary>
+		/// The circle constant, the circumference of the unit circle in radians.
+		/// </summary>
+		// 6.2831855f and 6.28318530717959
+		public const double Tau = (double)6.2831853071795864769252867666M;
+
+		/// <summary>
 		/// Returns the inverse of the absolute value for <paramref name="x"/>.
 		/// </summary>
 		/// <param name="x"></param>
@@ -48,11 +54,11 @@ namespace SupernovaMod.Api.Helpers
 		/// <summary>
 		/// Same as Lerp but makes sure the values interpolate correctly when they wrap around 360 degrees.
 		/// </summary>
-		/// <param name="a"></param>
-		/// <param name="b"></param>
-		/// <param name="t"></param>
+		/// <param name="a">The start angle. A float expressed in degrees.</param>
+		/// <param name="b">The end angle. A float expressed in degrees.</param>
+		/// <param name="t">The interpolation value between the start and end angles. This value is clamped to the range [0, 1].</param>
 		/// <returns>Returns the interpolated float result between angle <paramref name="a"/> and angle <paramref name="b"/>, based on the interpolation value <paramref name="t"/>.</returns>
-		public static float LerpAngle(float a, float b, float t)
+		public static float LerpAngleDeg(float a, float b, float t)
 		{
 			float delta = Repeat((b - a), 360);
 			if (delta > 180)
@@ -60,6 +66,19 @@ namespace SupernovaMod.Api.Helpers
 				delta -= 360;
 			}
 			return a + delta * Clamp01(t);
+		}
+		/// <summary>
+		/// Same as Lerp but makes sure the values interpolate correctly when they wrap around <see cref="Tau"/>.
+		/// </summary>
+		/// <param name="a">The start angle. A float expressed in radians.</param>
+		/// <param name="b">The end angle. A float expressed in radians.</param>
+		/// <param name="t"></param>
+		/// <returns>Returns the interpolated float result between angle <paramref name="a"/> and angle <paramref name="b"/>, based on the interpolation value <paramref name="t"/> in radians.</returns>
+		public static float LerpAngle(float a, float b, float t)
+		{
+			float difference = (float)((b - a) % Mathf.Tau);
+			float distance = (float)(((2 * difference) % Mathf.Tau) - difference);
+			return a + distance * t;
 		}
 
 		#region Vector Math
@@ -90,7 +109,7 @@ namespace SupernovaMod.Api.Helpers
 		/// <param name="angle">The max spread angle</param>
 		/// <param name="num">The number of spreads to calculate</param>
 		/// <returns></returns>
-		[Obsolete("This is an old method and should be improved on and / or renamed")]
+		[Obsolete("This is an old method and should be improved, and / or renamed")]
 		public static Vector2[] RandomSpread(Vector2 velocity, float angle, int num)
 		{
 			var posArray = new Vector2[num];

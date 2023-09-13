@@ -118,7 +118,8 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				if (timer <= 65)
 				{
 					float damping = .1f;
-					Projectile.rotation = MathHelper.Lerp(Projectile.rotation, Projectile.GetTargetLookRotation(target.position), damping);
+					//Projectile.rotation = MathHelper.Lerp(Projectile.rotation, Projectile.GetTargetLookRotation(target.position), damping);
+					Projectile.rotation = Mathf.LerpAngle(Projectile.rotation, Projectile.GetTargetLookRotation(target.position), damping);
 					_targetPosition = target.position;
 				}
 				else if (timer == 66)
@@ -456,7 +457,8 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, maxVelocity, .01f);
 
 			// Rotate
-			Projectile.rotation = MathHelper.Lerp(Projectile.rotation, MathHelper.ToRadians(_startDeg - 90), .01f);
+			//Projectile.rotation = MathHelper.Lerp(Projectile.rotation, MathHelper.ToRadians(_startDeg - 90), .01f);
+			Projectile.rotation = Mathf.LerpAngle(Projectile.rotation, MathHelper.ToRadians(_startDeg - 90), .05f);
 
 			// Check if at the target postion
 			//
