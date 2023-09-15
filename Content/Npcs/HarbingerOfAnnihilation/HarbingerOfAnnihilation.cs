@@ -22,14 +22,14 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         protected float npcLifeRatio;
         public Player target;
 
-		private const int DAMAGE_PROJ_MISSILE = 21;
-		private const int DAMAGE_PROJ_ORB = 34;
+		private const int DAMAGE_PROJ_MISSILE = 20;
+		private const int DAMAGE_PROJ_ORB = 30;
 
 		private readonly int _projIdMissile = ModContent.ProjectileType<HarbingerMissile>();
 
         private readonly HarbingerOfAnnihilation_Arm[] _arms = new HarbingerOfAnnihilation_Arm[4];
 
-		private const float ExpertDamageMultiplier = .75f;
+		private const float ExpertDamageMultiplier = .7f;
 
 		public override void SetStaticDefaults()
         {
@@ -111,7 +111,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				int deg = 360 / _arms.Length;
 				for (int i = 0; i < _arms.Length; i++)
                 {
-					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, 0, 0, ModContent.ProjectileType<HarbingerOfAnnihilation_Arm>(), (int)(17 * ExpertDamageMultiplier), 7, Main.myPlayer, ai0: NPC.whoAmI, ai1: deg * i);
+					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, 0, 0, ModContent.ProjectileType<HarbingerOfAnnihilation_Arm>(), (int)(16 * ExpertDamageMultiplier), 7, Main.myPlayer, ai0: NPC.whoAmI, ai1: deg * i);
                     _arms[i] = Main.projectile[proj].ModProjectile as HarbingerOfAnnihilation_Arm;
 				}
 			}
@@ -303,7 +303,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 						if (timer < 400)
 						{
-							if (timer == 401)
+							if (timer == 1)
 							{
 								ForeachArm(arm => arm.canDealDamage = true);
 							}
@@ -964,7 +964,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
 		{
 			NPC.lifeMax = (int)((float)NPC.lifeMax * 0.8f * balance);
-			NPC.damage = (int)((double)NPC.damage * ExpertDamageMultiplier);
+			NPC.damage = (int)((double)NPC.damage * (ExpertDamageMultiplier + .1f));
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

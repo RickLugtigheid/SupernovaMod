@@ -20,10 +20,10 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
     {
         private const int FRAME_DASH_DOWN = 29;
 
-		private const int DAMAGE_PROJECILE = 24;
-		private const int DAMAGE_PROJ_FIRE_BREATH = 27;
+		private const int DAMAGE_PROJECILE = 20;
+		private const int DAMAGE_PROJ_FIRE_BREATH = 23;
 
-		private const float ExpertDamageMultiplier = .9f;
+		private const float ExpertDamageMultiplier = .8f;
 		private const float ProjectileExpertDamageMultiplier = .6f;
 
 		public override void SetStaticDefaults()

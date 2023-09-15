@@ -95,7 +95,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 			if (timer <= 80)
 			{
 				float damping = .1f;
-				Projectile.rotation = MathHelper.Lerp(Projectile.rotation, Projectile.GetTargetLookRotation(targetCenter), damping);
+				Projectile.rotation = Mathf.LerpAngle(Projectile.rotation, Projectile.GetTargetLookRotation(targetCenter), damping);
 				return false;
 			}
 			else if (timer == 81)

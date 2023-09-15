@@ -221,6 +221,11 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 		public override void AI()
 		{
+			if (DespawnAI())
+			{
+				return; // Don't run any other AI
+			}
+
 			// After losing half health set to focus
 			//
 			isFocused = (NPC.life / (float)NPC.lifeMax) <= .5f;
@@ -285,6 +290,42 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			}
 
 			NPC.spriteDirection = -NPC.direction;
+		}
+
+		private bool DespawnAI()
+		{
+			if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+			{
+				NPC.TargetClosest(true);
+			}
+
+			Player player = Main.player[NPC.target];
+			if (Main.dayTime || NPC.ai[0] != 3f && (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2250))
+			{
+				NPC.TargetClosest(true);
+				player = Main.player[NPC.target];
+				if (Main.dayTime || player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2500)
+				{
+					if (NPC.timeLeft > 130)
+					{
+						NPC.timeLeft = 130;
+					}
+					NPC.ai[0] = 0;
+					NPC.ai[1] = 0f;
+					NPC.ai[2] = 0f;
+					NPC.ai[3] = 0f;
+					NPC.netUpdate = true;
+
+					// Use HoveringFighter AI for despawning
+					NPC.aiStyle = NPCAIStyleID.HoveringFighter;
+					return true;
+				}
+			}
+			else if (NPC.timeLeft < 2000)
+			{
+				NPC.timeLeft = 2000;
+			}
+			return false;
 		}
 
 		private bool IdleAI()
