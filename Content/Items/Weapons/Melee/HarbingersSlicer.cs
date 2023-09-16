@@ -11,13 +11,10 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("Harbingers Slicer");
-            // Tooltip.SetDefault("");
         }
         public override void SetDefaults()
         {
-			Item.damage = 16;
+			Item.damage = 18;
             Item.crit = 1;
 			Item.knockBack = 9;
 			Item.useAnimation = (Item.useTime = 25);

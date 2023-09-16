@@ -806,6 +806,7 @@ Mods: {
 			ZirconiumKnifeProj.DisplayName: Zirconium Knife Proj
 			BlazeBoltFlames.DisplayName: Blaze Bolt Flames
 			ConquerorsBladeStaffProj.DisplayName: Conquerors Blade Staff Proj
+			NebualShot.DisplayName: Nebual Shot
 		}
 
 		Configs: {

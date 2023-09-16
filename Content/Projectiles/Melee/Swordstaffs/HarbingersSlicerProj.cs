@@ -3,39 +3,43 @@ using SupernovaMod.Content.Projectiles.BaseProjectiles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 {
     public class HarbingersSlicerProj : SwordstaffProj
     {
-		public override void SetStaticDefaults()
-		{
-			// DisplayName.SetDefault("Harbingers Slicer");
-		}
 		public override void SetDefaults()
 		{
+			Projectile.width = 32;     //Set the hitbox width
+			Projectile.height = 32;    //Set the hitbox height
+
 			Projectile.scale = 1.25f;
 			base.SetDefaults();
-			SwingCycleTime = 70;
-			Projectile.localNPCHitCooldown = 18;
+			SwingCycleTime = 84;
+			Projectile.localNPCHitCooldown = 20;
 		}
 
 		protected override void ExtraAI(ref float swingCycleTime)
 		{
-			Vector2 position = Projectile.Center + new Vector2(Projectile.width / 2, -Projectile.height / 2).RotatedBy(Projectile.rotation);
+			Vector2 position = Projectile.Center + new Vector2(Projectile.width * .7f, -Projectile.height / 2).RotatedBy(Projectile.rotation);
 
 			if (swingCycleTime % SwingCycleTime == (SwingCycleTime / 2))
 			{
-				if (Projectile.localAI[0] != 0)
+				Projectile.localAI[1]--;
+
+				if (Projectile.localAI[0] != 0 && !Main.projectile[(int)Projectile.localAI[0]].active)
 				{
-					ReleaseProjectile();
+					//ReleaseProjectile();
+					Projectile.localAI[0] = 0;
 				}
 
-				Projectile.localAI[0] = Projectile.NewProjectile(Projectile.GetSource_FromAI(), position, Vector2.Zero, ProjectileID.NebulaBlaze1, (int)(Projectile.damage * 1.5f), Projectile.knockBack, Projectile.owner);
-				Main.projectile[(int)Projectile.localAI[0]].tileCollide = false;
-				/*
-				Main.projectile[(int)Projectile.localAI[0]].hostile = false;
-				Main.projectile[(int)Projectile.localAI[0]].friendly = true;*/
+				if (Projectile.localAI[0] == 0 && Projectile.localAI[1] < 1)
+				{
+					Projectile.localAI[0] = Projectile.NewProjectile(Projectile.GetSource_FromAI(), position, Vector2.Zero, ModContent.ProjectileType<NebualShot>(), (int)(Projectile.damage * .7f), Projectile.knockBack, Projectile.owner);
+					Main.projectile[(int)Projectile.localAI[0]].tileCollide = false;
+					Projectile.localAI[1] = 2;
+				}
 			}
 
 			if (Projectile.localAI[0] != 0)
@@ -46,11 +50,12 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 
 		private void ReleaseProjectile()
 		{
-			SoundEngine.PlaySound(SoundID.Item20, Projectile.Center);
-			Vector2 velocity = Main.MouseWorld - Projectile.Center;
+			Projectile proj = Main.projectile[(int)Projectile.localAI[0]];
+			SoundEngine.PlaySound(SoundID.Item20, proj.Center);
+			Vector2 velocity = Main.MouseWorld - proj.Center;
 			velocity.Normalize();
-			Main.projectile[(int)Projectile.localAI[0]].velocity = velocity * 5;
-			Main.projectile[(int)Projectile.localAI[0]].tileCollide = true;
+			proj.velocity = velocity * 7;
+			proj.tileCollide = true;
 		}
 
 		public override bool PreKill(int timeLeft)
@@ -61,6 +66,11 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 			}
 
 			return base.PreKill(timeLeft);
+		}
+
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+		{
+			Projectile.NewProjectile(Projectile.GetSource_FromAI(), target.Center, Vector2.Zero, ProjectileID.NebulaArcanumSubshot, 0, 0, Projectile.owner);
 		}
 	}
 }
