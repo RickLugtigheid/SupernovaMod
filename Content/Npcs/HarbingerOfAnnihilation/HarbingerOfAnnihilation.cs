@@ -13,6 +13,8 @@ using Terraria.GameContent.ItemDropRules;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
 using Terraria.DataStructures;
 using SupernovaMod.Api;
+using SupernovaMod.Common.Systems;
+using SupernovaMod.Common;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
@@ -700,6 +702,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					if (direction == 0)
 					{
 						direction = Main.rand.NextBool() ? 1 : -1;
+						ForeachArm(arm => arm.canDealDamage = false);
 					}
 					if (timer <= 221)
 					{
@@ -707,7 +710,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					}
 					if (timer == 222)
 					{
+						ForeachArm(arm => arm.canDealDamage = true);
+
 						_desiredProjectileDestination += new Vector2(0, 1000 * direction);
+						SoundEngine.PlaySound(SoundID.Item117, _arms[1].Projectile.Center);
 					}
 
 					if (timer < 400)
@@ -740,6 +746,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					if (direction == 0)
 					{
 						direction = Main.rand.NextBool() ? 1 : -1;
+						ForeachArm(arm => arm.canDealDamage = false);
 					}
 					if (timer <= 221)
 					{
@@ -747,7 +754,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					}
 					if (timer == 222)
 					{
+						ForeachArm(arm => arm.canDealDamage = true);
+
 						_desiredProjectileDestination += new Vector2(1000 * direction, 0);
+						SoundEngine.PlaySound(SoundID.Item117, _arms[1].Projectile.Center);
 					}
 
 					if (timer < 380)
@@ -965,6 +975,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		{
 			NPC.lifeMax = (int)((float)NPC.lifeMax * 0.8f * balance);
 			NPC.damage = (int)((double)NPC.damage * (ExpertDamageMultiplier + .1f));
+		}
+
+		public override void OnKill()
+		{
+			DownedSystem.downedHarbingerOfAnnihilation = true;
+			SupernovaNetworking.SyncWorldData();
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

@@ -12,6 +12,8 @@ using SupernovaMod.Common.ItemDropRules.DropConditions;
 using SupernovaMod.Content.Items.Materials;
 using Terraria.DataStructures;
 using SupernovaMod.Api;
+using SupernovaMod.Common.Systems;
+using SupernovaMod.Common;
 
 namespace SupernovaMod.Content.Npcs.FlyingTerror
 {
@@ -24,7 +26,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 		private const int DAMAGE_PROJ_FIRE_BREATH = 23;
 
 		private const float ExpertDamageMultiplier = .8f;
-		private const float ProjectileExpertDamageMultiplier = .6f;
+		private const float ProjectileExpertDamageMultiplier = .7f;
 
 		public override void SetStaticDefaults()
         {
@@ -94,6 +96,8 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
 			}));
+
+			DownedSystem.downedHarbingerOfAnnihilation = true;
 		}
 
 		protected Player target;
@@ -311,9 +315,9 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				}
 			}
 			else
-			//if (npcLifeRatio > .75f)
 			{
-				//_glowColor = new Color(220, 50, 50, 245);
+				// Remove some attacks the more damage the boss has taken
+				//
 				if (npcLifeRatio < .35f && (attackPointer == 1 || attackPointer == 5))
 				{
 					attackPointer++;
@@ -322,11 +326,14 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				{
 					attackPointer++;
 				}
-				if (npcLifeRatio < .05f && (attackPointer == 0 || attackPointer == 4))
+				// In expert mode or higher the boss only does special attacks at the end
+				//
+				if (npcLifeRatio < .05f && Main.expertMode && (attackPointer == 0 || attackPointer == 4))
 				{
 					attackPointer++;
 				}
-
+				// Handle attacks
+				//
 				if (attackPointer == 0 || attackPointer == 1 || attackPointer == 4 || attackPointer == 5)
 				{
 					AttackFlyAndShoot(ref timer, ref attackPointer);
@@ -457,9 +464,9 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 							{
 								SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
 
-								Vector2 position = target.Center + new Vector2(Main.rand.Next(-500, 500), -1000);
+								Vector2 position = target.Center + new Vector2(Main.rand.Next(-750, 750), -1000);
 
-								Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 6.2f, ProjectileID.CultistBossFireBallClone, (int)(DAMAGE_PROJECILE * ProjectileExpertDamageMultiplier), 6, Main.myPlayer);
+								Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 5.7f, ProjectileID.CultistBossFireBallClone, (int)(DAMAGE_PROJECILE * ProjectileExpertDamageMultiplier), 6, Main.myPlayer);
 							}
 							if (timer >= 310)
 							{
@@ -512,11 +519,13 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				else
                 {
                     attackPointer = 0;
-					_attackPointer2 = Main.rand.Next(0, 5);
-					Main.NewText(_attackPointer2);
+					_attackPointer2++;
+					if (_attackPointer2 > 5)
+					{
+						_attackPointer2 = 0;
+					}
 				}
 			}
-            //MovementAI(velocity, acceleration, targetOffset.X, targetOffset.Y);
         }
 
 		#region AI Methods
@@ -528,15 +537,15 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			}
 
 			Player player = Main.player[NPC.target];
-			if (Main.dayTime || NPC.ai[0] != 3f && (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2250))
+			if (Main.dayTime || NPC.ai[0] != 3f && (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 3000))
 			{
 				NPC.TargetClosest(true);
 				player = Main.player[NPC.target];
-				if (Main.dayTime || player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2500)
+				if (Main.dayTime || player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 3000)
 				{
-					if (NPC.timeLeft > 130)
+					if (NPC.timeLeft > 180)
 					{
-						NPC.timeLeft = 130;
+						NPC.timeLeft = 180;
 					}
 					NPC.ai[0] = 0;
 					NPC.ai[1] = 0f;
@@ -574,27 +583,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			float gateValue = 100f;
 			Vector2 distanceFromTarget = targetPosition - NPC.Center;
 			SupernovaUtils.MoveNPCSmooth(NPC, gateValue, distanceFromTarget, velocity, acceleration, true);
-		}
-		private void MovementAI(float velocity, float acceleration, float targetOffsetX = 0, float targetOffsetY = 0)
-		{
-			NPC.spriteDirection = NPC.direction;
-
-			ref Player target = ref Main.player[NPC.target];
-			float gateValue = 100f;
-			Vector2 distanceFromTarget = new Vector2(target.Center.X - targetOffsetX, target.Center.Y - targetOffsetY) - NPC.Center;
-			SupernovaUtils.MoveNPCSmooth(NPC, gateValue, distanceFromTarget, velocity, acceleration, true);
-
-
-			// Set direction
-			//
-			if (NPC.velocity.X < 0f)
-			{
-				NPC.direction = -1;
-			}
-			else
-			{
-				NPC.direction = 1;
-			}
 		}
 		#endregion
 
@@ -768,6 +756,16 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 			if (NPC.ai[2] == 0 && timer >= 120)
 			{
+				// Telegraphing before the dash
+				//
+				if (timer == 100)
+				{
+					SoundEngine.PlaySound(SoundID.DD2_DrakinBreathIn);
+				}
+
+				// Check if the boss is above the player,
+				// if so start the dash.
+				//
 				NPC.ai[2] = (atTargetPositionY && atTargetPositionX) ? 1 : 0;
 				if (NPC.ai[2] == 1)
 				{
@@ -776,6 +774,8 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					_playAnimation = false;
 				}
 			}
+			// Handle the dash
+			//
 			else if (NPC.ai[2] == 1)
 			{
 				acceleration = .4f;
@@ -1031,6 +1031,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			NPC.lifeMax = (int)((float)NPC.lifeMax * 0.8f * balance);
 			NPC.damage = (int)((double)NPC.damage * ExpertDamageMultiplier);
 		}
+
 		public override void BossLoot(ref string name, ref int potionType)
 		{
 			potionType = ItemID.HealingPotion;
@@ -1041,9 +1042,10 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
             scale = 1.5f;
             return null;
         }
-		/*public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)*//* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) *//*
+		public override void OnKill()
 		{
-			NPC.lifeMax = (int)(NPC.lifeMax * 0.8f * bossLifeScale);
-		}*/
+			DownedSystem.downedFlyingTerror = true;
+			SupernovaNetworking.SyncWorldData();
+		}
 	}
 }

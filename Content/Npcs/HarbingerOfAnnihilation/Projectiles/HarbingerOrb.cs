@@ -52,13 +52,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
 
             if (Projectile.scale < 1)
             {
-                SoundEngine.PlaySound(SoundID.Item15, Projectile.Center);
                 Projectile.scale += .01f;
-                if (Projectile.scale == 0.99f)
+                if (Projectile.scale >= 0.99f)
                 {
-                    SoundEngine.PlaySound(SoundID.Item34, Projectile.Center);
+					SoundEngine.PlaySound(SoundID.Item20, Projectile.Center);
                 }
-            }
+			}
             else
             {
                 // Dusts

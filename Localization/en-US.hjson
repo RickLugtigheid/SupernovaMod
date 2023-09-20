@@ -28,7 +28,7 @@ Mods: {
 			}
 		}
 
-		"Keybinds.Ring Ability.DisplayName": Ring  Ability
+		"Keybinds.Ring Ability.DisplayName": Ring Ability
 
 		Tiles: {
 			RingForge.MapEntry: Ring Forge
@@ -47,7 +47,7 @@ Mods: {
 
 			FlyingTerror: {
 				DisplayName: Flying Terror
-				BossChecklistIntegration.SpawnInfo: Use a [i:5580] at night
+				BossChecklistIntegration.SpawnInfo: Use a [i:SupernovaMod/HorridChunk] at night
 			}
 
 			Bloodweaver: {
@@ -253,7 +253,7 @@ Mods: {
 
 			WoodenBullet: {
 				DisplayName: Wooden Bullet
-				Tooltip: ""
+				Tooltip: Burns up when going to fast
 			}
 
 			CarnageBoots: {
@@ -363,7 +363,7 @@ Mods: {
 
 			VerglasBar: {
 				DisplayName: Verglas Bar
-				Tooltip: ""
+				Tooltip: A cold bar of metal
 			}
 
 			ZirconiumBar: {
@@ -388,11 +388,6 @@ Mods: {
 					Dropped by Terror Bats
 					Summons the Flying Terror when used at night
 					'''
-			}
-
-			MantaFood: {
-				DisplayName: Manta Food
-				Tooltip: ""
 			}
 
 			BloodweaversRing: {
@@ -470,7 +465,7 @@ Mods: {
 
 			CarnageScepter: {
 				DisplayName: Carnage Scepter
-				Tooltip: ""
+				Tooltip: Shoots an explosive blood bolt
 			}
 
 			GlowGun: {
@@ -505,7 +500,7 @@ Mods: {
 
 			TerrorTome: {
 				DisplayName: Terror Tome
-				Tooltip: ""
+				Tooltip: Casts small homing terror bats
 			}
 
 			Tessen: {
@@ -520,7 +515,7 @@ Mods: {
 
 			VerglasScepter: {
 				DisplayName: Verglas Scepter
-				Tooltip: ""
+				Tooltip: Rapidly shoots ice shards
 			}
 
 			ZirconiumWand: {
@@ -538,11 +533,6 @@ Mods: {
 				Tooltip: Throws your enemies a bone
 			}
 
-			CarnageJavalin: {
-				DisplayName: Carnage Javalin
-				Tooltip: ""
-			}
-
 			CarnageSword: {
 				DisplayName: Carnage Sword
 				Tooltip: Landing crits on enemies will heal the player by 6 hp
@@ -550,7 +540,7 @@ Mods: {
 
 			HarbingersSlicer: {
 				DisplayName: Harbingers Slicer
-				Tooltip: ""
+				Tooltip: Generates an orbiting bolt of energy when swinging. When you stop swinging the bolt will be released
 			}
 
 			HarpoonSword: {
@@ -574,7 +564,7 @@ Mods: {
 			}
 
 			TerrorCleaver: {
-				DisplayName: Terror Cleaver
+				DisplayName: Terror Sickle
 				Tooltip: Shoots scythes of terror
 			}
 
@@ -641,7 +631,7 @@ Mods: {
 
 			TerrorRecurve: {
 				DisplayName: Terror Recurve
-				Tooltip: ""
+				Tooltip: Converts wooden arrows into Terror wing arrows that go faster over time
 			}
 
 			VerglasBow: {
@@ -771,7 +761,7 @@ Mods: {
 			GlowGunProj.DisplayName: Glow Gun Proj
 			GraniteProj.DisplayName: Granite Proj
 			ShockSurgeProj.DisplayName: Shock Surge Proj
-			TerrorProjFirendly.DisplayName: Terror Proj Firendly
+			TerrorProjFirendly.DisplayName: Terror Bat
 			VerglasScepterProj.DisplayName: Verglas Scepter Proj
 			ZicroniumExplosion.DisplayName: Zicronium Explosion
 			ZirconProj.DisplayName: Zircon Proj
@@ -807,6 +797,7 @@ Mods: {
 			BlazeBoltFlames.DisplayName: Blaze Bolt Flames
 			ConquerorsBladeStaffProj.DisplayName: Conquerors Blade Staff Proj
 			NebualShot.DisplayName: Nebual Shot
+			TerrorWingArrow.DisplayName: Terror Wing Arrow
 		}
 
 		Configs: {

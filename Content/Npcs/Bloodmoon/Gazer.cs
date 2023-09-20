@@ -48,10 +48,10 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
             shootTimer = 140;
 
             NPC.width = 54;
-            NPC.height = 58;
+            NPC.height = 54;
 
             NPC.damage = 12;
-            NPC.value = 60f;
+            NPC.value = 0;
             NPC.knockBackResist = 0.5f;
             NPC.aiStyle = 44;
             AIType = NPCID.Harpy;  //npc behavior
@@ -67,9 +67,10 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
             int frame = (int)NPC.frameCounter;
             NPC.frame.Y = frame * frameHeight;*/
 
+			// This is a simple "loop through all frames from top to bottom" animation
 			NPC.frameCounter++;
 
-			if (NPC.frameCounter > 8)
+			if (NPC.frameCounter > 5)
 			{
 				NPC.frameCounter = 0;
 				NPC npc = NPC;

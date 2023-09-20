@@ -28,17 +28,17 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
                 return;
             }
 
-            Projectile.spriteDirection = Projectile.direction;
-
             GeneralBehavior(owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition);
-            SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
+            SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter, out NPC target);
 
-            UpdateMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
+            UpdateMovement(foundTarget, distanceFromTarget, targetCenter, target, distanceToIdlePosition, vectorToIdlePosition);
             UpdateVisuals();
-        }
 
-        // This is the "active check", makes sure the minion is alive while the player is alive, and despawns if not
-        protected virtual bool CheckActive(Player owner)
+			Projectile.spriteDirection = Projectile.direction;
+		}
+
+		// This is the "active check", makes sure the minion is alive while the player is alive, and despawns if not
+		protected virtual bool CheckActive(Player owner)
         {
             if (owner.dead || !owner.active)
             {
@@ -115,15 +115,16 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 			idlePosition.Y -= 48f; // Go up 48 coordinates (three tiles from the center of the player)
 		}
 
-		protected virtual void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter)
+		protected virtual void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter, out NPC target)
         {
             // Starting search distance
             distanceFromTarget = 700f;
             targetCenter = Projectile.position;
             foundTarget = false;
+            target = null;
 
-            // This code is required if your minion weapon has the targeting feature
-            if (owner.HasMinionAttackTargetNPC)
+			// This code is required if your minion weapon has the targeting feature
+			if (owner.HasMinionAttackTargetNPC)
             {
                 NPC npc = Main.npc[owner.MinionAttackTargetNPC];
                 float between = Vector2.Distance(npc.Center, Projectile.Center);
@@ -132,10 +133,11 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
                 if (between < 2000f)
                 {
                     distanceFromTarget = between;
-                    targetCenter = npc.Center;
+					targetCenter = npc.Center;
                     foundTarget = true;
-                }
-            }
+					target = npc;
+				}
+			}
 
             if (!foundTarget)
             {
@@ -159,7 +161,8 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
                             distanceFromTarget = between;
                             targetCenter = npc.Center;
                             foundTarget = true;
-                        }
+							target = npc;
+						}
                     }
                 }
             }
@@ -171,7 +174,7 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
             Projectile.friendly = foundTarget;
         }
 
-        protected virtual void UpdateMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
+        protected virtual void UpdateMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, NPC target, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {
             if (foundTarget)
             {
@@ -185,7 +188,7 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 				{
 					Projectile.direction = -1;
 				}
-				UpdateAttackMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
+				UpdateAttackMovement(foundTarget, distanceFromTarget, targetCenter, target, distanceToIdlePosition, vectorToIdlePosition);
             }
             else
             {
@@ -208,15 +211,15 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 		protected float speed = 8f;
         protected float attackSpeedMuli = 1.5f;
 		protected float inertia = 10;
-		protected virtual void UpdateAttackMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
+		protected virtual void UpdateAttackMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, NPC target, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {
             speed = speedMax;
 			// Minion has a target: attack (here, fly towards the enemy)
             //
-			if (distanceFromTarget > 55)
+			if (distanceFromTarget > target.width)
 			{
                 float speedMulti = distanceFromTarget / 100;
-                speedMulti = Utils.Clamp(speedMulti, 1f, .5f); // Cap the multiplier
+                speedMulti = Utils.Clamp(speedMulti, .4f, 1); // Cap the multiplier
 				SupernovaUtils.MoveProjectileSmooth(Projectile, 100, targetCenter - Projectile.Center, speed * speedMulti, .15f);
 			}
 

@@ -3,9 +3,9 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace SupernovaMod.Content.Items.Tiles
+namespace SupernovaMod.Content.Items.Placeable
 {
-    public class ZirconiumOre : ModItem
+	public class ZirconiumOre : ModItem
     {
         public override void SetStaticDefaults()
         {

@@ -12,20 +12,16 @@ namespace SupernovaMod.Content.Items.Rings
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("Ring of Protection");
-            // Tooltip.SetDefault("When the 'Ring Ability button' is pressed you will dodge the next attack.\n+2 defence when equiped.");
         }
         public override void SetDefaults()
         {
-            Item.width = 16;
+			base.SetDefaults();
+			Item.width = 16;
             Item.height = 16;
-            Item.maxStack = 1;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(0, 5, 0, 0);
-            Item.accessory = true;
         }
-        public override int BaseCooldown => 7200;
+        public override int BaseCooldown => 60 * 60; // 1 minute
         public override void RingActivate(Player player, float ringPowerMulti)
         {
             // Add dust effect
@@ -38,8 +34,11 @@ namespace SupernovaMod.Content.Items.Rings
                 Main.dust[dust].velocity *= 1.75f;
             }
 
-            // Add the ring buff to the player
-            player.AddBuff(BuffID.ShadowDodge, Cooldown);
+			// Add the ShadowDodge buff to the player
+			//
+			int buffTime = 60 * 30;
+			buffTime = (int)(buffTime * ringPowerMulti);
+			player.AddBuff(BuffID.ShadowDodge, buffTime);
         }
 
         public override int MaxAnimationFrames => 1;

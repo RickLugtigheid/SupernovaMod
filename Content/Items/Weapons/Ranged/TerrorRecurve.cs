@@ -6,7 +6,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using SupernovaMod.Api;
 using Terraria.Audio;
-using SupernovaMod.Content.Projectiles.Boss;
 
 namespace SupernovaMod.Content.Items.Weapons.Ranged
 {
@@ -15,9 +14,6 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("Terror Recurve");
-            // Tooltip.SetDefault("");
         }
         public override Vector2? HoldoutOffset()
         {
@@ -25,9 +21,10 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
         }
         public override void SetDefaults()
         {
-            Item.damage = 13;
+            Item.damage = 21;
             Item.autoReuse = false;
             Item.crit = 1;
+            Item.knockBack = 3;
             Item.width = 16;
             Item.height = 24;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -37,32 +34,21 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             Item.UseSound = SoundID.Item5; // Sound for Bows
             Item.useAmmo = AmmoID.Arrow; // The ammo used with this weapon
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 7;
-            Item.useTime = 24;
-            Item.useAnimation = 24;
+            Item.shootSpeed = 10;
+            Item.useTime = 25;
+            Item.useAnimation = 25;
             Item.DamageType = DamageClass.Ranged;
             Item.autoReuse = true;
         }
 
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			velocity = velocity.RotatedByRandom(MathHelper.ToRadians(4));
-		}
-
-        private int _shots = 0;
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            _shots++;
-            if (_shots > 2)
+            if (type == ProjectileID.WoodenArrowFriendly)
             {
-				SoundEngine.PlaySound(SoundID.Item14, player.Center);
-                int proj = Projectile.NewProjectile(source, position, velocity.RotatedByRandom(MathHelper.ToRadians(6)), ModContent.ProjectileType<Projectiles.Magic.TerrorProjFirendly>(), (int)(damage * 1.5f), 4, player.whoAmI);
-                Main.projectile[proj].DamageType = DamageClass.Ranged;
-                Main.projectile[proj].penetrate  = 1;
-				_shots = 0;
-			}
-			return true;
-        }
+                type = ModContent.ProjectileType<Projectiles.Ranged.Arrows.TerrorWingArrow>();
+                velocity *= .75f;
+            }
+		}
 		public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();

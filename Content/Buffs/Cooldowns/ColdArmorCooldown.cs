@@ -10,14 +10,9 @@ namespace SupernovaMod.Content.Buffs.Cooldowns
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = false;
-
-            // DisplayName.SetDefault("Cold armor regen");
-            // Description.SetDefault("Waiting for the Verglas armor to freeze again");
-
             Main.debuff[Type] = true;
             Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            //longerExpertDebuff = true;
         }
 
 		public override void Update(Player player, ref int buffIndex)

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SupernovaMod.Api.Helpers;
+using SupernovaMod.Common;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
+using SupernovaMod.Common.Systems;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -235,6 +237,10 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			//
 			if (isFocused && !wasFocused)
 			{
+				SoundEngine.PlaySound(SoundID.Zombie6, NPC.position);
+
+				// Reset flags
+				//
 				isIdle = false;
 				isCasting = false;
 				isDashing = false;
@@ -662,7 +668,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			//
 			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<EoCDownedDropCondition>(conditionalRule =>
 			{
-				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Materials.BoneFragment>(), 3, maximumDropped: 8));
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Materials.BoneFragment>(), 1, maximumDropped: 8));
 			}));
 		}
 		public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
@@ -685,5 +691,11 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		public bool isDashing = false;
 		public bool isFocused = false;
 		public bool wasFocused = false;
+
+		public override void OnKill()
+		{
+			DownedSystem.downedBloodweaver = true;
+			SupernovaNetworking.SyncWorldData();
+		}
 	}
 }

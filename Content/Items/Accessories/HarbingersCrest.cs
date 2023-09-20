@@ -9,8 +9,6 @@ namespace SupernovaMod.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
-            // DisplayName.SetDefault("Harbingers Crest");
-            // Tooltip.SetDefault("Summons a Harbinger Arm to fight for you.");
         }
 
         public override void SetDefaults()
@@ -22,6 +20,7 @@ namespace SupernovaMod.Content.Items.Accessories
             Item.value = BuyPrice.RarityBlue;
             Item.accessory = true;
 			Item.damage = 21;
+			Item.crit = 3;
         }
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {

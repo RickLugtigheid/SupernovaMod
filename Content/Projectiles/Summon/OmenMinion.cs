@@ -15,8 +15,6 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
 		public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Omen");
-
             // This is necessary for right-click targeting
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 
@@ -57,9 +55,9 @@ namespace SupernovaMod.Content.Projectiles.Summon
             return true;
         }
 
-		protected override void UpdateMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
+		protected override void UpdateMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, NPC target, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
 		{
-			base.UpdateMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
+			base.UpdateMovement(foundTarget, distanceFromTarget, targetCenter, target, distanceToIdlePosition, vectorToIdlePosition);
 
             // Speed up the rotation when getting close to the enemy
             _rotateSpeed = foundTarget ? 21 : 12;
@@ -69,5 +67,17 @@ namespace SupernovaMod.Content.Projectiles.Summon
         {
 			Projectile.rotation += MathHelper.ToRadians(_rotateSpeed);
 		}
-    }
+
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			Projectile.NewProjectile(Projectile.GetSource_FromAI(), target.Center, Vector2.Zero, ProjectileID.NebulaArcanumSubshot, 0, 0, Projectile.owner);
+		}
+		public override void OnHitPlayer(Player target, Player.HurtInfo info)
+		{
+			if (info.PvP && !info.DustDisabled)
+            {
+				Projectile.NewProjectile(Projectile.GetSource_FromAI(), target.Center, Vector2.Zero, ProjectileID.NebulaArcanumSubshot, 0, 0, Projectile.owner);
+			}
+		}
+	}
 }

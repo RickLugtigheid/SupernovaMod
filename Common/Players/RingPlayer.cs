@@ -62,7 +62,9 @@ namespace SupernovaMod.Common.Players
 								equipedRing.RingActivate(Player, resourcePlayer.ringPower);
 
 								// After the ring is activated give the player a cooldown
-								Player.AddBuff(_ringCooldownBuffType, equipedRing.Cooldown);
+								int cooldown = equipedRing.Cooldown;
+								cooldown = (int)(cooldown * equipedRing.coolRegen);
+								Player.AddBuff(_ringCooldownBuffType, cooldown);
 							}
 						}
 					}

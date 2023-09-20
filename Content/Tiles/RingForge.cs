@@ -28,7 +28,7 @@ namespace SupernovaMod.Content.Tiles
         {
             if (frameX == 0)
             {
-                Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 48, 48, ModContent.ItemType<Items.Tiles.RingForge>());
+                Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 48, 48, ModContent.ItemType<Items.Placeable.RingForge>());
             }
         }
         public override void AnimateTile(ref int frame, ref int frameCounter)

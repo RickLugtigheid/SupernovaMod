@@ -1,5 +1,7 @@
 ﻿using SupernovaMod.Common.Players;
 using SupernovaMod.Content.Items.Rings.BaseRings;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -70,5 +72,25 @@ namespace SupernovaMod.Content.Prefixes
 		internal int tier = 0;
 		internal float coolRegenMulti = 1;
 		internal float projectileDamageMulti = 1;
+
+		/// <summary>
+		/// Load all <see cref="RingPrefix"/>es that can be used by the <paramref name="ring"/>.
+		/// </summary>
+		/// <param name="ring"></param>
+		/// <returns></returns>
+		public static int[] LoadPrefixes(SupernovaRingItem ring)
+		{
+			List<int> prefixes = new List<int>();
+			foreach (RingPrefix ringPrefix in ModContent.GetContent<RingPrefix>())
+			{
+				// Check if this prefix has a RingCategory that the given ring can use
+				//
+				if (ringPrefix.RingCategory == RingType.Misc || ringPrefix.RingCategory == ring.RingType)
+				{
+					prefixes.Add(ringPrefix.Type);
+				}
+			}
+			return prefixes.ToArray();
+		}
 	}
 }

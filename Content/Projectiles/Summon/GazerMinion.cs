@@ -14,8 +14,6 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Gazer");
-
 			// Sets the amount of frames this minion has on its spritesheet
 			Main.projFrames[Projectile.type] = 5;
 
@@ -52,7 +50,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 		// This is mandatory if your minion deals contact damage (further related stuff in AI() in the Movement region)
 		public override bool MinionContactDamage() => false;
 
-		protected override void UpdateMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
+		protected override void UpdateMovement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, NPC target, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
 		{
 			UpdateIdleMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
 
@@ -68,27 +66,8 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
 				// Set direction
 				//
-				if (Projectile.Center.X < targetCenter.X - 2f)
-				{
-					Projectile.direction = 1;
-				}
-				if (Projectile.Center.X > targetCenter.X + 2f)
-				{
-					Projectile.direction = -1;
-				}
-			}
-            else
-            {
-				// Set direction
-				//
-				if (Projectile.Center.X < vectorToIdlePosition.X - 2f)
-				{
-					Projectile.direction = -1;
-				}
-				if (Projectile.Center.X > vectorToIdlePosition.X + 2f)
-				{
-					Projectile.direction = 1;
-				}
+				float diff = Projectile.Center.X - targetCenter.X;
+				Projectile.direction = diff < 0 ? 1 : -1;
 			}
 		}
 

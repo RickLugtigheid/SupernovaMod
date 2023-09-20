@@ -14,18 +14,14 @@ namespace SupernovaMod.Content.Items.Rings
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("Prospectors Ring");
-            // Tooltip.SetDefault("Gives spelunker effect and faster mining speed for 12 seconds when the 'Ring Ability button' is pressed.");
         }
         public override void SetDefaults()
         {
-            Item.width = 16;
+			base.SetDefaults();
+			Item.width = 16;
             Item.height = 16;
-            Item.maxStack = 1;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(0, 5, 0, 0);
-            Item.accessory = true;
         }
         public override int BaseCooldown => 1800;
         public override void RingActivate(Player player, float ringPowerMulti)

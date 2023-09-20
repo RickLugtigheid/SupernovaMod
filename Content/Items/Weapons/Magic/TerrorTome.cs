@@ -12,8 +12,6 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("Terror Tome");
         }
         public override void SetDefaults()
         {
@@ -21,14 +19,14 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.crit = 2;
             Item.width = 24;
             Item.height = 28;
-            Item.useTime = 25;
-            Item.useAnimation = 25;
+            Item.useTime = 21;
+            Item.useAnimation = 21;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 3;
+            Item.knockBack = 4;
             Item.value = BuyPrice.RarityGreen;
             Item.rare = ItemRarityID.Green;
-            Item.mana = 4;             //mana use
+            Item.mana = 3;             //mana use
             Item.UseSound = SoundID.Item21;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.Magic.TerrorProjFirendly>();
@@ -38,7 +36,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-            velocity = velocity.RotatedByRandom(.2f);
+            velocity = velocity.RotatedByRandom(.05f);
 		}
 
 		public override void AddRecipes()

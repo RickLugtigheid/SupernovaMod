@@ -32,7 +32,12 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 		{
 			if (!Main.rand.NextBool(3))
 			{
-				Dust dust22 = Main.dust[Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0f, -2f, 0, default(Color), 1f)];
+				Dust dust22 = Main.dust[Dust.NewDust(NPC.Center, NPC.width, NPC.height, ModContent.DustType<Dusts.TerrorDust>(), 0f, -2f, 0, default(Color), 1f)];
+				dust22.noGravity = true;
+				dust22.fadeIn = 0.5f;
+				dust22.alpha = 200;
+
+				dust22 = Main.dust[Dust.NewDust(NPC.Center, NPC.width, NPC.height, DustID.Shadowflame, 0f, -2f, 0, default(Color), 1f)];
 				dust22.noGravity = true;
 				dust22.fadeIn = 0.5f;
 				dust22.alpha = 200;
@@ -45,7 +50,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			{
 				NPC other = Main.npc[i];
 
-				if (i != NPC.whoAmI && other.active && Math.Abs(NPC.position.X - other.position.X) + Math.Abs(NPC.position.Y - other.position.Y) < NPC.width * 2)
+				if (i != NPC.whoAmI && other.active && Math.Abs(NPC.position.X - other.position.X) + Math.Abs(NPC.position.Y - other.position.Y) < NPC.width * 3)
 				{
 					if (NPC.position.X < other.position.X)
 					{
@@ -68,6 +73,34 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			}
 
 			base.AI();
+
+			// When confused invert the velocity
+			//
+			if (NPC.confused)
+			{
+				NPC.velocity = -NPC.velocity;
+			}
+		}
+
+		public override void HitEffect(NPC.HitInfo hit)
+		{
+			if (Main.netMode == NetmodeID.Server)
+			{
+				return;
+			}
+
+			for (int i = 0; i < 5; i++)
+			{
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Dusts.TerrorDust>(), hit.HitDirection, -1f, 0, default(Color), 1f);
+			}
+			if (NPC.life <= 0)
+			{
+				for (int j = 0; j < 10; j++)
+				{
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<Dusts.TerrorDust>(), hit.HitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Shadowflame, hit.HitDirection, -1f, 0, default(Color), 1f);
+				}
+			}
 		}
 	}
 }

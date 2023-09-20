@@ -15,18 +15,14 @@ namespace SupernovaMod.Content.Items.Rings
 		public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            /* Tooltip.SetDefault("When the 'Ring Ability button' is pressed" +
-                "\n You will drain life from the 10 nearest enemies."); */
         }
         public override void SetDefaults()
         {
-            Item.width = 16;
+			base.SetDefaults();
+			Item.width = 16;
             Item.height = 16;
-            Item.maxStack = 1;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.buyPrice(0, 6, 0, 0);
-            Item.accessory = true;
 
 			damage = 24;
 		}
@@ -56,7 +52,7 @@ namespace SupernovaMod.Content.Items.Rings
                     Projectile.NewProjectile(player.GetSource_ItemUse(Item), shootX, target.position.Y, 0, 0, ProjectileID.SoulDrain, damage, 0, Main.myPlayer, 0f, 0f);
 
                     // Spawn the healing projectile
-                    int healAmount = (int)(damage / 3);
+                    int healAmount = (int)(damage * .4f);
 					Projectile.NewProjectile(player.GetSource_ItemUse(Item), target.Center, startVelocity, ProjectileID.VampireHeal, 1, 0, player.whoAmI, 0, healAmount);
 					targets++;
 				}
@@ -87,34 +83,6 @@ namespace SupernovaMod.Content.Items.Rings
         {
             SoundEngine.PlaySound(SoundID.Item15);
 
-			/*Vector2 dustPos = player.Center + new Vector2(30, 0).RotatedByRandom(MathHelper.ToRadians(360));
-            Vector2 diff = player.Center - dustPos;
-            diff.Normalize();
-
-			Dust.NewDustPerfect(dustPos, DustID.CrimsonTorch, diff * 3, Scale: 1.5f).noGravity = true;
-			Dust.NewDustPerfect(dustPos, DustID.Blood, diff * 2).noGravity = true;*/
-
-			/*Vector2 dustPos = player.Center + new Vector2(15, 0).RotatedBy(_rot);
-
-			for (int i = 0; i < 2; i++)
-			{
-				_rot += MathHelper.ToRadians(67.5f); // 45
-				_rot = _rot % MathHelper.ToRadians(360);
-
-				dustPos = dustPos.RotatedBy(_rot);
-				Vector2 diff = dustPos - player.Center;
-				diff.Normalize();
-
-				int dustType = DustID.CrimsonTorch;
-				Dust.NewDustPerfect(dustPos, dustType, diff, Scale: 1.75f).noGravity = true;
-
-				dustType = DustID.Blood;
-				Dust.NewDustPerfect(dustPos, dustType, diff, Scale: 1.5f).noGravity = true;
-			}
-			_rot += MathHelper.ToRadians(1);*/
-
-			// Spawn gem dust on the player
-			//
 			for (int i = 0; i < 2; i++)
 			{
 				_rot += MathHelper.ToRadians(67.5f);

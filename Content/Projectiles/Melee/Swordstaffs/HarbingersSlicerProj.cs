@@ -28,12 +28,6 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 			{
 				Projectile.localAI[1]--;
 
-				if (Projectile.localAI[0] != 0 && !Main.projectile[(int)Projectile.localAI[0]].active)
-				{
-					//ReleaseProjectile();
-					Projectile.localAI[0] = 0;
-				}
-
 				if (Projectile.localAI[0] == 0 && Projectile.localAI[1] < 1)
 				{
 					Projectile.localAI[0] = Projectile.NewProjectile(Projectile.GetSource_FromAI(), position, Vector2.Zero, ModContent.ProjectileType<NebualShot>(), (int)(Projectile.damage * .7f), Projectile.knockBack, Projectile.owner);
@@ -42,8 +36,14 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 				}
 			}
 
+
 			if (Projectile.localAI[0] != 0)
 			{
+				if (!Main.projectile[(int)Projectile.localAI[0]].active)
+				{
+					Projectile.localAI[0] = 0;
+					return;
+				}
 				Main.projectile[(int)Projectile.localAI[0]].position = position;
 			}
 		}

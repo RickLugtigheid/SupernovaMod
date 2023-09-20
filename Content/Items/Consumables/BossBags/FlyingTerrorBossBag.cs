@@ -11,9 +11,6 @@ namespace SupernovaMod.Content.Items.Consumables.BossBags
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Treasure Bag");
-            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
-
 			// This set is one that every boss bag should have.
 			// It will create a glowing effect around the item when dropped in the world.
 			// It will also let our boss bag drop dev armor..
@@ -42,9 +39,9 @@ namespace SupernovaMod.Content.Items.Consumables.BossBags
             //itemLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<TerrorInABottle>()));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
             {
-                ModContent.ItemType<Items.Weapons.Melee.TerrorCleaver>(),
-                ModContent.ItemType<Items.Weapons.Ranged.TerrorRecurve>(),
-                ModContent.ItemType<Items.Weapons.Magic.TerrorTome>(),
+                ModContent.ItemType<Weapons.Melee.TerrorCleaver>(),
+                ModContent.ItemType<Weapons.Ranged.TerrorRecurve>(),
+                ModContent.ItemType<Weapons.Magic.TerrorTome>(),
                // ModContent.ItemType<Items.Weapons.Melee.BlunderBuss>()
             }));
         }

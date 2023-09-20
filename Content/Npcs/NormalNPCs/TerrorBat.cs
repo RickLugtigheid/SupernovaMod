@@ -12,7 +12,6 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Terror Bat");
             Main.npcFrameCount[NPC.type] = 2;
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)

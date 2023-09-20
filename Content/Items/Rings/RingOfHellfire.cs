@@ -22,12 +22,11 @@ namespace SupernovaMod.Content.Items.Rings
         }
         public override void SetDefaults()
         {
-            Item.width = 16;
+			base.SetDefaults();
+			Item.width = 16;
             Item.height = 16;
-            Item.maxStack = 1;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.buyPrice(0, 6, 0, 0);
-            Item.accessory = true;
         }
         public override int BaseCooldown => 60 * 200;
         public override void RingActivate(Player player, float ringPowerMulti)

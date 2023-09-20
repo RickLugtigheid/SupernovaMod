@@ -7,12 +7,6 @@ namespace SupernovaMod.Content.Items.Misc
 {
     public class EyeOfDeath : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Eye Of Death");
-            // Tooltip.SetDefault("Stare into the Eye of Death and go back to where you died");
-        }
-
         public override void SetDefaults()
         {
             Item.useTurn = true;
@@ -20,7 +14,6 @@ namespace SupernovaMod.Content.Items.Misc
             Item.height = 18;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useTime = 90;
-            //item.UseSound = new LegacySoundStyle(SoundID.MoonLord, 0);
             Item.UseSound = SoundID.MoonLord;
             Item.useAnimation = 90;
             Item.rare = ItemRarityID.LightRed;

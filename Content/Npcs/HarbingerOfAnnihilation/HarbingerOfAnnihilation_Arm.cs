@@ -380,7 +380,6 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else if (attackPointer == HoaArmAI.LightningLink)
 			{
-				canDealDamage = true;
 				Projectile linkNode = Main.projectile[(int)Projectile.ai[1]];
 				timer++;
 				if (timer <= customDuration)

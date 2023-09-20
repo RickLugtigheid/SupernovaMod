@@ -9,11 +9,6 @@ namespace SupernovaMod.Content.Projectiles.Magic
 {
     public class VerglasScepterProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Verglas Scepter");
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 8;

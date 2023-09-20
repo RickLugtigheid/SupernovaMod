@@ -3,6 +3,7 @@ using SupernovaMod.Content.Prefixes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -27,10 +28,10 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
         /// </summary>
         public float coolRegen = 1;
 
-		/// <summary>
-		/// Ring cooldown to aply when ring is activated
-		/// </summary>
-		public int Cooldown { get; private set; }
+        /// <summary>
+        /// Ring cooldown to aply when ring is activated
+        /// </summary>
+        public int Cooldown { get; private set; }
 
         /// <summary>
         /// The ring animation length in time
@@ -73,22 +74,22 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
 
         }
 
-		public override void SetDefaults()
-		{
-			Item.maxStack = 1;
-			Item.accessory = true;
-		}
+        public override void SetDefaults()
+        {
+            Item.maxStack = 1;
+            Item.accessory = true;
+        }
 
-		public override void ModifyTooltips(List<TooltipLine> tooltips)
-		{
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
             // Insert after 'ItemName'
             tooltips.Insert(1, new TooltipLine(Mod, "CooldownTime", GetDurationText() + " cooldown"));
 
             // Add damage for Projectile type rings
             if (RingType == RingType.Projectile)
             {
-				tooltips.Insert(2, new TooltipLine(Mod, "Damage", Math.Round(damage * damageBonusMulti) + " damage"));
-			}
+                tooltips.Insert(2, new TooltipLine(Mod, "Damage", Math.Round(damage * damageBonusMulti) + " damage"));
+            }
 
             // Add cool regen bonus text
             //
@@ -97,88 +98,111 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
                 TooltipLine coolRegenBonus = new TooltipLine(Mod, "RingCoolRegenBonus", string.Empty);
                 if (coolRegen > 1)
                 {
-					coolRegenBonus.Text = $"+{Math.Round(coolRegen * 100) - 100}% cooldown";
-					coolRegenBonus.IsModifier = true;
+                    coolRegenBonus.Text = $"+{Math.Round(coolRegen * 100) - 100}% cooldown";
+                    coolRegenBonus.IsModifier = true;
                     coolRegenBonus.IsModifierBad = true;
-				}
-				else
+                }
+                else
                 {
-					coolRegenBonus.Text = $"-{100 - Math.Round(coolRegen * 100)}% cooldown";
-					coolRegenBonus.IsModifier = true;
-				}
-				tooltips.Add(coolRegenBonus);
-			}
+                    coolRegenBonus.Text = $"-{100 - Math.Round(coolRegen * 100)}% cooldown";
+                    coolRegenBonus.IsModifier = true;
+                }
+                tooltips.Add(coolRegenBonus);
+            }
             // Add damage bonus text
             if (damageBonusMulti != 1)
             {
-				TooltipLine damageBonus = new TooltipLine(Mod, "RingDamageBonus", string.Empty);
-				if (damageBonusMulti > 1)
-				{
-					damageBonus.Text = $"+{Math.Round(damageBonusMulti * 100) - 100}% damage";
+                TooltipLine damageBonus = new TooltipLine(Mod, "RingDamageBonus", string.Empty);
+                if (damageBonusMulti > 1)
+                {
+                    damageBonus.Text = $"+{Math.Round(damageBonusMulti * 100) - 100}% damage";
                     damageBonus.IsModifier = true;
-				}
-				else
-				{
-					damageBonus.Text = $"-{100 - Math.Round(damageBonusMulti * 100)}% damage";
-					damageBonus.IsModifier = true;
-					damageBonus.IsModifierBad = true;
-				}
-				tooltips.Add(damageBonus);
-			}
-		}
+                }
+                else
+                {
+                    damageBonus.Text = $"-{100 - Math.Round(damageBonusMulti * 100)}% damage";
+                    damageBonus.IsModifier = true;
+                    damageBonus.IsModifierBad = true;
+                }
+                tooltips.Add(damageBonus);
+            }
+        }
 
         private string GetDurationText()
         {
+            StringBuilder sb = new StringBuilder();
             if (Cooldown == 0)
             {
                 Cooldown = BaseCooldown;
             }
-			Cooldown = (int)(Cooldown * coolRegen);
+            Cooldown = (int)(Cooldown * coolRegen);
 
-			int seconds = Cooldown / 60;
-            float minutes = seconds / 60;
+            // Calculate the minutes and seconds we should display
+            //
+            int totalSeconds = Cooldown / 60;
+            int seconds = totalSeconds % 60;
+            int minutes = totalSeconds / 60;
 
+            // Check if the cooldown time contains any amount of minutes
+            //
             if (minutes > 0)
             {
-                return minutes + " minute" + (minutes > 1 ? 's' : string.Empty);
-            }
-            return seconds + " seconds";
-		}
+                sb.Append(minutes + " minute" + (minutes > 1 ? 's' : string.Empty));
 
-		public override void UpdateInventory(Player player)
-		{
-			Cooldown = BaseCooldown;
-			Cooldown = (int)(Cooldown * player.GetModPlayer<ResourcePlayer>().ringCoolRegen);
-			Item.RebuildTooltip();
-		}
-		public override void UpdateEquip(Player player)
-		{
-			Cooldown = BaseCooldown;
-			Cooldown = (int)(Cooldown * player.GetModPlayer<ResourcePlayer>().ringCoolRegen);
-			Item.RebuildTooltip();
-		}
+                // If seconds is lower than 10, only display the minute(s)
+                //
+                if (seconds < 10)
+                {
+                    return sb.ToString();
+                }
+                sb.Append(" and ");
+            }
+            sb.Append(seconds + " seconds");
+            return sb.ToString();
+        }
+
+        public override void UpdateInventory(Player player)
+        {
+            Cooldown = BaseCooldown;
+            Cooldown = (int)(Cooldown * player.GetModPlayer<ResourcePlayer>().ringCoolRegen);
+            Item.RebuildTooltip();
+        }
+        public override void UpdateEquip(Player player)
+        {
+            Cooldown = BaseCooldown;
+            Cooldown = (int)(Cooldown * player.GetModPlayer<ResourcePlayer>().ringCoolRegen);
+            Item.RebuildTooltip();
+        }
 
         // Rings an only be equiped in the ring slot
         //
-		public override bool CanEquipAccessory(Player player, int slot, bool modded)
-		{
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+        {
             if (slot != ModContent.GetInstance<SupernovaRingSlot>().Type)
                 return false;
             return true;
-		}
+        }
 
-		#region Reforge Methods
-		public override void PreReforge()
-		{
-			coolRegen = 1;
-			damageBonusMulti = 1;
-		}
+        #region Reforge Methods
+        public override void PreReforge()
+        {
+            coolRegen = 1;
+            damageBonusMulti = 1;
+        }
 
-		// Make rings only be able to get ring prefixes
-		//
-		private static int[] _ringPrefixes = ModContent.GetContent<RingPrefix>().Select(pre => pre.Type).ToArray();
-		public override int ChoosePrefix(UnifiedRandom rand) => Main.rand.NextFromList(_ringPrefixes);
-		public override bool AllowPrefix(int pre) => _ringPrefixes.Contains(pre);
+        // Make rings only be able to get ring prefixes
+        //
+        private int[] _ringPrefixes = null;
+        protected virtual int[] GetPrefixes()
+        {
+            if (_ringPrefixes == null)
+            {
+                _ringPrefixes = RingPrefix.LoadPrefixes(this);
+            }
+            return _ringPrefixes;
+        }
+		public override int ChoosePrefix(UnifiedRandom rand) => Main.rand.NextFromList(GetPrefixes());
+		public override bool AllowPrefix(int pre) => GetPrefixes().Contains(pre);
 		#endregion
 	}
 }
