@@ -1,12 +1,36 @@
 ﻿using Microsoft.Xna.Framework;
-using SupernovaMod.Api.Helpers;
+using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Runtime.CompilerServices;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace SupernovaMod.Api
 {
     public static class SupernovaUtils
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string GetNamespacePath(Type type) => type.Namespace.Replace('.', '/') + "/" + type.Name;
+		/// <summary>
+		/// Tries to load a texture at <see cref="Type.Namespace"/> of <paramref name="type"/>
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public static bool TryLoadTexture(Type type, out Texture2D texture)
+        {
+			string texturePath = type.Namespace.Replace('.', '/') + "/" + type.Name;
+
+            try
+            {
+                texture = ModContent.Request<Texture2D>(texturePath, ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                return true;
+			}
+            catch
+            {
+                texture = null;
+                return false;
+            }
+		}
         /// <summary>
         /// Checks if the chest is empty.
         /// </summary>

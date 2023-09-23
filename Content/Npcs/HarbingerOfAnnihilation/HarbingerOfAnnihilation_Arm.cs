@@ -10,6 +10,8 @@ using SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles;
 using SupernovaMod.Api.Effects;
 using SupernovaMod.Api.Helpers;
 using SupernovaMod.Api;
+using static Terraria.ModLoader.PlayerDrawLayer;
+using System.Collections.Generic;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
@@ -39,6 +41,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 		protected HarbingerOfAnnihilation owner;
 		private float _startDeg = 0;
+		private bool _drawAttackAnim = false;
 
 		public override void SetStaticDefaults()
 		{
@@ -114,6 +117,13 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			{
 				canDealDamage = true;
 				timer++;
+				Projectile.localAI[2]++;
+
+				if (timer == 35)
+				{
+					Projectile.localAI[2] = 0;
+					StartAttackAnim();
+				}
 
 				if (timer <= 65)
 				{
@@ -128,6 +138,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					velocity *= 25 / velocity.Magnitude();
 
 					Projectile.velocity = velocity;
+					_drawAttackAnim = false;
 				}
 				else if (timer >= 140 && ReturnToStartPosition())
 				{
@@ -142,6 +153,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			{
 				canDealDamage = true;
 				timer++;
+				Projectile.localAI[2]++;
+
+				if (timer == 50)
+				{
+					StartAttackAnim();
+				}
 
 				if (timer <= 85)
 				{
@@ -154,6 +171,8 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				{
 					SoundEngine.PlaySound(SoundID.Item117, Projectile.Center);
 					Projectile.velocity = new Vector2(0, 10);
+
+					_drawAttackAnim = false;
 				}
 				else if (timer >= 86 && timer < 140)
 				{
@@ -438,6 +457,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		private bool ReturnToStartPosition(float maxVelocity = 16)
 		{
 			Projectile.alpha = 130;
+			_drawAttackAnim = false;
 			canDealDamage = false;
 
 			// Factors for calculations
@@ -469,6 +489,21 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				Projectile.alpha = 0;
 			}
 			return atPosition;
+		}
+		private void StartAttackAnim()
+		{
+			_drawAttackAnim = true;
+			Projectile.localAI[2] = 0;
+
+			for (int i = 0; i < 12; i++)
+			{
+				Vector2 dustPos = Projectile.Center + new Vector2(Main.rand.Next(80, 120), 0).RotatedByRandom(MathHelper.ToRadians(360));
+				Vector2 diff = Projectile.Center - dustPos;
+				diff.Normalize();
+
+				Dust.NewDustPerfect(dustPos, DustID.CrystalPulse, diff * 7, Scale: 2f).noGravity = true;
+				Dust.NewDustPerfect(dustPos, DustID.CrystalPulse2, diff * 7, Scale: 1.5f).noGravity = true;
+			}
 		}
 		#endregion
 
@@ -508,6 +543,14 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			return false;
 		}
 
+		public Vector2 CoreSpritePosition
+		{
+			get
+			{
+				return base.Projectile.Center + (float)base.Projectile.spriteDirection * Utils.ToRotationVector2(base.Projectile.rotation) * 30f + Utils.ToRotationVector2(base.Projectile.rotation + 1.5707964f) * 15f;
+			}
+		}
+
 		public override bool PreDraw(ref Color lightColor)
 		{
 			SpriteEffects spriteEffects = 0;
@@ -527,7 +570,8 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			int num159 = 1;
 			float num160 = 0f;
 			int num161 = num159;
-			Main.spriteBatch.Draw(texture2D3, Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Rectangle((int)Projectile.Center.X, (int)Projectile.Center.Y, Projectile.width, Projectile.height), color24, Projectile.rotation, new Vector2(Projectile.width, Projectile.height) / 2f, Projectile.scale, spriteEffects, 0f);
+			Vector2 center = Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY);
+			Main.spriteBatch.Draw(texture2D3, center, new Rectangle((int)Projectile.Center.X, (int)Projectile.Center.Y, Projectile.width, Projectile.height), color24, Projectile.rotation, new Vector2(Projectile.width, Projectile.height) / 2f, Projectile.scale, spriteEffects, 0);
 			while (num158 > 0 && num161 < num157 || num158 < 0 && num161 > num157)
 			{
 				Color color26 = Projectile.GetAlpha(color25);
@@ -539,10 +583,52 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				color26 *= num162 / (ProjectileID.Sets.TrailCacheLength[Projectile.type] * 1.5f);
 				Vector2 value4 = Projectile.oldPos[num161];
 				float num163 = Projectile.rotation;
-				Main.spriteBatch.Draw(texture2D3, value4 + Projectile.Size / 2f - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Rectangle?(rectangle), color26, num163 + Projectile.rotation * num160 * (num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, Projectile.scale, spriteEffects, 0f);
+				Main.spriteBatch.Draw(texture2D3, value4 + Projectile.Size / 2f - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), new Rectangle?(rectangle), color26, num163 + Projectile.rotation * num160 * (num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, Projectile.scale, spriteEffects, 0);
 				num161 += num158;
 			}
+
+			/*if (_drawAttackAnim && Projectile.localAI[2] < 144)
+			{
+				Color color = Color.OrangeRed;//Color.OrangeRed;
+				float num164 = 28.8f; // 28.8f
+				float pulseRatio = base.Projectile.localAI[2] % num164 / num164;
+				float pulseSize = MathHelper.Lerp(0.1f, 0.6f, (float)Math.Floor((double)(base.Projectile.localAI[2] / num164)) / 4f);
+				float pulseOpacity = MathHelper.Clamp((float)Math.Floor((double)(base.Projectile.localAI[2] / num164)) * 0.3f, 1f, 2f);
+				Main.spriteBatch.Draw(texture2D3, center, new Rectangle?(rectangle), color * MathHelper.Lerp(1f, 0f, pulseRatio) * pulseOpacity, base.Projectile.rotation, origin2, Projectile.scale + pulseRatio * pulseSize, spriteEffects, 0f);
+				//this.EnergyDrawer.DrawBloom(this.CoreSpritePosition);
+
+				Particle.NewParticle<Effects.Particles.BloomLight>(center, Vector2.Zero, scale: Projectile.scale + pulseRatio * pulseSize, color: color);
+			}*/
 			return true;
+		}
+		public override void PostDraw(Color lightColor)
+		{
+			if (_drawAttackAnim && Projectile.localAI[2] < 48)
+			{
+				SpriteEffects spriteEffects = 0;
+				if (Projectile.spriteDirection == 1)
+				{
+					spriteEffects = SpriteEffects.FlipHorizontally;
+				}
+				int num156 = TextureAssets.Projectile[Projectile.type].Value.Height / 1;
+				int y3 = num156 * (int)Projectile.frameCounter;
+				Rectangle rectangle = new Rectangle(0, y3, TextureAssets.Projectile[Projectile.type].Value.Width, num156);
+				Vector2 origin2 = rectangle.Size() / 2f;
+				Vector2 center = Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY);
+
+				Texture2D glowMask = ModContent.Request<Texture2D>(SupernovaUtils.GetNamespacePath(GetType()) + "_Mask", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+
+				Color color = Color.White; //Color.OrangeRed;
+				float num164 = 48; // 28.8f
+				float pulseRatio = base.Projectile.localAI[2] % num164 / num164;
+				float pulseSize = MathHelper.Lerp(0.1f, 0.6f, (float)Math.Floor((double)(base.Projectile.localAI[2] / num164)) / 2);
+				//float pulseOpacity = .4f + Math.Clamp(Projectile.localAI[2] / num164, 0, .7f);
+				float pulseOpacity = Math.Clamp(Projectile.localAI[2] / (num164 * .35f), .25f, 1);
+
+				Main.spriteBatch.Draw(glowMask, center, new Rectangle?(rectangle), color * pulseOpacity, base.Projectile.rotation, origin2, (Projectile.scale * 2f) - (/*pulseRatio * pulseSize*/Math.Clamp(Projectile.localAI[2] / 22, .1f, 2)), spriteEffects, 0);
+			}
+
+			base.PostDraw(lightColor);
 		}
 	}
 }

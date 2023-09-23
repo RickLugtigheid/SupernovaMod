@@ -57,6 +57,13 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
                 {
 					SoundEngine.PlaySound(SoundID.Item20, Projectile.Center);
                 }
+
+				Vector2 dustPos = Projectile.Center + new Vector2((Projectile.width * Projectile.scale) + 2, 0).RotatedByRandom(MathHelper.ToRadians(360));
+				Vector2 diff = Projectile.Center - dustPos;
+				diff.Normalize();
+
+				Dust.NewDustPerfect(dustPos, DustID.HallowedTorch, diff * 1, Scale: 1).noGravity = true;
+				Dust.NewDustPerfect(dustPos, DustID.CrystalPulse, diff * 2, Scale: Projectile.scale + .05f).noGravity = true;
 			}
             else
             {
