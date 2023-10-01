@@ -32,7 +32,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
             Main.dust[dust].noGravity = true; //this make so the dust has no gravity
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
             if (Projectile.owner == Main.myPlayer)

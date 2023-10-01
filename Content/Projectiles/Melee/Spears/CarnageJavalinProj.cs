@@ -44,12 +44,12 @@ namespace SupernovaMod.Content.Projectiles.Melee.Spears
 			}
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			Vector2 velocity = Vector2.One * 10;
 			velocity = velocity.RotatedBy(Projectile.rotation - MathHelper.ToRadians(90));
 			Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, velocity, ProjectileID.NettleBurstRight, (int)(Projectile.damage * .45f), 2, Main.myPlayer, 0f, 0f);
-			base.Kill(timeLeft);
+			base.OnKill(timeLeft);
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Arrows
 			base.AI();
         }
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item14);
 			int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<ZicroniumExplosion>(), (int)(Projectile.damage * .6f), Projectile.knockBack, Projectile.owner, 10);

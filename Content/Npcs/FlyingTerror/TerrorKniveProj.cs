@@ -33,7 +33,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
             return projHitbox.Intersects(targetHitbox);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
             Vector2 usePos = Projectile.position;

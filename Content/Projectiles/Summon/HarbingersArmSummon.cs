@@ -226,13 +226,13 @@ namespace SupernovaMod.Content.Projectiles.Summon
 			target.AddBuff(BuffID.Frozen, 300);
 			base.ModifyHitNPC(target, ref modifiers);
 		}
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
         {
             for (int i = 0; i <= 7; i++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.UndergroundHallowedEnemies, Projectile.velocity.X, Projectile.velocity.Y, Scale: 1.5f);
             }
-            base.Kill(timeLeft);
+            base.OnKill(timeLeft);
         }
 
 		public override Color? GetAlpha(Color lightColor)

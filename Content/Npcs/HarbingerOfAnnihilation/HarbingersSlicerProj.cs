@@ -29,7 +29,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
             target.AddBuff(BuffID.ShadowFlame, 30);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 

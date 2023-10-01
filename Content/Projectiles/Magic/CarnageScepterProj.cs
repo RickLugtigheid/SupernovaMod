@@ -30,7 +30,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
             Projectile.extraUpdates = 1;
             AIType = 521;
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             //SoundEngine.PlaySound(2, (int)Projectile.position.X, (int)Projectile.position.Y, 109);
             SoundEngine.PlaySound(SoundID.Item2, Projectile.position);

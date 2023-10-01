@@ -233,7 +233,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged
         }
 
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             for (int x = 0; x <= 7; x++)
             {

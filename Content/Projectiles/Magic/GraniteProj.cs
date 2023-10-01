@@ -84,7 +84,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			}
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			for (int x = 0; x <= 7; x++)
 			{

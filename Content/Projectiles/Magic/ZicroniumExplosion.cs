@@ -52,7 +52,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			ArmorPlayer player = Main.player[Projectile.owner].GetModPlayer<ArmorPlayer>();
 			player.ZirconiumArmor_ModifyHitNPC(target, ref modifiers);
 		}
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			int dustType = ModContent.DustType<Dusts.ZirconDust>();
 			for (int num923 = 0; num923 < 10; num923++)

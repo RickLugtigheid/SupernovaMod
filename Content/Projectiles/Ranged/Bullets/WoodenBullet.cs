@@ -50,7 +50,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
             if (Projectile.timeLeft <= 35 && Main.rand.NextBool(3)) target.AddBuff(BuffID.OnFire, 60);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             if (timeLeft <= 25) return;
 
