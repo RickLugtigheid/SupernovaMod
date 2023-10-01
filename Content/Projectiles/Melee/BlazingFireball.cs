@@ -66,12 +66,12 @@ namespace SupernovaMod.Content.Projectiles.Melee
 			Projectile.timeLeft = 10;
 		}
 
-		public override void Kill(int timeLeft)
-        {
-            for (int i = 0; i <= 10; i++)
-            {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X, Projectile.velocity.Y, Scale: 1.5f);
-            }
-        }
-    }
+		public override void OnKill(int timeLeft)
+		{
+			for (int i = 0; i <= 10; i++)
+			{
+				Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X, Projectile.velocity.Y, Scale: 1.5f);
+			}
+		}
+	}
 }

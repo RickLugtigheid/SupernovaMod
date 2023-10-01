@@ -21,15 +21,9 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             // DisplayName.SetDefault("Geist");
 			Main.npcFrameCount[NPC.type] = 3;
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused,
-					BuffID.Poisoned
-				}
-			};
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 // Influences how the NPC looks in the Bestiary
                 Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
@@ -163,14 +157,14 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             if (spawnInfo.Player.ZoneGraveyard)
             {
-                return 0.03f;
+                return 0.024f;
             }
 
-            if (Main.dayTime || spawnInfo.PlayerSafe || spawnInfo.Player.ZoneDungeon || spawnInfo.PlayerInTown || spawnInfo.Player.ZoneOldOneArmy || Main.snowMoon || Main.pumpkinMoon)
+            if (Main.dayTime || !spawnInfo.Player.ZoneOverworldHeight || spawnInfo.PlayerSafe || spawnInfo.Player.ZoneDungeon || spawnInfo.PlayerInTown || spawnInfo.Player.ZoneOldOneArmy || Main.snowMoon || Main.pumpkinMoon)
             {
                 return 0f;
             }
-            return 0.045f;
+            return 0.03f;
         }
 
 		public override void HitEffect(NPC.HitInfo hit)

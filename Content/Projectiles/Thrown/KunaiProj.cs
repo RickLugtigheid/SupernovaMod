@@ -20,7 +20,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             Projectile.penetrate = 1;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             //SoundEngine.PlaySound(0, (int)Projectile.position.X, (int)Projectile.position.Y, 1, 1f, 0f);
             SoundEngine.PlaySound(SoundID.Dig);

@@ -17,7 +17,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
             // DisplayName.SetDefault("Gazer");
 			Main.npcFrameCount[NPC.type] = 5;
 
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 PortraitPositionYOverride = -20,
                 // Influences how the NPC looks in the Bestiary

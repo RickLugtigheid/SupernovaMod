@@ -40,7 +40,7 @@ namespace SupernovaMod.Content.Projectiles.Boss
 			Main.dust[dust].noGravity = true; //this make so the dust has no gravity
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			if (Projectile.ai[0] == 1)
 			{

@@ -6,9 +6,8 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
 using Terraria.Audio;
-using Terraria.ModLoader.Utilities;
-using Terraria.DataStructures;
 using SupernovaMod.Api;
+using SupernovaMod.Common.Systems;
 
 namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
@@ -19,16 +18,11 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
         public override void SetStaticDefaults()
         {
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused,
-					BuffID.Poisoned,
-					BuffID.Frostburn
-				}
-			};
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Frostburn] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Frostburn2] = true;
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 // Influences how the NPC looks in the Bestiary
                 Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
@@ -169,10 +163,9 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             NPC.frame.Y = frame * frameHeight;
         }
 
-        //public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.ZoneOverworldHeight == true && spawnInfo.Player.ZoneSnow == true && NPC.downedQueenBee == true ? 0.06f : 0;
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!spawnInfo.Player.ZoneSnow || spawnInfo.PlayerSafe || !NPC.downedQueenBee || spawnInfo.Player.ZoneDungeon || spawnInfo.PlayerInTown || spawnInfo.Player.ZoneOldOneArmy || Main.snowMoon || Main.pumpkinMoon)
+            if (!spawnInfo.Player.ZoneSnow || !spawnInfo.Player.ZoneOverworldHeight || spawnInfo.PlayerSafe || !DownedSystem.downedFlyingTerror || spawnInfo.Player.ZoneDungeon || spawnInfo.PlayerInTown || spawnInfo.Player.ZoneOldOneArmy || Main.snowMoon || Main.pumpkinMoon)
             {
                 return 0f;
             }
@@ -196,7 +189,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Rime>(), 4, maximumDropped: 3));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Rime>(), 3, maximumDropped: 2));
             npcLoot.Add(ItemDropRule.Common(ItemID.IceBlock, 2, 0, 10));
 
             base.ModifyNPCLoot(npcLoot);

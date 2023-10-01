@@ -25,7 +25,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         public Player target;
 
 		private const int DAMAGE_PROJ_MISSILE = 20;
-		private const int DAMAGE_PROJ_ORB = 30;
+		private const int DAMAGE_PROJ_ORB = 31;
 
 		private readonly int _projIdMissile = ModContent.ProjectileType<HarbingerMissile>();
 
@@ -37,16 +37,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         {
 			NPCID.Sets.MPAllowedEnemies[NPC.type] = true;
 			NPCID.Sets.CantTakeLunchMoney[Type] = true;
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused,
-					BuffID.Poisoned
-				}
-			};
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
+			NPCID.Sets.TeleportationImmune[NPC.type] = true;
 			NPCID.Sets.TrailingMode[NPC.type] = 1;
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 // Influences how the NPC looks in the Bestiary
             };
@@ -281,8 +276,6 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else
 			{
-				bool move = true;
-
 				if (_attackPointer2 == 0 || _attackPointer2 == 1)
 				{
 					if (attackPointer == 0)
@@ -1017,7 +1010,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
                 Main.spriteBatch.Draw(texture2D3, value4 + NPC.Size / 2f - screenPos + new Vector2(0f, NPC.gfxOffY), new Rectangle?(rectangle), color26, num163 + NPC.rotation * num160 * (num161 - 1) * -(float)spriteEffects.HasFlag(SpriteEffects.FlipHorizontally).ToDirectionInt(), origin2, NPC.scale, spriteEffects, 0f);
                 num161 += num158;
             }
-			return NPC.IsABestiaryIconDummy;
+			return false;
 		}
     }
 }

@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
 using System;
-using System.Collections.Generic;
 
 namespace SupernovaMod.Common.GlobalNPCs
 {
@@ -12,11 +11,11 @@ namespace SupernovaMod.Common.GlobalNPCs
 	{
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
 		{
-			// Drop from any zombie
+			// Drop from any Skeleton
 			//
-			if (NPCID.Sets.Zombies[npc.type])
+			if (NPCID.Sets.Skeletons[npc.type])
 			{
-				// 1/7 (14,28571%) Drop chance after the EoC is downed
+				// 1/7 (14.28571%) Drop chance after the EoC is downed
 				//
 				npcLoot.Add(GetDropRule<EoCDownedDropCondition>(conditionalRule =>
 				{
@@ -31,6 +30,18 @@ namespace SupernovaMod.Common.GlobalNPCs
 				// 1/30 (3.3333%) Drop chance
 				//
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.DemonHorns>(), 30));
+			}
+
+			// Drop from pre-hardmode ice enemies
+			//
+			if (npc.type == NPCID.IceSlime || npc.type == NPCID.SpikedIceSlime || npc.type == NPCID.IceBat)
+			{
+				// 1/10 (10%)  Drop chance
+				//
+				npcLoot.Add(GetDropRule<FlyingTerrorDownedDropCondition>(conditionalRule =>
+				{
+					conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.Rime>(), 10, maximumDropped: 2));
+				}));
 			}
 
 			/* Register Event Handlers */
@@ -70,16 +81,6 @@ namespace SupernovaMod.Common.GlobalNPCs
 		}
 		public void NPCBiomeSnowLoot(IItemDropRule conditionalRule)
 		{
-			// 1/12 (8,33333%) drop chance after the Queen bee is downed
-			//
-			conditionalRule.OnSuccess(GetDropRule<QueenBeeDownedDropCondition>(conditionalRule =>
-			{
-				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.Rime>(), 5, maximumDropped: 2), true);
-			}));
-			/*if (NPC.downedQueenBee == true)
-			{
-				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.PreHardmode.Items.Materials.Rime>(), 5, maximumDropped: 2));
-			}*/
 		}
 		public void NPCBiomeEvilLoot(IItemDropRule conditionalRule)
 		{

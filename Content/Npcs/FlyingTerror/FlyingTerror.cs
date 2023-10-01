@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
@@ -34,16 +34,11 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			NPCID.Sets.TrailingMode[NPC.type] = 1;
 			NPCID.Sets.CantTakeLunchMoney[Type] = true;
 			NPCID.Sets.MPAllowedEnemies[NPC.type] = true;
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused,
-					BuffID.OnFire,
-					BuffID.ShadowFlame
-				}
-			};
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.OnFire] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.ShadowFlame] = true;
+			NPCID.Sets.TeleportationImmune[NPC.type] = true;
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 // Influences how the NPC looks in the Bestiary
                 PortraitScale = .75f,
@@ -313,6 +308,8 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					_attackPointer2 = Main.rand.Next(0, 2);
 					_playAnimation = true;
 				}
+				velocity /= 2;
+				MovementAI(target.Center - targetOffset, velocity, acceleration);
 			}
 			else
 			{
@@ -752,17 +749,17 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			velocity = 18;
 			acceleration = .15f;
 
-			Vector2 targetPos = new Vector2(0, 450);
+			Vector2 targetPos = new Vector2(0, 440);
+
+			// Telegraphing before the dash
+			//
+			if (timer == 100)
+			{
+				SoundEngine.PlaySound(SoundID.DD2_DrakinBreathIn);
+			}
 
 			if (NPC.ai[2] == 0 && timer >= 120)
 			{
-				// Telegraphing before the dash
-				//
-				if (timer == 100)
-				{
-					SoundEngine.PlaySound(SoundID.DD2_DrakinBreathIn);
-				}
-
 				// Check if the boss is above the player,
 				// if so start the dash.
 				//
@@ -772,6 +769,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					SoundEngine.PlaySound(SoundID.ForceRoarPitched, NPC.Center);
 					timer = 0;
 					_playAnimation = false;
+					NPC.velocity /= 3;
 				}
 			}
 			// Handle the dash
@@ -779,7 +777,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			else if (NPC.ai[2] == 1)
 			{
 				acceleration = .4f;
-				velocity = 20;
+				velocity = 21;
 				drawMotionBlur = true;
 
 				float gateValue = 100f;
@@ -931,8 +929,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				Color color = NPC.GetAlpha(drawColor);
 				Color color2 = NPC.GetAlpha(drawColor);
 				float amount9 = 0f;
-				int num150 = 120;
-				int num151 = 60;
 				int num153 = 10;
 				int num154 = 2;
 				for (int num155 = 1; num155 < num153; num155 += num154)
@@ -967,7 +963,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 			// Draw Glowmask
 			spriteBatch.Draw(glowMask, drawPosition, NPC.frame, _glowColor, NPC.rotation, drawOrigin, NPC.scale, effects, 0f);
-			return NPC.IsABestiaryIconDummy;
+			return false;
         }
 
         private bool _playAnimation = true;
@@ -1044,6 +1040,11 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
         }
 		public override void OnKill()
 		{
+			if (!DownedSystem.downedFlyingTerror)
+			{
+				string key = "Mods.SupernovaMod.Status.Progression.StartDroppingRime";
+				SupernovaUtils.NewLocalizedText(key, Color.LightSkyBlue);
+			}
 			DownedSystem.downedFlyingTerror = true;
 			SupernovaNetworking.SyncWorldData();
 		}

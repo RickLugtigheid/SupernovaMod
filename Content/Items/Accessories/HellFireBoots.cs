@@ -11,12 +11,6 @@ namespace SupernovaMod.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("HellFire Boots");
-            /* Tooltip.SetDefault("Provides the ability to walk on water and lava" +
-                "\n Grants immunity to fire blocks and 7 seconds of immunity to lava \n" +
-                "Inflicts fire damage on attack\n" +
-                "Reduces damage from touching lava"); */
         }
 
         public override void SetDefaults()

@@ -28,7 +28,7 @@ namespace SupernovaMod.Content.Items.Consumables.Potions
             Item.width = 20;
             Item.height = 28;
             Item.value = 100;
-            Item.rare = 1;
+            Item.rare = ItemRarityID.Blue;
             Item.buffTime = 20000;    //this is the buff duration        20000 = 6 min
             Item.buffType = ModContent.BuffType<Buffs.Potions.QuarionBuff>();    //this is where you put your Buff name
             return;

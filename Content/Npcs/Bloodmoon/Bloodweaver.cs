@@ -45,17 +45,12 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		{
 			Main.npcFrameCount[NPC.type] = 5;
 
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;		
 			NPCID.Sets.MPAllowedEnemies[NPC.type] = true;
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Confused,
-					BuffID.Poisoned
-				}
-			};
+			NPCID.Sets.TeleportationImmune[NPC.type] = true;
 			NPCID.Sets.BossBestiaryPriority.Add(NPC.type);
-			NPCID.Sets.NPCBestiaryDrawModifiers npcbestiaryDrawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0);
+			NPCID.Sets.NPCBestiaryDrawModifiers npcbestiaryDrawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers();
 			npcbestiaryDrawModifiers.PortraitPositionYOverride = new float?((float)-5);
 			npcbestiaryDrawModifiers.Scale = .75f;
 		}
@@ -306,11 +301,11 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			}
 
 			Player player = Main.player[NPC.target];
-			if (Main.dayTime || NPC.ai[0] != 3f && (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2250))
+			if (NPC.ai[0] != 3f && (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2250))
 			{
 				NPC.TargetClosest(true);
 				player = Main.player[NPC.target];
-				if (Main.dayTime || player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2500)
+				if (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2500)
 				{
 					if (NPC.timeLeft > 130)
 					{
@@ -321,9 +316,6 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 					NPC.ai[2] = 0f;
 					NPC.ai[3] = 0f;
 					NPC.netUpdate = true;
-
-					// Use HoveringFighter AI for despawning
-					NPC.aiStyle = NPCAIStyleID.HoveringFighter;
 					return true;
 				}
 			}

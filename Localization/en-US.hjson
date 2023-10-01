@@ -358,7 +358,7 @@ Mods: {
 
 			Rime: {
 				DisplayName: Rime
-				Tooltip: Droped by creatures in the snow Biome
+				Tooltip: Dropped by certain creatures in the snow biome
 			}
 
 			VerglasBar: {
@@ -743,11 +743,11 @@ Mods: {
 		Projectiles: {
 			FlyingTerrorFlameBreath.DisplayName: Flying Terror Flame Breath
 			TerrorFlame.DisplayName: Terror Flame
-			HarbingerOfAnnihilation_Arm.DisplayName: Harbinger Of Annihilation_ Arm
+			HarbingerOfAnnihilation_Arm.DisplayName: Harbinger Of Annihilation Arm
 			HarbingerMissile.DisplayName: Harbinger Missile
 			HarbingerOrb.DisplayName: Harbinger Orb
-			HoaBlackHole.DisplayName: Hoa Black Hole
-			ChainLightningHostile.DisplayName: Chain Lightning Hostile
+			HoaBlackHole.DisplayName: Black Hole
+			ChainLightningHostile.DisplayName: Lightning
 			LightningOrb.DisplayName: Lightning Orb
 			LightningSpawner.DisplayName: Lightning Spawner
 			StormBolt.DisplayName: Storm Bolt
@@ -758,9 +758,9 @@ Mods: {
 			CarnageScepterProj.DisplayName: Carnage Scepter Proj
 			CarnageScepterProj2.DisplayName: Carnage Scepter Proj2
 			FrostFlame.DisplayName: Frost Flame
-			GlowGunProj.DisplayName: Glow Gun Proj
-			GraniteProj.DisplayName: Granite Proj
-			ShockSurgeProj.DisplayName: Shock Surge Proj
+			GlowGunProj.DisplayName: Glow bolt
+			GraniteProj.DisplayName: Granite Chunk
+			ShockSurgeProj.DisplayName: Shock Surge
 			TerrorProjFirendly.DisplayName: Terror Bat
 			VerglasScepterProj.DisplayName: Verglas Scepter Proj
 			ZicroniumExplosion.DisplayName: Zicronium Explosion
@@ -803,13 +803,24 @@ Mods: {
 		Configs: {
 			SupernovaModConfig: {
 				DisplayName: Supernova Mod Config
-				Headers.Misc: Misc Header
+
+				Headers: {
+					Misc: Misc Header
+					Effects: Effects Header
+				}
 
 				debugMode: {
 					Label: debug Mode
 					Tooltip: ""
 				}
+
+				allowScreenShake: {
+					Label: allow Screen Shake
+					Tooltip: ""
+				}
 			}
 		}
+
+		Status.Progression.StartDroppingRime: Rime started forming in the ice biome...
 	}
 }

@@ -68,16 +68,16 @@ namespace SupernovaMod.Content.Projectiles.Melee
             return true;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
-            // Spawn dust on kill
-            //
-            for (int i = 0; i <= 10; i++)
-            {
-                int dust = Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, DustID.UndergroundHallowedEnemies, -Projectile.velocity.X * Main.rand.NextFloat(.2f, .5f), -Projectile.velocity.Y * Main.rand.NextFloat(.2f, .5f), Scale: .5f);
-                Main.dust[dust].velocity.RotatedByRandom(MathHelper.ToRadians(260));
-            }
-            base.Kill(timeLeft);
-        }
+			// Spawn dust on kill
+			//
+			for (int i = 0; i <= 10; i++)
+			{
+				int dust = Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, DustID.UndergroundHallowedEnemies, -Projectile.velocity.X * Main.rand.NextFloat(.2f, .5f), -Projectile.velocity.Y * Main.rand.NextFloat(.2f, .5f), Scale: .5f);
+				Main.dust[dust].velocity.RotatedByRandom(MathHelper.ToRadians(260));
+			}
+			base.OnKill(timeLeft);
+		}
     }
 }

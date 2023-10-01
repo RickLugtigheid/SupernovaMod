@@ -7,6 +7,10 @@ namespace SupernovaMod.Common.Configs
 	{
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
+		[Header("Effects")]
+		[DefaultValue(true)]
+		public bool allowScreenShake;
+
 		[Header("Misc")]
 		[DefaultValue(false)]
 		public bool debugMode;

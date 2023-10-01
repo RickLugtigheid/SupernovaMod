@@ -19,7 +19,7 @@ namespace SupernovaMod.Common.Systems
 		//
 		public static bool downedBloodweaver = false;
 
-		private void ResetDowned()
+		private static void ResetDowned()
 		{
 			downedHarbingerOfAnnihilation = false;
 			downedFlyingTerror = false;

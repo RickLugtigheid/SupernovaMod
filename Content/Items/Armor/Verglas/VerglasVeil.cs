@@ -42,7 +42,7 @@ namespace SupernovaMod.Content.Items.Armor.Verglas
 		{
 			player.setBonus = "The cold protects you from lava for a short time\nThe cold generates a layer of ice that makes the first hit deal 25% less damage, after that the layer of ice will break and regenrate after 10 seconds.";
 			player.lavaMax += 210;
-			player.GetModPlayer<AccessoryPlayer>().coldArmor = true;
+			player.GetModPlayer<ArmorPlayer>().coldArmor = true;
 		}
 
 		public override void ArmorSetShadows(Player player)

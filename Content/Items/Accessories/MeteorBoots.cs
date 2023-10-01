@@ -7,13 +7,6 @@ namespace SupernovaMod.Content.Items.Accessories
 {
     public class MeteorBoots : ModItem
     {
-
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Meteor boots");
-            // Tooltip.SetDefault($"When you double tap 'down_button' in the air you will become a meteor!");
-        }
-
         public override void SetDefaults()
         {
             Item.width = 16;
@@ -26,11 +19,6 @@ namespace SupernovaMod.Content.Items.Accessories
             Item.DamageType = DamageClass.Melee;
         }
 
-        int timer = 0;
-        int power = 0; //power = damage
-        float fallCheck;
-        bool runTimer;
-        bool falling;
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
             // TODO:

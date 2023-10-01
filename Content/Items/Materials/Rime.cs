@@ -11,12 +11,6 @@ namespace SupernovaMod.Content.Items.Materials
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
-
-            // DisplayName.SetDefault("Rime");
-            // Tooltip.SetDefault("Droped by creatures in the snow Biome");
-            // ticksperframe, frameCount
-            //Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 2));
-            //ItemID.Sets.AnimatesAsSoul[item.type] = true;
             ItemID.Sets.ItemIconPulse[Item.type] = true;
         }
 

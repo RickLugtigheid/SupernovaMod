@@ -16,14 +16,8 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             // DisplayName.SetDefault("Leaf Crab");
             Main.npcFrameCount[NPC.type] = 8;
-			NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData
-			{
-				SpecificallyImmuneTo = new int[]
-				{
-					BuffID.Poisoned
-				}
-			};
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Poisoned] = true;
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 // Influences how the NPC looks in the Bestiary
             };

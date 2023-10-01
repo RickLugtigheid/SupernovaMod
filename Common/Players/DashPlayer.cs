@@ -188,7 +188,7 @@ namespace SupernovaMod.Common.Players
 			{
 				case SupernovaDashType.Meteor:
 					DashTimeMax = 40;
-					DashDelayMax = 90;
+					DashDelayMax = 80;
 					DashSpeed = 64;
 					Player.eocHit = -1;
 					break;

@@ -59,7 +59,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
             }
         }
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
         {
             Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<ZicroniumExplosion>(), (int)(Projectile.damage * .6f), Projectile.knockBack, Projectile.owner, 90);
             SoundEngine.PlaySound(SoundID.Item14);

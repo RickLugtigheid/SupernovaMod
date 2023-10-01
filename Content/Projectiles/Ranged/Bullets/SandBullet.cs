@@ -48,7 +48,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged.Bullets
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             int radius = 5;     //this is the explosion radius, the highter is the value the bigger is the explosion
 

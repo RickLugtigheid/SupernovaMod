@@ -3,7 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria;
+using Terraria.Chat;
+using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace SupernovaMod.Api
 {
@@ -213,5 +216,27 @@ namespace SupernovaMod.Api
             Main.maxRaining = 0.89f;
             Main.StartRain();
         }
-    }
+        /// <summary>
+        /// Spawns a localized chat text for <paramref name="key"/>.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="color"></param>
+		public static void NewLocalizedText(string key, Color? color = null)
+        {
+            if (color == null)
+            {
+                color = Color.White;
+            }
+
+			if (Main.netMode == NetmodeID.SinglePlayer)
+			{
+				Main.NewText(Language.GetTextValue(key), color);
+				return;
+			}
+			if (Main.netMode == NetmodeID.Server || Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key, Array.Empty<object>()), color.Value, -1);
+			}
+        }
+	}
 }

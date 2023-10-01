@@ -131,7 +131,6 @@ namespace SupernovaMod.Api.Integration.BossChecklist
 
 	public class BossChecklistItemBuilder
 	{
-		private string _name;
 		public BossChecklistItemBuilder() { }
 
 		private int _bossType;

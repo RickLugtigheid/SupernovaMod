@@ -27,9 +27,6 @@ namespace SupernovaMod.Common.Players
 		public bool hasMinionCarnageOrb = false;
 		public bool hasMinionHairbringersKnell = false;
 
-		/* Misc */
-		public bool coldArmor = false;
-
 		/* Reset */
 		public override void ResetEffects()
 		{
@@ -42,8 +39,6 @@ namespace SupernovaMod.Common.Players
 			hasMinionVerglasFlake		= false;
 			hasMinionCarnageOrb			= false;
 			hasMinionHairbringersKnell	= false;
-
-			coldArmor = false;
 		}
 
 		#region [OnHit methods]
@@ -100,7 +95,7 @@ namespace SupernovaMod.Common.Players
 		}
 		public void ModifyHitByAny(Entity entity, ref Player.HurtModifiers modifiers)
 		{
-			if (coldArmor && !Player.HasBuff<Content.Buffs.Cooldowns.ColdArmorCooldown>())
+			if (Player.GetModPlayer<ArmorPlayer>().coldArmor && !Player.HasBuff<Content.Buffs.Cooldowns.ColdArmorCooldown>())
 			{
 				Player.AddBuff(ModContent.BuffType<Content.Buffs.Cooldowns.ColdArmorCooldown>(), 10 * 60);
 				SoundEngine.PlaySound(TerrariaRandom.NextSoundIceStruck(), Player.Center);

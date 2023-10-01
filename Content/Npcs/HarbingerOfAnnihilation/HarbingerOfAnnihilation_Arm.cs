@@ -155,7 +155,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				timer++;
 				Projectile.localAI[2]++;
 
-				if (timer == 50)
+				if (timer == 55)
 				{
 					StartAttackAnim();
 				}
@@ -405,7 +405,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				{
 					Projectile.rotation = Projectile.GetTargetLookRotation(linkNode.Center);
 					Vector2 distanceFromTarget = new Vector2(customTarget.X, customTarget.Y) - Projectile.Center;
-					SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 6, .002f);
+					SupernovaUtils.MoveProjectileSmooth(Projectile, 100, distanceFromTarget, 6, .003f);
 
 					Dust.NewDustPerfect(Projectile.Center - new Vector2(0, Projectile.width - 10).RotatedBy(Projectile.rotation), DustID.UndergroundHallowedEnemies, Vector2.One.RotatedByRandom(1));
 

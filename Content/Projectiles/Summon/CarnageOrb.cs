@@ -118,13 +118,13 @@ namespace SupernovaMod.Content.Projectiles.Summon
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             for (int i = 0; i <= 10; i++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, Projectile.velocity.X, Projectile.velocity.Y, Scale: 1.5f);
             }
-            base.Kill(timeLeft);
+            base.OnKill(timeLeft);
         }
 
 		public override bool PreDraw(ref Color lightColor)

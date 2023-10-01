@@ -1,10 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SupernovaMod.Content.Items.Accessories;
-using SupernovaMod.Content.Projectiles.Ranged.Arrows;
-using System;
-using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 

@@ -127,7 +127,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles
             base.OnHitPlayer(target, info);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             Vector2 vector33;
             SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);

@@ -32,7 +32,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             return projHitbox.Intersects(targetHitbox);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             int item = 0;
             if (Main.rand.NextFloat() < 0.1f) // This handles the rate at which the item will drop. 1f == 100%

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +14,9 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 		{
 			// DisplayName.SetDefault("Terror Spirit");
 			Main.npcFrameCount[NPC.type] = Main.projFrames[ProjectileID.ClothiersCurse];
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.Confused] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.OnFire] = true;
+			NPCID.Sets.SpecificDebuffImmunity[NPC.type][BuffID.ShadowFlame] = true;
 			NPCID.Sets.TrailingMode[NPC.type] = 1;
 		}
 
@@ -73,13 +77,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			}
 
 			base.AI();
-
-			// When confused invert the velocity
-			//
-			if (NPC.confused)
-			{
-				NPC.velocity = -NPC.velocity;
-			}
 		}
 
 		public override void HitEffect(NPC.HitInfo hit)

@@ -25,7 +25,7 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;//this defines the npc atack chance
             NPCID.Sets.HatOffsetY[NPC.type] = 4; //this defines the party hat position
 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 // Influences how the NPC looks in the Bestiary
                 Velocity = .2f // Draws the NPC in the bestiary as if its walking +1 tiles in the x directions
