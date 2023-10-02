@@ -90,6 +90,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			{
 				ModContent.ItemType<Items.Weapons.Summon.HarbingersKnell>(),
 				ModContent.ItemType<Items.Weapons.Melee.HarbingersSlicer>(),
+				ModContent.ItemType<Items.Tools.HarbingersPickaxe>(),
 			}));
 		}
 
@@ -222,6 +223,8 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 				MovementAI(GetDesiredDestination(), velocity, acceleration);
 			}
+			// Transition betweem phase 1 and 2
+			//
 			else if (!SecondPhase)
 			{
 				NPC.localAI[0]++;
@@ -882,14 +885,22 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 			if (timer == 50)
 			{
-				Projectile proj = Main.projectile[Projectile.NewProjectile(NPC.GetSource_FromAI(), lookTarget, Vector2.Zero, ModContent.ProjectileType<HarbingerOrb>(), (int)(DAMAGE_PROJ_ORB * .65f), 6, Main.myPlayer)];
+				NPC.localAI[3] = Projectile.NewProjectile(NPC.GetSource_FromAI(), lookTarget, Vector2.Zero, ModContent.ProjectileType<HarbingerOrb>(), (int)(DAMAGE_PROJ_ORB * .65f), 6, Main.myPlayer);
+				Projectile proj = Main.projectile[(int)NPC.localAI[3]];
 				proj.timeLeft = (int)(proj.timeLeft * timeLeftMulti);
 			}
 
 			if (timer >= 220 && WaitForAllArmsToReturn())
 			{
+				NPC.localAI[3] = 0;
 				timer = 0;
 				attackPointer++;
+			}
+			// When the projectile dies while it is cast, stop casting
+			//
+			else if (NPC.localAI[3] != 0 && !Main.projectile[(int)NPC.localAI[3]].active)
+			{
+				timer = 220;
 			}
 		}
 		#endregion

@@ -726,6 +726,16 @@ Mods: {
 				DisplayName: Terror Tuft
 				Tooltip: ""
 			}
+
+			TerrorInABottle: {
+				DisplayName: Terror In A Bottle
+				Tooltip: ""
+			}
+
+			HarbingersPickaxe: {
+				DisplayName: Harbingers Pickaxe
+				Tooltip: ""
+			}
 		}
 
 		Prefixes: {

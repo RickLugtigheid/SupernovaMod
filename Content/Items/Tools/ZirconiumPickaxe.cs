@@ -20,8 +20,8 @@ namespace SupernovaMod.Content.Items.Tools
             Item.width = 24; // Hitbox Width
             Item.height = 24; // Hitbox Height
 
-            Item.useTime = 15; // Speed before reuse
-            Item.useAnimation = 15; // Animation Speed
+            Item.useTime = 17; // Speed before reuse
+            Item.useAnimation = 17; // Animation Speed
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 1.5f; // Weapon Knockbase: Higher means greater "launch" distance
             Item.value = 25500; // 10 | 00 | 00 | 00 : Platinum | Gold | Silver | Bronze

@@ -27,6 +27,21 @@ namespace SupernovaMod.Content.Items.Rings
 			damage = 24;
 		}
 		public override int BaseCooldown => 60 * 140;
+		public override bool CanRingActivate(RingPlayer player)
+		{
+			// Check if there is at least 1 target for the ring to use
+			//
+			for (int i = 0; i < 200; i++)
+			{
+				NPC target = Main.npc[i];
+
+				if (target.CanBeChasedBy())
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 		public override void RingActivate(Player player, float ringPowerMulti)
         {
 			SoundEngine.PlaySound(SoundID.Item14, player.Center);

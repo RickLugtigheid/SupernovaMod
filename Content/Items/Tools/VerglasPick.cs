@@ -20,8 +20,8 @@ namespace SupernovaMod.Content.Items.Tools
             Item.width = 24;
             Item.height = 24;
 
-            Item.useTime = 26;
-            Item.useAnimation = 26;
+            Item.useTime = 24;
+            Item.useAnimation = 24;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 7;
             Item.value = Item.buyPrice(0, 3, 54);

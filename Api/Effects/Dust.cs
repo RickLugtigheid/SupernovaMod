@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 
 namespace SupernovaMod.Api.Effects
 {
@@ -16,7 +18,7 @@ namespace SupernovaMod.Api.Effects
 		/// <param name="armLength"></param>
 		/// <param name="color"></param>
 		/// <param name="density"></param>
-		public static void Electricity(Vector2 point1, Vector2 point2, int dusttype, float scale = 1, int armLength = 30, Color color = default, float density = 0.05f)
+		public static void Electricity(Vector2 point1, Vector2 point2, int dustType, float scale = 1, int armLength = 30, Color color = default, float density = 0.05f)
 		{
 			int nodeCount = (int)Vector2.Distance(point1, point2) / armLength;
 			Vector2[] nodes = new Vector2[nodeCount + 1];
@@ -33,9 +35,31 @@ namespace SupernovaMod.Api.Effects
 				Vector2 prevPos = k == 1 ? point1 : nodes[k - 1];
 				for (float i = 0; i < 1; i += density)
 				{
-					Dust d = Dust.NewDustPerfect(Vector2.Lerp(prevPos, nodes[k], i), dusttype, Vector2.Zero, 0, color, scale);
+					Dust d = Dust.NewDustPerfect(Vector2.Lerp(prevPos, nodes[k], i), dustType, Vector2.Zero, 0, color, scale);
 					d.noGravity = true;
 				}
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="position"></param>
+		/// <param name="velocity"></param>
+		/// <param name="size"></param>
+		/// <param name="dustType"></param>
+		/// <param name="dustCount"></param>
+		public static void Ring(Vector2 position, Vector2 velocity, Vector2 size, int dustType = DustID.BlueFlare, int dustCount = 30)
+		{
+			for (int i = 0; i < dustCount; i++)
+			{
+				(float sin, float cos) = MathF.SinCos(MathHelper.ToRadians(i * 360 / dustCount));
+
+				float amplitudeX = cos * size.X / 2f;
+				float amplitudeY = sin * size.Y; // 5
+
+				Dust dust = Dust.NewDustPerfect(position + new Vector2(amplitudeX, amplitudeY), dustType, -velocity, Scale: 1f);
+				dust.noGravity = true;
 			}
 		}
 	}

@@ -11,13 +11,13 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
     {
 		public override void SetDefaults()
 		{
-			Projectile.width = 32;     //Set the hitbox width
-			Projectile.height = 32;    //Set the hitbox height
+			Projectile.width = 82;     //Set the hitbox width
+			Projectile.height = 82;    //Set the hitbox height
 
 			Projectile.scale = 1.25f;
 			base.SetDefaults();
 			SwingCycleTime = 84;
-			Projectile.localNPCHitCooldown = 20;
+			Projectile.localNPCHitCooldown = 18;
 		}
 
 		protected override void ExtraAI(ref float swingCycleTime)

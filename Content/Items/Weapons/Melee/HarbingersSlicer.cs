@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
 			Item.damage = 18;
             Item.crit = 1;
-			Item.knockBack = 9;
+			Item.knockBack = 7;
 			Item.useAnimation = (Item.useTime = 25);
 			Item.DamageType = DamageClass.Melee;
 			Item.noMelee = true;
