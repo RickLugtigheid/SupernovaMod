@@ -44,6 +44,6 @@ namespace SupernovaMod.Content.Items.Consumables.BossBags
                 ModContent.ItemType<Weapons.Magic.TerrorTome>(),
                // ModContent.ItemType<Items.Weapons.Melee.BlunderBuss>()
             }));
-        }
+		}
     }
 }

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using Terraria.DataStructures;
 
 namespace SupernovaMod.Content.Items.Accessories
 {
@@ -28,12 +29,27 @@ namespace SupernovaMod.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)
         {
-            if (player.statMana <= 15 && player.statLife > 25)
+			// Because the manaFlower does not take any life we will only have the effect
+            // of this accessory trigger when there are no mana potions to consume.
+		    //
+			if (player.manaFlower && 
+                player.HasItem(ItemID.ManaPotion)
+				|| player.HasItem(ItemID.LesserManaPotion)
+				|| player.HasItem(ItemID.GreaterManaPotion)
+			)
+			{
+                return;
+            }
+
+            // Check if we are under the mana amount needed for the currently held item
+            //
+            if (player.statMana < player.GetManaCost(player.HeldItem))
             {
-                player.statLife -= 25;
+                // Drain ~20 life in exchange for 50 mana
+                //
+				player.Hurt(PlayerDeathReason.ByCustomReason(player.name + "'s life was drained"), Main.DamageVar(20), 0, false, true, -1, false, 100, 100);
                 player.statMana += 50;
-                SoundEngine.PlaySound(SoundID.MaxMana, player.Center);
-                SoundEngine.PlaySound(SoundID.PlayerHit, player.Center);
+                player.ManaEffect(50);
             }
         }
     }

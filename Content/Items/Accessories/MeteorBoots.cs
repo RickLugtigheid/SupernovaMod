@@ -15,8 +15,8 @@ namespace SupernovaMod.Content.Items.Accessories
             Item.value = BuyPrice.RarityBlue;
             Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
-            Item.damage = 27;
-            Item.DamageType = DamageClass.Melee;
+            Item.damage = 25;
+            Item.DamageType = DamageClass.Generic;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual = false)

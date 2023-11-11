@@ -12,6 +12,8 @@ namespace SupernovaMod
 {
     public sealed partial class Supernova : Mod
 	{
+		public static Supernova Instance { get ; private set; }
+
 		public static Effect ShaderShockwave { get; private set; }
 
 		public static ILog Log { get; private set; }
@@ -24,6 +26,7 @@ namespace SupernovaMod
 
 		public override void Load()
 		{
+			Instance = this;
 			Log = Logger;
 
 			if (Main.netMode != NetmodeID.Server)

@@ -159,9 +159,8 @@ namespace SupernovaMod.Common.Players
 							{
 								if (dashType == SupernovaDashType.Meteor)
 								{
-									Projectile proj = Projectile.NewProjectileDirect(Player.GetSource_FromAI(), npc.position, Vector2.Zero, ProjectileID.Meteor1, item.damage, 6);
+									Projectile proj = Projectile.NewProjectileDirect(Player.GetSource_FromAI(), npc.position, Vector2.Zero, ProjectileID.Meteor1, item.damage, 6, Player.whoAmI, .5f, .5f, .5f);
 									proj.timeLeft = 4;
-									proj.Resize(12, 12);
 								}
 								else
 								{
@@ -187,8 +186,8 @@ namespace SupernovaMod.Common.Players
 			switch (dashType)
 			{
 				case SupernovaDashType.Meteor:
-					DashTimeMax = 40;
-					DashDelayMax = 80;
+					DashTimeMax = 38;
+					DashDelayMax = 74;
 					DashSpeed = 64;
 					Player.eocHit = -1;
 					break;

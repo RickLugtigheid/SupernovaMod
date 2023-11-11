@@ -138,6 +138,11 @@ Mods: {
 				DisplayName: Verglas Flake Buff
 				Description: A verglas flake that will fight for you
 			}
+
+			TerrorState: {
+				DisplayName: Terror State
+				Description: Using the Terror in a Bottle will take life
+			}
 		}
 
 		Items: {
@@ -219,7 +224,7 @@ Mods: {
 
 			MeteorBoots: {
 				DisplayName: Meteor Boots
-				Tooltip: When you double tap 'down_button' in the air you will become a meteor!
+				Tooltip: When you double tap the down direction in the air you will become a meteor!
 			}
 
 			RubyBallBearings: {
@@ -229,11 +234,7 @@ Mods: {
 
 			SacrificialTalisman: {
 				DisplayName: Sacrificial Talisman
-				Tooltip:
-					'''
-					When your mana is lower than 15
-					you will lose 25 health but gain 50 mana
-					'''
+				Tooltip: When under 15 mana the talisman will take some of your life in exchange for mana
 			}
 
 			SharpeningTool: {
@@ -729,12 +730,22 @@ Mods: {
 
 			TerrorInABottle: {
 				DisplayName: Terror In A Bottle
-				Tooltip: ""
+				Tooltip:
+					'''
+					Allows the player to dash when a direction is double tabbed
+					Causes terror state
+					While in terror state the player loses health when dashing
+					'''
 			}
 
 			HarbingersPickaxe: {
 				DisplayName: Harbingers Pickaxe
 				Tooltip: ""
+			}
+
+			BlunderBuss: {
+				Tooltip: ""
+				DisplayName: Blunder Buss
 			}
 		}
 
@@ -808,6 +819,7 @@ Mods: {
 			ConquerorsBladeStaffProj.DisplayName: Conquerors Blade Staff Proj
 			NebualShot.DisplayName: Nebual Shot
 			TerrorWingArrow.DisplayName: Terror Wing Arrow
+			BlunderBussBullet.DisplayName: Blunder Buss Bullet
 		}
 
 		Configs: {
@@ -829,6 +841,9 @@ Mods: {
 					Tooltip: ""
 				}
 			}
+		}
+
+		GameTips: {
 		}
 
 		Status.Progression.StartDroppingRime: Rime started forming in the ice biome...

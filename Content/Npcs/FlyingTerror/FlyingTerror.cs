@@ -80,19 +80,22 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Consumables.BossBags.FlyingTerrorBossBag>()));
-			/*npcLoot.Add(ItemDropRule.OneFromOptions(3, new int[]
-				{
-					ModContent.ItemType<Items.Weapons.Summon.GazerStaff>(),
-					ModContent.ItemType<Items.Rings.BloodweaversRing>()
-				}
-			));*/
+			// NormalMode
+			//
 			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<NormalModeDropCondition>(conditionalRule =>
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
 			}));
 
-			DownedSystem.downedHarbingerOfAnnihilation = true;
+			// ExpertMode+
+			//
+			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Consumables.BossBags.FlyingTerrorBossBag>()));
+			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<ExpertModeDropCondition>(conditionalRule =>
+			{
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.TerrorInABottle>()));
+			}));
+
+			DownedSystem.downedFlyingTerror = true;
 		}
 
 		protected Player target;

@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Assets\Textures\LightningProj.png" />
     <None Remove="Content\Items\Tools\HarbingersPickaxe.png" />
+    <None Remove="Content\Items\Weapons\Magic\HoaWand.png" />
     <None Remove="Content\Projectiles\Melee\ConquerorsBladeStaffProj.png" />
   </ItemGroup>
   <ItemGroup>
@@ -19,7 +20,6 @@
   <ItemGroup>
     <Folder Include=".csgendoc\src\" />
     <Folder Include="Api\Collections\" />
-    <Folder Include="Api\Systems\" />
     <Folder Include="Common\GlobalProjectiles\" />
     <Folder Include="Content\Buffs\DamageOverTime\" />
     <Folder Include="Content\Items\Weapons\Typeless\" />

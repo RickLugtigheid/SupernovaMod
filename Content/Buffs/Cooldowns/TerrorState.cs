@@ -1,18 +1,16 @@
-using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Content.Buffs.Cooldowns
 {
-    public class RingCooldown : ModBuff
+    public class TerrorState : ModBuff
     {
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = false;
 
             Main.debuff[Type] = true;
-            Main.pvpBuff[Type] = true;
+            Main.pvpBuff[Type] = false;
             Main.buffNoSave[Type] = true;
         }
     }

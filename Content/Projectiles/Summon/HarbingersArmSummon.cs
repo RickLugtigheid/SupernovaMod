@@ -23,8 +23,8 @@ namespace SupernovaMod.Content.Projectiles.Summon
 		}
 		public override void SetDefaults()
         {
-            Projectile.width = 16;
-            Projectile.height = 16;
+            Projectile.width = 30;
+            Projectile.height = 46;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
             Projectile.hostile  = false;
@@ -35,6 +35,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
             Projectile.timeLeft = 2;
             Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 24;
+			Projectile.scale = .85f;
 		}
 
 		//private bool IsVanity { get => Main.item[(int)Projectile.ai[0]].; }
@@ -76,14 +77,15 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
 			ref float timer = ref Projectile.localAI[0];
 
-			if (targetFound && withinDistance)
+			if (targetFound && withinDistance || timer > 80)
 			{
 				timer++;
 			}
 			else
 			{
 				timer = 0;				 // Reset timer
-				Projectile.rotation = 0; // Reset rotation
+				//Projectile.rotation = 0; // Reset rotation
+				Projectile.rotation = Mathf.LerpAngle(Projectile.rotation, 0, .1f);
 				_drawMotionBlur = false;
 
 				// Don't look at the target when not on screen
@@ -160,7 +162,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 						bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
 						// Additional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
 						// The number depends on various parameters seen in the movement code below. Test different ones out until it works alright
-						bool closeThroughWall = between < 100f;
+						bool closeThroughWall = between < 125;
 
 						if ((closest && inRange || !foundTarget) && (lineOfSight || closeThroughWall))
 						{

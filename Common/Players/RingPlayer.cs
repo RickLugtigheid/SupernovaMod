@@ -3,6 +3,8 @@ using SupernovaMod.Content.Buffs.Cooldowns;
 using SupernovaMod.Content.Items.Rings.BaseRings;
 using System;
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
 
@@ -42,6 +44,7 @@ namespace SupernovaMod.Common.Players
 						//
 						if (SupernovaKeybinds.RingAbilityButton.JustPressed && !RingAnimationActive)
 						{
+							SoundEngine.PlaySound(SoundID.DD2_PhantomPhoenixShot, Player.Center);
 							// When the ringAbilityButton is pressed we start our ring animation
 							equipedRing.UseAnimation(Player);
 							_ringAnimationFrame = equipedRing.MaxAnimationFrames; // Start our animation

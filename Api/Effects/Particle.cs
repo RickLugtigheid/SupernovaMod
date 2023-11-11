@@ -18,6 +18,7 @@ namespace SupernovaMod.Api.Effects
 		public Vector2 origin;
 
 		public Color color;
+		public int alpha = 0;
 		public float rotation;
 		public float scale = 1;
 
@@ -37,7 +38,9 @@ namespace SupernovaMod.Api.Effects
 		{
 			if (PreDraw(spriteBatch))
 			{
-				spriteBatch.Draw(ParticleSystem.GetTexture(type), position - Main.screenPosition, null, color, rotation, origin, scale * Main.GameViewMatrix.Zoom, SpriteEffects.None, 0f);
+				Color drawColor = color;
+				drawColor.A = (byte)alpha;
+				spriteBatch.Draw(ParticleSystem.GetTexture(type), position - Main.screenPosition, null, drawColor, rotation, origin, scale * Main.GameViewMatrix.Zoom, SpriteEffects.None, 0f);
 			}
 		}
 

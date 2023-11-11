@@ -12,7 +12,7 @@ namespace SupernovaMod.Api
 		/// <returns></returns>
 		public static SoundStyle NextSoundIceStruck()
 		{
-			switch (Main.rand.Next(2))
+			switch (Main.rand.Next(3))
 			{
 				default:
 					return SoundID.Item48;
@@ -28,7 +28,7 @@ namespace SupernovaMod.Api
 		/// <returns></returns>
 		public static short NextProjectileIDMolotovFire()
 		{
-			switch (Main.rand.Next(2))
+			switch (Main.rand.Next(3))
 			{
 				default:
 					return ProjectileID.MolotovFire;
@@ -44,7 +44,7 @@ namespace SupernovaMod.Api
 		/// <returns></returns>
 		public static short NextProjectileIDAnyStar()
 		{
-			switch (Main.rand.Next(3))
+			switch (Main.rand.Next(4))
 			{
 				default:
 					return ProjectileID.HallowStar;
@@ -54,6 +54,18 @@ namespace SupernovaMod.Api
 					return ProjectileID.StarCloakStar;
 				case 3:
 					return ProjectileID.StarVeilStar;
+			}
+		}
+		public static short NextProjectileIDMeteor()
+		{
+			switch (Main.rand.Next(3))
+			{
+				default:
+					return ProjectileID.Meteor1;
+				case 1:
+					return ProjectileID.Meteor2;
+				case 2:
+					return ProjectileID.Meteor3;
 			}
 		}
 	}

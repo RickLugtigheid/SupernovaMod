@@ -58,7 +58,6 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             {
                 return false;
             }
-
             // We can not shoot and reload at the same time
             if (player.altFunctionUse == ItemAlternativeFunctionID.ActivatedAndUsed)
             {
@@ -69,16 +68,12 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
                 }
                 return false;
             }
-
-
-
             return base.CanUseItem(player);
         }
 
         public override bool? UseItem(Player player)
         {
             _storedShots--;
-
             // After 6 shots the player will have to reload
             //
             if (_storedShots <= 0)
@@ -91,14 +86,12 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
                     return false;
                 }
             }
-
             return base.UseItem(player);
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             Texture2D bulletTexture = TextureAssets.Item[ItemID.MusketBall].Value;
-
             // Draw stored bullets to let the player know how many are left
             //
             for (int i = 0; i < _storedShots; i++)

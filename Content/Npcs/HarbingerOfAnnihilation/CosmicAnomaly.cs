@@ -130,10 +130,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
             if (spawnInfo.Player.ZoneSkyHeight == true)
             {
                 if (!DownedSystem.downedHarbingerOfAnnihilation)
-                    return 0.105f;
+                    return 0.03f;
 
                 else
-                    return 0.025f;
+                    return 0.02f;
             }
             return 0;
         }

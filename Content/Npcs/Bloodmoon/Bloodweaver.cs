@@ -213,7 +213,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			{
 				return 0f;
 			}
-			return 0.075f;
+			return 0.0475f;
 		}
 
 		public override void AI()
@@ -637,13 +637,13 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		{
 			for (int i = 0; i < 6; i++)
 			{
-				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CrimsonTorch, hit.HitDirection, -1f, 0, default(Color), 1f);
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection, -1f, 0, default(Color), 1f);
 			}
 			if (NPC.life <= 0)
 			{
 				for (int j = 0; j < 20; j++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection, -1f, 0, default(Color), 1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CrimsonTorch, hit.HitDirection, -1f, 0, default(Color), 1f);
 				}
 			}
 		}
