@@ -29,7 +29,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.knockBack = 2;
             Item.value = Item.buyPrice(0, 3, 0, 0);
             Item.rare = ItemRarityID.Orange;
-            Item.mana = 5;             //mana use
+            Item.mana = 6;             //mana use
             Item.UseSound = SoundID.Item21;            //this is the sound when you use the item
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.Magic.CarnageScepterProj>();

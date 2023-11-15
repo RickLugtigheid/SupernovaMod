@@ -12,7 +12,16 @@ namespace SupernovaMod.Api
 {
     public static class SupernovaUtils
     {
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Tile ParanoidTileRetrieval(int x, int y)
+		{
+			if (!WorldGen.InWorld(x, y, 0))
+			{
+				return default(Tile);
+			}
+			return Main.tile[x, y];
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static string GetNamespacePath(Type type) => type.Namespace.Replace('.', '/') + "/" + type.Name;
 		/// <summary>
 		/// Tries to load a texture at <see cref="Type.Namespace"/> of <paramref name="type"/>

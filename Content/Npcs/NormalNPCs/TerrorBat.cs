@@ -70,7 +70,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             // 15% Drop chance
             //
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Misc.HorridChunk>(), 7));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Consumables.BugOnAStick>(), 7));
             base.ModifyNPCLoot(npcLoot);
         }
 

@@ -38,16 +38,12 @@ Mods: {
 		NPCs: {
 			HarbingerOfAnnihilation: {
 				DisplayName: Harbinger Of Annihilation
-
-				BossChecklistIntegration: {
-					EntryName: Harbinger of Annihilation
-					SpawnInfo: Kill a Cosmic Anomaly in Space
-				}
+				BossChecklistIntegration.SpawnInfo: Kill a Cosmic Anomaly or use a [i:SupernovaMod/EerieCrystal] in Space
 			}
 
 			FlyingTerror: {
 				DisplayName: Flying Terror
-				BossChecklistIntegration.SpawnInfo: Use a [i:SupernovaMod/HorridChunk] at night
+				BossChecklistIntegration.SpawnInfo: Use a [i:SupernovaMod/BugOnAStick] at night
 			}
 
 			Bloodweaver: {
@@ -125,13 +121,8 @@ Mods: {
 			}
 
 			HarbingersArmBuff: {
-				DisplayName: Harbingers Arm Buff
+				DisplayName: Harbingers Arm
 				Description: A arm ripped from the Harbinger that will fight for you
-			}
-
-			HarbingersKnellBuff: {
-				DisplayName: Harbingers Knell Buff
-				Description: A galactic spawn that will fight for you
 			}
 
 			VerglasFlakeBuff: {
@@ -184,7 +175,7 @@ Mods: {
 
 			HarbingersCrest: {
 				DisplayName: Harbingers Crest
-				Tooltip: Summons a Harbinger Arm to fight for you.
+				Tooltip: Summons an Arm of the Harbinger to fight for you.
 			}
 
 			HeartOfTheJungle: {
@@ -380,15 +371,6 @@ Mods: {
 			EyeOfDeath: {
 				DisplayName: Eye Of Death
 				Tooltip: Stare into the Eye of Death and go back to where you died
-			}
-
-			HorridChunk: {
-				DisplayName: Horrid Chunk
-				Tooltip:
-					'''
-					Dropped by Terror Bats
-					Summons the Flying Terror when used at night
-					'''
 			}
 
 			BloodweaversRing: {
@@ -669,8 +651,8 @@ Mods: {
 			}
 
 			HarbingersKnell: {
-				DisplayName: Harbingers Knell
-				Tooltip: Summons a Omen to fight for you
+				DisplayName: Harbingers scepter
+				Tooltip: ""
 			}
 
 			VerglasStaff: {
@@ -747,6 +729,16 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Blunder Buss
 			}
+
+			BugOnAStick: {
+				DisplayName: Bug on a Stick
+				Tooltip: Summons the Flying Terror
+			}
+
+			EerieCrystal: {
+				DisplayName: Eerie Crystal
+				Tooltip: ""
+			}
 		}
 
 		Prefixes: {
@@ -820,6 +812,8 @@ Mods: {
 			NebualShot.DisplayName: Nebual Shot
 			TerrorWingArrow.DisplayName: Terror Wing Arrow
 			BlunderBussBullet.DisplayName: Blunder Buss Bullet
+			CelestialCystal.DisplayName: Celestial Cystal
+			CelestialCystalShard.DisplayName: Celestial Cystal Shard
 		}
 
 		Configs: {

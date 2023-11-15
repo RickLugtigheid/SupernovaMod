@@ -9,24 +9,15 @@
     <RootNamespace>SupernovaMod</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Assets\Textures\LightningProj.png" />
-    <None Remove="Content\Items\Tools\HarbingersPickaxe.png" />
-    <None Remove="Content\Items\Weapons\Magic\HoaWand.png" />
-    <None Remove="Content\Projectiles\Melee\ConquerorsBladeStaffProj.png" />
+    <None Remove="Content\Projectiles\Magic\CelestialCystal.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include=".csgendoc\src\" />
     <Folder Include="Api\Collections\" />
     <Folder Include="Common\GlobalProjectiles\" />
     <Folder Include="Content\Buffs\DamageOverTime\" />
     <Folder Include="Content\Items\Weapons\Typeless\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".csgendoc\.config" />
-    <None Include=".csgendoc\ItemBuilder.lua" />
-    <None Include=".csgendoc\template\item.md" />
   </ItemGroup>
 </Project>

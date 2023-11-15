@@ -6,6 +6,18 @@ namespace SupernovaMod.Api
 {
 	public static class TerrariaRandom
 	{
+		public static short NextDustIDCrystalShard()
+		{
+			switch (Main.rand.Next(3))
+			{
+				default:
+					return DustID.BlueCrystalShard;
+				case 1:
+					return DustID.PinkCrystalShard;
+				case 2:
+					return DustID.PurpleCrystalShard;
+			}
+		}
 		/// <summary>
 		/// Gets a random <see cref="SoundStyle"/>, between <see cref="SoundID.Item48"/> and <see cref="SoundID.Item50"/> (Ice struck sounds).
 		/// </summary>

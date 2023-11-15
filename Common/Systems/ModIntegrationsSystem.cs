@@ -43,8 +43,7 @@ namespace SupernovaMod.Common.Systems
 				//.SetSpawnInfoWithItem(ModContent.ItemType<Content.Items.Misc.HorridChunk>(), "at night")
 				.SetAdditionalEntryData(
 					new BossChecklistAdditionalEntryDataBuilder()
-						//.SetSpawnInfo("Use a '' at night")
-						.AddSpawnItem<Content.Items.Misc.HorridChunk>()
+						.AddSpawnItem<Content.Items.Consumables.BugOnAStick>()
 				)
 				.SetDownedCallback(() => DownedSystem.downedFlyingTerror)
 				.AddBoss(Mod, bossChecklistMod);

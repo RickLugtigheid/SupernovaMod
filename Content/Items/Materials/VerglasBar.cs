@@ -26,7 +26,6 @@ namespace SupernovaMod.Content.Items.Materials
         {
             Recipe recipe = CreateRecipe(2);
             recipe.AddIngredient(ItemID.IronBar);
-            //recipe.anyIronBar = true;
             recipe.acceptedGroups = new() { RecipeGroupID.IronBar };
             recipe.AddIngredient(ModContent.ItemType<Rime>());
             recipe.AddIngredient(ItemID.IceBlock, 3);
