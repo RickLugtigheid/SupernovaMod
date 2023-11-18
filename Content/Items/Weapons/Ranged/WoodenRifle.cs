@@ -45,7 +45,7 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             recipe.AddIngredient(ItemID.IronBar, 7);
             //recipe.anyIronBar = true;
             recipe.acceptedGroups = new() { RecipeGroupID.IronBar };
-            recipe.AddIngredient(ModContent.ItemType<Materials.FirearmManual>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<Materials.FirearmManual>());
             recipe.AddIngredient(ItemID.Wood, 20);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();

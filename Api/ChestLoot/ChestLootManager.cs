@@ -2,10 +2,49 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ModLoader;
 
 namespace SupernovaMod.Api.ChestLoot
 {
-	public class ChestLoot
+	public struct ChestLoot : ILoot
+	{
+		public readonly ChestFrameType chestType;
+
+		private readonly SupernovaItemDropDatabase itemDropDatabase;
+
+		public ChestLoot(ChestFrameType chestType, SupernovaItemDropDatabase itemDropDatabase)
+		{
+			this.chestType = chestType;
+			this.itemDropDatabase = itemDropDatabase;
+		}
+
+		public List<IItemDropRule> Get(bool includeGlobalDrops = true)
+		{
+			return itemDropDatabase.GetRulesForChestID((int)chestType);
+		}
+
+		public IItemDropRule Add(IItemDropRule entry)
+		{
+			return itemDropDatabase.RegisterToChest(chestType, entry);
+		}
+
+		public IItemDropRule Remove(IItemDropRule entry)
+		{
+			return itemDropDatabase.RemoveFromChest(chestType, entry);
+		}
+
+		public void RemoveWhere(Predicate<IItemDropRule> predicate, bool includeGlobalDrops = true)
+		{
+			foreach (IItemDropRule item in Get())
+			{
+				if (predicate(item))
+				{
+					Remove(item);
+				}
+			}
+		}
+	}
+	public class ChestLootManager
 	{
 		private Dictionary<ChestFrameType, List<IItemDropRule>> _ruleMap = new Dictionary<ChestFrameType, List<IItemDropRule>>();
 		public void Add(ChestFrameType chestType, IItemDropRule rule)

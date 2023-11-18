@@ -1,15 +1,18 @@
-﻿using SupernovaMod.Common;
+using SupernovaMod.Common;
+using SupernovaMod.Content.Items.Accessories;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.IO;
+using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
 namespace SupernovaMod.Api.ChestLoot
 {
 	public class ChestGenPass : GenPass
 	{
-		private ChestLoot _chestLoot;
-		public ChestGenPass(ChestLoot chestLoot) : base("Supernova: Filling chests...", 1f)
+		private ChestLootManager _chestLoot;
+		public ChestGenPass(ChestLootManager chestLoot) : base("Supernova: Filling chests...", 1f)
 		{
 			_chestLoot = chestLoot;
 		}

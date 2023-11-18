@@ -11,7 +11,6 @@ using SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles;
 using Filters = Terraria.Graphics.Effects.Filters;
 using Terraria.GameContent.ItemDropRules;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
-using Terraria.DataStructures;
 using SupernovaMod.Api;
 using SupernovaMod.Common.Systems;
 using SupernovaMod.Common;
@@ -88,7 +87,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}));
 			npcLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
 			{
-				ModContent.ItemType<Items.Weapons.Summon.HarbingersKnell>(),
+				ModContent.ItemType<Items.Weapons.Magic.HarbingersKnell>(),
 				ModContent.ItemType<Items.Weapons.Melee.HarbingersSlicer>(),
 				ModContent.ItemType<Items.Tools.HarbingersPickaxe>(),
 			}));
@@ -279,7 +278,19 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 			else
 			{
-				if (_attackPointer2 == 0 || _attackPointer2 == 1)
+				/*if (_attackPointer2 == 0 || _attackPointer2 == 1)
+				{
+					if (_attackPointer2 == 0)
+					{
+						AttackMeteorShower(ref timer, ref attackPointer, 4);
+					}
+					else
+					{
+						timer = 0;
+						attackPointer++;
+					}
+				}
+				else*/ if (_attackPointer2 == 0 || _attackPointer2 == 1)
 				{
 					if (attackPointer == 0)
 					{
@@ -846,6 +857,28 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 		}
 
+		void StartCast(Vector2 lookTarget)
+		{
+			HarbingerOfAnnihilation_Arm arm = _arms[0];
+			arm.customTarget = NPC.Center + (new Vector2(100, 100) * NPC.direction);
+			arm.customLookTarget = lookTarget;
+			arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+
+			arm = _arms[1];
+			arm.customTarget = NPC.Center + (new Vector2(50, 50) * NPC.direction);
+			arm.customLookTarget = lookTarget;
+			arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+
+			arm = _arms[2];
+			arm.customTarget = NPC.Center + (new Vector2(50, -50) * NPC.direction);
+			arm.customLookTarget = lookTarget;
+			arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+
+			arm = _arms[3];
+			arm.customTarget = NPC.Center + (new Vector2(100, -100) * NPC.direction);
+			arm.customLookTarget = lookTarget;
+			arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+		}
 		void AttackCastOrb(ref float timer, ref float attackPointer, float timeLeftMulti = 1)
         {
 			NPC.velocity = Vector2.Zero;
@@ -862,29 +895,8 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			Vector2 lookTarget = NPC.Center + (new Vector2(100, 0) * NPC.direction);
 			if (timer == 50)
 			{
-				HarbingerOfAnnihilation_Arm arm = _arms[0];
-				arm.customTarget = NPC.Center + (new Vector2(100, 100) * NPC.direction);
-				arm.customLookTarget = lookTarget;
-				arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+				StartCast(lookTarget);
 
-				arm = _arms[1];
-				arm.customTarget = NPC.Center + (new Vector2(50, 50) * NPC.direction);
-				arm.customLookTarget = lookTarget;
-				arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
-
-				arm = _arms[2];
-				arm.customTarget = NPC.Center + (new Vector2(50, -50) * NPC.direction);
-				arm.customLookTarget = lookTarget;
-				arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
-
-				arm = _arms[3];
-				arm.customTarget = NPC.Center + (new Vector2(100, -100) * NPC.direction);
-				arm.customLookTarget = lookTarget;
-				arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
-			}
-
-			if (timer == 50)
-			{
 				NPC.localAI[3] = Projectile.NewProjectile(NPC.GetSource_FromAI(), lookTarget, Vector2.Zero, ModContent.ProjectileType<HarbingerOrb>(), (int)(DAMAGE_PROJ_ORB * .65f), 6, Main.myPlayer);
 				Projectile proj = Main.projectile[(int)NPC.localAI[3]];
 				proj.timeLeft = (int)(proj.timeLeft * timeLeftMulti);
@@ -901,6 +913,31 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			else if (NPC.localAI[3] != 0 && !Main.projectile[(int)NPC.localAI[3]].active)
 			{
 				timer = 220;
+			}
+		}
+		void AttackMeteorShower(ref float timer, ref float attackPointer, int amount)
+		{
+			if (timer == 20)
+			{
+				// SHOW TRAGET POSITIONS
+			}
+
+			if (timer == 80)
+			{
+				for (int i = 0; i < amount; i++)
+				{
+					Vector2 velocity = Vector2.UnitY * 6.5f;
+					velocity.X = Main.rand.NextFloat(-1, 1);
+					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), target.Center + new Vector2(0, -900), velocity, TerrariaRandom.NextProjectileIDMeteor(), DAMAGE_PROJ_MISSILE, 5, Main.myPlayer, 1, 1, 1);
+					Main.projectile[proj].friendly = false;
+					Main.projectile[proj].hostile = true;
+				}
+			}
+
+			if (timer >= 140)
+			{
+				timer = 0;
+				attackPointer++;
 			}
 		}
 		#endregion
