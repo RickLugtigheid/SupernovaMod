@@ -168,7 +168,7 @@ namespace SupernovaMod.Common.Players
 
 		public override bool IsEnabled()
 		{
-			return true;
+			return ModContent.GetInstance<Common.Configs.CommonConfig>().enableRingSlot;
 		}
 
 		// Overrides the default behaviour where a disabled accessory slot will allow retrieve items if it contains items

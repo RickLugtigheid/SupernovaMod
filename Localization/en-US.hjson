@@ -739,6 +739,11 @@ Mods: {
 				DisplayName: Eerie Crystal
 				Tooltip: ""
 			}
+
+			FlyingTerrorBossTrophy: {
+				DisplayName: Flying Terror Trophy
+				Tooltip: ""
+			}
 		}
 
 		Prefixes: {
@@ -817,21 +822,26 @@ Mods: {
 		}
 
 		Configs: {
-			SupernovaModConfig: {
-				DisplayName: Supernova Mod Config
+			CommonConfig: {
+				DisplayName: Common Configurations
 
 				Headers: {
-					Misc: Misc Header
-					Effects: Effects Header
-				}
-
-				debugMode: {
-					Label: debug Mode
-					Tooltip: ""
+					Effects: Effects
+					UI: User Interface
 				}
 
 				allowScreenShake: {
-					Label: allow Screen Shake
+					Label: Screenshake
+					Tooltip: Enable or disable screenshake.
+				}
+
+				enableRingSlot: {
+					Label: Ring Slot
+					Tooltip: Enable or disable the ring slot.
+				}
+
+				maxParticles: {
+					Label: max Particles
 					Tooltip: ""
 				}
 			}

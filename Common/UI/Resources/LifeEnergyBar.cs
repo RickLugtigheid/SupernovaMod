@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.GameContent;
 using System.Collections.Generic;
-using SupernovaMod.Content.Items.Accessories;
 using SupernovaMod.Common.Players;
 
 namespace SupernovaMod.Common.UI.LifeEnergy

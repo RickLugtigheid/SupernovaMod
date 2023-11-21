@@ -18,7 +18,7 @@ namespace SupernovaMod
 
 		public static ILog Log { get; private set; }
 
-		public static bool DebugMode => ModContent.GetInstance<Common.Configs.SupernovaModConfig>().debugMode;
+		public static bool DebugMode => false;//ModContent.GetInstance<Common.Configs.SupernovaModConfig>().debugMode;
 
 		private SupernovaModCalls _calls = new SupernovaModCalls();
 

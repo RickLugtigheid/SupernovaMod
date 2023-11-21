@@ -11,7 +11,7 @@ namespace SupernovaMod.Api.Effects
 {
 	public static class ParticleSystem
 	{
-		internal static int maxParticles = 400;
+		internal static int maxParticles = ModContent.GetInstance<Common.Configs.CommonConfig>().maxParticles;
 
 		public static Particle[] particles;
 
