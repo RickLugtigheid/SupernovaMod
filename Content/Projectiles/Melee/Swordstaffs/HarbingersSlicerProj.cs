@@ -13,7 +13,7 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 		{
 			base.SetDefaults();
 
-			Projectile.width = 81;     //Set the hitbox width
+			Projectile.width = 98;     //Set the hitbox width
 			Projectile.height = 98;    //Set the hitbox height
 
 			Projectile.scale = 1.25f;

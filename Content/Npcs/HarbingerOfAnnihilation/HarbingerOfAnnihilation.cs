@@ -573,17 +573,17 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		}
         private bool DespawnAI()
         {
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active || Vector2.Distance(NPC.Center, Main.player[NPC.target].Center) > 2000)
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active || Vector2.Distance(NPC.Center, Main.player[NPC.target].Center) > 10000)
             {
                 NPC.TargetClosest(true);
             }
 
             Player player = Main.player[NPC.target];
-            if (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2000)
+            if (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 10000)
             {
                 NPC.TargetClosest(true);
                 player = Main.player[NPC.target];
-                if (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 2500)
+                if (player.dead || !player.active || Vector2.Distance(NPC.Center, player.Center) > 10000)
                 {
                     NPC.ai[0] = 0;
                     NPC.ai[1] = 0f;

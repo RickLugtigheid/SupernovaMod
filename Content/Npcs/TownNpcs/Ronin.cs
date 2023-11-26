@@ -5,6 +5,9 @@ using Terraria.Utilities;
 using Terraria.GameContent.Personalities;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace SupernovaMod.Content.Npcs.TownNpcs
 {
@@ -15,15 +18,16 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
 
         public override void SetStaticDefaults()
         {
-			// DisplayName.SetDefault("Ronin");    //the name displayed when hovering over the npc ingame.
-            Main.npcFrameCount[NPC.type] = 25; //this defines how many frames the npc sprite sheet has
-            NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
-            NPCID.Sets.AttackFrameCount[NPC.type] = 4;
-            NPCID.Sets.DangerDetectRange[NPC.type] = 150; //this defines the npc danger detect range
-            NPCID.Sets.AttackType[NPC.type] = 0; //this is the attack type,  0 (throwing), 1 (shooting), or 2 (magic). 3 (melee) 
-            NPCID.Sets.AttackTime[NPC.type] = 10; //this defines the npc attack speed
-            NPCID.Sets.AttackAverageChance[NPC.type] = 10;//this defines the npc atack chance
-            NPCID.Sets.HatOffsetY[NPC.type] = 4; //this defines the party hat position
+			Main.npcFrameCount[NPC.type] = 25; //this defines how many frames the npc sprite sheet 
+			Main.npcFrameCount[Type] = 25;
+			NPCID.Sets.ExtraFramesCount[Type] = 9;
+			NPCID.Sets.AttackFrameCount[Type] = 4;
+			NPCID.Sets.DangerDetectRange[Type] = 60;
+			NPCID.Sets.AttackType[Type] = 3; // Swings a weapon. This NPC attacks in roughly the same manner as Stylist
+			NPCID.Sets.AttackTime[Type] = 12;
+			NPCID.Sets.AttackAverageChance[Type] = 1;
+			NPCID.Sets.HatOffsetY[Type] = 4;
+			NPCID.Sets.ShimmerTownTransform[Type] = false; // TODO: Make Shimmer variant
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
@@ -114,27 +118,20 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
             NPCShop shop = new NPCShop(Type);
 
             // Add modded weapons to the shop
-            shop//.Add<Items.Weapons.Ranged.Odzutsu>()
+            shop.Add<Items.Weapons.Ranged.Odzutsu>()
 				//.Add<Items.Weapons.Magic.Tessen>()
 				.Add<Items.Weapons.Melee.Kama>()
 				.Add<Items.Weapons.Throwing.Kunai>();
 
 			// If King Slime is downed, we add the ninja set to the shop
-            //
-            if (NPC.downedSlimeKing)
-            {
-                shop.Add(ItemID.NinjaPants)
-                    .Add(ItemID.NinjaShirt)
-                    .Add(ItemID.NinjaHood)
-                    .Add(ItemID.Katana);
-			}
+            shop.Add(ItemID.NinjaPants, Condition.DownedKingSlime)
+                .Add(ItemID.NinjaShirt, Condition.DownedKingSlime)
+                .Add(ItemID.NinjaHood, Condition.DownedKingSlime)
+                .Add(ItemID.Katana, Condition.DownedKingSlime, Condition.HappyEnough); // Only sell the katana when happy
 
-			// Check if Skeletron is downed
-            //
-            if (NPC.downedBoss3)
-            {
-                shop.Add(ItemID.WormholePotion);
-            }
+			// Sell if Skeletron is downed
+			//
+            shop.Add(ItemID.WormholePotion, Condition.DownedSkeletron);
 
 			shop.Register();
 		}
@@ -145,33 +142,45 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
 
             chat.Add("Hello young one", .75);
             chat.Add("How can I help you?");
-            chat.Add("You will never know how I got my hands on the ninja armour", .5);
+			if (NPC.downedSlimeKing) chat.Add("You will never know how I got my hands on the ninja armour", .5);
             chat.Add("Did you come to train with me?");
             chat.Add("A katana is a fine weapon");
             if (!NPC.downedBoss3) chat.Add("Come back when you have killed Skeletron for some more items!", .27);
             return chat;
         }
-        public override void TownNPCAttackStrength(ref int damage, ref float knockback)//  Allows you to determine the damage and knockback of this town NPC attack
-        {
-            damage = 10;         // npc damage
-            knockback = 0.8f;   //npc knockback
-        }
 
-        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)  //Allows you to determine the cooldown between each of this town NPC's attack. The cooldown will be a number greater than or equal to the first parameter, and less then the sum of the two parameters.
-        {
-            cooldown = 1;
-            randExtraCooldown = 1;
-        }
-        public override void TownNPCAttackProj(ref int projType, ref int attackDelay)//Allows you to determine the projectile type of this town NPC's attack, and how long it takes for the projectile to actually appear
-        {
-            projType = ModContent.ProjectileType<Projectiles.Thrown.KunaiProj>();
-            attackDelay = 1;
-        }
+		public override void ModifyNPCLoot(NPCLoot npcLoot)
+		{
+			npcLoot.Add(ItemDropRule.Common(ItemID.Katana));
+		}
 
-        public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)//Allows you to determine the speed at which this town NPC throws a projectile when it attacks. Multiplier is the speed of the projectile, gravityCorrection is how much extra the projectile gets thrown upwards, and randomOffset allows you to randomize the projectile's velocity in a square centered around the original velocity
-        {
-            multiplier = 17f;
-            randomOffset = 2f;
-        }
-    }
+		public override void TownNPCAttackStrength(ref int damage, ref float knockback)
+		{
+			damage = 18;
+			knockback = 3f;
+		}
+
+		public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
+		{
+			cooldown = 15;
+			randExtraCooldown = 8;
+		}
+
+		public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight)
+		{
+			itemWidth = itemHeight = 40;
+		}
+
+		public override void DrawTownAttackSwing(ref Texture2D item, ref Rectangle itemFrame, ref int itemSize, ref float scale, ref Vector2 offset)
+		{
+			Main.GetItemDrawFrame(ItemID.Katana, out item, out itemFrame);
+			itemSize = 40;
+			// This adjustment draws the swing the way town npcs usually do.
+            //
+			if (NPC.ai[1] > NPCID.Sets.AttackTime[NPC.type] * 0.66f)
+			{
+				offset.Y = 12f;
+			}
+		}
+	}
 }

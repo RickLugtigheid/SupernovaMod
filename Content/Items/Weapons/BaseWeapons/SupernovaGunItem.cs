@@ -32,7 +32,13 @@ namespace SupernovaMod.Content.Items.Weapons.BaseWeapons
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            if (Gun.style == GunStyle.Default)
+			Vector2 muzzleOffset = Vector2.Normalize(velocity) * 30;
+			if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+			{
+				position += muzzleOffset;
+			}
+
+			if (Gun.style == GunStyle.Default)
             {
                 // Add random spread to our projectile
                 velocity = velocity.RotatedByRandom(MathHelper.ToRadians(Gun.spread));
@@ -42,10 +48,7 @@ namespace SupernovaMod.Content.Items.Weapons.BaseWeapons
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            position = player.MountedCenter + player.itemRotation.ToRotationVector2() * 7f;
-            position.Y -= Item.height / 2;
-            Vector2 muzzleOffset = Vector2.Normalize(velocity) * 30;
-            MuzzleFlash(position + muzzleOffset, velocity);
+            MuzzleFlash(position, Vector2.Normalize(velocity) * 3);
 
             if (Gun.style == GunStyle.Shotgun)
             {
@@ -74,17 +77,41 @@ namespace SupernovaMod.Content.Items.Weapons.BaseWeapons
             {
                 return;
             }
-            int dustId = DustID.Torch;
-            int dustCount = 6;
-            ModifyMuzzleFlash(ref position, ref speed, ref dustId, ref dustCount);
+            int flashDustId = DustID.Torch;
+            int flashDustCount = 14;
+			int smokeDustId = DustID.Smoke;
+			int smokeDustCount = 8;
+			ModifyMuzzleFlash(ref position, ref speed, ref flashDustId, ref flashDustCount, ref smokeDustId, ref smokeDustCount);
 
-            for (int i = 0; i < dustCount; i++)
+			// Smoke Dust spawn
+            //
+			for (int i = 0; i < smokeDustCount / 2; i++)
+			{
+                Vector2 smokeVel = -Vector2.UnitY * 2;
+
+				Dust.NewDustPerfect(position, smokeDustId, smokeVel.RotatedByRandom(MathHelper.ToRadians(5)), 100, default, Main.rand.NextFloat(.7f, 1.5f));
+			}
+
+            // Flash dust spawn
+            //
+			for (int i = 0; i < flashDustCount; i++)
             {
-                int dust = Dust.NewDust(position, -Item.height, Item.height, dustId, speed.X, speed.Y);
-                Main.dust[dust].noGravity = true;
-            }
-        }
-        protected virtual void ModifyMuzzleFlash(ref Vector2 position, ref Vector2 speed, ref int dustId, ref int dustCount)
+				Dust dust = Dust.NewDustPerfect(position, flashDustId, speed.RotatedByRandom(MathHelper.ToRadians(15)), 100, default, 3);
+				dust.noGravity = true;
+				dust = Dust.NewDustPerfect(position, flashDustId, speed.RotatedByRandom(MathHelper.ToRadians(15)), 100, default, 2);
+				dust.noGravity = true;
+			}
+
+			// Smoke Dust spawn
+			//
+			for (int i = 0; i < smokeDustCount / 2; i++)
+			{
+				Vector2 smokeVel = -Vector2.UnitY * 2;
+
+				Dust.NewDustPerfect(position, smokeDustId, smokeVel.RotatedByRandom(MathHelper.ToRadians(5)), 100, default, Main.rand.NextFloat(.7f, 1.5f));
+			}
+		}
+		protected virtual void ModifyMuzzleFlash(ref Vector2 position, ref Vector2 speed, ref int flashDustId, ref int flashDustCount, ref int smokeDustId, ref int smokeDustCount)
         {
         }
 
