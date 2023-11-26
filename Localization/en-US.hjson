@@ -527,7 +527,7 @@ Mods: {
 			}
 
 			HarpoonSword: {
-				DisplayName: Harpoon Sword
+				DisplayName: Harpoon Blade
 				Tooltip: Right click to shoot a harpoon at your enemies
 			}
 

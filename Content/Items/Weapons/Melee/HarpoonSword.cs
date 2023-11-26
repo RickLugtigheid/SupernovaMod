@@ -12,8 +12,6 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            // DisplayName.SetDefault("Harpoon Blade");
-            // Tooltip.SetDefault("Right click to shoot a harpoon at your enemies");
             Item.staff[Item.type] = true;
         }
 
@@ -24,8 +22,6 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             Item.crit = 4;
             Item.width = 40;
             Item.height = 40;
-            Item.useTime = 32;
-            Item.useAnimation = 32;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.value = 10000;
             Item.rare = ItemRarityID.Orange;
@@ -43,8 +39,11 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             Item.shoot = ProjectileID.None;
             Item.UseSound = SoundID.Item1;
 
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 7;
+			Item.useTime = 24;
+			Item.useAnimation = 24;
+
+			Item.useStyle = ItemUseStyleID.Swing;
+            Item.knockBack = 6;
             Item.damage = _swordDamage;
         }
         private void SetDefaultsHarpoon()
@@ -86,7 +85,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 			return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
 		}*/
 
-		public override void AddRecipes()
+		/*public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.IronBar, 7);
@@ -95,6 +94,6 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
             recipe.AddIngredient(ItemID.SharkFin);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
-        }
+        }*/
     }
 }

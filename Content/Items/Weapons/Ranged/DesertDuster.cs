@@ -23,8 +23,8 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
             Item.width = 58;
             Item.crit = 1;
             Item.height = 22;
-            Item.useTime = 22;
-            Item.useAnimation = 22;
+            Item.useTime = 19;
+            Item.useAnimation = 19;
             Item.knockBack = 1.5f;
             Item.value = Item.buyPrice(0, 11, 50, 0);
             Item.autoReuse = true;

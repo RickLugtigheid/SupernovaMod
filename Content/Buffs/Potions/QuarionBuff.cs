@@ -8,18 +8,15 @@ namespace SupernovaMod.Content.Buffs.Potions
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = false;
-            // DisplayName.SetDefault("Quarion Potion");
-            // Description.SetDefault("Greatly increased damage and speed but halved health");
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetDamage(DamageClass.Melee) += 0.52f;
-            player.GetDamage(DamageClass.Magic) += 0.52f;
-            player.GetDamage(DamageClass.Ranged) += 0.52f;
-            player.GetDamage(DamageClass.Throwing) += 0.52f;
+            player.GetDamage(DamageClass.Melee) += 0.5f;
+            player.GetDamage(DamageClass.Magic) += 0.5f;
+            player.GetDamage(DamageClass.Ranged) += 0.5f;
+            player.GetDamage(DamageClass.Throwing) += 0.5f;
             player.statLifeMax2 /= 2;
-            player.moveSpeed *= .1f;
-            //player.statDefense /= 2;
+            player.moveSpeed *= 1.12f;
         }
     }
 }
