@@ -82,6 +82,8 @@ Mods: {
 					Princess_LovesNPC: I like {NPCName}.
 				}
 			}
+
+			Mechromite.DisplayName: Mechromite
 		}
 
 		Buffs: {
@@ -744,6 +746,36 @@ Mods: {
 				DisplayName: Flying Terror Trophy
 				Tooltip: ""
 			}
+
+			ForbiddenDisc: {
+				DisplayName: Forbidden Disc
+				Tooltip: ""
+			}
+
+			HarpyMothersFeather: {
+				DisplayName: Harpy Mothers Feather
+				Tooltip: ""
+			}
+
+			HelixStone: {
+				DisplayName: Helix Stone
+				Tooltip: ""
+			}
+
+			HiTechFirearmManual: {
+				DisplayName: Hi Tech Firearm Manual
+				Tooltip: ""
+			}
+
+			MechroDrive: {
+				DisplayName: Mechro Drive
+				Tooltip: ""
+			}
+
+			TitaniumRingMold: {
+				DisplayName: Titanium Ring Mold
+				Tooltip: ""
+			}
 		}
 
 		Prefixes: {
@@ -819,6 +851,8 @@ Mods: {
 			BlunderBussBullet.DisplayName: Blunder Buss Bullet
 			CelestialCystal.DisplayName: Celestial Cystal
 			CelestialCystalShard.DisplayName: Celestial Cystal Shard
+			ForbiddenDiscProj.DisplayName: Forbidden Disc Proj
+			HarpyFeatherProj.DisplayName: Harpy Feather Proj
 		}
 
 		Configs: {
