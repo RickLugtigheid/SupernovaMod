@@ -36,9 +36,9 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             NPC.width = 40;
             NPC.height = 40;
-            NPC.damage = 20;
-            NPC.defense = 13;
-            NPC.lifeMax = 47;
+            NPC.damage = 17;
+            NPC.defense = 8;
+            NPC.lifeMax = 55;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath4;
             NPC.value = 100f;
@@ -64,14 +64,23 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         }
 
         //public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Lihzahrd && !spawnInfo.Invasion && !spawnInfo.SpiderCave && !spawnInfo.DesertCave && !spawnInfo.Player.ZoneDungeon && spawnInfo.Player.ZoneRockLayerHeight == true ? 0.025f : 0;
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.Cavern.Chance * 0.01f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => SpawnCondition.Cavern.Chance * 0.014f;
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            // 15% Drop chance
-            //
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Consumables.BugOnAStick>(), 7));
-            base.ModifyNPCLoot(npcLoot);
+			// 15% drop rate
+			//
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Consumables.BugOnAStick>(), 7));
+
+			// 1% drop rate
+			//
+			npcLoot.Add(ItemDropRule.Common(ItemID.DepthMeter, 100));
+
+			// 0.4% drop rate
+			//
+			npcLoot.Add(ItemDropRule.Common(ItemID.BatBat, 165));
+
+			base.ModifyNPCLoot(npcLoot);
         }
 
 		public override void HitEffect(NPC.HitInfo hit)

@@ -51,7 +51,7 @@ namespace SupernovaMod.Content.Items.Consumables
 			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.LadyBug);
 			recipe.acceptedGroups = new() { RecipeGroupID.Bugs, RecipeGroupID.Wood };
-			recipe.AddIngredient(ItemID.Wood, 2);
+			recipe.AddIngredient(ItemID.Wood);
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.Register();
 		}

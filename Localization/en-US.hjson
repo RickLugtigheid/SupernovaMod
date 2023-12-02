@@ -37,8 +37,8 @@ Mods: {
 
 		NPCs: {
 			HarbingerOfAnnihilation: {
-				DisplayName: Harbinger Of Annihilation
-				BossChecklistIntegration.SpawnInfo: Kill a Cosmic Anomaly or use a [i:SupernovaMod/EerieCrystal] in Space
+				DisplayName: Harbinger of Annihilation
+				BossChecklistIntegration.SpawnInfo: Kill a Cosmic Anomaly or use a [i:SupernovaMod/EerieCrystal] in space
 			}
 
 			FlyingTerror: {
@@ -138,7 +138,7 @@ Mods: {
 
 		Items: {
 			BagOfFungus: {
-				DisplayName: Bag Of Fungus
+				DisplayName: Bag of Fungus
 				Tooltip:
 					'''
 					A bag filled with Glowing Fungus.
@@ -179,7 +179,7 @@ Mods: {
 			}
 
 			HeartOfTheJungle: {
-				DisplayName: Heart Of The Jungle
+				DisplayName: Heart of The Jungle
 				Tooltip:
 					'''
 					Stores up to 60 life energy with an increase of 1 per second.
@@ -204,7 +204,7 @@ Mods: {
 			}
 
 			LensOfGreed: {
-				DisplayName: Lens Of Greed
+				DisplayName: Lens of Greed
 				Tooltip: Provides spelunker to the user
 			}
 
@@ -369,7 +369,7 @@ Mods: {
 			}
 
 			EyeOfDeath: {
-				DisplayName: Eye Of Death
+				DisplayName: Eye of Death
 				Tooltip: Stare into the Eye of Death and go back to where you died
 			}
 
@@ -393,7 +393,7 @@ Mods: {
 			}
 
 			RingOfHellfire: {
-				DisplayName: Ring Of Hellfire
+				DisplayName: Ring of Hellfire
 				Tooltip:
 					'''
 					When the 'Ring Ability button' is pressed
@@ -403,7 +403,7 @@ Mods: {
 			}
 
 			RingOfProtection: {
-				DisplayName: Ring Of Protection
+				DisplayName: Ring of Protection
 				Tooltip:
 					'''
 					When the 'Ring Ability button' is pressed you will dodge the next attack
@@ -477,7 +477,7 @@ Mods: {
 			}
 
 			StaffOfThorns: {
-				DisplayName: Staff Of Thorns
+				DisplayName: Staff of Thorns
 				Tooltip: Shoots a barrage of armor piercing thorns
 			}
 
@@ -492,7 +492,7 @@ Mods: {
 			}
 
 			TomeOfIceAndFire: {
-				DisplayName: Tome Of Ice And Fire
+				DisplayName: Tome of Ice And Fire
 				Tooltip: ""
 			}
 
@@ -737,7 +737,7 @@ Mods: {
 
 			EerieCrystal: {
 				DisplayName: Eerie Crystal
-				Tooltip: ""
+				Tooltip: Summons the Harbinger of Annihilation when used in space
 			}
 
 			FlyingTerrorBossTrophy: {
@@ -761,7 +761,7 @@ Mods: {
 		Projectiles: {
 			FlyingTerrorFlameBreath.DisplayName: Flying Terror Flame Breath
 			TerrorFlame.DisplayName: Terror Flame
-			HarbingerOfAnnihilation_Arm.DisplayName: Harbinger Of Annihilation Arm
+			HarbingerOfAnnihilation_Arm.DisplayName: Harbinger of Annihilation Arm
 			HarbingerMissile.DisplayName: Harbinger Missile
 			HarbingerOrb.DisplayName: Harbinger Orb
 			HoaBlackHole.DisplayName: Black Hole
@@ -773,23 +773,23 @@ Mods: {
 			TerrorBlast.DisplayName: Terror Blast
 			BloodBoltHostile.DisplayName: Blood Bolt Hostile
 			LightningHostile.DisplayName: Lightning Hostile
-			CarnageScepterProj.DisplayName: Carnage Scepter Proj
-			CarnageScepterProj2.DisplayName: Carnage Scepter Proj2
+			CarnageScepterProj.DisplayName: Carnage Scepter
+			CarnageScepterProj2.DisplayName: Carnage Scepter
 			FrostFlame.DisplayName: Frost Flame
 			GlowGunProj.DisplayName: Glow bolt
 			GraniteProj.DisplayName: Granite Chunk
 			ShockSurgeProj.DisplayName: Shock Surge
 			TerrorProjFirendly.DisplayName: Terror Bat
-			VerglasScepterProj.DisplayName: Verglas Scepter Proj
+			VerglasScepterProj.DisplayName: Verglas Scepter
 			ZicroniumExplosion.DisplayName: Zicronium Explosion
-			ZirconProj.DisplayName: Zircon Proj
+			ZirconProj.DisplayName: Zircon
 			BlazingFireball.DisplayName: Blazing Fireball
-			CarnageJavalinProj.DisplayName: Carnage Javalin Proj
-			BlazingFireProj.DisplayName: Blazing Fire Proj
-			HarbingersSlicerProj.DisplayName: Harbingers Slicer Proj
+			CarnageJavalinProj.DisplayName: Carnage Javalin
+			BlazingFireProj.DisplayName: Blazing Fire
+			HarbingersSlicerProj.DisplayName: Harbingers Slicer
 			TerrorScythe.DisplayName: Terror Scythe
 			VerglasSlash.DisplayName: Verglas Slash
-			VerglasSlash2.DisplayName: Verglas Slash2
+			VerglasSlash2.DisplayName: Verglas Slash
 			PoisonousYoYo.DisplayName: Poisonous Yo Yo
 			ZicroniumSpark.DisplayName: Zicronium Spark
 			ZirconiumArrow.DisplayName: Zirconium Arrow
@@ -805,15 +805,15 @@ Mods: {
 			HarbingersArmSummon.DisplayName: Harbingers Arm Summon
 			OmenMinion.DisplayName: Omen Minion
 			VerglasFlakeMinion.DisplayName: Verglas Flake Minion
-			CactusBoomerangProj.DisplayName: Cactus Boomerang Proj
-			CarnageTrowingKniveProj.DisplayName: Carnage Trowing Knive Proj
-			DiscOfTheDesertProj.DisplayName: Disc Of The Desert Proj
+			CactusBoomerangProj.DisplayName: Cactus Boomerang
+			CarnageTrowingKniveProj.DisplayName: Carnage Trowing Knive
+			DiscOfTheDesertProj.DisplayName: Disc of The Desert
 			KunaiProj.DisplayName: Kunai Proj
 			StoneProj.DisplayName: Stone Proj
 			VerglasThrowingAxe.DisplayName: Verglas Throwing Axe
-			ZirconiumKnifeProj.DisplayName: Zirconium Knife Proj
+			ZirconiumKnifeProj.DisplayName: Zirconium Knife
 			BlazeBoltFlames.DisplayName: Blaze Bolt Flames
-			ConquerorsBladeStaffProj.DisplayName: Conquerors Blade Staff Proj
+			ConquerorsBladeStaffProj.DisplayName: Conquerors Blade Staff
 			NebualShot.DisplayName: Nebual Shot
 			TerrorWingArrow.DisplayName: Terror Wing Arrow
 			BlunderBussBullet.DisplayName: Blunder Buss Bullet
