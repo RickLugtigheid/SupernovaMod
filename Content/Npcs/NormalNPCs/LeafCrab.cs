@@ -41,9 +41,9 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
         {
             NPC.width = 52;
             NPC.height = 36;
-            NPC.damage = 10;
-            NPC.defense = 7;
-            NPC.lifeMax = 50;
+            NPC.damage = 20;
+            NPC.defense = 10;
+            NPC.lifeMax = 45;
             NPC.HitSound = SoundID.NPCHit33;
             NPC.DeathSound = SoundID.NPCDeath36;
             NPC.value = 1000f;

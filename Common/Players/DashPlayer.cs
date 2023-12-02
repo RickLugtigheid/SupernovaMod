@@ -170,7 +170,7 @@ namespace SupernovaMod.Common.Players
 							Player.eocDash = 10;
 							dashDelay = DashDelayMax;
 							Player.velocity.X = (-(float)num3 * 5); // Knockback Left/Right
-							Player.velocity.Y = -11; // Knockback Up/Down
+							Player.velocity.Y = -14; // Knockback Up/Down
 							Player.GiveImmuneTimeForCollisionAttack(4);
 							Player.eocHit = i;
 							hit = true;
@@ -187,7 +187,7 @@ namespace SupernovaMod.Common.Players
 			{
 				case SupernovaDashType.Meteor:
 					DashTimeMax = 38;
-					DashDelayMax = 74;
+					DashDelayMax = 58;
 					DashSpeed = 64;
 					Player.eocHit = -1;
 					break;

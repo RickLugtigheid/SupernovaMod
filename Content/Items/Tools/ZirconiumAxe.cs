@@ -29,8 +29,9 @@ namespace SupernovaMod.Content.Items.Tools
             Item.rare = ItemRarityID.Green; // Item Tier
             Item.UseSound = SoundID.Item1; // Sound effect of item on use 
             Item.autoReuse = true; // Do you want to torture people with clicking? Set to false
+			Item.useTurn = true;
 
-            Item.axe = 10; // Axe Power - Higher Value = Better
+			Item.axe = 10; // Axe Power - Higher Value = Better
         }
 
         public override void AddRecipes()
