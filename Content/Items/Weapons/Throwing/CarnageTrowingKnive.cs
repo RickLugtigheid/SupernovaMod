@@ -16,7 +16,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
 
         public override void SetDefaults()
         {
-            Item.maxStack = 999; // Makes it so the weapon stacks.
+            Item.maxStack = 9999; // Makes it so the weapon stacks.
             Item.damage = 11;
             Item.crit = 7;
             Item.knockBack = 3f;

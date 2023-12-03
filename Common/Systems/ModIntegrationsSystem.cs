@@ -6,20 +6,24 @@ namespace SupernovaMod.Common.Systems
 {
 	public class ModIntegrationsSystem : ModSystem
 	{
+		public static bool hasThoriumMod = false;
+		public static bool hasCalamityMod = false;
+
 		public override void PostSetupContent()
 		{
-			HandleIntegrationBossChecklist();
-		}
+			hasThoriumMod = ModLoader.HasMod("ThoriumMod");
+			hasCalamityMod = ModLoader.HasMod("CalamityMod");
 
-		private void HandleIntegrationBossChecklist()
-		{
 			// Get the boss checklist mod object
 			//
-			if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod))
+			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod))
 			{
-				return; // Can not intergrate mod that is not loader
+				HandleIntegrationBossChecklist(bossChecklistMod);
 			}
+		}
 
+		private void HandleIntegrationBossChecklist(Mod bossChecklistMod)
+		{
 			// [Pre-Harmode bosses]
 			//
 			// Harbinger of Annihilation
@@ -28,11 +32,6 @@ namespace SupernovaMod.Common.Systems
 				.ForBoss<Content.Npcs.HarbingerOfAnnihilation.HarbingerOfAnnihilation>()
 				.SetWeight(VanillaWeights.EyeOfCthulhu + .5f)   // After the Eye of Cthulhu
 				.SetDownedCallback(() => DownedSystem.downedHarbingerOfAnnihilation)
-				/*.SetAdditionalEntryData(
-					new BossChecklistAdditionalEntryDataBuilder()
-						//.SetSpawnInfo("Kill a Cosmic Anomaly in Space")
-						.SetSpawnInfo(LocalizedText.)
-				)*/
 				.AddBoss(Mod, bossChecklistMod);
 
 			// Flying Terror
@@ -40,7 +39,6 @@ namespace SupernovaMod.Common.Systems
 			new BossChecklistItemBuilder()
 				.ForBoss<Content.Npcs.FlyingTerror.FlyingTerror>()
 				.SetWeight(VanillaWeights.QueenBee + .1f)   // Just after the Queen bee
-				//.SetSpawnInfoWithItem(ModContent.ItemType<Content.Items.Misc.HorridChunk>(), "at night")
 				.SetAdditionalEntryData(
 					new BossChecklistAdditionalEntryDataBuilder()
 						.AddSpawnItem<Content.Items.Consumables.BugOnAStick>()
@@ -55,11 +53,6 @@ namespace SupernovaMod.Common.Systems
 			new BossChecklistItemBuilder()
 				.ForBoss<Content.Npcs.Bloodmoon.Bloodweaver>()
 				.SetWeight(VanillaWeights.BloodMoon + .25f)   // Just after the Queen bee
-				//.SetSpawnInfo("Spawns during Bloodmoon")
-				/*.SetAdditionalEntryData(
-					new BossChecklistAdditionalEntryDataBuilder()
-						.SetSpawnInfo("Spawns during Bloodmoon")
-				)*/
 				.SetDownedCallback(() => DownedSystem.downedBloodweaver)
 				.AddMiniBoss(Mod, bossChecklistMod);
 
