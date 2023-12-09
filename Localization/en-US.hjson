@@ -289,7 +289,7 @@ Mods: {
 			}
 
 			ZirconiumBoots: {
-				DisplayName: Zirconium Boots
+				DisplayName: Zirconium Leggings
 				Tooltip: ""
 			}
 
@@ -600,7 +600,7 @@ Mods: {
 
 			Odzutsu: {
 				DisplayName: Odzutsu
-				Tooltip: ""
+				Tooltip: A handheld artillery cannon
 			}
 
 			StarNight: {
@@ -652,7 +652,7 @@ Mods: {
 
 			HarbingersKnell: {
 				DisplayName: Harbingers scepter
-				Tooltip: ""
+				Tooltip: Fires crystaline projectiles
 			}
 
 			VerglasStaff: {
@@ -725,11 +725,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			BlunderBuss: {
-				Tooltip: ""
-				DisplayName: Blunder Buss
-			}
-
 			BugOnAStick: {
 				DisplayName: Bug on a Stick
 				Tooltip: Summons the Flying Terror
@@ -738,11 +733,6 @@ Mods: {
 			EerieCrystal: {
 				DisplayName: Eerie Crystal
 				Tooltip: Summons the Harbinger of Annihilation when used in space
-			}
-
-			FlyingTerrorBossTrophy: {
-				DisplayName: Flying Terror Trophy
-				Tooltip: ""
 			}
 		}
 
@@ -759,7 +749,7 @@ Mods: {
 		}
 
 		Projectiles: {
-			FlyingTerrorFlameBreath.DisplayName: Flying Terror Flame Breath
+			FlyingTerrorFlameBreath.DisplayName: Flame Breath
 			TerrorFlame.DisplayName: Terror Flame
 			HarbingerOfAnnihilation_Arm.DisplayName: Harbinger of Annihilation Arm
 			HarbingerMissile.DisplayName: Harbinger Missile
@@ -782,7 +772,7 @@ Mods: {
 			TerrorProjFirendly.DisplayName: Terror Bat
 			VerglasScepterProj.DisplayName: Verglas Scepter
 			ZicroniumExplosion.DisplayName: Zicronium Explosion
-			ZirconProj.DisplayName: Zircon
+			ZirconProj.DisplayName: Zircon Bolt
 			BlazingFireball.DisplayName: Blazing Fireball
 			CarnageJavalinProj.DisplayName: Carnage Javalin
 			BlazingFireProj.DisplayName: Blazing Fire
@@ -801,22 +791,21 @@ Mods: {
 			WoodenBullet.DisplayName: Wooden Bullet
 			VerglasIcicle.DisplayName: Verglas Icicle
 			CarnageOrb.DisplayName: Carnage Orb
-			GazerMinion.DisplayName: Gazer Minion
-			HarbingersArmSummon.DisplayName: Harbingers Arm Summon
-			OmenMinion.DisplayName: Omen Minion
-			VerglasFlakeMinion.DisplayName: Verglas Flake Minion
+			GazerMinion.DisplayName: Gazer
+			HarbingersArmSummon.DisplayName: Harbingers Arm
+			OmenMinion.DisplayName: Omen
+			VerglasFlakeMinion.DisplayName: Verglas Flake
 			CactusBoomerangProj.DisplayName: Cactus Boomerang
 			CarnageTrowingKniveProj.DisplayName: Carnage Trowing Knive
 			DiscOfTheDesertProj.DisplayName: Disc of The Desert
-			KunaiProj.DisplayName: Kunai Proj
-			StoneProj.DisplayName: Stone Proj
+			KunaiProj.DisplayName: Kunai
+			StoneProj.DisplayName: Stone
 			VerglasThrowingAxe.DisplayName: Verglas Throwing Axe
 			ZirconiumKnifeProj.DisplayName: Zirconium Knife
 			BlazeBoltFlames.DisplayName: Blaze Bolt Flames
 			ConquerorsBladeStaffProj.DisplayName: Conquerors Blade Staff
 			NebualShot.DisplayName: Nebual Shot
 			TerrorWingArrow.DisplayName: Terror Wing Arrow
-			BlunderBussBullet.DisplayName: Blunder Buss Bullet
 			CelestialCystal.DisplayName: Celestial Cystal
 			CelestialCystalShard.DisplayName: Celestial Cystal Shard
 		}
@@ -841,8 +830,8 @@ Mods: {
 				}
 
 				maxParticles: {
-					Label: max Particles
-					Tooltip: ""
+					Label: Max Particles
+					Tooltip: The maximum amount of particles that can spawn.
 				}
 			}
 		}
