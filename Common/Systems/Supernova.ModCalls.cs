@@ -1,8 +1,5 @@
-﻿using SupernovaMod.Content.Items.Rings.BaseRings;
-using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace SupernovaMod.Common.Systems
 {
