@@ -7,9 +7,9 @@ A detailed list of currently added content:
 - 3 Bosses
 - 105+ items
 - 40+ weapons
-- 3 rings
+- 4 rings
 - 1 ore
-- 10 npcs
+- 11 npcs
 
 Plans:
 

@@ -30,10 +30,10 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
             // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the spawning conditions of this NPC that is listed in the bestiary.
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.BloodMoon,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("Impish terrors to all excavators beneath the surface. These unique creatures have evolved and adapted to coexist with the harsh circumstances of the underground. But something's hinting towards them being more than just lifeforms..."),
+				//new FlavorTextBestiaryInfoElement("Impish terrors to all excavators beneath the surface. These unique creatures have evolved and adapted to coexist with the harsh circumstances of the underground. But something's hinting towards them being more than just lifeforms..."),
             });
         }
 

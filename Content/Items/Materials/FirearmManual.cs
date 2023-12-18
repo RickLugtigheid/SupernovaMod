@@ -19,7 +19,7 @@ namespace SupernovaMod.Content.Items.Materials
         {
             Item.width = 16;
             Item.height = 20;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(0, 8, 0, 0);
         }

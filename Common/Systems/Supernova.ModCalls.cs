@@ -1,7 +1,5 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace SupernovaMod.Common.Systems
 {
@@ -189,40 +187,40 @@ namespace SupernovaMod.Common.Systems
 		{
 			if (!TryGetBonusArguments(args, out Player player, out float value))
 			{
-				return null;
+				return false;
 			}
 			// Get the resource player and multiply the cooldown regen by the value
 			//
 			Players.ResourcePlayer resourcePlayer = player.GetModPlayer<Players.ResourcePlayer>();
 			resourcePlayer.ringCoolRegen *= value;
-			return null;
+			return true;
 		}
 
 		public object Call_BonusRingPower(object[] args)
 		{
 			if (!TryGetBonusArguments(args, out Player player, out float value))
 			{
-				return null;
+				return false;
 			}
 
 			// Get the resource player and add the value to the ring power
 			//
 			Players.ResourcePlayer resourcePlayer = player.GetModPlayer<Players.ResourcePlayer>();
 			resourcePlayer.ringPower += value;
-			return null;
+			return true;
 		}
 		public object Call_BonusRingPowerMulti(object[] args)
 		{
 			if (!TryGetBonusArguments(args, out Player player, out float value))
 			{
-				return null;
+				return false;
 			}
 
 			// Get the resource player and multiply the ring power by the value
 			//
 			Players.ResourcePlayer resourcePlayer = player.GetModPlayer<Players.ResourcePlayer>();
 			resourcePlayer.ringPower *= value;
-			return null;
+			return true;
 		}
 
 

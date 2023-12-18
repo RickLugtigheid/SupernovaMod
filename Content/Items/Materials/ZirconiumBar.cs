@@ -20,7 +20,7 @@ namespace SupernovaMod.Content.Items.Materials
 			Item.width = 24;
             Item.height = 24;
             Item.value = 10000;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
 
         public override void AddRecipes()

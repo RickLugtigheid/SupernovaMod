@@ -30,7 +30,7 @@ namespace SupernovaMod.Content.Items.Placeable
             Item.autoReuse = true;
             Item.consumable = true;
             Item.createTile = ModContent.TileType<Content.Tiles.ZirconiumOreTile>();
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
     }
 }

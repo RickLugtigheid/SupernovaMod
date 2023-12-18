@@ -20,7 +20,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
 
         public override void SetDefaults()
         {
-            Item.maxStack = 999; // Makes it so the weapon stacks.
+            Item.maxStack = 9999; // Makes it so the weapon stacks.
             Item.damage = 10;
             Item.ArmorPenetration = 5;
             Item.crit = 1;
@@ -40,7 +40,7 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
             Item.shootSpeed = 16;
             Item.shoot = ModContent.ProjectileType<Projectiles.Thrown.KunaiProj>();
 
-            Item.DamageType = DamageClass.Ranged;
+            Item.DamageType = DamageClass.Throwing;
         }
 
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

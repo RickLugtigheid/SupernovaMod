@@ -29,7 +29,11 @@ namespace SupernovaMod.Api.ChestLoot
 					continue;
 				}
 
-				UpdateChest(chest);
+				try
+				{
+					UpdateChest(chest);
+				}
+				catch { }
 
 				progress.Value = (float)i / (float)Main.chest.Length;
 			}

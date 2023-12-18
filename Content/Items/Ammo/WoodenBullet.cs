@@ -19,7 +19,7 @@ namespace SupernovaMod.Content.Items.Ammo
             Item.damage = 4;
             Item.width = 8;
             Item.height = 8;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.knockBack = 1.5f;
             Item.value = 10;

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using SupernovaMod.Common.Systems;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Common.GlobalItems
@@ -28,6 +29,14 @@ namespace SupernovaMod.Common.GlobalItems
 			// Ignore none SupernovaMod items
 			//
 			if (entity.ModItem.Mod.Name != Mod.Name)
+			{
+				return;
+			}
+
+			// Check if the thorium mod or Calamity mod is used.
+			// If so their respective thrower class should be used.
+			//
+			if (ModIntegrationsSystem.hasCalamityMod || ModIntegrationsSystem.hasThoriumMod)
 			{
 				return;
 			}

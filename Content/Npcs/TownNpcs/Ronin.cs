@@ -42,7 +42,7 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement(""),
+				//new FlavorTextBestiaryInfoElement("A wandering warrior"),
             });
         }
 

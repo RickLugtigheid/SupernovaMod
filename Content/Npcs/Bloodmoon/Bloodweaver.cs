@@ -81,8 +81,8 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				//BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.BloodMoon,
 
-				// Sets the description of NPC NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement(""),
+				// Sets the description of NPC that is listed in the bestiary.
+				//new FlavorTextBestiaryInfoElement(""),
 			});
 		}
 
