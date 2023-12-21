@@ -1,4 +1,5 @@
 ﻿using SupernovaMod.Common.Systems;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -11,6 +12,25 @@ namespace SupernovaMod.Common.GlobalItems
 			base.SetDefaults(entity);
 
 			UpdateThrowingClass(entity);
+			if (ModIntegrationsSystem.hasCalamityMod)
+			{
+				UpdateCalamityIntergration(entity);
+			}
+		}
+
+		private void UpdateCalamityIntergration(Item entity)
+		{
+			try
+			{
+				if (entity.DamageType == DamageClass.Throwing)
+				{
+					entity.DamageType = ModLoader.GetMod("CalamityMod").Find<DamageClass>("RogueDamageClass");
+				}
+			}
+			catch (Exception ex)
+			{
+				Supernova.Instance.Logger.Error("UpdateCalamityIntergration("+entity.Name+"): " + ex.GetType().Name + ' ' + ex.Message);
+			}
 		}
 
 		/// <summary>
