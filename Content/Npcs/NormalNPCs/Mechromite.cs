@@ -30,7 +30,6 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime, 
  
- 
 				// Sets the description of this NPC that is listed in the bestiary. 
 				new FlavorTextBestiaryInfoElement(""),
 			});
@@ -40,9 +39,9 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 		{
 			NPC.width = 40;
 			NPC.height = 40;
-			NPC.damage = 40;
-			NPC.defense = 21;
-			NPC.lifeMax = 200;
+			NPC.damage = 47;
+			NPC.defense = 18;
+			NPC.lifeMax = 140;
 			NPC.HitSound = SoundID.NPCHit4;
 			NPC.DeathSound = SoundID.NPCDeath37;
 			NPC.value = BuyPrice.RarityWhite;
