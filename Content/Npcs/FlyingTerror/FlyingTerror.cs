@@ -80,19 +80,23 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			// NormalMode
+			// Master mode loot
 			//
-			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<NormalModeDropCondition>(conditionalRule =>
-			{
-				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
-			}));
+			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Items.Placeable.Furniture.FlyingTerrorRelic>()));
 
-			// ExpertMode+
+			// Expert mode loot
 			//
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Consumables.BossBags.FlyingTerrorBossBag>()));
 			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<ExpertModeDropCondition>(conditionalRule =>
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.TerrorInABottle>()));
+			}));
+
+			// NormalMode
+			//
+			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<NormalModeDropCondition>(conditionalRule =>
+			{
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
 			}));
 
 			DownedSystem.downedFlyingTerror = true;

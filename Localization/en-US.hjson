@@ -734,6 +734,21 @@ Mods: {
 				DisplayName: Eerie Crystal
 				Tooltip: Summons the Harbinger of Annihilation when used in space
 			}
+
+			HarbingerOfAnnihilationRelic: {
+				Tooltip: ""
+				DisplayName: Harbinger Of Annihilation Relic
+			}
+
+			FlyingTerrorRelic: {
+				Tooltip: ""
+				DisplayName: Flying Terror Relic
+			}
+
+			BloodweaverRelic: {
+				Tooltip: ""
+				DisplayName: Bloodweaver Relic
+			}
 		}
 
 		Prefixes: {

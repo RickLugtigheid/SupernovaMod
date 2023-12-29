@@ -650,6 +650,9 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
+			// Master mode loot
+			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Items.Placeable.Furniture.BloodweaverRelic>()));
+
 			npcLoot.Add(ItemDropRule.OneFromOptions(3, new int[]
 				{
 					ModContent.ItemType<Items.Weapons.Summon.GazerStaff>(),

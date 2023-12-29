@@ -81,10 +81,17 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
+			// Master mode loot
+			//
+			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Items.Placeable.Furniture.HarbingerOfAnnihilationRelic>()));
+
+			// Expert mode loot
+			//
 			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<ExpertModeDropCondition>(conditionalRule =>
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.HarbingersCrest>()));
 			}));
+
 			npcLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
 			{
 				ModContent.ItemType<Items.Weapons.Magic.HarbingersKnell>(),
