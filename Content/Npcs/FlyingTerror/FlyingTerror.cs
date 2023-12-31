@@ -75,7 +75,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
             NPC.noTileCollide = true; // Will not collide with the tiles. 
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
-            Music = MusicID.Boss1;
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)

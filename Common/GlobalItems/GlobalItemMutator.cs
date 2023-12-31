@@ -12,7 +12,7 @@ namespace SupernovaMod.Common.GlobalItems
 			base.SetDefaults(entity);
 
 			UpdateThrowingClass(entity);
-			if (ModIntegrationsSystem.hasCalamityMod)
+			if (Supernova.Instance.HasModCalamity)
 			{
 				UpdateCalamityIntergration(entity);
 			}
@@ -56,7 +56,7 @@ namespace SupernovaMod.Common.GlobalItems
 			// Check if the thorium mod or Calamity mod is used.
 			// If so their respective thrower class should be used.
 			//
-			if (ModIntegrationsSystem.hasCalamityMod || ModIntegrationsSystem.hasThoriumMod)
+			if (Supernova.Instance.HasModCalamity || Supernova.Instance.HasModThorium)
 			{
 				return;
 			}

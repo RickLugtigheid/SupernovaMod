@@ -1,29 +1,25 @@
 ﻿using SupernovaMod.Api.Integration.BossChecklist;
-using Terraria.Localization;
+using SupernovaMod.Content.Buffs.Summon;
+using SupernovaMod.Content.Items.Weapons.Summon;
+using SupernovaMod.Content.Projectiles.Summon;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Common.Systems
 {
 	public class ModIntegrationsSystem : ModSystem
 	{
-		public static bool hasThoriumMod = false;
-		public static bool hasCalamityMod = false;
-
 		public override void PostSetupContent()
 		{
-			hasThoriumMod = ModLoader.HasMod("ThoriumMod");
-			hasCalamityMod = ModLoader.HasMod("CalamityMod");
-
-			// Get the boss checklist mod object
-			//
-			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod))
-			{
-				HandleIntegrationBossChecklist(bossChecklistMod);
-			}
+			HandleIntegrationBossChecklist();
 		}
 
-		private void HandleIntegrationBossChecklist(Mod bossChecklistMod)
+		private void HandleIntegrationBossChecklist()
 		{
+			if (!Supernova.Instance.HasModBossChecklist)
+			{
+				return;
+			}
+
 			// [Pre-Harmode bosses]
 			//
 			// Harbinger of Annihilation
@@ -31,8 +27,14 @@ namespace SupernovaMod.Common.Systems
 			new BossChecklistItemBuilder()
 				.ForBoss<Content.Npcs.HarbingerOfAnnihilation.HarbingerOfAnnihilation>()
 				.SetWeight(VanillaWeights.EyeOfCthulhu + .5f)   // After the Eye of Cthulhu
+				.SetAdditionalEntryData(
+					new BossChecklistAdditionalEntryDataBuilder()
+						.AddSpawnItem<Content.Items.Consumables.EerieCrystal>()
+						.AddCollectibleItem<Content.Items.Placeable.Furniture.HarbingerOfAnnihilationTrophy>()
+						.AddCollectibleItem<Content.Items.Placeable.Furniture.HarbingerOfAnnihilationRelic>()
+				)
 				.SetDownedCallback(() => DownedSystem.downedHarbingerOfAnnihilation)
-				.AddBoss(Mod, bossChecklistMod);
+				.AddBoss(Mod, Supernova.Instance.bossChecklist);
 
 			// Flying Terror
 			//
@@ -42,9 +44,10 @@ namespace SupernovaMod.Common.Systems
 				.SetAdditionalEntryData(
 					new BossChecklistAdditionalEntryDataBuilder()
 						.AddSpawnItem<Content.Items.Consumables.BugOnAStick>()
+						.AddCollectibleItem<Content.Items.Placeable.Furniture.FlyingTerrorRelic>()
 				)
 				.SetDownedCallback(() => DownedSystem.downedFlyingTerror)
-				.AddBoss(Mod, bossChecklistMod);
+				.AddBoss(Mod, Supernova.Instance.bossChecklist);
 
 			// [Pre-Harmode mini-bosses]
 			//
@@ -52,9 +55,13 @@ namespace SupernovaMod.Common.Systems
 			//
 			new BossChecklistItemBuilder()
 				.ForBoss<Content.Npcs.Bloodmoon.Bloodweaver>()
-				.SetWeight(VanillaWeights.BloodMoon + .25f)   // Just after the Queen bee
+				.SetWeight(VanillaWeights.BloodMoon + .25f)   // Just after the blood moon
+				.SetAdditionalEntryData(
+					new BossChecklistAdditionalEntryDataBuilder()
+						.AddCollectibleItem<Content.Items.Placeable.Furniture.BloodweaverRelic>()
+				)
 				.SetDownedCallback(() => DownedSystem.downedBloodweaver)
-				.AddMiniBoss(Mod, bossChecklistMod);
+				.AddMiniBoss(Mod, Supernova.Instance.bossChecklist);
 
 
 			// [Harmode bosses]

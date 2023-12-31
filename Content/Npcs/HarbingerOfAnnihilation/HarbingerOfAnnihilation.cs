@@ -76,7 +76,6 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
             NPC.noTileCollide = true; // Will not collide with the tiles. 
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
-            Music = MusicID.Boss1;
         }
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -92,6 +91,9 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.HarbingersCrest>()));
 			}));
 
+			// Add common loot
+			//
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.HarbingerOfAnnihilationTrophy>(), 10));
 			npcLoot.Add(ItemDropRule.OneFromOptions(1, new int[]
 			{
 				ModContent.ItemType<Items.Weapons.Magic.HarbingersKnell>(),

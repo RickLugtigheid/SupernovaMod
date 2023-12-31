@@ -22,6 +22,20 @@ namespace SupernovaMod
 
 		private SupernovaModCalls _calls = new SupernovaModCalls();
 
+		#region Other Mods
+
+		public Mod supernovaMusic;
+		public Mod calamity;
+		public Mod thorium;
+		public Mod bossChecklist;
+
+		public bool HasModSupernovaMusic => supernovaMusic != null;
+		public bool HasModCalamity => calamity != null;
+		public bool HasModThorium => thorium != null;
+		public bool HasModBossChecklist => bossChecklist != null;
+
+		#endregion
+
 		public override object Call(params object[] args) => _calls.Call(args);
 
 		public override void Load()
@@ -29,6 +43,18 @@ namespace SupernovaMod
 			Instance = this;
 			Log = Logger;
 
+			// Try load other mods
+			//
+			supernovaMusic = null;
+			ModLoader.TryGetMod("SupernovaMusic", out supernovaMusic);
+			calamity = null;
+			ModLoader.TryGetMod("CalamityMod", out calamity);
+			thorium = null;
+			ModLoader.TryGetMod("ThoriumMod", out calamity);
+			bossChecklist = null;
+			ModLoader.TryGetMod("BossChecklist", out bossChecklist);
+
+			//
 			if (Main.netMode != NetmodeID.Server)
 			{
 				LoadShaders();
@@ -41,6 +67,13 @@ namespace SupernovaMod
 
 		public override void Unload()
 		{
+			// Unload other mod variables
+			//
+			supernovaMusic = null;
+			calamity = null;
+			thorium = null;
+			bossChecklist = null;
+
 			UnloadShaders();
 			ParticleSystem.Unload();
 		}
@@ -54,6 +87,20 @@ namespace SupernovaMod
 		private void UnloadShaders()
 		{
 			ShaderShockwave = null;
+		}
+
+		/// <summary>
+		/// Gets a song from the Supernova Music mod
+		/// </summary>
+		/// <param name="songFile"></param>
+		/// <returns></returns>
+		public int? GetMusicFromMusicMod(string songFile)
+		{
+			if (!HasModSupernovaMusic)
+			{
+				return null;
+			}
+			return new int?(MusicLoader.GetMusicSlot(supernovaMusic, "Assets/Music/" + songFile));
 		}
 
 		#region Statics
