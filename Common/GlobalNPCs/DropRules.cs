@@ -32,16 +32,34 @@ namespace SupernovaMod.Common.GlobalNPCs
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.DemonHorns>(), 30));
 			}
 
+			// Drom from red devils
+			//
+			if (npc.type == NPCID.RedDevil)
+			{
+				// 1/30 (3.3333%) Drop chance
+				//
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Accessories.SealOfSamael>(), 30));
+			}
+
 			// Drop from pre-hardmode ice enemies
 			//
 			if (npc.type == NPCID.IceSlime || npc.type == NPCID.SpikedIceSlime || npc.type == NPCID.IceBat)
 			{
-				// 1/10 (10%)  Drop chance
+				// 1/10 (10%) Drop chance when the Flying Terror is downed
 				//
 				npcLoot.Add(GetDropRule<FlyingTerrorDownedDropCondition>(conditionalRule =>
 				{
 					conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Materials.Rime>(), 10, maximumDropped: 2));
 				}));
+			}
+
+			// Drom from Wolfs
+			//
+			if (npc.type == NPCID.Wolf)
+			{
+				// 1/30 (3.3333%) Drop chance
+				//
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Weapons.Melee.BattleAxe>(), 30));
 			}
 
 			/* Register Event Handlers */

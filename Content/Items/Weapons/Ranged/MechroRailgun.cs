@@ -50,14 +50,13 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 
 
 		public override void AddRecipes()
-        {
-            Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ModContent.ItemType<Materials.BloodShards>(), 5);
-            recipe.AddIngredient(ModContent.ItemType<Materials.BoneFragment>(), 7);
-            recipe.AddIngredient(ItemID.Musket);
-            recipe.AddIngredient(ModContent.ItemType<Materials.FirearmManual>(), 2);
-            recipe.AddTile(TileID.Anvils);
-            recipe.Register();
-        }
-    }
+		{
+			Recipe recipe = CreateRecipe();
+			recipe.AddIngredient(ModContent.ItemType<Materials.MechroDrive>(), 3);
+			recipe.AddIngredient(ItemID.SoulofSight, 5);
+			recipe.AddIngredient(ModContent.ItemType<Materials.HiTechFirearmManual>());
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.Register();
+		}
+	}
 }

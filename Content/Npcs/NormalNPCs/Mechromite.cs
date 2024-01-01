@@ -3,7 +3,6 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Bestiary;
-using Terraria.Audio;
 using Terraria.ModLoader.Utilities;
 using SupernovaMod.Api;
 using Microsoft.Xna.Framework;
@@ -40,7 +39,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 			NPC.width = 40;
 			NPC.height = 40;
 			NPC.damage = 47;
-			NPC.defense = 18;
+			NPC.defense = 30;
 			NPC.lifeMax = 140;
 			NPC.HitSound = SoundID.NPCHit4;
 			NPC.DeathSound = SoundID.NPCDeath37;
@@ -55,7 +54,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 		}
 		public override void FindFrame(int frameHeight)
 		{
-			NPC.frameCounter -= .8F; // Determines the animation speed. Higher value = faster animation. 
+			NPC.frameCounter -= .6F; // Determines the animation speed. Higher value = faster animation. 
 			NPC.frameCounter %= Main.npcFrameCount[NPC.type];
 			int frame = (int)NPC.frameCounter;
 			if (frame >= Main.npcFrameCount[NPC.type] - 1) frame = 0;
@@ -68,7 +67,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 		{
 			if (Main.hardMode)
 			{
-				return SpawnCondition.OverworldDay.Chance * 0.3f;
+				return SpawnCondition.OverworldDay.Chance * 0.03f;
 			}
 			return 0;
 		}

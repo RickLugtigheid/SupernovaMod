@@ -21,11 +21,11 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
             Item.maxStack = 1;
             Item.width = 48;
             Item.height = 48;
-            Item.useTime = 10;
-            Item.useAnimation = 10;
+            Item.useTime = 11;
+            Item.useAnimation = 11;
             Item.noUseGraphic = true;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 2.5f;
+            Item.knockBack = 3f;
             Item.value = Item.buyPrice(0, 1, 0, 0);
             Item.rare = ItemRarityID.Pink;
             Item.shootSpeed = 16;

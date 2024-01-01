@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -42,7 +42,7 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 				// Sets the description of this NPC that is listed in the bestiary.
-				//new FlavorTextBestiaryInfoElement("A wandering warrior"),
+				new FlavorTextBestiaryInfoElement("A vagrant among the Terrarian lands in search for a new home. Rumors had it that he was either outcast from his home clan or had it ravaged by a catastrophic behemoth, leaving him the sole survivor. The gear he has obtained is most likely salvaged from where his clan base resided, either through theft or proceeding the aftermath of his clan's massacre."),
             });
         }
 
@@ -132,6 +132,10 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
 			// Sell if Skeletron is downed
 			//
             shop.Add(ItemID.WormholePotion, Condition.DownedSkeletron);
+
+            // Sell in hardmode during a bloodmoon
+            //
+            shop.Add<Items.Materials.BrokenSwordShards>(Condition.Hardmode, Condition.BloodMoon);
 
 			shop.Register();
 		}

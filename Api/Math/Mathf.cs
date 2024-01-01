@@ -16,6 +16,23 @@ namespace SupernovaMod.Api.Helpers
 		public const double Tau = (double)6.2831853071795864769252867666M;
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static float Convert01To010(float value) => (float)Math.Sin((double)(MathHelper.Pi * MathHelper.Clamp(value, 0f, 1f)));
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="dx"></param>
+		/// <param name="a"></param>
+		/// <param name="b"></param>
+		/// <returns></returns>
+		public static float AperiodicSin(float x, float dx = 0f, float a = MathHelper.Pi, float b = MathHelper.E) => (float)(Math.Sin((double)(x * a + dx)) + Math.Sin((double)(x * b + dx))) * 0.5f;
+
+		/// <summary>
 		/// Returns the inverse of the absolute value for <paramref name="x"/>.
 		/// </summary>
 		/// <param name="x"></param>
