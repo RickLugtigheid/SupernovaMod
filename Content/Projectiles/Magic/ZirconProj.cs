@@ -19,44 +19,49 @@ namespace SupernovaMod.Content.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            Projectile.width = 8;
-            Projectile.height = 8;
+            Projectile.width = 14;
+            Projectile.height = 28;
             Projectile.friendly = true;
-            Projectile.penetrate = 1;                       //this is the projectile penetration
-            //Main.projFrames[projectile.type] = 4;           //this is projectile frames
-            Projectile.hostile = false;
+			Projectile.hostile = false;
+			Projectile.penetrate = 1;                       //this is the projectile penetration
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = true;                 //this make that the projectile does not go thru walls
             Projectile.ignoreWater = false;
-            Projectile.timeLeft = 70;
+            Projectile.timeLeft = 72;
         }
 
         public override void AI()
         {
-            Projectile.localAI[0] += 1f;
-
-            if (Projectile.localAI[0] > 3f)
-            {
-                int num90 = 1;
-
-                if (Projectile.localAI[0] > 50f)
-                {
-                    num90 = 2;
-                }
-                for (int num91 = 0; num91 < num90; num91++)
-                {
-                    int num92 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Dusts.ZirconDust>(), Projectile.velocity.X, Projectile.velocity.Y, 100, default, Scale: 1.5f);
-                    Main.dust[num92].noGravity = true;
-                    Dust expr_46AC_cp_0 = Main.dust[num92];
-                    expr_46AC_cp_0.velocity.X = expr_46AC_cp_0.velocity.X * 0.3f;
-                    Dust expr_46CA_cp_0 = Main.dust[num92];
-                    expr_46CA_cp_0.velocity.Y = expr_46CA_cp_0.velocity.Y * 0.3f;
-                    Main.dust[num92].noLight = true;
-                }
-                //this make that the projectile faces the right way
-                Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
-                Projectile.localAI[0] += 1f;
-            }
+			int num3;
+			int num240 = (int)Projectile.ai[0];
+			for (int num241 = 0; num241 < 3; num241 = num3 + 1)
+			{
+				int num242 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, ModContent.DustType<Dusts.ZirconDust>(), Projectile.velocity.X, Projectile.velocity.Y, num240, default(Color), 1.2f);
+				Main.dust[num242].position = (Main.dust[num242].position + Projectile.Center) / 2f;
+				Main.dust[num242].noGravity = true;
+				Dust dust2 = Main.dust[num242];
+				dust2.velocity *= 0.5f;
+				num3 = num241;
+			}
+			for (int num243 = 0; num243 < 2; num243 = num3 + 1)
+			{
+				int num242 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, ModContent.DustType<Dusts.ZirconDust>(), Projectile.velocity.X, Projectile.velocity.Y, num240, default(Color), 0.4f);
+				if (num243 == 0)
+				{
+					Main.dust[num242].position = (Main.dust[num242].position + Projectile.Center * 5f) / 6f;
+				}
+				else if (num243 == 1)
+				{
+					Main.dust[num242].position = (Main.dust[num242].position + (Projectile.Center + Projectile.velocity / 2f) * 5f) / 6f;
+				}
+				Dust dust2 = Main.dust[num242];
+				dust2.velocity *= 0.1f;
+				Main.dust[num242].noGravity = true;
+				Main.dust[num242].fadeIn = 1f;
+				num3 = num243;
+			}
+			//this make that the projectile faces the right way
+			Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.57f;
         }
 
 		public override void OnKill(int timeLeft)

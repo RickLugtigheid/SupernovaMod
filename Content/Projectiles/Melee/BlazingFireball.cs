@@ -9,11 +9,13 @@ namespace SupernovaMod.Content.Projectiles.Melee
 {
     public class BlazingFireball : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Blazing Fireball");
-        }
-        public override void SetDefaults()
+		public override void SetStaticDefaults()
+		{
+			// DisplayName.SetDefault("Carnage Scepter");
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 4;
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+		}
+		public override void SetDefaults()
         {
             Projectile.width = 16;
             Projectile.height = 16;
@@ -25,13 +27,14 @@ namespace SupernovaMod.Content.Projectiles.Melee
             Projectile.timeLeft = 2;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 34;
-        }
+			Projectile.light = .1f;
+		}
 
-        public override void AI()
+		public override void AI()
         {
             CheckActive();
 
-            int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width - 10, Projectile.height - 10, DustID.Torch, Projectile.velocity.X * 20, Projectile.velocity.Y * 20, 70, default);
+            int DustID2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X * 20, Projectile.velocity.Y * 20, 70, default);
             Main.dust[DustID2].noGravity = true;
 
             #region orbit
