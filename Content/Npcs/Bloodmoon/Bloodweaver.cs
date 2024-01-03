@@ -653,12 +653,16 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			// Master mode loot
 			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Items.Placeable.Furniture.BloodweaverRelic>()));
 
+			// Common loot
+			//
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.FlyingTerrorTrophy>(), 10));
 			npcLoot.Add(ItemDropRule.OneFromOptions(3, new int[]
 				{
 					ModContent.ItemType<Items.Weapons.Summon.GazerStaff>(),
 					ModContent.ItemType<Items.Rings.BloodweaversRing>()
 				}
 			));
+
 			// Drops after the EoC is downed
 			//
 			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<EoCDownedDropCondition>(conditionalRule =>

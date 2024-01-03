@@ -407,7 +407,7 @@ Mods: {
 				Tooltip:
 					'''
 					When the 'Ring Ability button' is pressed you will dodge the next attack
-					+2 defence when equiped
+					+2 defense when equiped
 					'''
 			}
 
@@ -748,6 +748,21 @@ Mods: {
 			BloodweaverRelic: {
 				Tooltip: ""
 				DisplayName: Bloodweaver Relic
+			}
+
+			HarbingerOfAnnihilationTrophy: {
+				Tooltip: ""
+				DisplayName: Harbinger Of Annihilation Trophy
+			}
+
+			FlyingTerrorTrophy: {
+				Tooltip: ""
+				DisplayName: Flying Terror Trophy
+			}
+
+			BloodweaverTrophy: {
+				Tooltip: ""
+				DisplayName: Bloodweaver Trophy
 			}
 		}
 

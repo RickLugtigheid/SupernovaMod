@@ -91,8 +91,9 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.TerrorInABottle>()));
 			}));
 
-			// NormalMode
+			// Common loot
 			//
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.FlyingTerrorTrophy>(), 10));
 			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<NormalModeDropCondition>(conditionalRule =>
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));

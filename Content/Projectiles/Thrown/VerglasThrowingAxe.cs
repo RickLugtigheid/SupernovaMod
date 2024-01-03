@@ -41,7 +41,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
 
         public override void AI()
         {
-            int dustID = Dust.NewDust(Projectile.position, Projectile.width / 2, Projectile.height / 2, DustID.BlueTorch, Projectile.velocity.X, Projectile.velocity.Y, Scale: 2);
+            int dustID = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Frost, Projectile.velocity.X, Projectile.velocity.Y, Scale: .6f);
             Main.dust[dustID].noGravity = true;
 
             base.AI();

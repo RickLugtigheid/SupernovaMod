@@ -13,12 +13,11 @@ namespace SupernovaMod.Content.Tiles
             Main.tileMergeDirt[Type] = true;
             Main.tileLighted[Type] = true;
             Main.tileSpelunker[Type] = true;
-            //ItemDrop/* tModPorter Note: Removed. Tiles and walls will drop the item which places them automatically. Use RegisterItemDrop to alter the automatic drop if necessary. */ = ModContent.ItemType<Items.Tiles.ZirconiumOre>();
-            RegisterItemDrop(ModContent.ItemType<Items.Placeable.ZirconiumOre>()); // TODO: Check if necessary
+            RegisterItemDrop(ModContent.ItemType<Items.Placeable.ZirconiumOre>());
 			LocalizedText name = CreateMapEntryName();
-            // name.SetDefault("Zirconium");
             AddMapEntry(new Color(187, 78, 181), name);
-            MinPick = 20;
+			DustType = ModContent.DustType<Dusts.ZirconDust>();
+			MinPick = 20;
         }
     }
 }

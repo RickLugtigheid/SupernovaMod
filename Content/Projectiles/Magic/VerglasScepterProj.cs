@@ -65,12 +65,9 @@ namespace SupernovaMod.Content.Projectiles.Magic
 
         public override void AI()
         {
-            //this is projectile dust
-            if (Main.rand.NextBool(2))
-            {
-                int DustID2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Frost, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 20, default, Main.rand.NextFloat(.85f, 1.35f));
-                Main.dust[DustID2].noGravity = true;
-            }
+            // Projectile dust
+            int DustID2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Frost, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 20, default, Main.rand.NextFloat(.85f, 1.35f));
+            Main.dust[DustID2].noGravity = true;
 
             // Add sinewave effect
             const double amp = 2;

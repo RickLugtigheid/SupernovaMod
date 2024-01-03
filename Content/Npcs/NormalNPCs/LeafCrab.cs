@@ -7,6 +7,7 @@ using Terraria.Audio;
 using Terraria.ModLoader.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using SupernovaMod.Common.ItemDropRules.DropConditions;
 
 namespace SupernovaMod.Content.Npcs.NormalNPCs
 {
@@ -90,8 +91,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.QuarionShard>(), 4, maximumDropped: 2));
-            base.ModifyNPCLoot(npcLoot);
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.QuarionShard>(), 2, maximumDropped: 2));
         }
     }
 }

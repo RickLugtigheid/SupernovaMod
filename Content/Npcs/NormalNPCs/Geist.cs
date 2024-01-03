@@ -72,14 +72,14 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             //
             if (NPC.localAI[0] == 0)
             {
-                if (Vector2.Distance(NPC.Center, player.Center) > 500 && Vector2.Distance(NPC.Center, player.Center) < 1000)
+                if (Vector2.Distance(NPC.Center, player.Center) > 500 && Vector2.Distance(NPC.Center, player.Center) < 850)
                 {
                     NPC.localAI[0] = 1;
 				}
                 return;
             }
 
-            if (Vector2.Distance(NPC.Center, player.Center) > 500)
+            if (Vector2.Distance(NPC.Center, player.Center) > 500 && Vector2.Distance(NPC.Center, player.Center) < 850)
             { 
                 NPC.alpha += 2;
 				if (NPC.alpha > 250)
