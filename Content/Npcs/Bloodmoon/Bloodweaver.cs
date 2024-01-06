@@ -655,7 +655,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 			// Common loot
 			//
-			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.FlyingTerrorTrophy>(), 10));
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.BloodweaverTrophy>(), 10));
 			npcLoot.Add(ItemDropRule.OneFromOptions(3, new int[]
 				{
 					ModContent.ItemType<Items.Weapons.Summon.GazerStaff>(),
