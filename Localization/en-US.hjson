@@ -84,6 +84,8 @@ Mods: {
 			}
 
 			Mechromite.DisplayName: Mechromite
+			Balancer.DisplayName: Balancer
+			EldritchSlime.DisplayName: Eldritch Slime
 		}
 
 		Buffs: {
@@ -135,6 +137,11 @@ Mods: {
 			TerrorState: {
 				DisplayName: Terror State
 				Description: Using the Terror in a Bottle will take life
+			}
+
+			RedDevilBuff: {
+				DisplayName: Red Devil Buff
+				Description: Mods.SupernovaMod.Buffs.RedDevilBuff.Description
 			}
 		}
 
@@ -754,7 +761,7 @@ Mods: {
 
 			HiTechFirearmManual: {
 				DisplayName: Hi Tech Firearm Manual
-				Tooltip: ""
+				Tooltip: A guide to making advanced hi-tech weaponry
 			}
 
 			MechroDrive: {
@@ -796,8 +803,103 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Bloodweaver Trophy
 			}
-		}
 
+			HeartOfPower: {
+				DisplayName: Heart of Power
+				Tooltip:
+					'''
+					The more health you have left the more damage you deal
+					Deals a max of 20% extra damage when at 500 health
+					'''
+			}
+
+			ManaCore: {
+				DisplayName: Mana Core
+				Tooltip:
+					'''
+					The more health you have left the less mana your weapons will use
+					Reduces a max of 30% mana cost when at 500 health
+					'''
+			}
+
+			SoulOfSwiftness: {
+				DisplayName: Soul of Swiftness
+				Tooltip:
+					'''
+					The less health you have left the faster you will be
+					Increases movement speed by a max of 14% at 100 health
+					'''
+			}
+
+			IronSkull: {
+				DisplayName: Iron Skull
+				Tooltip:
+					'''
+					The less health you have left the less damage you take
+					Increases defense by a max of 10 at 100 health
+					'''
+			}
+			BrokenSwordShards: {
+				DisplayName: Broken Sword Shards
+				Tooltip: ""
+			}
+
+			DriveSaber: {
+				DisplayName: Drive Saber
+				Tooltip: ""
+			}
+			BloodLens: {
+				DisplayName: Blood Lens
+				Tooltip:
+					'''
+					Allows you to see nearby danger sources
+					Shows the location of enemies
+					Shows the location of treasure and ore
+					Improves vision and provides light when used
+					'The darkness holds no secrets for you'
+					'''
+			}
+
+			MechroRailgun: {
+				DisplayName: Mechro Railgun
+				Tooltip:
+					'''
+					Converts normal bullets into Charged Shells
+					Fires a very fast bolt of electricity
+					'''
+			}
+
+			DriveSpinner: {
+				DisplayName: Drive Spinner
+				Tooltip: ""
+			}
+			Kusanagi: {
+				DisplayName: Kusanagi
+				Tooltip: ""
+			}
+			BattleAxe: {
+				DisplayName: Battle Axe
+				Tooltip: ""
+			}
+
+			Magnitrix: {
+				DisplayName: Magnitrix
+				Tooltip: ""
+			}
+			HarbingerOfAnnihilationRelic: {
+				DisplayName: Harbinger of Annihilation Relic
+				Tooltip: ""
+			}
+
+			FlyingTerrorRelic: {
+				DisplayName: Flying Terror Relic
+				Tooltip: ""
+			}
+
+			SealOfSamael: {
+				DisplayName: Seal Of Samael
+				Tooltip: ""
+			}
 		Prefixes: {
 			Angry.DisplayName: Angry
 			Chilly.DisplayName: Chilly
@@ -872,6 +974,10 @@ Mods: {
 			CelestialCystalShard.DisplayName: Celestial Cystal Shard
 			ForbiddenDiscProj.DisplayName: Forbidden Disc Proj
 			HarpyFeatherProj.DisplayName: Harpy Feather Proj
+			RailgunBolt.DisplayName: Railgun Bolt
+			DriveSpinnerProjectile.DisplayName: Drive Spinner Projectile
+			BalancedOrb.DisplayName: Balanced Orb
+			HarpyMothersFeather.DisplayName: Harpy Mothers Feather
 		}
 
 		Configs: {
