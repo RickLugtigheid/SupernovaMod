@@ -9,7 +9,9 @@
     <RootNamespace>SupernovaMod</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Content\Items\Placeable\Furniture\BloodweaverRelic.png" />
     <None Remove="Content\Projectiles\Magic\CelestialCystal.png" />
+    <None Remove="Content\Tiles\Furniture\BloodweaverRelic.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />

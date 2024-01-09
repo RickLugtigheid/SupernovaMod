@@ -16,8 +16,8 @@ namespace SupernovaMod.Content.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            Projectile.width = 8;
-            Projectile.height = 8;
+            Projectile.width = 10;
+            Projectile.height = 10;
             Projectile.aiStyle = 1;
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -33,13 +33,18 @@ namespace SupernovaMod.Content.Projectiles.Magic
         }
         public override void AI()
         {
+            if (_maxBounces == -1)
+            {
+                _maxBounces = Main.rand.Next(3);
+			}
             //this is projectile dust
-            int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 5f), Projectile.width + 2, Projectile.height + 2, ModContent.DustType<Dusts.BloodDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 20, default, 0.9f);
+            int DustID2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<Dusts.BloodDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 20, default, 0.9f);
             Main.dust[DustID2].noGravity = true;
         }
 
         private int _bounces;
-        public override bool OnTileCollide(Vector2 oldVelocity)
+		private int _maxBounces = -1;
+		public override bool OnTileCollide(Vector2 oldVelocity)
         {
             _bounces++;
             if (_bounces > 1) return true;

@@ -18,7 +18,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 13;
+            Item.damage = 16;
 			Item.crit = 1;
 			Item.width = 28;
             Item.height = 34;
@@ -33,7 +33,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.UseSound = SoundID.Item43;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.Magic.ZirconProj>();
-            Item.shootSpeed = 7;
+            Item.shootSpeed = 10;
 
             Item.DamageType = DamageClass.Magic;
         }

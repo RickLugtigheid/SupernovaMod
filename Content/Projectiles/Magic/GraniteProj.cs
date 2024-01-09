@@ -46,14 +46,40 @@ namespace SupernovaMod.Content.Projectiles.Magic
 				SoundEngine.PlaySound(SoundID.Item20, Projectile.Center);
 				Vector2 velocity = Main.MouseWorld - Projectile.Center;
 				velocity.Normalize();
-				Projectile.velocity = velocity * 10;
+				Projectile.velocity = velocity * 12;
 				Projectile.tileCollide = true;
 			}
             else
             {
-				//this is projectile dust
-				int DustID2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Granite, Projectile.velocity.X, Projectile.velocity.Y, 70, default);
-				Main.dust[DustID2].noGravity = true;
+                // Dust bolt effect
+                //
+				int num3;
+				for (int i = 0; i < 3; i = num3 + 1)
+				{
+					int num242 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Granite, Projectile.velocity.X, Projectile.velocity.Y, 120, default(Color));
+					Main.dust[num242].position = (Main.dust[num242].position + Projectile.Center) / 2f;
+					Main.dust[num242].noGravity = true;
+					Dust dust2 = Main.dust[num242];
+					dust2.velocity *= 0.5f;
+					num3 = i;
+				}
+				for (int num243 = 0; num243 < 2; num243 = num3 + 1)
+				{
+					int num242 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.t_Granite, Projectile.velocity.X, Projectile.velocity.Y, 140, default(Color), 0.4f);
+					if (num243 == 0)
+					{
+						Main.dust[num242].position = (Main.dust[num242].position + Projectile.Center * 5f) / 6f;
+					}
+					else if (num243 == 1)
+					{
+						Main.dust[num242].position = (Main.dust[num242].position + (Projectile.Center + Projectile.velocity / 2f) * 5f) / 6f;
+					}
+					Dust dust2 = Main.dust[num242];
+					dust2.velocity *= 0.23f;
+					Main.dust[num242].noGravity = true;
+					Main.dust[num242].fadeIn = 1f;
+					num3 = num243;
+				}
 
 				//this make that the projectile faces the right way
 				Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 9.57f;
@@ -90,7 +116,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			{
 				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Granite, -Projectile.velocity.X, -Projectile.velocity.Y, 80, default, 1);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
 				Main.dust[dust].noGravity = false; //this make so the dust has no gravity
-				Main.dust[dust].velocity *= Main.rand.NextFloat(.2f, .4f);
+				Main.dust[dust].velocity *= .07f;
 			}
 
 			SoundEngine.PlaySound(SoundID.Dig, Projectile.position);

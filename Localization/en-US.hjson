@@ -409,7 +409,7 @@ Mods: {
 				Tooltip:
 					'''
 					When the 'Ring Ability button' is pressed you will dodge the next attack
-					+2 defence when equiped
+					+2 defense when equiped
 					'''
 			}
 
@@ -737,11 +737,6 @@ Mods: {
 				Tooltip: Summons the Harbinger of Annihilation when used in space
 			}
 
-			FlyingTerrorBossTrophy: {
-				DisplayName: Flying Terror Trophy
-				Tooltip: ""
-			}
-
 			ForbiddenDisc: {
 				DisplayName: Forbidden Disc
 				Tooltip: ""
@@ -770,6 +765,36 @@ Mods: {
 			TitaniumRingMold: {
 				DisplayName: Titanium Ring Mold
 				Tooltip: ""
+			}
+
+			HarbingerOfAnnihilationRelic: {
+				Tooltip: ""
+				DisplayName: Harbinger Of Annihilation Relic
+			}
+
+			FlyingTerrorRelic: {
+				Tooltip: ""
+				DisplayName: Flying Terror Relic
+			}
+
+			BloodweaverRelic: {
+				Tooltip: ""
+				DisplayName: Bloodweaver Relic
+			}
+
+			HarbingerOfAnnihilationTrophy: {
+				Tooltip: ""
+				DisplayName: Harbinger Of Annihilation Trophy
+			}
+
+			FlyingTerrorTrophy: {
+				Tooltip: ""
+				DisplayName: Flying Terror Trophy
+			}
+
+			BloodweaverTrophy: {
+				Tooltip: ""
+				DisplayName: Bloodweaver Trophy
 			}
 		}
 

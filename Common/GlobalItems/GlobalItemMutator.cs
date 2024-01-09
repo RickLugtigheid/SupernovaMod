@@ -1,4 +1,5 @@
 ﻿using SupernovaMod.Common.Systems;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -11,6 +12,25 @@ namespace SupernovaMod.Common.GlobalItems
 			base.SetDefaults(entity);
 
 			UpdateThrowingClass(entity);
+			if (Supernova.Instance.HasModCalamity)
+			{
+				UpdateCalamityIntergration(entity);
+			}
+		}
+
+		private void UpdateCalamityIntergration(Item entity)
+		{
+			try
+			{
+				if (entity.DamageType == DamageClass.Throwing)
+				{
+					entity.DamageType = ModLoader.GetMod("CalamityMod").Find<DamageClass>("RogueDamageClass");
+				}
+			}
+			catch (Exception ex)
+			{
+				Supernova.Instance.Logger.Error("UpdateCalamityIntergration("+entity.Name+"): " + ex.GetType().Name + ' ' + ex.Message);
+			}
 		}
 
 		/// <summary>
@@ -36,7 +56,7 @@ namespace SupernovaMod.Common.GlobalItems
 			// Check if the thorium mod or Calamity mod is used.
 			// If so their respective thrower class should be used.
 			//
-			if (ModIntegrationsSystem.hasCalamityMod || ModIntegrationsSystem.hasThoriumMod)
+			if (Supernova.Instance.HasModCalamity || Supernova.Instance.HasModThorium)
 			{
 				return;
 			}

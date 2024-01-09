@@ -75,24 +75,28 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
             NPC.noTileCollide = true; // Will not collide with the tiles. 
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
-            Music = MusicID.Boss1;
 		}
 
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			// NormalMode
+			// Master mode loot
 			//
-			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<NormalModeDropCondition>(conditionalRule =>
-			{
-				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
-			}));
+			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Items.Placeable.Furniture.FlyingTerrorRelic>()));
 
-			// ExpertMode+
+			// Expert mode loot
 			//
 			npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<Items.Consumables.BossBags.FlyingTerrorBossBag>()));
 			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<ExpertModeDropCondition>(conditionalRule =>
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Items.Accessories.TerrorInABottle>()));
+			}));
+
+			// Common loot
+			//
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.Furniture.FlyingTerrorTrophy>(), 10));
+			npcLoot.Add(Common.GlobalNPCs.DropRules.GetDropRule<NormalModeDropCondition>(conditionalRule =>
+			{
+				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
 			}));
 
 			DownedSystem.downedFlyingTerror = true;

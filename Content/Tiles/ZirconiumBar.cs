@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
 
 namespace SupernovaMod.Content.Tiles
 {
@@ -21,6 +22,7 @@ namespace SupernovaMod.Content.Tiles
 			TileObjectData.addTile(Type);
 
 			AddMapEntry(new Color(172, 56, 207), Language.GetText("MapObject.MetalBar")); // localized text for "Metal Bar"
+			DustType = ModContent.DustType<Dusts.ZirconDust>();
 		}
 	}
 }
