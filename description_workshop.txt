@@ -15,7 +15,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2935906789
 A detailed list of currently added content:
 [olist]
 [*] 3 Bosses
-[*] 105+ items
+[*] 110+ items
 [*] 40+ weapons
 [*] 4 rings
 [*] 1 ore
@@ -30,6 +30,7 @@ Future plans:
 
 [version 0.2] Early Hardmode:
 For this version new hardmode items and 1 new boss will be added for early hardmode.
+This version will also add a new biome.
 
 [hr]
 
