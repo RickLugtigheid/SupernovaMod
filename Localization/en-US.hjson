@@ -32,7 +32,8 @@ Mods: {
 
 		Tiles: {
 			RingForge.MapEntry: Ring Forge
-			ZirconiumOreTile.MapEntry: Zirconium Ore Tile
+			ZirconiumOreTile.MapEntry: Zirconium Ore
+			HorrorStone.MapEntry: Horror Stone
 		}
 
 		NPCs: {
@@ -900,6 +901,13 @@ Mods: {
 				DisplayName: Seal Of Samael
 				Tooltip: ""
 			}
+
+			HorrorStone: {
+				DisplayName: Horror Stone
+				Tooltip: ""
+			}
+		}
+
 		Prefixes: {
 			Angry.DisplayName: Angry
 			Chilly.DisplayName: Chilly
@@ -977,6 +985,7 @@ Mods: {
 			RailgunBolt.DisplayName: Railgun Bolt
 			DriveSpinnerProjectile.DisplayName: Drive Spinner Projectile
 			BalancedOrb.DisplayName: Balanced Orb
+			RedDevil.DisplayName: Red Devil
 			HarpyMothersFeather.DisplayName: Harpy Mothers Feather
 		}
 
@@ -1010,5 +1019,12 @@ Mods: {
 		}
 
 		Status.Progression.StartDroppingRime: Rime started forming in the ice biome...
+
+		Biomes: {
+			HorrorSpace: {
+				DisplayName: Horror Space
+				TownNPCDialogueName: the Horror Space
+			}
+		}
 	}
 }

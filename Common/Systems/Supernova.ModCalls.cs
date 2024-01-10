@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using SupernovaMod.Common.Players;
+using System.Reflection;
 using Terraria;
 
 namespace SupernovaMod.Common.Systems
@@ -69,6 +70,22 @@ namespace SupernovaMod.Common.Systems
 					return DownedSystem.downedStormSovereign;
 				default:
 					Supernova.Log.Error($"ModCallError: Call({args[0]}) - No boss with name '{args[1]}' found. Please check the documentation for valid boss names.");
+					return null;
+			}
+		}
+
+		public object Call_GetInZone(object[] args)
+		{
+			if (!TryGetBonusArguments(args, out Player player, out string zoneName))
+			{
+				return null;
+			}
+			switch (zoneName.ToLower())
+			{
+				case "horrorspace":
+					return player.Supernova().ZoneHorrorSpace;
+				default:
+					Supernova.Log.Error($"ModCallError: Call({args[0]}) - No zone with name '{args[1]}' found. Please check the documentation for valid zone names.");
 					return null;
 			}
 		}
