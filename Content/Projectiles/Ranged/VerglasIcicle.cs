@@ -33,8 +33,9 @@ namespace SupernovaMod.Content.Projectiles.Ranged
 
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 48;
-        }
-        public override void AI()
+			Projectile.DamageType = DamageClass.Ranged;
+		}
+		public override void AI()
         {
             if (IsStickingToTarget)
             {

@@ -47,7 +47,7 @@ namespace SupernovaMod.Content.Items.Armor.Carnage
 			//
             if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Summon.CarnageOrb>()] < 1)
             {
-                Projectile.NewProjectile(player.GetSource_Misc("SetBonus_CarnageArmor"), player.position, Microsoft.Xna.Framework.Vector2.Zero, ModContent.ProjectileType<Projectiles.Summon.CarnageOrb>(), 6, 8, player.whoAmI);
+                Projectile.NewProjectile(player.GetSource_Misc("SetBonus_CarnageArmor"), player.position, Microsoft.Xna.Framework.Vector2.Zero, ModContent.ProjectileType<Projectiles.Summon.CarnageOrb>(), 12, 8, player.whoAmI);
             }
 		}
 
