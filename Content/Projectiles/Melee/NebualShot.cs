@@ -15,6 +15,7 @@ namespace SupernovaMod.Content.Projectiles.Melee
 			Projectile.penetrate = 3;
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 20;
+			Projectile.DamageType = DamageClass.Melee;
 		}
 
 		public override void AI()

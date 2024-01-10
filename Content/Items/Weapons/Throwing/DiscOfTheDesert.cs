@@ -1,3 +1,4 @@
+using SupernovaMod.Common.Systems;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -35,10 +36,10 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
 
-            Item.DamageType = DamageClass.Throwing;
-        }
+			Item.DamageType = GlobalModifiers.DamageClass_ThrowingMelee;
+		}
 
-        public override void AddRecipes() //SturdyFossil
+		public override void AddRecipes() //SturdyFossil
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.Amber, 6);

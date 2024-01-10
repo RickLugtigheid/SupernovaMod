@@ -36,6 +36,7 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 			Projectile.hide = true;
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 12;
+			Projectile.DamageType = DamageClass.MeleeNoSpeed;
 		}
 
 		public override void AI()

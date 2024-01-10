@@ -1,7 +1,4 @@
 ﻿using SupernovaMod.Api.Integration.BossChecklist;
-using SupernovaMod.Content.Buffs.Summon;
-using SupernovaMod.Content.Items.Weapons.Summon;
-using SupernovaMod.Content.Projectiles.Summon;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Common.Systems
@@ -66,6 +63,18 @@ namespace SupernovaMod.Common.Systems
 
 			// [Harmode bosses]
 			//
+		}
+		public static void HandleIntegrationRogueCalamity()
+		{
+			if (!Supernova.Instance.HasModCalamity)
+			{
+				return;
+			}
+			// Set the calamity Rogue class as our throwing class
+			//
+			DamageClass rogue = ModLoader.GetMod("CalamityMod").Find<DamageClass>("RogueDamageClass");
+			GlobalModifiers.DamageClass_ThrowingMelee = rogue;
+			GlobalModifiers.DamageClass_ThrowingRanged = rogue;
 		}
 	}
 

@@ -15,7 +15,6 @@ namespace SupernovaMod.Content.Projectiles.Summon
         private const int MAX_REGEN_VALUE = 180;
 		public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Carnage Drain Orb");
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 1;
 		}
 		public override void SetDefaults()
@@ -26,20 +25,11 @@ namespace SupernovaMod.Content.Projectiles.Summon
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
-            //Projectile.minion = true;
-            //Projectile.minionSlots = 0;
-            Projectile.DamageType = DamageClass.MeleeNoSpeed;
+            Projectile.DamageType = DamageClass.Generic;
             Projectile.timeLeft = 2;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 12;
         }
-
-        /*public static bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
-        {
-            if (projectile.ModProjectile != null)
-                return projectile.ModProjectile.OnTileCollide(oldVelocity);
-            return true;
-        }*/
 
         public override void AI()
         {
