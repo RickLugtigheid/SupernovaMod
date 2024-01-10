@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
+using SupernovaMod.Common.Systems;
 
 namespace SupernovaMod.Content.Projectiles.Thrown
 {
@@ -22,9 +23,10 @@ namespace SupernovaMod.Content.Projectiles.Thrown
 
             Projectile.penetrate = 2;
             IsStickingToTarget = false;
-        }
+			Projectile.DamageType = GlobalModifiers.DamageClass_ThrowingRanged;
+		}
 
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             if (targetHitbox.Width > 8 && targetHitbox.Height > 8)
             {

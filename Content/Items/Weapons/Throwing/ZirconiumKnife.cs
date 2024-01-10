@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
+using SupernovaMod.Common.Systems;
 
 namespace SupernovaMod.Content.Items.Weapons.Throwing
 {
@@ -35,10 +36,10 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
             Item.shootSpeed = 12f;
             Item.shoot = ModContent.ProjectileType<Projectiles.Thrown.ZirconiumKnifeProj>();
 
-            Item.DamageType = DamageClass.Throwing;
-        }
+			Item.DamageType = GlobalModifiers.DamageClass_ThrowingRanged;
+		}
 
-        public override void AddRecipes()
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe(25);
             recipe.AddIngredient(ModContent.ItemType<Items.Materials.ZirconiumBar>());

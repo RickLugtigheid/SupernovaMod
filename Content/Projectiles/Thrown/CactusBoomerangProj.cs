@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using SupernovaMod.Common.Systems;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace SupernovaMod.Content.Projectiles.Thrown
@@ -19,7 +20,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             Projectile.penetrate = -1;
             Projectile.timeLeft = 780;
             Projectile.extraUpdates = 1;
-            Projectile.DamageType = DamageClass.Throwing;
+            Projectile.DamageType = GlobalModifiers.DamageClass_ThrowingMelee;
         }
     }
 }

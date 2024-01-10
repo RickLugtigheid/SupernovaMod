@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Common.Systems;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,10 +23,10 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             Projectile.penetrate = -1;
             Projectile.timeLeft = 900;
             Projectile.extraUpdates = 1;
-            Projectile.DamageType = DamageClass.Throwing;
-        }
+			Projectile.DamageType = GlobalModifiers.DamageClass_ThrowingMelee;
+		}
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Frostburn, 120);   //this make so when the projectile/flame hit a npc, gives it the buff  onfire , 80 = 3 seconds
 

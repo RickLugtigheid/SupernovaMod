@@ -3,6 +3,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using SupernovaMod.Common.Systems;
 
 namespace SupernovaMod.Content.Projectiles.Thrown
 {
@@ -18,9 +19,10 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             Projectile.CloneDefaults(ProjectileID.ThrowingKnife);
             AIType = ProjectileID.ThrowingKnife;
             Projectile.penetrate = 1;
-        }
+			Projectile.DamageType = GlobalModifiers.DamageClass_ThrowingRanged;
+		}
 
-        public override void OnKill(int timeLeft)
+		public override void OnKill(int timeLeft)
         {
             //SoundEngine.PlaySound(0, (int)Projectile.position.X, (int)Projectile.position.Y, 1, 1f, 0f);
             SoundEngine.PlaySound(SoundID.Dig);

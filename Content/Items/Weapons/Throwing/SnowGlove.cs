@@ -1,4 +1,5 @@
 ﻿using SupernovaMod.Api;
+using SupernovaMod.Common.Systems;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -38,10 +39,11 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
             Item.rare = ItemRarityID.Green;
             Item.shootSpeed = 10f;
             Item.shoot = ProjectileID.SnowBallFriendly;
-            Item.DamageType = DamageClass.Throwing;
-        }
 
-        public override void AddRecipes()
+			Item.DamageType = GlobalModifiers.DamageClass_ThrowingRanged;
+		}
+
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.SnowBlock, 70);

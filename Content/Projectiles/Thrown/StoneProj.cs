@@ -3,6 +3,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using SupernovaMod.Common.Systems;
 
 namespace SupernovaMod.Content.Projectiles.Thrown
 {
@@ -19,8 +20,8 @@ namespace SupernovaMod.Content.Projectiles.Thrown
             Projectile.height = 16;
             Projectile.aiStyle = -1;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 1;
+			Projectile.DamageType = GlobalModifiers.DamageClass_ThrowingRanged;
+			Projectile.penetrate = 1;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

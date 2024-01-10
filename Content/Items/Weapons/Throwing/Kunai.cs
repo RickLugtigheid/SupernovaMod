@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Api.Helpers;
+using SupernovaMod.Common.Systems;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -40,8 +41,8 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
             Item.shootSpeed = 16;
             Item.shoot = ModContent.ProjectileType<Projectiles.Thrown.KunaiProj>();
 
-            Item.DamageType = DamageClass.Throwing;
-        }
+			Item.DamageType = GlobalModifiers.DamageClass_ThrowingRanged;
+		}
 
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{

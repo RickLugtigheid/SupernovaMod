@@ -43,12 +43,17 @@ namespace SupernovaMod
 			Instance = this;
 			Log = Logger;
 
+			// Set our global defaults
+			//
+			GlobalModifiers.SetStaticDefaults();
+
 			// Try load other mods
 			//
 			supernovaMusic = null;
 			ModLoader.TryGetMod("SupernovaMusic", out supernovaMusic);
 			calamity = null;
 			ModLoader.TryGetMod("CalamityMod", out calamity);
+			ModIntegrationsSystem.HandleIntegrationRogueCalamity();
 			thorium = null;
 			ModLoader.TryGetMod("ThoriumMod", out calamity);
 			bossChecklist = null;
