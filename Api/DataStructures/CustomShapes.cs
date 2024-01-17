@@ -1,8 +1,8 @@
 ﻿using System;
 using Terraria.WorldBuilding;
 using Terraria;
-using SupernovaMod.Api.Helpers;
 using Microsoft.Xna.Framework;
+using SupernovaMod.Api.Helpers;
 
 namespace SupernovaMod.Api.DataStructures
 {

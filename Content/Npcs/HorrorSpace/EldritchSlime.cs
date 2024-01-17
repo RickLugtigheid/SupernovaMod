@@ -48,8 +48,8 @@ namespace SupernovaMod.Content.Npcs.HorrorSpace
 			NPC.value = 200f;
 			NPC.knockBackResist = .3f;
 			NPC.aiStyle = NPCAIStyleID.Slime;
-			AIType = NPCID.GreenSlime;
-			AnimationType = NPCID.GreenSlime;
+			AIType = NPCID.BlueSlime;
+			AnimationType = NPCID.BlueSlime;
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

@@ -3,3 +3,4 @@ author = KoekMeneer, Galenwald, The ExiIed FeIIow, Mjoonlight, Ink, Chadstream S
 version = 0.1.9.1
 homepage = https://forums.terraria.org/index.php?threads/supernova-mod.104268/
 wiki = https://supernovamod.fandom.com/wiki/SupernovaMod_Wiki
+modReferences = SubworldLibrary

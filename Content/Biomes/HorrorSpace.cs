@@ -1,6 +1,8 @@
 ﻿using Terraria.ModLoader;
 using Terraria;
 using SupernovaMod.Common.Systems;
+using SubworldLibrary;
+using SupernovaMod.Common.World.HorrorSpace;
 
 namespace SupernovaMod.Content.Biomes
 {
@@ -9,6 +11,7 @@ namespace SupernovaMod.Content.Biomes
 		// Calculate when the biome is active.
 		public override bool IsBiomeActive(Player player)
 		{
+			return SubworldSystem.IsActive<HorrorSpaceSubworld>();
 			// First, we will use the exampleBlockCount from our added ModSystem for our first custom condition
 			bool b1 = ModContent.GetInstance<HorrorSpaceTileCounter>().horrorStoneBlockCount >= 40;
 
