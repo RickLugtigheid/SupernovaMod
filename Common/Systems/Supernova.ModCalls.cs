@@ -57,16 +57,16 @@ namespace SupernovaMod.Common.Systems
 				return null;
 			}
 
-			switch (args[1])
+			switch (args[1].ToString().ToLower())
 			{
 				// Pre-Hardmode
-				case "HarbingerOfAnnihilation":
+				case "harbingerofannihilation":
 					return DownedSystem.downedHarbingerOfAnnihilation;
-				case "Bloodweaver":
+				case "bloodweaver":
 					return DownedSystem.downedBloodweaver;
-				case "FlyingTerror":
+				case "flyingterror":
 					return DownedSystem.downedFlyingTerror;
-				case "StormSovereign":
+				case "stormsovereign":
 					return DownedSystem.downedStormSovereign;
 				default:
 					Supernova.Log.Error($"ModCallError: Call({args[0]}) - No boss with name '{args[1]}' found. Please check the documentation for valid boss names.");
@@ -82,8 +82,6 @@ namespace SupernovaMod.Common.Systems
 			}
 			switch (zoneName.ToLower())
 			{
-				case "horrorspace":
-					return player.Supernova().ZoneHorrorSpace;
 				default:
 					Supernova.Log.Error($"ModCallError: Call({args[0]}) - No zone with name '{args[1]}' found. Please check the documentation for valid zone names.");
 					return null;

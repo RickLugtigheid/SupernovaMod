@@ -12,12 +12,6 @@ namespace SupernovaMod.Common.Systems.Generation
         /* World Generation */
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-			int Sunflowers = tasks.FindIndex(genpass => genpass.Name.Equals("Sunflowers"));
-			if (Sunflowers != -1) //Add only if Sunflowers pass exists 
-			{
-				tasks.Insert(Sunflowers, new PassLegacy("SupernovaModBiomeHorrorSpace", World.HorrorSpace.GenerateHorrorSpace));
-			}
-
 			// We use FindIndex to locate the index of the vanilla world generation task called "Shinies".
 			// This ensures our code runs at the correct step.
 			//
