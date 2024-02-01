@@ -18,8 +18,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 		public override void SetDefaults()
 		{
 			Item.knockBack = 1.8f;
-			Item.damage = 47;
-			Item.crit = 4;
+			Item.damage = 50;
+			Item.crit = 2;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.width = 24;
 			Item.height = 24;
@@ -34,7 +34,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 			Item.value = BuyPrice.RarityLightRed;
 			Item.rare = ItemRarityID.LightRed;
 
-			Item.DamageType = DamageClass.Melee;
+			Item.DamageType = DamageClass.MeleeNoSpeed;
 		}
 
 		public override void AddRecipes()

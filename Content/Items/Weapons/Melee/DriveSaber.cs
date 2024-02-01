@@ -66,7 +66,7 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 			// 
 			if (Main.rand.NextChance(.4f))
 			{
-				target.AddBuff(BuffID.Electrified, Main.rand.Next(1, 5) * 40);
+				target.AddBuff(BuffID.Electrified, Main.rand.Next(1, 3) * 60);
 			}
 		}
 	}
