@@ -136,7 +136,7 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
 			}
 			/*float f = Projectile.rotation - 0.7853982f * (float)Math.Sign(Projectile.velocity.X);
 			float num2 = 0f;
-			float num3 = Projectile.height;//float num3 = 110f;
+			float num3 = Projectile.height / 2;//float num3 = 110f;
 			if (Collision.CheckAABBvLineCollision(Utils.TopLeft(targetHitbox), Utils.Size(targetHitbox), Projectile.Center + Utils.ToRotationVector2(f) * -num3, Projectile.Center + Utils.ToRotationVector2(f) * num3, 23f * Projectile.scale, ref num2))
 			{
 				return new bool?(true);

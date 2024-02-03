@@ -17,9 +17,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-			Item.damage = 22;
-            Item.crit = 1;
-			Item.knockBack = 7;
+			Item.damage = 25;
+			Item.knockBack = 8;
 			Item.useAnimation = (Item.useTime = 25);
 			Item.DamageType = DamageClass.Melee;
 			Item.noMelee = true;

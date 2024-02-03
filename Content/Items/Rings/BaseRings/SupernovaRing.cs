@@ -7,6 +7,7 @@ using System.Text;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using tModPorter;
 
 namespace SupernovaMod.Content.Items.Rings.BaseRings
 {
@@ -125,6 +126,17 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
                     damageBonus.IsModifierBad = true;
                 }
                 tooltips.Add(damageBonus);
+            }
+
+			// When the ringslot is disabled we should inform the user
+			// that the ringslot needs to be enabled for rings to work.
+			//
+            if (!ModContent.GetInstance<Common.Configs.CommonConfig>().enableRingSlot)
+            {
+                TooltipLine ringDisabledWarn = new TooltipLine(Mod, "RingslotDisabled", "-Not equipable (please enable the ringslot in mod config)");
+				ringDisabledWarn.IsModifier = true;
+				ringDisabledWarn.IsModifierBad = true;
+				tooltips.Add(ringDisabledWarn);
             }
         }
 

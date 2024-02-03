@@ -19,7 +19,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
 		public override void SetDefaults()
         {
-            Item.damage = 20;
+            Item.damage = 24;
             Item.mana = 7;
             Item.width = 20;
             Item.height = 20;
@@ -34,7 +34,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
             Item.rare = ItemRarityID.Green;
             Item.UseSound = SoundID.Item101; // Item78
 			Item.shoot = ModContent.ProjectileType<Projectiles.Magic.CelestialCystal>();
-            Item.shootSpeed = 8;
+            Item.shootSpeed = 8.5f;
 
             Item.DamageType = DamageClass.Magic;
         }

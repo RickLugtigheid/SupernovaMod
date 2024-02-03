@@ -270,7 +270,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 				// End animation
 				//
-				if (NPC.localAI[0] > 160 && WaitForAllArmsToReturn())
+				if (NPC.localAI[0] > 160/* && WaitForAllArmsToReturn()*/)
 				{
 					NPC.localAI[0] = 0;
 					NPC.ai[0] = 0;

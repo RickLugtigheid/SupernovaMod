@@ -33,5 +33,3 @@ For this version new hardmode items and 1 new boss will be added for early hardm
 This version will also add a new biome.
 
 [hr]
-
-[quote=tModLoader]Developed By KoekMeneer, Galenwald, The ExiIed FeIIow, Mjoonlight[/quote]
