@@ -99,6 +99,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
                     {
                         NPC.localAI[0] = 0;
 						NPC.knockBackResist = .25f;
+                        NPC.netUpdate = true;
 					}
 					return;
 				}
