@@ -10,8 +10,7 @@ using SupernovaMod.Content.Npcs.HarbingerOfAnnihilation.Projectiles;
 using SupernovaMod.Api.Effects;
 using SupernovaMod.Api.Helpers;
 using SupernovaMod.Api;
-using static Terraria.ModLoader.PlayerDrawLayer;
-using System.Collections.Generic;
+using System.IO;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
@@ -62,6 +61,21 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			Projectile.light = 0.2f;
 		}
 
+		public override void SendExtraAI(BinaryWriter writer)
+		{
+			writer.WriteVector2(customTarget);
+			writer.WriteVector2(customLookTarget);
+			writer.Write(customDuration);
+			writer.Write(canDealDamage);
+		}
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+			customTarget	 = reader.ReadVector2();
+			customLookTarget = reader.ReadVector2();
+			customDuration	 = reader.ReadInt32();
+			canDealDamage	 = reader.ReadBoolean();
+		}
+
 		private Vector2 _targetPosition;
 		public override void AI()
 		{
@@ -81,11 +95,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 
 			ref float timer = ref Projectile.localAI[1];
-			ref float attackPointer = ref Projectile.ai[0];
 
 			ref Player target = ref Main.player[owner.NPC.target];
 
-			if (attackPointer == HoaArmAI.Reset)
+			if (AttackPointer == HoaArmAI.Reset)
 			{
 				if (ReturnToStartPosition())
 				{
@@ -93,10 +106,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					Projectile.velocity = Vector2.Zero;
 					timer = 0;
-					attackPointer = 0;
+					AttackPointer = 0;
 				}
 			}
-			else if (attackPointer == HoaArmAI.CircleHoa)
+			else if (AttackPointer == HoaArmAI.CircleHoa)
 			{
 				// Factors for calculations
 				float deg = _startDeg;
@@ -113,7 +126,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				Projectile.position.X = owner.NPC.Center.X - (int)(Math.Cos(rad) * dist) - Projectile.width / 2;
 				Projectile.position.Y = owner.NPC.Center.Y - (int)(Math.Sin(rad) * dist) - Projectile.height / 2;
 			}
-			else if (attackPointer == HoaArmAI.LaunchAtPlayer)
+			else if (AttackPointer == HoaArmAI.LaunchAtPlayer)
 			{
 				canDealDamage = true;
 				timer++;
@@ -146,10 +159,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					Projectile.velocity = Vector2.Zero;
 					timer = 0;
-					attackPointer = 0;
+					AttackPointer = 0;
 				}
 			}
-			else if (attackPointer == HoaArmAI.SmashPlayer)
+			else if (AttackPointer == HoaArmAI.SmashPlayer)
 			{
 				canDealDamage = true;
 				timer++;
@@ -187,11 +200,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 						SoundEngine.PlaySound(SoundID.MenuTick, Projectile.Center);
 
 						timer = 0;
-						attackPointer = 0;
+						AttackPointer = 0;
 					}
 				}
 			}
-			else if (attackPointer == HoaArmAI.CirclePlayerAndShoot)
+			else if (AttackPointer == HoaArmAI.CirclePlayerAndShoot)
 			{
 				canDealDamage = false;
 				timer++;
@@ -222,10 +235,15 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					if (shootCooldown == 0)
 					{
-						Vector2 velocity = (target.Center - Projectile.Center);
-						velocity *= 10 / velocity.Magnitude();
+						// Only Spawn a projectile server side or singleplayer client side
+						//
+						if (Main.netMode != NetmodeID.MultiplayerClient)
+						{
+							Vector2 velocity = (target.Center - Projectile.Center);
+							velocity *= 10 / velocity.Magnitude();
 
-						Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, velocity, _projIdMissile, (int)(Projectile.damage * .75f), Projectile.knockBack, Main.myPlayer);
+							Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, velocity, _projIdMissile, (int)(Projectile.damage * .75f), Projectile.knockBack, Main.myPlayer);
+						}
 
 						if (owner.SecondPhase)
 						{
@@ -251,10 +269,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					Projectile.velocity = Vector2.Zero;
 					timer = 0;
-					attackPointer = 0;
+					AttackPointer = 0;
 				}
 			}
-			else if (attackPointer == HoaArmAI.GotoTarget)
+			else if (AttackPointer == HoaArmAI.GotoTarget)
 			{
 				if (timer == 0)
 				{
@@ -274,10 +292,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					Projectile.velocity = Vector2.Zero;
 					timer = 0;
-					attackPointer = 0;
+					AttackPointer = 0;
 				}
 			}
-			else if (attackPointer == HoaArmAI.CircleHoaAndShoot)
+			else if (AttackPointer == HoaArmAI.CircleHoaAndShoot)
 			{
 				canDealDamage = true;
 				timer++;
@@ -316,10 +334,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					Projectile.velocity = Vector2.Zero;
 					timer = 0;
-					attackPointer = 0;
+					AttackPointer = 0;
 				}
 			}
-			else if (attackPointer == HoaArmAI.CircleTarget)
+			else if (AttackPointer == HoaArmAI.CircleTarget)
 			{
 				canDealDamage = true;
 				timer += 4;
@@ -368,12 +386,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					Projectile.velocity = Vector2.Zero;
 					timer = 0;
-					attackPointer = 0;
+					AttackPointer = 0;
 					shootCooldown = 0;
 					shootTime = 0;
 				}
 			}
-			else if (attackPointer == HoaArmAI.ShootAtPlayer)
+			else if (AttackPointer == HoaArmAI.ShootAtPlayer)
 			{
 				canDealDamage = true;
 				timer++;
@@ -394,10 +412,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 					Projectile.velocity = Vector2.Zero;
 					timer = 0;
-					attackPointer = 0;
+					AttackPointer = 0;
 				}
 			}
-			else if (attackPointer == HoaArmAI.LightningLink)
+			else if (AttackPointer == HoaArmAI.LightningLink)
 			{
 				Projectile linkNode = Main.projectile[(int)Projectile.ai[1]];
 				timer++;
@@ -432,18 +450,38 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 						Projectile.velocity = Vector2.Zero;
 						timer = 0;
-						attackPointer = 0;
+						AttackPointer = 0;
 						Projectile.ai[1] = 0;
 					}
 				}
 			}
 			else
 			{
-				attackPointer = 0;
+				AttackPointer = 0;
 			}
 		}
 
 		#region Helper Methods
+		/// <summary>
+		/// Sets the AI state of this projectile.
+		/// </summary>
+		/// <remarks>(Multiplayer): This method will also sync this projectile to the server. So call this method after setting properties needed for the state.</remarks>
+		/// <param name="state">The state to set. Use <see cref="HoaArmAI"/> for all states</param>
+		public void SetState(int state)
+		{
+			AttackPointer = state;
+
+			if (Main.netMode == NetmodeID.Server)
+			{
+				// Sync our state and it's other properties to the clients
+				NetMessage.SendData(MessageID.SyncProjectile, number: Projectile.whoAmI);
+			}
+		}
+		/// <summary>
+		/// Checks if the owner is active.
+		/// </summary>
+		/// <param name="owner"></param>
+		/// <returns></returns>
 		private bool CheckIfActive(HarbingerOfAnnihilation owner)
 		{
 			if (owner == null) return false;

@@ -12,7 +12,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 {
     public class CarnageOrb : ModProjectile
     {
-        private const int MAX_REGEN_VALUE = 180;
+        private const int MAX_REGEN_VALUE = 200;
 		public override void SetStaticDefaults()
         {
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 1;
@@ -38,43 +38,81 @@ namespace SupernovaMod.Content.Projectiles.Summon
             int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 2f), Projectile.width - 10, Projectile.height - 10, DustID.Blood, Projectile.velocity.X * 20, Projectile.velocity.Y * 20, 70, default, 1.25f);
             Main.dust[DustID2].noGravity = true;
 
-			#region orbit
-            //Making player variable "p" set as the projectile's owner
-            Player p = Main.player[Projectile.owner];
-            if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<CarnageOrb>()] > 1)
-            {
-                Projectile.timeLeft = 0;
-            }
+            OrbitAI();
+			ProjectileBlockingAI();
 
-            //Factors for calculations
-            double deg = Projectile.ai[1]; //The degrees, you can multiply projectile.ai[1] to make it orbit faster, may be choppy depending on the value
-            double rad = deg * (Math.PI / 180); //Convert degrees to radians
-            double dist = 70; //Distance away from the player
-
-            /*Position the player based on where the player is, the Sin/Cos of the angle times the /
-            /distance for the desired distance away from the player minus the projectile's width   /
-            /and height divided by two so the center of the projectile is at the right place.   */
-            Projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * dist) - Projectile.width / 2;
-            Projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * dist) - Projectile.height / 2;
-
-            //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
-            Projectile.ai[1] += 4;
-            #endregion
-
-            ref float regenValue = ref Projectile.localAI[1];
+			Player owner = Main.player[Projectile.owner];
+			ref float regenValue = ref Projectile.localAI[1];
             if (regenValue > 0)
             {
 				regenValue--;
-                p.UpdateLifeRegen();
+                owner.UpdateLifeRegen();
 
 				SoundEngine.PlaySound(SoundID.Item15);
-				Vector2 dustPos = p.Center + new Vector2(30, 0).RotatedByRandom(MathHelper.ToRadians(360));
-				Vector2 diff = p.Center - dustPos;
+				Vector2 dustPos = owner.Center + new Vector2(30, 0).RotatedByRandom(MathHelper.ToRadians(360));
+				Vector2 diff = owner.Center - dustPos;
 				diff.Normalize();
 
 				Dust.NewDustPerfect(dustPos, DustID.LifeDrain, diff * 2).noGravity = true;
 			}
         }
+
+        private void OrbitAI()
+        {
+			Player owner = Main.player[Projectile.owner];
+			if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<CarnageOrb>()] > 1)
+			{
+				Projectile.timeLeft = 0;
+			}
+
+			//Factors for calculations
+			double deg = Projectile.ai[1]; //The degrees, you can multiply projectile.ai[1] to make it orbit faster, may be choppy depending on the value
+			double rad = deg * (Math.PI / 180); //Convert degrees to radians
+			double dist = 75; //Distance away from the player
+
+			/*Position the player based on where the player is, the Sin/Cos of the angle times the /
+            /distance for the desired distance away from the player minus the projectile's width   /
+            /and height divided by two so the center of the projectile is at the right place.   */
+			Projectile.position.X = owner.Center.X - (int)(Math.Cos(rad) * dist) - Projectile.width / 2;
+			Projectile.position.Y = owner.Center.Y - (int)(Math.Sin(rad) * dist) - Projectile.height / 2;
+
+			//Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
+			Projectile.ai[1] += 4;
+		}
+		private void ProjectileBlockingAI()
+		{
+			for (int i = 0; i < Main.projectile.Length; i++)
+			{
+				Projectile proj = Main.projectile[i];
+				if (proj == null || !proj.active)
+				{
+					continue;
+				}
+				if (!proj.hostile)
+				{
+					continue;
+				}
+				// Block the projectile when colliding
+				//
+				if (Collision.CheckAABBvAABBCollision(
+					Projectile.position, new Vector2(Projectile.width, Projectile.height),
+					proj.position, new Vector2(proj.width, proj.height)
+				))
+				{
+					// We should only block projectiles that have no penetration left
+					//
+					if (proj.penetrate == 0)
+					{
+						proj.Kill();
+					}
+					else if (proj.penetrate != -1)
+					{
+						proj.penetrate--;
+					}
+				}
+			}
+		}
+
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
             if (Projectile.localAI[1] < MAX_REGEN_VALUE)

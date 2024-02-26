@@ -12,9 +12,6 @@ namespace SupernovaMod.Content.Items.Armor.Carnage
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("Carnage Boots");
-            // Tooltip.SetDefault("Increases speed by 3%");
         }
 
         public override void SetDefaults()

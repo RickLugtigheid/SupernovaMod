@@ -764,6 +764,16 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Bloodweaver Trophy
 			}
+
+			BloodweaverBossMask: {
+				Tooltip: ""
+				DisplayName: Bloodweaver Mask
+			}
+
+			HarbingerOfAnnihilationBossMask: {
+				DisplayName: Harbinger Of Annihilation Boss Mask
+				Tooltip: ""
+			}
 		}
 
 		Prefixes: {

@@ -46,7 +46,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 				SoundEngine.PlaySound(SoundID.Item20, Projectile.Center);
 				Vector2 velocity = Main.MouseWorld - Projectile.Center;
 				velocity.Normalize();
-				Projectile.velocity = velocity * 12;
+				Projectile.velocity = velocity * 14.5f;
 				Projectile.tileCollide = true;
 			}
             else

@@ -148,6 +148,14 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		void Shoot()
         {
             SoundEngine.PlaySound(SoundID.Item12, NPC.Center);
+
+			// Only spawn projectiles as Server or singleplayer client
+			//
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				return;
+			}
+
             int type = ModContent.ProjectileType<Projectiles.Hostile.BloodBoltHostile>();
             Vector2 Velocity = Mathf.VelocityFPTP(NPC.Center, Main.player[NPC.target].Center, 10);
             int Spread = 1;

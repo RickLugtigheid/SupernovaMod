@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
@@ -28,7 +28,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 		private readonly int _projIdMissile = ModContent.ProjectileType<HarbingerMissile>();
 
-        private readonly HarbingerOfAnnihilation_Arm[] _arms = new HarbingerOfAnnihilation_Arm[4];
+		/// <summary>
+		/// A collection of all the Harbingers arms.
+		/// </summary>
+		/// <remarks>NOTE: For <see cref="NetmodeID.MultiplayerClient"/> this array will be empty. When using this array guard the operation so it is not called by a Multiplayer client, otherwise this results in a <see cref="NullReferenceException"/>.</remarks>
+		private readonly HarbingerOfAnnihilation_Arm[] _arms = new HarbingerOfAnnihilation_Arm[4];
 
 		private const float ExpertDamageMultiplier = .7f;
 
@@ -110,10 +114,10 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 		public override void AI()
         {
-            // Run this method once
+            // Run this method once, for none multiplayer clients
             //
-            if (_arms[0] == null && Main.netMode != NetmodeID.MultiplayerClient)
-            {
+            if (Main.netMode != NetmodeID.MultiplayerClient && _arms[0] == null)
+			{
 				int deg = 360 / _arms.Length;
 				for (int i = 0; i < _arms.Length; i++)
                 {
@@ -141,7 +145,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				return; // Don't run any other AI
 			}
 
+			//
 			timer++;
+
+			//
+			NPC.netUpdate = true;
 
 			// First phase
 			//
@@ -156,9 +164,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				{
 					if (timer == 90 || timer == 100 || timer == 110 || timer == 120)
 					{
-						// Set a random arm to shoot to the player
-						_arms[(int)index].Projectile.ai[0] = HoaArmAI.LaunchAtPlayer;
-						index++;
+						if (Main.netMode != NetmodeID.MultiplayerClient)
+						{
+							// Set a random arm to shoot to the player
+							_arms[(int)index].SetState(HoaArmAI.LaunchAtPlayer);
+							index++;
+						}
 					}
 					if (timer >= 460 && WaitForAllArmsToReturn())
 					{
@@ -183,20 +194,21 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 						if (Main.masterMode || Main.expertMode)
 							attackCount++;
 					}
-
-					if (attackCount > 0 && timer % 90 == 0)
+					// Use Main.netMode to guard against multplayer client calls of the GetRandomArm method
+					//
+					if (Main.netMode != NetmodeID.MultiplayerClient && attackCount > 0 && timer % 90 == 0)
 					{
-						GetRandomArm().Projectile.ai[0] = HoaArmAI.SmashPlayer;
+						GetRandomArm().SetState(HoaArmAI.SmashPlayer);
 						attackCount--;
 					}
 
 					/*if (timer == 40 && (Main.expertMode || Main.masterMode))
                     {
-						GetRandomArm().Projectile.ai[0] = 2;
+						GetRandomArm().SetState(2);
 					}
 					if (timer == 120)
                     {
-                        GetRandomArm().Projectile.ai[0] = 2;
+                        GetRandomArm().SetState(2);
 					}*/
 
 					if (timer >= 440 && WaitForAllArmsToReturn())
@@ -210,7 +222,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				{
 					if (timer == 1)
 					{
-						ForeachArm(arm => arm.Projectile.ai[0] = HoaArmAI.CirclePlayerAndShoot);
+						ForeachArm(arm => arm.SetState(HoaArmAI.CirclePlayerAndShoot));
 					}
 					if (timer >= 480 && WaitForAllArmsToReturn())
 					{
@@ -243,7 +255,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					{
 						arm.Projectile.alpha = 250;
 						arm.Projectile.hostile = false;
-						arm.AttackPointer = HoaArmAI.Reset;
+						arm.SetState(HoaArmAI.Reset);
 					});
 					NPC.dontTakeDamage = true;
 				}
@@ -323,7 +335,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 						{
 							if (timer == 1)
 							{
-								ForeachArm(arm => arm.canDealDamage = true);
+								ForeachArm(arm => arm.canDealDamage = true, true);
 							}
 							velocity = 15;
 							acceleration = .1f;
@@ -352,8 +364,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 
 						if (timer == 90 || timer == 100 || timer == 110 || timer == 120)
 						{
-							// Set a random arm to shoot to the player
-							_arms[(int)index].Projectile.ai[0] = HoaArmAI.LaunchAtPlayer;
+							if (Main.netMode != NetmodeID.MultiplayerClient)
+							{
+								// Set a random arm to shoot to the player
+								_arms[(int)index].SetState(HoaArmAI.LaunchAtPlayer);
+							}
 							index++;
 						}
 						if (timer >= 400 && WaitForAllArmsToReturn())
@@ -397,9 +412,11 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 								attackCount++;
 						}
 
-						if (attackCount > 0 && timer % 80 == 0)
+						// Use Main.netMode to guard against multplayer client calls of the GetRandomArm method
+						//
+						if (Main.netMode != NetmodeID.MultiplayerClient && attackCount > 0 && timer % 80 == 0)
 						{
-							GetRandomArm().Projectile.ai[0] = HoaArmAI.SmashPlayer;
+							GetRandomArm().SetState(HoaArmAI.SmashPlayer);
 							attackCount--;
 						}
 
@@ -608,7 +625,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					}
 					if (NPC.ai[3] == 1)
 					{
-						ForeachArm(arm => arm.AttackPointer = HoaArmAI.Reset);
+						ForeachArm(arm => arm.SetState(HoaArmAI.Reset));
 					}
 					else if (NPC.ai[3] < 180)
 					{
@@ -718,33 +735,32 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					if (direction == 0)
 					{
 						direction = Main.rand.NextBool() ? 1 : -1;
-						ForeachArm(arm => arm.canDealDamage = false);
+						ForeachArm(arm => arm.canDealDamage = false, true);
 					}
 					if (timer <= 221)
 					{
 						_desiredProjectileDestination = target.Center - new Vector2(0, 500 * direction);
 					}
-					if (timer == 222)
+					if (timer == 222 && Main.netMode != NetmodeID.MultiplayerClient)
 					{
-						ForeachArm(arm => arm.canDealDamage = true);
-
+						ForeachArm(arm => arm.canDealDamage = true, true);
 						_desiredProjectileDestination += new Vector2(0, 1000 * direction);
 						SoundEngine.PlaySound(SoundID.Item117, _arms[1].Projectile.Center);
 					}
 
-					if (timer < 400)
+					if (timer < 400 && Main.netMode != NetmodeID.MultiplayerClient)
 					{
 						HarbingerOfAnnihilation_Arm arm = _arms[0];
 						arm.customTarget = _desiredProjectileDestination - new Vector2(200, 0) * direction;
 						arm.customDuration = 380;
-						arm.Projectile.ai[0] = HoaArmAI.LightningLink;
 						arm.Projectile.ai[1] = _arms[1].Projectile.whoAmI;
+						arm.SetState(HoaArmAI.LightningLink);
 
 						arm = _arms[1];
 						arm.customTarget = _desiredProjectileDestination + new Vector2(200, 0) * direction;
 						arm.customDuration = 380;
-						arm.Projectile.ai[0] = HoaArmAI.LightningLink;
 						arm.Projectile.ai[1] = _arms[0].Projectile.whoAmI;
+						arm.SetState(HoaArmAI.LightningLink);
 					}
 				}
 				else
@@ -762,33 +778,33 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					if (direction == 0)
 					{
 						direction = Main.rand.NextBool() ? 1 : -1;
-						ForeachArm(arm => arm.canDealDamage = false);
+						ForeachArm(arm => arm.canDealDamage = false, true);
 					}
 					if (timer <= 221)
 					{
 						_desiredProjectileDestination = target.Center - new Vector2(500 * direction, 0);
 					}
-					if (timer == 222)
+					if (timer == 222 && Main.netMode != NetmodeID.MultiplayerClient)
 					{
-						ForeachArm(arm => arm.canDealDamage = true);
+						ForeachArm(arm => arm.canDealDamage = true, true);
 
 						_desiredProjectileDestination += new Vector2(1000 * direction, 0);
 						SoundEngine.PlaySound(SoundID.Item117, _arms[1].Projectile.Center);
 					}
 
-					if (timer < 380)
+					if (timer < 380 && Main.netMode != NetmodeID.MultiplayerClient)
 					{
 						HarbingerOfAnnihilation_Arm arm = _arms[2];
 						arm.customTarget = _desiredProjectileDestination - new Vector2(0, 200) * direction;
 						arm.customDuration = 380;
-						arm.Projectile.ai[0] = HoaArmAI.LightningLink;
 						arm.Projectile.ai[1] = _arms[3].Projectile.whoAmI;
+						arm.SetState(HoaArmAI.LightningLink);
 
 						arm = _arms[3];
 						arm.customTarget = _desiredProjectileDestination + new Vector2(0, 200) * direction;
 						arm.customDuration = 380;
-						arm.Projectile.ai[0] = HoaArmAI.LightningLink;
 						arm.Projectile.ai[1] = _arms[2].Projectile.whoAmI;
+						arm.SetState(HoaArmAI.LightningLink);
 					}
 				}
 				else if (WaitForAllArmsToReturn())
@@ -826,18 +842,18 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					return;
 				}
 
-				if (timer == 90)
+				if (timer == 90 && Main.netMode != NetmodeID.MultiplayerClient)
 				{
 					int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<HoaBlackHole>(), (int)(30 * ExpertDamageMultiplier), 4, Main.myPlayer, 1200, .2f);
 					Main.projectile[proj].timeLeft = 440;
 					ForeachArm(arm =>
 					{
-						arm.AttackPointer = HoaArmAI.CircleTarget;
 						arm.customTarget = Main.projectile[proj].Center;
 						arm.customDuration = 440;
+						arm.SetState(HoaArmAI.CircleTarget);
 					});
 				}
-				else if (timer > 120)
+				else if (timer > 120 && Main.netMode != NetmodeID.MultiplayerClient)
 				{
 					velocity = Main.masterMode ? 7.5f : 5;
 					acceleration = .04f;
@@ -855,7 +871,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 					attackPointer++;
 				}
 			}
-			else
+			else if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				if (Vector2.Distance(NPC.Center, target.Center - new Vector2(0, 250)) <= 75)
 				{
@@ -866,27 +882,32 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 		}
 
-		void StartCast(Vector2 lookTarget)
+		private void StartCast(Vector2 lookTarget)
 		{
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				return;
+			}
+
 			HarbingerOfAnnihilation_Arm arm = _arms[0];
 			arm.customTarget = NPC.Center + (new Vector2(100, 100) * NPC.direction);
 			arm.customLookTarget = lookTarget;
-			arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+			arm.SetState(HoaArmAI.GotoTarget);
 
 			arm = _arms[1];
 			arm.customTarget = NPC.Center + (new Vector2(50, 50) * NPC.direction);
 			arm.customLookTarget = lookTarget;
-			arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+			arm.SetState(HoaArmAI.GotoTarget);
 
 			arm = _arms[2];
 			arm.customTarget = NPC.Center + (new Vector2(50, -50) * NPC.direction);
 			arm.customLookTarget = lookTarget;
-			arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+			arm.SetState(HoaArmAI.GotoTarget);
 
 			arm = _arms[3];
 			arm.customTarget = NPC.Center + (new Vector2(100, -100) * NPC.direction);
 			arm.customLookTarget = lookTarget;
-			arm.Projectile.ai[0] = HoaArmAI.GotoTarget;
+			arm.SetState(HoaArmAI.GotoTarget);
 		}
 		void AttackCastOrb(ref float timer, ref float attackPointer, float timeLeftMulti = 1)
         {
@@ -902,7 +923,7 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			}
 
 			Vector2 lookTarget = NPC.Center + (new Vector2(100, 0) * NPC.direction);
-			if (timer == 50)
+			if (timer == 50 && Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				StartCast(lookTarget);
 
@@ -970,13 +991,32 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				Main.dust[dust].noGravity = true;
 			}
 		}
-		private void ForeachArm(Action<HarbingerOfAnnihilation_Arm> action)
+		/// <summary>
+		/// Calls the given <paramref name="action"/> for each one of the arms.
+		/// </summary>
+		/// <remarks>Note: This method has a build in guard agains multiplayer client calls</remarks>
+		/// <param name="autoSync">When run by <see cref="NetmodeID.Server"/> syncs the projectile to all Multiplayer clients.</param>
+		private void ForeachArm(Action<HarbingerOfAnnihilation_Arm> action, bool autoSync = false)
         {
 			for (int i = 0; i < _arms.Length; i++)
             {
+				if (_arms[i] == null)
+				{
+					continue;
+				}
                 action(_arms[i]);
+				if (autoSync && Main.netMode == NetmodeID.Server)
+				{
+					NetMessage.SendData(MessageID.SyncProjectile, number: _arms[i].Projectile.whoAmI);
+				}
 			}
 		}
+		/// <summary>
+		/// Gets a random one of the arms.
+		/// </summary>
+		/// <remarks>Note: Guard this method call for multiplayer!</remarks>
+		/// <param name="getInactiveOnly">Makes the method only return an arm in state Idle</param>
+		/// <returns></returns>
         private HarbingerOfAnnihilation_Arm GetRandomArm(bool getInactiveOnly = false)
         {
 			HarbingerOfAnnihilation_Arm randArm = _arms[Main.rand.Next(0, _arms.Length)];
@@ -993,6 +1033,13 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		/// <returns>If all arms have returned to thier start position</returns>
 		private bool WaitForAllArmsToReturn()
 		{
+			// Only run this method only for the server
+			// or single player client.
+			//
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				return false;
+			}
 			for (int i = 0; i < _arms.Length; i++)
 			{
 				// Check if the arm has the idle AI
