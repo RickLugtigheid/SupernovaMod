@@ -900,6 +900,10 @@ Mods: {
 				DisplayName: Seal Of Samael
 				Tooltip: ""
 			}
+			RapierOfLight: {
+				DisplayName: Rapier Of Light
+				Tooltip: ""
+			}
 		}
 
 		Prefixes: {
@@ -981,6 +985,8 @@ Mods: {
 			BalancedOrb.DisplayName: Balanced Orb
 			RedDevil.DisplayName: Red Devil
 			HarpyMothersFeather.DisplayName: Harpy Mothers Feather
+			RapierOfLightProjectile.DisplayName: Rapier Of Light Projectile
+			BoltOfLight.DisplayName: Bolt Of Light
 		}
 
 		Configs: {

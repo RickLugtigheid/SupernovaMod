@@ -33,6 +33,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
 			Projectile.width = 94;
 			Projectile.height = 58;
+			Projectile.minionSlots = 0;
 		}
 
 		public override void AI()
@@ -64,7 +65,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 				// Shoot
 				if (timer > 80 && (timer % 20) == 0)
 				{
-					Shoot(targetCenter);
+					Shoot(targetCenter + (target.velocity * 2));
 				}
 			}
 			else
@@ -174,7 +175,8 @@ namespace SupernovaMod.Content.Projectiles.Summon
 		{
 			SoundEngine.PlaySound(SoundID.Item20, Projectile.Center);
 			Vector2 Velocity = Mathf.VelocityFPTP(Projectile.Center, targetCenter, 8f + Main.rand.NextFloat());
-			Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, ProjectileID.UnholyTridentFriendly, Projectile.damage, Projectile.knockBack, Projectile.owner);
+			int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, ProjectileID.UnholyTridentFriendly, Projectile.damage, Projectile.knockBack, Projectile.owner);
+			Main.projectile[proj].DamageType = DamageClass.Summon;
 		}
 	}
 }

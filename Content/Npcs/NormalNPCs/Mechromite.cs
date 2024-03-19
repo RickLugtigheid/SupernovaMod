@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.ItemDropRules;
@@ -51,6 +51,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
 
 			NPC.buffImmune[BuffID.Poisoned] = true;
 			NPC.buffImmune[BuffID.Confused] = true;
+			NPC.buffImmune[BuffID.Electrified] = true;
 		}
 		public override void FindFrame(int frameHeight)
 		{

@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using Terraria.Graphics.Shaders;
 
 namespace SupernovaMod.Content.Projectiles.Hostile
 {
@@ -34,20 +35,20 @@ namespace SupernovaMod.Content.Projectiles.Hostile
 		bool isOrbit = true;
 		public override void AI()
 		{
+			Projectile.rotation += .01f;
 			Lighting.AddLight(Projectile.Center, 0, (255 - Projectile.alpha) / 255f, ((255 - Projectile.alpha) * 0.05f) / 255f);
 
 			owner = Main.npc[(int)Projectile.ai[1]];
 
-			// Kill the projectile when the owner not active
-			//
-			if (owner == null || !owner.active)
-			{
-				Projectile.timeLeft = 0;
-				return;
-			}
-
 			if (isOrbit)
 			{
+				// Kill the projectile when the owner not active
+				//
+				if (owner == null || !owner.active)
+				{
+					Projectile.timeLeft = 0;
+					return;
+				}
 				//Factors for calculations  
 				double deg = (double)Projectile.ai[0];  //The degrees, you can multiply projectile.ai[0] to make it orbit faster, may be choppy depending on the value  
 				double rad = deg * (Math.PI / 180);     //Convert degrees to radians  
@@ -61,38 +62,44 @@ namespace SupernovaMod.Content.Projectiles.Hostile
 
 				//Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value  
 				Projectile.ai[0] += 1f;
-			}
 
-			// After 2 seconds we fire at the player  
-			if (Projectile.ai[0] >= 360 && isOrbit)
-			{
-				SoundEngine.PlaySound(SoundID.Item105);
-				Player target = Main.player[owner.target];
-				_drawTrail = true;
-				// Get the shooting trajectory  
-				float shootToX = target.position.X + (float)target.width * 0.5f - Projectile.Center.X;
-				float shootToY = target.position.Y - Projectile.Center.Y;
-				float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+				// After 2 seconds we fire at the player
+				// 
+				if (Projectile.ai[0] >= 340)
+				{
+					SoundEngine.PlaySound(SoundID.Item105);
+					Player target = Main.player[owner.target];
+					_drawTrail = true;
+					// Get the shooting trajectory  
+					float shootToX = target.position.X + (float)target.width * 0.5f - Projectile.Center.X;
+					float shootToY = target.position.Y - Projectile.Center.Y;
+					float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
 
-				// Dividing the factor of 3f which is the desired velocity by distance  
-				distance = 3f / distance;
+					// Dividing the factor of 3f which is the desired velocity by distance  
+					distance = 3f / distance;
 
-				// Multiplying the shoot trajectory with distance times a multiplier if you so choose to  
-				shootToX *= distance * 2;
-				shootToY *= distance * 2;
+					// Multiplying the shoot trajectory with distance times a multiplier if you so choose to  
+					shootToX *= distance * 3f;
+					shootToY *= distance * 3f;
 
-				Projectile.velocity = new Vector2(shootToX, shootToY);
-				isOrbit = false;
+					Projectile.velocity = new Vector2(shootToX, shootToY);
+					isOrbit = false;
+
+					// Tell the owner we are no longer orbiting
+					Main.npc[(int)Projectile.ai[1]].ai[0]--;
+				}
 			}
 		}
-		public override void OnKill(int timeLeft)
+		/*public override void OnKill(int timeLeft)
 		{
 			// Tell the owner we are killed
 			Main.npc[(int)Projectile.ai[1]].ai[0]--;
-		}
+		}*/
 		private bool _drawTrail = false;
+
 		public override bool PreDraw(ref Color lightColor)
 		{
+			GameShaders.Misc["LightDisc"].Apply();
 			if (!_drawTrail)
 			{
 				return base.PreDraw(ref lightColor);
@@ -112,6 +119,11 @@ namespace SupernovaMod.Content.Projectiles.Hostile
 				scaleMulti -= .05f;
 			}
 			return base.PreDraw(ref lightColor);
+		}
+
+		public override void PostDraw(Color lightColor)
+		{
+			Main.pixelShader.CurrentTechnique.Passes[0].Apply();
 		}
 	}
 }

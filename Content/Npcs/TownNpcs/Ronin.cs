@@ -96,7 +96,8 @@ namespace SupernovaMod.Content.Npcs.TownNpcs
                 "Ryu",
                 "Kyo",
                 "Jin",
-                "Ren"
+                "Ren",
+                "Zoro"
             };
         }
 

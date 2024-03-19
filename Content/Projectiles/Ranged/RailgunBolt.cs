@@ -39,6 +39,22 @@ namespace SupernovaMod.Content.Projectiles.Ranged
 				num3 = num241;
 			}
 		}
+
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			if (Main.rand.NextChance(.25f))
+			{
+				target.AddBuff(BuffID.Electrified, 120);
+			}
+		}
+		public override void OnHitPlayer(Player target, Player.HurtInfo info)
+		{
+			if (Main.rand.NextChance(.25f))
+			{
+				target.AddBuff(BuffID.Electrified, 120);
+			}
+		}
+
 		public override void ModifyDamageHitbox(ref Rectangle hitbox)
 		{
 			hitbox.Inflate(2, 2);
