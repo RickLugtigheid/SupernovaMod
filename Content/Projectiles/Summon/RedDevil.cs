@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Api.Helpers;
+using SupernovaMod.Common.GlobalProjectiles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -25,6 +26,9 @@ namespace SupernovaMod.Content.Projectiles.Summon
 
 			Main.projPet[Projectile.type] = true; // Denotes that this projectile is a pet or minion
 			ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // Make the cultist resistant to this projectile, as it's resistant to all homing projectiles.
+
+			// Flag this projectile as demonic minion
+			SupernovaGlobalProjectile.DemonicMinions.Add(Projectile.type);
 		}
 
 		public override void SetDefaults()

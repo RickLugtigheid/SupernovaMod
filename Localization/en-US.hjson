@@ -751,7 +751,7 @@ Mods: {
 
 			HarpyMothersFeather: {
 				DisplayName: Harpy Mothers Feather
-				Tooltip: ""
+				Tooltip: "Shoots a feather that splits into smaller homing feathers"
 			}
 
 			HelixStone: {
@@ -775,13 +775,13 @@ Mods: {
 			}
 
 			HarbingerOfAnnihilationRelic: {
+				DisplayName: Harbinger of Annihilation Relic
 				Tooltip: ""
-				DisplayName: Harbinger Of Annihilation Relic
 			}
 
 			FlyingTerrorRelic: {
-				Tooltip: ""
 				DisplayName: Flying Terror Relic
+				Tooltip: ""
 			}
 
 			BloodweaverRelic: {
@@ -886,13 +886,9 @@ Mods: {
 				DisplayName: Magnitrix
 				Tooltip: ""
 			}
-			HarbingerOfAnnihilationRelic: {
-				DisplayName: Harbinger of Annihilation Relic
-				Tooltip: ""
-			}
 
-			FlyingTerrorRelic: {
-				DisplayName: Flying Terror Relic
+			RagnaMagnitrix: {
+				DisplayName: Ragna Magnitrix
 				Tooltip: ""
 			}
 
@@ -900,8 +896,16 @@ Mods: {
 				DisplayName: Seal Of Samael
 				Tooltip: ""
 			}
+			BookOfEarth: {
+				DisplayName: Book Of Terra
+				Tooltip: "Shoots high knockback rocks"
+			}
+
+
 			RapierOfLight: {
-				DisplayName: Rapier Of Light
+				DisplayName: Rapier of Light
+				Tooltip: "Shoots a bolt of light"
+			}
 				Tooltip: ""
 			}
 		}
@@ -979,14 +983,14 @@ Mods: {
 			CelestialCystal.DisplayName: Celestial Cystal
 			CelestialCystalShard.DisplayName: Celestial Cystal Shard
 			ForbiddenDiscProj.DisplayName: Forbidden Disc Proj
-			HarpyFeatherProj.DisplayName: Harpy Feather Proj
+			HarpyFeatherProj.DisplayName: Harpy Feather
 			RailgunBolt.DisplayName: Railgun Bolt
 			DriveSpinnerProjectile.DisplayName: Drive Spinner Projectile
 			BalancedOrb.DisplayName: Balanced Orb
 			RedDevil.DisplayName: Red Devil
 			HarpyMothersFeather.DisplayName: Harpy Mothers Feather
-			RapierOfLightProjectile.DisplayName: Rapier Of Light Projectile
-			BoltOfLight.DisplayName: Bolt Of Light
+			RagnaArrow.DisplayName: Ragna Arrow
+			EarthProj.DisplayName: Earth Proj
 		}
 
 		Configs: {

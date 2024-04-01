@@ -20,9 +20,9 @@ namespace SupernovaMod.Api
 		/// <param name="width">The width of the explosion</param>
 		/// <param name="height">The height of the explosion</param>
 		/// <param name="knockback">The knockback of the explosion, if null, uses the projectile's knockback</param>
-		public static void CreateExplosion(this Projectile proj, int width, int height, float? knockback = null, bool killProjectile = true)
+		public static void CreateExplosion(this Projectile proj, int width, int height, float? knockback = null, bool killProjectile = false, int penetrate = -1)
 		{
-			proj.penetrate = -1;
+			proj.penetrate = penetrate;
 			proj.tileCollide = false;
 			proj.alpha = 255;
 			proj.Resize(width, height);

@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.ModLoader;
 using SupernovaMod.Common.Systems;
 using SupernovaMod.Api.Effects;
+using System;
 
 namespace SupernovaMod
 {
@@ -62,6 +63,7 @@ namespace SupernovaMod
 			//
 			if (Main.netMode != NetmodeID.Server)
 			{
+				SupernovaModTextures.LoadTextures();
 				LoadShaders();
 			}
 			if (!Main.dedServ)
