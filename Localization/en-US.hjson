@@ -166,10 +166,7 @@ Mods: {
 
 			DesertEmblem: {
 				DisplayName: Desert Emblem
-				Tooltip:
-					'''
-					8% increased movement speed. (16% when in a sandstorm)
-					'''
+				Tooltip: 8% increased movement speed. (16% when in a sandstorm)
 			}
 
 			HarbingersCrest: {

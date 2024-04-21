@@ -1,5 +1,5 @@
 displayName = Supernova Mod
 author = KoekMeneer, Galenwald, The ExiIed FeIIow, Mjoonlight, Ink, Chadstream Sam
-version = 0.1.9.3
+version = 0.1.9.4
 homepage = https://forums.terraria.org/index.php?threads/supernova-mod.104268/
 wiki = https://terrariamods.wiki.gg/wiki/Supernova_Mod
