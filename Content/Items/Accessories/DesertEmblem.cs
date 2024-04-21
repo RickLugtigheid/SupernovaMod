@@ -11,9 +11,6 @@ namespace SupernovaMod.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("Desert Emblem");
-            // Tooltip.SetDefault("8% increased movementspeed\nIn a sandstorm 16% increased movementspeed");
         }
 
         public override void SetDefaults()
@@ -30,10 +27,9 @@ namespace SupernovaMod.Content.Items.Accessories
         {
             if (player.ZoneSandstorm == true)
             {
-                player.statDefense += 3;
-                player.moveSpeed += 16;
+                player.moveSpeed += .16f;
             }
-            player.moveSpeed += 8;
+            player.moveSpeed += .08f;
         }
         public override void AddRecipes()
         {

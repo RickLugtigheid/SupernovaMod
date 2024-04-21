@@ -168,8 +168,7 @@ Mods: {
 				DisplayName: Desert Emblem
 				Tooltip:
 					'''
-					8% increased movementspeed.
-					In a sandstorm 16% increased movementspeed.
+					8% increased movement speed. (16% when in a sandstorm)
 					'''
 			}
 
