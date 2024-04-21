@@ -20,5 +20,10 @@ After that the ring will need to cool down before it can be used again.
 ## Supported Languages
 Language support is not yet implemented, if you want to help check the 
 
+## Translation
+If you would like to help translate the Supernova Mod, thank you! 
+Please take a look at the en-US.hjson file to get started.
+I would appreciate it if you also test translations beforehand!
+
 ## Configuration
 The mod also features some configurations ([Documenation here](https://supernovamod.fandom.com/wiki/Mod_Config_settings))
