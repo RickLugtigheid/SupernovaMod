@@ -14,6 +14,7 @@ using SupernovaMod.Common.ItemDropRules.DropConditions;
 using SupernovaMod.Api;
 using SupernovaMod.Common.Systems;
 using SupernovaMod.Common;
+using System.IO;
 
 namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 {
@@ -27,6 +28,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 		private const int DAMAGE_PROJ_ORB = 31;
 
 		private readonly int _projIdMissile = ModContent.ProjectileType<HarbingerMissile>();
+
+		/// <summary>
+		/// Handles syncing the <see cref="WaitForAllArmsToReturn"/> method return
+		/// value between server and client.
+		/// </summary>
+		private bool _syncWaitForArmsToReturn = false;
 
 		/// <summary>
 		/// A collection of all the Harbingers arms.
@@ -111,6 +118,15 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
         public bool SecondPhase { get; private set; } = false;
 
 		private int _attackPointer2 = 0;
+
+		public override void SendExtraAI(BinaryWriter writer)
+		{
+			writer.Write(_syncWaitForArmsToReturn);
+		}
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+			_syncWaitForArmsToReturn = reader.ReadBoolean();
+		}
 
 		public override void AI()
         {
@@ -1038,8 +1054,17 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 			//
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
-				return false;
+				return _syncWaitForArmsToReturn;
 			}
+			// Reset the sync handle
+			//
+			if (Main.netMode == NetmodeID.Server)
+			{
+				_syncWaitForArmsToReturn = false;
+			}
+
+			// Check for all arms if they have the idle AI
+			//
 			for (int i = 0; i < _arms.Length; i++)
 			{
 				// Check if the arm has the idle AI
@@ -1048,6 +1073,12 @@ namespace SupernovaMod.Content.Npcs.HarbingerOfAnnihilation
 				{
 					return false;
 				}
+			}
+			// Set the sync handle to true
+			//
+			if (Main.netMode == NetmodeID.Server)
+			{
+				_syncWaitForArmsToReturn = true;
 			}
 			return true;
 		}
