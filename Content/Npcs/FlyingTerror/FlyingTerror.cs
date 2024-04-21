@@ -98,8 +98,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
 			}));
-
-			DownedSystem.downedFlyingTerror = true;
 		}
 
 		protected Player target;

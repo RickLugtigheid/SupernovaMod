@@ -42,6 +42,7 @@ namespace SupernovaMod.Common.Systems
 					new BossChecklistAdditionalEntryDataBuilder()
 						.AddSpawnItem<Content.Items.Consumables.BugOnAStick>()
 						.AddCollectibleItem<Content.Items.Placeable.Furniture.FlyingTerrorRelic>()
+						.AddCollectibleItem<Content.Items.Placeable.Furniture.FlyingTerrorTrophy>()
 				)
 				.SetDownedCallback(() => DownedSystem.downedFlyingTerror)
 				.AddBoss(Mod, Supernova.Instance.bossChecklist);
@@ -56,6 +57,7 @@ namespace SupernovaMod.Common.Systems
 				.SetAdditionalEntryData(
 					new BossChecklistAdditionalEntryDataBuilder()
 						.AddCollectibleItem<Content.Items.Placeable.Furniture.BloodweaverRelic>()
+						.AddCollectibleItem<Content.Items.Placeable.Furniture.BloodweaverTrophy>()
 				)
 				.SetDownedCallback(() => DownedSystem.downedBloodweaver)
 				.AddMiniBoss(Mod, Supernova.Instance.bossChecklist);
