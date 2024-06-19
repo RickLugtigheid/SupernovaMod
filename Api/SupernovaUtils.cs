@@ -13,6 +13,29 @@ namespace SupernovaMod.Api
 {
     public static class SupernovaUtils
     {
+        /// <summary>
+        /// Returns the position of the first ground tile from the specified <paramref name="position"/>.
+        /// </summary>
+        /// <param name="position">The position from where this method will look for a ground tile.</param>
+        /// <param name="range">The max amount of tiles this method will look down from the <paramref name="position"/></param>
+        /// <returns></returns>
+        public static Point? GetGroundTileFromPostion(Point position, int range = 30)
+        {
+            Point tilePosition = position;
+            for (int i = 0; i < range; i++)
+            {
+                // Check if the next tile is active
+                //
+				Tile nextTile = Main.tile[position.X, position.Y + (i)];
+                if (nextTile.HasTile) return tilePosition;
+                // Check the next tile down
+                tilePosition.Y++;
+			}
+            return null;
+        }
+        /// <inheritdoc cref="GetGroundTileFromPostion(Point, int)"/>
+        public static Vector2? GetGroundTileFromPostion(Vector2 position, int range = 30) 
+            => GetGroundTileFromPostion(position.ToTileCoordinates())?.ToWorldCoordinates();
 		/// <summary>
 		/// Creates an explosion using the projectile. Calls <see cref="Projectile.Damage" />, then <see cref="Projectile.Kill" />.
 		/// </summary>

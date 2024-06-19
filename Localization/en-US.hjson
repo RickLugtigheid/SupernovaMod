@@ -33,7 +33,7 @@ Mods: {
 		Tiles: {
 			RingForge.MapEntry: Ring Forge
 			ZirconiumOreTile.MapEntry: Zirconium Ore
-			HorrorStone.MapEntry: Horror Stone
+			StarfireForgeTile.MapEntry: Starfire Forge
 		}
 
 		NPCs: {
@@ -751,7 +751,7 @@ Mods: {
 
 			HarpyMothersFeather: {
 				DisplayName: Harpy Mothers Feather
-				Tooltip: "Shoots a feather that splits into smaller homing feathers"
+				Tooltip: Shoots a feather that splits into smaller homing feathers
 			}
 
 			HelixStone: {
@@ -839,6 +839,10 @@ Mods: {
 					Increases defense by a max of 10 at 100 health
 					'''
 			}
+			Cosmolash: {
+				DisplayName: Cosmolash
+				Tooltip: ""
+			}
 			BrokenSwordShards: {
 				DisplayName: Broken Sword Shards
 				Tooltip: ""
@@ -898,14 +902,16 @@ Mods: {
 			}
 			BookOfEarth: {
 				DisplayName: Book Of Terra
-				Tooltip: "Shoots high knockback rocks"
+				Tooltip: Shoots high knockback rocks
 			}
 
 
 			RapierOfLight: {
 				DisplayName: Rapier of Light
-				Tooltip: "Shoots a bolt of light"
+				Tooltip: Shoots a bolt of light
 			}
+			Cosmalice: {
+				DisplayName: Cosmalice
 				Tooltip: ""
 			}
 		}
@@ -984,6 +990,7 @@ Mods: {
 			CelestialCystalShard.DisplayName: Celestial Cystal Shard
 			ForbiddenDiscProj.DisplayName: Forbidden Disc Proj
 			HarpyFeatherProj.DisplayName: Harpy Feather
+			CosmolashGun.DisplayName: Cosmolash Gun
 			RailgunBolt.DisplayName: Railgun Bolt
 			DriveSpinnerProjectile.DisplayName: Drive Spinner Projectile
 			BalancedOrb.DisplayName: Balanced Orb
@@ -991,6 +998,10 @@ Mods: {
 			HarpyMothersFeather.DisplayName: Harpy Mothers Feather
 			RagnaArrow.DisplayName: Ragna Arrow
 			EarthProj.DisplayName: Earth Proj
+			RapierOfLightProjectile.DisplayName: Rapier Of Light
+			BoltOfLight.DisplayName: Bolt of Light
+			EldrichBolt.DisplayName: Eldrich Bolt
+			EldrichTentacle.DisplayName: Eldrich Tentacle
 		}
 
 		Configs: {
