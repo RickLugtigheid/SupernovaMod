@@ -92,6 +92,7 @@ namespace SupernovaMod.Api
             }
             Vector2 consistentAnchor = player.itemRotation.ToRotationVector2() * (spriteSize.X / -2f - 10f) * player.direction - origin.RotatedBy(player.itemRotation, default);
             Vector2 offsetAgain = spriteSize * -0.5f;
+            offsetAgain.X = 0;
             Vector2 finalPosition = desiredPosition + offsetAgain + consistentAnchor;
             if (stepDisplace)
             {
