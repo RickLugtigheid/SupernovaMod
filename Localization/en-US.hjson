@@ -9,6 +9,48 @@ Mods: {
 		ResetCustomSlotLocation_Tooltip: Reset custom panel location if it disappears from the screen
 		ResetCustomSlotLocation_Label: Reset custom location
 
+		Keybinds: {
+			"Ring Ability": {
+				DisplayName: Ring Ability
+			}
+		}
+
+		Configs: {
+			CommonConfig: {
+				DisplayName: Common Configurations
+
+				Headers: {
+					Effects: Effects
+					UI: User Interface
+				}
+
+				allowScreenShake: {
+					Label: Screenshake
+					Tooltip: Enable or disable screenshake.
+				}
+
+				enableRingSlot: {
+					Label: Ring Slot
+					Tooltip: Enable or disable the ring slot.
+				}
+
+				maxParticles: {
+					Label: Max Particles
+					Tooltip: The maximum amount of particles that can spawn.
+				}
+			}
+		}
+
+		GameTips: {
+		}
+
+		Status: {
+			Progression: {
+				StartDroppingRime: Rime started forming in the ice biome...
+				}
+			}
+		}
+
 		TownNPCMood: {
 			Ronin: {
 				Content: I feel pretty fine right now.
@@ -28,7 +70,17 @@ Mods: {
 			}
 		}
 
-		"Keybinds.Ring Ability.DisplayName": Ring Ability
+		Prefixes: {
+			Angry.DisplayName: Angry
+			Chilly.DisplayName: Chilly
+			Cooled.DisplayName: Cooled
+			Fiery.DisplayName: Fiery
+			Frigid.DisplayName: Frigid
+			Heated.DisplayName: Heated
+			Menacing.DisplayName: Menacing
+			Scorching.DisplayName: Scorching
+			Spiked.DisplayName: Spiked
+		}
 
 		Tiles: {
 			RingForge.MapEntry: Ring Forge
@@ -37,30 +89,8 @@ Mods: {
 		}
 
 		NPCs: {
-			HarbingerOfAnnihilation: {
-				DisplayName: Harbinger of Annihilation
-				BossChecklistIntegration.SpawnInfo: Kill a Cosmic Anomaly or use a [i:SupernovaMod/EerieCrystal] in space
-			}
 
-			FlyingTerror: {
-				DisplayName: Flying Terror
-				BossChecklistIntegration.SpawnInfo: Use a [i:SupernovaMod/BugOnAStick] at night
-			}
-
-			Bloodweaver: {
-				DisplayName: Bloodweaver
-				BossChecklistIntegration.SpawnInfo: Spawns during Bloodmoon
-			}
-
-			Gazer.DisplayName: Gazer
-			TerrorSpirit.DisplayName: Terror Spirit
-			CosmicAnomaly.DisplayName: Cosmic Anomaly
-			FrostFlayer.DisplayName: Frost Flayer
-			Geist.DisplayName: Geist
-			LeafCrab.DisplayName: Leaf Crab
-			TerrorBat.DisplayName: Terror Bat
-			StormSovereign.DisplayName: Storm Sovereign
-
+		// ======================[ Town NPCs ]======================
 			Ronin: {
 				DisplayName: Ronin
 
@@ -84,8 +114,77 @@ Mods: {
 				}
 			}
 
-			Mechromite.DisplayName: Mechromite
-			Balancer.DisplayName: Balancer
+		// ======================[ Bosses & Boss Servents ]======================
+
+			HarbingerOfAnnihilation: {
+				DisplayName: Harbinger of Annihilation
+				BossChecklistIntegration.SpawnInfo: Kill a Cosmic Anomaly or use a [i:SupernovaMod/EerieCrystal] in space
+			}
+
+			FlyingTerror: {
+				DisplayName: Flying Terror
+				BossChecklistIntegration.SpawnInfo: Use a [i:SupernovaMod/BugOnAStick] at night
+			}
+			TerrorSpirit: {
+				DisplayName: Terror Spirit
+			}
+
+			Bloodweaver: {
+				DisplayName: Bloodweaver
+				BossChecklistIntegration.SpawnInfo: Spawns during Bloodmoon
+			}
+
+			
+			CosmicCollective: {
+				DisplayName: Cosmic Collective
+			}
+			CosmicCollectiveEye: {
+				DisplayName: Cosmic Collective Eye
+			}
+			Cosmoling: {
+				DisplayName: Cosmoling
+			}
+
+			Fallen: {
+				DisplayName: Fallen
+			}
+			AshBall: {
+				DisplayName: Ash Ball
+			}
+
+		// ======================[ Enemy NPCs ]======================
+
+			Gazer: {
+				DisplayName: Gazer
+			}
+
+			CosmicAnomaly: {
+				DisplayName: Cosmic Anomaly
+			}
+
+			FrostFlayer: {
+				DisplayName: Frost Flayer
+			}
+
+			Geist: {
+				DisplayName: Geist
+			}
+
+			LeafCrab: {
+				DisplayName: Leaf Crab
+			}
+
+			TerrorBat: {
+				DisplayName: Terror Bat
+			}
+
+			Mechromite: {
+				DisplayName: Mechromite
+			}
+
+			Balancer: {
+				DisplayName: Balancer
+			}
 		}
 
 		Buffs: {
@@ -143,6 +242,11 @@ Mods: {
 				DisplayName: Red Devil Buff
 				Description: Mods.SupernovaMod.Buffs.RedDevilBuff.Description
 			}
+
+			BlackFlames: {
+				DisplayName: Black Flames
+				Description: Mods.SupernovaMod.Buffs.BlackFlames.Description
+			}
 		}
 
 		Items: {
@@ -180,15 +284,15 @@ Mods: {
 
 			HarbingersCrest: {
 				DisplayName: Harbingers Crest
-				Tooltip: Summons an Arm of the Harbinger to fight for you.
+				Tooltip: Summons an Arm of the Harbinger to fight for you
 			}
 
 			HeartOfTheJungle: {
 				DisplayName: Heart of The Jungle
 				Tooltip:
 					'''
-					Stores up to 60 life energy with an increase of 1 per second.
-					Getting hit consumes life energy and heals you for the amount of energy you have / 2.
+					Stores up to 60 life energy with an increase of 1 per second
+					Getting hit consumes life energy and heals you for the amount of energy you have / 2
 					'''
 			}
 
@@ -835,10 +939,56 @@ Mods: {
 					Increases defense by a max of 10 at 100 health
 					'''
 			}
+
+			SigilOfBalance: {
+				DisplayName: Sigil Of Balance
+				Tooltip:
+					'''
+					The more health you have left the more damage you deal, and the less mana your weapons will use
+					Deals a max of 20% extra damage when at 500 health
+					Reduces a max of 30% mana cost when at 500 health
+
+					The less health you have left the faster you will be, and less damage you take
+					Increases movement speed by a max of 14% at 100 health
+					Increases defense by a max of 10 at 100 health
+					'''
+			}
+
 			Cosmolash: {
 				DisplayName: Cosmolash
 				Tooltip: ""
 			}
+
+			GateOfBabylon: {
+				DisplayName: Gate of Babylon
+				Tooltip: ""
+			}
+
+			CosmofleshCutter: {
+				DisplayName: Cosmoflesh Cutter
+				Tooltip: ""
+			}
+
+			MoonSplitterYatagarasu: {
+				DisplayName: Moon Splitter Yatagarasu
+				Tooltip: ""
+			}
+
+			ShadowsteelBar: {
+				DisplayName: Shadowsteel Bar
+				Tooltip: ""
+			}
+
+			StarburstJade: {
+				DisplayName: Starburst Jade
+				Tooltip: ""
+			}
+
+			StarfireForge: {
+				DisplayName: Starfire Forge
+				Tooltip: ""
+			}
+
 			BrokenSwordShards: {
 				DisplayName: Broken Sword Shards
 				Tooltip: ""
@@ -848,6 +998,12 @@ Mods: {
 				DisplayName: Drive Saber
 				Tooltip: ""
 			}
+
+			ShadestarReaver: {
+				DisplayName: Shadestar Reaver
+				Tooltip: ""
+			}
+
 			BloodLens: {
 				DisplayName: Blood Lens
 				Tooltip:
@@ -873,13 +1029,33 @@ Mods: {
 				DisplayName: Drive Spinner
 				Tooltip: ""
 			}
+
+			StarcoreStaff: {
+				DisplayName: Starcore Staff
+				Tooltip: "A powerfull staff that fires exploding bolts of celestial energy"
+			}
+
+			Starcore: {
+				DisplayName: Starcore
+				Tooltip: "Holds the power of a star"
+			}
+
+			RingOfQuake: {
+				DisplayName: Ring Of Quake
+				Tooltip:
+					'''
+					When the 'Ring Ability button' is pressed a powerfull earthquake will strike your enemies
+					'''
+			}
+
 			Kusanagi: {
 				DisplayName: Kusanagi
 				Tooltip: ""
 			}
+
 			BattleAxe: {
 				DisplayName: Battle Axe
-				Tooltip: ""
+				Tooltip: "To war!"
 			}
 
 			Magnitrix: {
@@ -894,18 +1070,39 @@ Mods: {
 
 			SealOfSamael: {
 				DisplayName: Seal Of Samael
-				Tooltip: ""
-			}
-			BookOfEarth: {
-				DisplayName: Book Of Terra
-				Tooltip: Shoots high knockback rocks
+				Tooltip: "Summons a Red Devil to fight for you"
 			}
 
+			Demonomicon: {
+				DisplayName: Demonomicon
+				Tooltip: 
+					'''
+					Reduces damage taken by 8%
+					Immumity to OnFire
+					Summons 2 Red Devils to fight for you
+					'''
+			}
+
+			BookOfEarth: {
+				DisplayName: Book Of Terra
+				Tooltip: Fires high knockback rocks
+			}
+
+			OverchargedBattery: {
+				DisplayName: Overcharged Battery
+				Tooltip: All attacks inflict electified based on luck
+			}
 
 			RapierOfLight: {
 				DisplayName: Rapier of Light
-				Tooltip: Shoots a bolt of light
+				Tooltip: Shoots a bolt of light from it's tip
 			}
+
+			RingOfShadows: {
+				DisplayName: Ring Of Shadows
+				Tooltip: ""
+			}
+
 			Cosmalice: {
 				DisplayName: Cosmalice
 			BloodweaverBossMask: {
@@ -917,18 +1114,55 @@ Mods: {
 				DisplayName: Harbinger Of Annihilation Boss Mask
 				Tooltip: ""
 			}
-		}
 
-		Prefixes: {
-			Angry.DisplayName: Angry
-			Chilly.DisplayName: Chilly
-			Cooled.DisplayName: Cooled
-			Fiery.DisplayName: Fiery
-			Frigid.DisplayName: Frigid
-			Heated.DisplayName: Heated
-			Menacing.DisplayName: Menacing
-			Scorching.DisplayName: Scorching
-			Spiked.DisplayName: Spiked
+			HarbingerOfAnnihilationBossMask: {
+				DisplayName: Harbinger Of Annihilation Boss Mask
+				Tooltip: ""
+			}
+
+			ThornedRing: {
+				DisplayName: Thorned Ring
+				Tooltip: ""
+			}
+
+			FlyingTerrorBossMask: {
+				DisplayName: Flying Terror Boss Mask
+				Tooltip: ""
+			}
+
+			BloodweaverBossMask: {
+				DisplayName: Bloodweaver Boss Mask
+				Tooltip: ""
+			}
+
+			EyeOfTheOccult: {
+				DisplayName: Eye Of The Occult
+				Tooltip:
+					'''
+					5% increased damage
+					Killing an enemy spawns a Shadow Wisp minion, with a max of 10 at a time
+					'''
+			}
+
+			BookOfSulfur: {
+				DisplayName: Book Of Sulfur
+				Tooltip: ""
+			}
+
+			EldritchEssence: {
+				DisplayName: Eldritch Essence
+				Tooltip: "The essence of an eldritch being"
+			}
+
+			MightyStarBow: {
+				DisplayName: Mighty Star Bow
+				Tooltip: "Fires a volley of stars"
+			}
+
+			Cosmorang: {
+				DisplayName: Cosmorang
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -991,51 +1225,41 @@ Mods: {
 			TerrorWingArrow.DisplayName: Terror Wing Arrow
 			CelestialCystal.DisplayName: Celestial Cystal
 			CelestialCystalShard.DisplayName: Celestial Cystal Shard
-			ForbiddenDiscProj.DisplayName: Forbidden Disc Proj
+			ForbiddenDiscProj.DisplayName: Forbidden Disc
 			HarpyFeatherProj.DisplayName: Harpy Feather
 			CosmolashGun.DisplayName: Cosmolash Gun
+			ShadestarReaverSlash.DisplayName: Shadestar Reaver
+			ShadestarReaverProj.DisplayName: Shadestar Reaver
 			RailgunBolt.DisplayName: Railgun Bolt
 			DriveSpinnerProjectile.DisplayName: Drive Spinner Projectile
 			BalancedOrb.DisplayName: Balanced Orb
+			RagnaBow.DisplayName: Ragna Bow
 			RedDevil.DisplayName: Red Devil
 			HarpyMothersFeather.DisplayName: Harpy Mothers Feather
 			RagnaArrow.DisplayName: Ragna Arrow
-			EarthProj.DisplayName: Earth Proj
+			EarthProj.DisplayName: Terra Rock
+			BlackStar.DisplayName: Black Star
+
+			Boss: {
+				FallenBeamStart.DisplayName: Fallen Beam Start
+				BrimstoneBeam.DisplayName: Brimstone Beam
+			}
+
 			RapierOfLightProjectile.DisplayName: Rapier Of Light
 			BoltOfLight.DisplayName: Bolt of Light
+			ShadowOrbMinion.DisplayName: Shadow Orb
 			EldrichBolt.DisplayName: Eldrich Bolt
 			EldrichTentacle.DisplayName: Eldrich Tentacle
+			BrimstoneBeam.DisplayName: Brimstone Beam
+			BrimstoneBeamHoldout.DisplayName: Brimstone Beam
+			GateSwordProj.DisplayName: Gate Sword
+			ShadowWisp.DisplayName: Shadow Wisp
+			MagmaBlast.DisplayName: Magma Blast
+			StarcoreBolt.DisplayName: Starcore Bolt
+			DimensionalRift.DisplayName: Dimensional Rift
+			CosmorangProj.DisplayName: Cosmorang
+			CosmicEyeProjectile.DisplayName: Cosmic Eye
 		}
 
-		Configs: {
-			CommonConfig: {
-				DisplayName: Common Configurations
-
-				Headers: {
-					Effects: Effects
-					UI: User Interface
-				}
-
-				allowScreenShake: {
-					Label: Screenshake
-					Tooltip: Enable or disable screenshake.
-				}
-
-				enableRingSlot: {
-					Label: Ring Slot
-					Tooltip: Enable or disable the ring slot.
-				}
-
-				maxParticles: {
-					Label: Max Particles
-					Tooltip: The maximum amount of particles that can spawn.
-				}
-			}
-		}
-
-		GameTips: {
-		}
-
-		Status.Progression.StartDroppingRime: Rime started forming in the ice biome...
 	}
 }
