@@ -10,8 +10,6 @@ namespace SupernovaMod.Content.Items.Accessories
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-			//Tooltip.SetDefault("Provides the spelunker\nProvides light\nImproves vision\nAllows you to see nearby danger sources\nShows the location of enemies");
 		}
 
 		public override void SetDefaults()

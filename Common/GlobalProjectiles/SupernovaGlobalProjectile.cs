@@ -60,7 +60,7 @@ namespace SupernovaMod.Common.GlobalProjectiles
 			{
 				if (accessoryPlayer.hasDemonomicon && IsDemonicMinion(projectile))
 				{
-					projectile.damage = (int)(projectile.damage * .1f);
+					projectile.damage = (int)(projectile.damage * 1.1f);
 				}
 			}
 		}

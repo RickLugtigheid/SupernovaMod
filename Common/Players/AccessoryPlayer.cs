@@ -16,7 +16,8 @@ namespace SupernovaMod.Common.Players
 		public bool hasBagOfFungus		= false;
 		public bool hasInfernalEmblem	= false;
 		public bool hasOverchargedBattery = false;
-		public bool hasEyeOfTheOccult	= false;
+		public bool hasDemonomicon = false;
+        public bool hasEyeOfTheOccult	= false;
 
 		#endregion
 
@@ -38,7 +39,8 @@ namespace SupernovaMod.Common.Players
 			hasBagOfFungus		= false;
 			hasInfernalEmblem	= false;
 			hasOverchargedBattery = false;
-			hasEyeOfTheOccult	= false;
+            hasDemonomicon		= false;
+            hasEyeOfTheOccult	= false;
 
 			hasMinionVerglasFlake		= false;
 			hasMinionCarnageOrb			= false;
