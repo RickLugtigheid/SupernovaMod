@@ -175,11 +175,7 @@ Mods: {
 
 			DesertEmblem: {
 				DisplayName: Desert Emblem
-				Tooltip:
-					'''
-					8% increased movementspeed.
-					In a sandstorm 16% increased movementspeed.
-					'''
+				Tooltip: 8% increased movement speed. (16% when in a sandstorm)
 			}
 
 			HarbingersCrest: {
@@ -912,6 +908,13 @@ Mods: {
 			}
 			Cosmalice: {
 				DisplayName: Cosmalice
+			BloodweaverBossMask: {
+				Tooltip: ""
+				DisplayName: Bloodweaver Mask
+			}
+
+			HarbingerOfAnnihilationBossMask: {
+				DisplayName: Harbinger Of Annihilation Boss Mask
 				Tooltip: ""
 			}
 		}

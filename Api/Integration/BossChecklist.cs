@@ -8,7 +8,10 @@ using System.Drawing;
 
 namespace SupernovaMod.Api.Integration.BossChecklist
 {
-
+	/// <summary>
+	/// A builder class for building a BossChecklist entry
+	/// in an easy way.
+	/// </summary>
 	public class BossChecklistAdditionalEntryDataBuilder
 	{
 		private string _displayName;
@@ -19,11 +22,21 @@ namespace SupernovaMod.Api.Integration.BossChecklist
 		private Func<NPC, LocalizedText> _despawnMessage = null;
 		private Action<SpriteBatch, Rectangle, Color> _customPortrait = null;
 
+		/// <summary>
+		/// Sets the boss display name for this boss entry.
+		/// </summary>
+		/// <param name="displayName"></param>
+		/// <returns></returns>
 		public BossChecklistAdditionalEntryDataBuilder SetDisplayName(string displayName)
 		{
 			_displayName = displayName;
 			return this;
 		}
+		/// <summary>
+		/// Sets the spawn info for this boss entry.
+		/// </summary>
+		/// <param name="spawnInfo"></param>
+		/// <returns></returns>
 		public BossChecklistAdditionalEntryDataBuilder SetSpawnInfo(LocalizedText spawnInfo)
 		{
 			_spawnInfo = spawnInfo;
@@ -70,7 +83,7 @@ namespace SupernovaMod.Api.Integration.BossChecklist
 			_collectibles.Add(itemType);
 			return this;
 		}
-		public BossChecklistAdditionalEntryDataBuilder AddCollectibleItem<T>() where T : ModItem => AddSpawnItem(ModContent.ItemType<T>());
+		public BossChecklistAdditionalEntryDataBuilder AddCollectibleItem<T>() where T : ModItem => AddCollectibleItem(ModContent.ItemType<T>());
 
 		public Dictionary<string, object> Build()
 		{
@@ -172,10 +185,31 @@ namespace SupernovaMod.Api.Integration.BossChecklist
 			return this;
 		}
 
+		/// <summary>
+		/// Adds a boss entry to the BossChecklist.
+		/// </summary>
+		/// <param name="forMod"></param>
+		/// <param name="bossChecklistMod"></param>
 		public void AddBoss(Mod forMod, Mod bossChecklistMod) => Add("LogBoss", forMod, bossChecklistMod);
+		/// <summary>
+		/// Adds a mini boss entry to the BossChecklist.
+		/// </summary>
+		/// <param name="forMod"></param>
+		/// <param name="bossChecklistMod"></param>
 		public void AddMiniBoss(Mod forMod, Mod bossChecklistMod) => Add("LogMiniBoss", forMod, bossChecklistMod);
+		/// <summary>
+		/// Adds a event entry to the BossChecklist.
+		/// </summary>
+		/// <param name="forMod"></param>
+		/// <param name="bossChecklistMod"></param>
 		public void AddEvent(Mod forMod, Mod bossChecklistMod) => Add("LogEvent", forMod, bossChecklistMod);
 
+		/// <summary>
+		/// Adds an entry to the BossChecklist.
+		/// </summary>
+		/// <param name="entryType"></param>
+		/// <param name="forMod"></param>
+		/// <param name="bossChecklistMod"></param>
 		private void Add(string entryType, Mod forMod, Mod bossChecklistMod)
 		{
 			// https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call

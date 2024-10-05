@@ -19,8 +19,8 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 13;  //The damage stat for the Weapon.
-            Item.crit = 2;
+            Item.damage = 15;  //The damage stat for the Weapon.
+            Item.crit = 1;
             Item.knockBack = 6;
             Item.noMelee = true;  //Setting to True allows the weapon sprite to stop doing damage, so only the projectile does the damge
             Item.noUseGraphic = false;
@@ -50,7 +50,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
 			for (int i = 0; i < 4; ++i)
 			{
-                Vector2 projVel = new Vector2(Main.rand.Next(-12, 12), Main.rand.Next(-15, -1));
+                Vector2 projVel = new Vector2(Main.rand.Next(-17, 17), Main.rand.Next(-15, -2));
 				Projectile.NewProjectile(source, position.X, position.Y, speed.X, speed.Y, type, damage, knockback, player.whoAmI, projVel.X, projVel.Y);
 			}
 			return false;

@@ -97,7 +97,7 @@ namespace SupernovaMod.Common.Players
 		{
 			// Get the item currently in our ring slot
 			//
-			if (TryGetRingSlot(out ModAccessorySlot ringSlot))
+			if (TryGetRingSlot(out ModAccessorySlot ringSlot) && ringSlot.IsEnabled())
 			{
 				Item ringSlotItem = ringSlot.FunctionalItem;
 
@@ -168,7 +168,7 @@ namespace SupernovaMod.Common.Players
 
 		public override bool IsEnabled()
 		{
-			return ModContent.GetInstance<Common.Configs.CommonConfig>().enableRingSlot;
+			return ModContent.GetInstance<Configs.CommonConfig>().enableRingSlot;
 		}
 
 		// Overrides the default behaviour where a disabled accessory slot will allow retrieve items if it contains items

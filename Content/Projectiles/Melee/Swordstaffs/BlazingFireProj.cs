@@ -35,11 +35,11 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 
 		protected override void ExtraAI(ref float swingCycleTime)
 		{
-            if (swingCycleTime % SwingCycleTime == 0)
-            {
-                if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<BlazingFireball>()] < 6)
+            if (swingCycleTime % SwingCycleTime == 0 || swingCycleTime % (SwingCycleTime / 2) == 0)
+			{
+                if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<BlazingFireball>()] < 7)
                 {
-					Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, Vector2.Zero, ModContent.ProjectileType<BlazingFireball>(), (int)(Projectile.damage * .8f), Projectile.knockBack, Projectile.owner);
+					Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, Vector2.Zero, ModContent.ProjectileType<BlazingFireball>(), (int)(Projectile.damage * .85f), Projectile.knockBack, Projectile.owner);
 				}
 			}
 		}

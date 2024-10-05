@@ -13,9 +13,6 @@ namespace SupernovaMod.Content.Items.Armor.Carnage
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-            // DisplayName.SetDefault("Carnage Helmet");
-            // Tooltip.SetDefault("7% increased melee damage and speed");
         }
 
         public override void SetDefaults()
@@ -37,9 +34,7 @@ namespace SupernovaMod.Content.Items.Armor.Carnage
 
 		public override void UpdateArmorSet(Player player)
         {
-            //player.setBonus = $"Hitting an enemy has an 1 in 2 percent chance to heal the delt damage / 4, with a max heal amount of {MAX_HEAL_AMOUNT}.";
-            //player.setBonus = "Getting hit enduces rage, rage increases your damage and swing speed by 10%.";
-            player.setBonus = "Summons a life draining orb around you, when the orb hits an enemy you will regen life faster for 2 seconds.";
+            player.setBonus = "Summons a life draining and projectile blocking orb around you, when the orb hits an enemy you will regen life faster for 2 seconds.";
 
 			player.GetModPlayer<ArmorPlayer>().carnageArmor = true;
 

@@ -10,10 +10,10 @@ using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
 using SupernovaMod.Content.Items.Materials;
-using Terraria.DataStructures;
 using SupernovaMod.Api;
 using SupernovaMod.Common.Systems;
 using SupernovaMod.Common;
+using System.IO;
 
 namespace SupernovaMod.Content.Npcs.FlyingTerror
 {
@@ -54,7 +54,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
 				// Sets the description of NPC NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("A scourge of the night, veraciously out for the hunt. Always looking for its next prey in its neverending pursuit to satiate its flesh craving. Its emissaries scour the underground searching for more victims to nourish their gluttonous master.\r\n"),
+				new FlavorTextBestiaryInfoElement("A scourge of the night, veraciously out for the hunt. Always looking for its next prey in its neverending pursuit to satiate its flesh craving. Its emissaries scour the underground searching for more victims to nourish their gluttonous master."),
 			});
 		}
 
@@ -98,8 +98,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 			{
 				conditionalRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TerrorTuft>(), 1, minimumDropped: 2, maximumDropped: 6));
 			}));
-
-			DownedSystem.downedFlyingTerror = true;
 		}
 
 		protected Player target;
@@ -112,14 +110,16 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 
 		protected float _attackPointer2 = 0;
 
-		/*public override void SendExtraAI(BinaryWriter writer)
+		public override void SendExtraAI(BinaryWriter writer)
 		{
-			writer.Write(_attackPointer2);
+			//writer.Write(_attackPointer2);
+			writer.Write(_playAnimation);
 		}
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
-			_attackPointer2 = reader.Read();
-		}*/
+			//_attackPointer2 = reader.Read();
+			_playAnimation = reader.ReadBoolean();
+		}
 
 		public override void AI()
         {
@@ -441,19 +441,31 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 						{
 							if (timer < 360 && timer % 50 == 0)
 							{
-								Vector2 randPos = target.Center + Main.rand.NextVector2CircularEdge(250, 250);
-
-								for (int i = 0; i < 8; i++)
+								// Because we want to spawn minions, and minions are NPCs, we have to do this on the server (or singleplayer, "!= NetmodeID.MultiplayerClient" covers both)
+								// This means we also have to sync it after we spawned and set up the minion
+								if (Main.netMode != NetmodeID.MultiplayerClient)
 								{
-									Vector2 dustPos = randPos + new Vector2(Main.rand.Next(115, 125), 0).RotatedByRandom(MathHelper.ToRadians(360));
-									Vector2 diff = randPos - dustPos;
-									diff.Normalize();
+									Vector2 randPos = target.Center + Main.rand.NextVector2CircularEdge(250, 250);
 
-									Dust.NewDustPerfect(dustPos, ModContent.DustType<Dusts.TerrorDust>(), diff * 5, Scale: 1.5f).noGravity = true;
-									Dust.NewDustPerfect(dustPos, DustID.Shadowflame, diff * 5, Scale: 1.5f).noGravity = true;
+									for (int i = 0; i < 8; i++)
+									{
+										Vector2 dustPos = randPos + new Vector2(Main.rand.Next(115, 125), 0).RotatedByRandom(MathHelper.ToRadians(360));
+										Vector2 diff = randPos - dustPos;
+										diff.Normalize();
+
+										Dust.NewDustPerfect(dustPos, ModContent.DustType<Dusts.TerrorDust>(), diff * 5, Scale: 1.5f).noGravity = true;
+										Dust.NewDustPerfect(dustPos, DustID.Shadowflame, diff * 5, Scale: 1.5f).noGravity = true;
+									}
+
+									NPC minionNPC = NPC.NewNPCDirect(NPC.GetSource_FromAI(), (int)randPos.X, (int)randPos.Y, ModContent.NPCType<TerrorSpirit>());
+
+									// Finally, syncing, only sync on server and if the NPC actually exists (Main.maxNPCs is the index of a dummy NPC, there is no point syncing it)
+									//
+									if (Main.netMode == NetmodeID.Server)
+									{
+										NetMessage.SendData(MessageID.SyncNPC, number: minionNPC.whoAmI);
+									}
 								}
-
-								NPC.NewNPC(NPC.GetSource_FromAI(), (int)randPos.X, (int)randPos.Y, ModContent.NPCType<TerrorSpirit>());
 							}
 							if (timer >= 420)
 							{
@@ -468,9 +480,11 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 							{
 								SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
 
-								Vector2 position = target.Center + new Vector2(Main.rand.Next(-750, 750), -1000);
-
-								Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 5.7f, ProjectileID.CultistBossFireBallClone, (int)(DAMAGE_PROJECILE * ProjectileExpertDamageMultiplier), 6, Main.myPlayer);
+								if (Main.netMode != NetmodeID.MultiplayerClient)
+								{
+									Vector2 position = target.Center + new Vector2(Main.rand.Next(-750, 750), -1000);
+									Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.UnitY * 5.7f, ProjectileID.CultistBossFireBallClone, (int)(DAMAGE_PROJECILE * ProjectileExpertDamageMultiplier), 6, Main.myPlayer);
+								}
 							}
 							if (timer >= 310)
 							{
@@ -481,7 +495,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 						}
 						else if (_attackPointer2 == 2 || _attackPointer2 == 5)
 						{
-							if (timer % 40 == 0)
+							if (Main.netMode != NetmodeID.MultiplayerClient && timer % 40 == 0)
 							{
 								int num220 = 24;
 								for (int num221 = 0; num221 < num220; num221++)
@@ -669,11 +683,6 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 						SoundEngine.PlaySound(SoundID.DD2_DrakinShot);
 
 						ShootToPlayer(ModContent.ProjectileType<Content.Projectiles.Boss.TerrorBlast>(), DAMAGE_PROJECILE, .85f);
-						/*for (int i = 0; i < 4; i++)
-						{
-							SoundEngine.PlaySound(SoundID.DD2_DrakinShot);
-							ShootToPlayer(ProjectileID.DD2DarkMageBolt, 30, .75f, 1 + Main.rand.NextFloat(-.05f, .05f));
-						}*/
 					}
 					else if (timer % (timeBtwnShots / 2) == 0)
 					{
@@ -776,7 +785,14 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 					SoundEngine.PlaySound(SoundID.ForceRoarPitched, NPC.Center);
 					timer = 0;
 					_playAnimation = false;
-					NPC.velocity /= 3;
+					if (Main.netMode != NetmodeID.MultiplayerClient)
+					{
+						NPC.velocity /= 3;
+						if (Main.netMode == NetmodeID.Server)
+						{
+							NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
+						}
+					}
 				}
 			}
 			// Handle the dash
@@ -791,7 +807,7 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
 				Vector2 distanceFromTarget = new Vector2(target.Center.X, target.Center.Y + (NPC.height * 6)) - NPC.Center;
 				SupernovaUtils.MoveNPCSmooth(NPC, gateValue, distanceFromTarget, velocity, acceleration, true);
 
-				if ((NPC.position.Y + NPC.height) >= target.position.Y + (NPC.height * 6))
+				if (Main.netMode != NetmodeID.MultiplayerClient && (NPC.position.Y + NPC.height) >= target.position.Y + (NPC.height * 6))
 				{
 					NPC.velocity = Vector2.Zero;
 					NPC.ai[2] = 2;
@@ -895,6 +911,11 @@ namespace SupernovaMod.Content.Npcs.FlyingTerror
         {
             //int type = ModContent.ProjectileType<TerrorProj>();
             SoundEngine.PlaySound(SoundID.Item20, NPC.Center);
+
+			/*if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				return;
+			}*/
 
             Vector2 position = new Vector2(NPC.Center.X + (NPC.width / 2 + 25) * NPC.direction, NPC.Center.Y + NPC.height - 50);
 			float rotation = (float)Math.Atan2(position.Y - (target.position.Y + target.height * 0.2f), position.X - (target.position.X + target.width * 0.15f));

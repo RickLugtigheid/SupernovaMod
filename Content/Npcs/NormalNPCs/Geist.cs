@@ -93,6 +93,7 @@ namespace SupernovaMod.Content.Npcs.NormalNPCs
             {
 				NPC.alpha -= 5;
 			}
+            NPC.netUpdate = true;
         }
         private void DespawnHandler()
         {

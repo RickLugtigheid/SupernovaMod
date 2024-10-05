@@ -29,6 +29,11 @@ namespace SupernovaMod.Content.Items.Rings
 		public override int BaseCooldown => 60 * 140;
 		public override bool CanRingActivate(RingPlayer player)
 		{
+			return true;
+			//
+			// TODO: Make multiplayer proof!
+			//
+
 			// Check if there is at least 1 target for the ring to use
 			//
 			for (int i = 0; i < 200; i++)
@@ -45,6 +50,13 @@ namespace SupernovaMod.Content.Items.Rings
 		public override void RingActivate(Player player, float ringPowerMulti)
         {
 			SoundEngine.PlaySound(SoundID.Item14, player.Center);
+
+			// Make sure this only runs for our client
+			//
+			if (player.whoAmI != Main.myPlayer)
+			{
+				return;
+			}
 
 			int targets = 0;
 			for (int i = 0; i < 200; i++)

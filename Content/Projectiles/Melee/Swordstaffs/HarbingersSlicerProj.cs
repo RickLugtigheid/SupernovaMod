@@ -13,12 +13,9 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 		{
 			base.SetDefaults();
 
-			Projectile.width = 98;     //Set the hitbox width
-			Projectile.height = 98;    //Set the hitbox height
-
-			Projectile.scale = 1.25f;
-			SwingCycleTime = 84;
-			Projectile.localNPCHitCooldown = 18;
+			Projectile.scale = 1.24f;
+			SwingCycleTime = 74;
+			Projectile.localNPCHitCooldown = 16;
 		}
 
 		protected override void ExtraAI(ref float swingCycleTime)
@@ -57,6 +54,11 @@ namespace SupernovaMod.Content.Projectiles.Melee.Swordstaffs
 			velocity.Normalize();
 			proj.velocity = velocity * 7;
 			proj.tileCollide = true;
+		}
+
+		public override void ModifyDamageHitbox(ref Rectangle hitbox)
+		{
+			hitbox = new Rectangle(hitbox.X, hitbox.Y, (int)(hitbox.Width * Projectile.scale), (int)(hitbox.Height * Projectile.scale));
 		}
 
 		public override bool PreKill(int timeLeft)

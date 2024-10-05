@@ -4,6 +4,7 @@ using SupernovaMod.Api.Helpers;
 using SupernovaMod.Common;
 using SupernovaMod.Common.ItemDropRules.DropConditions;
 using SupernovaMod.Common.Systems;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -216,6 +217,27 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			return 0.0475f;
 		}
 
+		public override void SendExtraAI(BinaryWriter writer)
+		{
+			writer.Write((byte)_currentSpell);
+			writer.Write(isIdle);
+			writer.Write(isTaunting);
+			writer.Write(isCasting);
+			writer.Write(isDashing);
+			writer.Write(isFocused);
+			writer.Write(wasFocused);
+		}
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+			_currentSpell = (BloodweaverSpell)reader.ReadByte();
+			isIdle = reader.ReadBoolean();
+			isTaunting = reader.ReadBoolean();
+			isCasting = reader.ReadBoolean();
+			isDashing = reader.ReadBoolean();
+			isFocused = reader.ReadBoolean();
+			wasFocused = reader.ReadBoolean();
+		}
+
 		public override void AI()
 		{
 			if (DespawnAI())
@@ -226,6 +248,9 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			// After losing half health set to focus
 			//
 			isFocused = (NPC.life / (float)NPC.lifeMax) <= .5f;
+
+			//
+			NPC.netUpdate = true;
 
 			// When changing from not focused to focused,
 			// we should reset the AI to idle.
@@ -351,7 +376,12 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 				return;
 			}
 
-			// TODO: Spawn trail dust
+			// Only run the SelectSpell code for the server or singleplayer client
+			//
+			/*if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				return;
+			}*/
 
 			// Select the spell the NPC should cast
 			BloodweaverSpell? spell = SelectSpell();
@@ -366,6 +396,13 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 				StartCasting(spell.Value);
 			}
+
+			// Sync TargetAI changes
+			//
+			/*if (Main.netMode == NetmodeID.Server)
+			{
+				NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
+			}*/
 		}
 		private BloodweaverSpell? SelectSpell()
 		{
@@ -448,7 +485,7 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 				// Randomly taunt the player after casting.
 				//
-				if (!isFocused && Main.rand.NextBool(3))
+				if (!isFocused && Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(3))
 				{
 					isTaunting = true;
 					NPC.frameCounter = 0;
@@ -457,6 +494,13 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			}
 			else if (Timer > 60)
 			{
+				if (Main.netMode == NetmodeID.MultiplayerClient)
+				{
+					// Because we want to spawn minions, and minions are NPCs, we have to do this on the server (or singleplayer, "!= NetmodeID.MultiplayerClient" covers both)
+					// This means we also have to sync it after we spawned and set up the minion
+					return;
+				}
+
 				for (int i = 0; i < _gazersOwned.Length; i++)
 				{
 					// Check if we already summoned the amount we wanted to summon
@@ -484,16 +528,12 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 
 						// Replace the gazer with a new gazer
 						_gazersOwned[i] = NPC.NewNPC(NPC.GetSource_FromAI(), (int)summonPosition.X, (int)summonPosition.Y, ModContent.NPCType<Gazer>());
-
 						gazersToSummon--;
 					}
 				}
 			}
 			else
 			{
-				// TODO: Play charge animation at the hand position
-				//Dust.NewDust(GetHandPosition(), 1, 1, DustID.CrimsonTorch);
-
 				// Spawn gem dust on the player
 				//
 				Vector2 handPosition = GetHandPosition();
@@ -584,8 +624,16 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			if (Timer == 8)
 			{
 				SoundEngine.PlaySound(SoundID.Item20, NPC.Center);
-				NPC.velocity = Vector2.UnitX * NPC.direction;
-				NPC.velocity *= 14;
+				if (Main.netMode != NetmodeID.MultiplayerClient)
+				{
+					NPC.velocity = Vector2.UnitX * NPC.direction;
+					NPC.velocity *= 14;
+
+					if (Main.netMode == NetmodeID.Server)
+					{
+						NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
+					}
+				}
 			}
 			NPC.velocity *= .98f;
 			Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.CrimsonTorch, -NPC.direction * 1.5f, Main.rand.NextFloatDirection(), 0, default(Color), 1.5f);
@@ -623,6 +671,12 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 		private void ShootToPlayer(int type, float speed, int damage, float SpreadMult = 0)
 		{
 			SoundEngine.PlaySound(SoundID.DD2_DarkMageAttack, GetHandPosition());
+
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+			{
+				return;
+			}
+
 			Vector2 Velocity = Mathf.VelocityFPTP(NPC.Center, new Vector2(Target.Center.X, Target.Center.Y), speed);
 			int Spread = 2;
 			Velocity.X = Velocity.X + Main.rand.Next(-Spread, Spread + 1) * SpreadMult;
@@ -683,7 +737,6 @@ namespace SupernovaMod.Content.Npcs.Bloodmoon
 			return false;
 		}
 
-		public int counter;
 		public bool isIdle = true;
 		public bool isTaunting = false;
 		public bool isCasting = false;

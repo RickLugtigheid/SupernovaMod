@@ -1,6 +1,6 @@
 ﻿[h1]Supernova Mod[/h1]
 [url=https://discord.com/invite/T68d6t2bG6]Discord[/url]
-[url=https://supernovamod.fandom.com/wiki/SupernovaMod_Wiki]Wiki[/url]
+[url=https://terrariamods.wiki.gg/wiki/Supernova_Mod]Wiki[/url]
 
 The Supernova mod is yet another content mod that adds a few new bosses, over a hundred new items, and new NPCs with more content planned in the future.
 
@@ -33,5 +33,3 @@ For this version new hardmode items and 1 new boss will be added for early hardm
 This version will also add a new biome.
 
 [hr]
-
-[quote=tModLoader]Developed By KoekMeneer, Galenwald, The ExiIed FeIIow, Mjoonlight[/quote]
