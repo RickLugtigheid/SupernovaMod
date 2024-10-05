@@ -8,16 +8,20 @@ namespace SupernovaMod.Common.Systems
 {
 	public class DownedSystem : ModSystem
 	{
-		/* Bosses Downed */
-		// PreHardmode
-		//
-		public static bool downedHarbingerOfAnnihilation = false;
+        // Pre-hardmode bosses
+        //
+        public static bool downedHarbingerOfAnnihilation = false;
 		public static bool downedFlyingTerror = false;
 		public static bool downedStormSovereign = false;
 
 		// PreHardmode mini-bosses
 		//
 		public static bool downedBloodweaver = false;
+
+		// Hardmode bosses
+		//
+		public static bool downedCosmicCollective = false;
+		public static bool downedFallen = false;
 
 		private static void ResetDowned()
 		{
@@ -26,6 +30,9 @@ namespace SupernovaMod.Common.Systems
 			downedStormSovereign = false;
 
 			downedBloodweaver = false;
+
+			downedCosmicCollective = false;
+			downedFallen = false;
 		}
 
 		public override void OnWorldLoad()
@@ -47,6 +54,9 @@ namespace SupernovaMod.Common.Systems
 
 			if (downedBloodweaver) downed.Add("Bloodweaver");
 
+			if (downedCosmicCollective) downed.Add("CosmicCollective");
+			if (downedFallen) downed.Add("Fallen");
+
 			tag.Add("downed", downed);
 		}
 
@@ -59,9 +69,12 @@ namespace SupernovaMod.Common.Systems
 			downedStormSovereign = downed.Contains("StormSovereign");
 
 			downedBloodweaver = downed.Contains("Bloodweaver");
-		}
 
-		public override void NetSend(BinaryWriter writer)
+            downedStormSovereign = downed.Contains("CosmicCollective");
+            downedStormSovereign = downed.Contains("Fallen");
+        }
+
+        public override void NetSend(BinaryWriter writer)
 		{
 			BitsByte flags = new BitsByte();
 			flags[0] = downedHarbingerOfAnnihilation;
@@ -70,7 +83,10 @@ namespace SupernovaMod.Common.Systems
 
 			flags[3] = downedBloodweaver;
 
-			writer.Write(flags);
+            flags[4] = downedCosmicCollective;
+            flags[5] = downedFallen;
+
+            writer.Write(flags);
 		}
 
 		public override void NetReceive(BinaryReader reader)
@@ -82,8 +98,10 @@ namespace SupernovaMod.Common.Systems
 
 			downedBloodweaver = flags[3];
 
+            downedCosmicCollective = flags[4];
+            downedFallen = flags[5];
 
-			base.NetReceive(reader);
+            base.NetReceive(reader);
 		}
 	}
 }

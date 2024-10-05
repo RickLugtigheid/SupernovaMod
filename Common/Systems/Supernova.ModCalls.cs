@@ -68,6 +68,13 @@ namespace SupernovaMod.Common.Systems
 					return DownedSystem.downedFlyingTerror;
 				case "stormsovereign":
 					return DownedSystem.downedStormSovereign;
+
+				// Hardmode
+				case "cosmiccollective":
+					return DownedSystem.downedCosmicCollective;
+				case "fallen":
+					return DownedSystem.downedFallen;
+
 				default:
 					Supernova.Log.Error($"ModCallError: Call({args[0]}) - No boss with name '{args[1]}' found. Please check the documentation for valid boss names.");
 					return null;
