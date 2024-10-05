@@ -319,5 +319,24 @@ namespace SupernovaMod.Api
 				ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key, Array.Empty<object>()), color.Value, -1);
 			}
         }
-	}
+
+        /// <summary>
+        /// Returns <see langword="true"/> when the specified <paramref name="entity"/> is within screen bounds.
+        /// </summary>
+        /// <remarks>
+        /// NOTE: This (may) not work in multiplayer...
+        /// </remarks>
+        /// <param name="entity"></param>
+        public static bool InScreenBounds(Entity entity) => (
+            (entity.position.X >= Main.screenPosition.X && entity.position.Y >= Main.screenPosition.Y)
+            &&
+            ((entity.position.X - entity.width) <= (Main.screenPosition.X + Main.screenWidth) && (entity.position.Y - entity.height) <= (Main.screenPosition.Y + Main.screenHeight))
+        );
+        /// <inheritdoc cref="InScreenBounds(Entity)"/>
+        public static bool InScreenBounds(Entity entity, Vector2 extraBounds) => (
+            (entity.position.X >= Main.screenPosition.X && entity.position.Y >= Main.screenPosition.Y + extraBounds.Y)
+            &&
+            ((entity.position.X - entity.width) <= (Main.screenPosition.X + Main.screenWidth + extraBounds.X) && (entity.position.Y - entity.height) <= (Main.screenPosition.Y + Main.screenHeight + extraBounds.Y))
+        );
+    }
 }

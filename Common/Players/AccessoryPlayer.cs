@@ -15,6 +15,8 @@ namespace SupernovaMod.Common.Players
 		public bool hasHeartOfTheJungle = false;
 		public bool hasBagOfFungus		= false;
 		public bool hasInfernalEmblem	= false;
+		public bool hasOverchargedBattery = false;
+		public bool hasEyeOfTheOccult	= false;
 
 		#endregion
 
@@ -35,13 +37,43 @@ namespace SupernovaMod.Common.Players
 			hasHeartOfTheJungle	= false;
 			hasBagOfFungus		= false;
 			hasInfernalEmblem	= false;
+			hasOverchargedBattery = false;
+			hasEyeOfTheOccult	= false;
 
 			hasMinionVerglasFlake		= false;
 			hasMinionCarnageOrb			= false;
 			hasMinionHairbringersKnell	= false;
 		}
 
+		#region [Projectile mod methods]
+
+		public void OnProjectileHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+		{
+
+		}
+
+		#endregion
+
 		#region [OnHit methods]
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			if (hasOverchargedBattery && Main.rand.NextChance(MathHelper.Clamp(Player.luck, .2f, 1)))
+			{
+				target.AddBuff(BuffID.Electrified, Main.rand.NextBool() ? 120 : 140);
+			}
+
+			// Check if this hit killed the target
+			//
+			if (!target.active)
+			{
+				// Handle eye of the occult
+				//
+				if (hasEyeOfTheOccult && Player.ownedProjectileCounts[ModContent.ProjectileType<Content.Projectiles.Summon.ShadowWisp>()] < 10)
+				{
+					Projectile.NewProjectile(Player.GetSource_OnHit(target), Player.position, Microsoft.Xna.Framework.Vector2.Zero, ModContent.ProjectileType<Content.Projectiles.Summon.ShadowWisp>(), 28, 1, Player.whoAmI);
+				}
+			}
+		}
 
 		public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Item, consider using OnHitNPC instead */ => OnAnyHitNpc(target, damageDone, hit);
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)/* tModPorter If you don't need the Projectile, consider using OnHitNPC instead */ => OnAnyHitNpc(target, damageDone, hit, proj.type);

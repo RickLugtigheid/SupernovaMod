@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Api;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -51,21 +52,21 @@ namespace SupernovaMod.Content.Projectiles.Magic
 
 		public override void OnKill(int timeLeft)
 		{
-			int num220 = Main.rand.Next(3, 6);
-			for (int num221 = 0; num221 < num220; num221++)
+			int type = ModContent.ProjectileType<EldrichTentacle>();
+			int damage = (int)(Projectile.damage * .6f);
+			int[] proj;
+			if (Main.rand.NextBool())
 			{
-				// Create velocity for angle
-				Vector2 value17 = -Vector2
-					// Normalize so the velocity ammount of the projectile doesn't matter
-					.Normalize(Projectile.velocity)
-					// Rotate by angle
-					.RotatedBy(MathHelper.ToRadians(360 / num220 * (num221 - 2)))
-					// Make the velocity 3 - 6
-					* Main.rand.Next(3, 6);
+				proj = ProjectileHelper.ShootCrossPattern(Projectile.GetSource_FromAI(), Projectile.position, Main.rand.Next(3, 5), Main.rand.Next(3, 6), type, damage, Projectile.knockBack, Projectile.owner);
+			}
+			else
+			{
+				proj = ProjectileHelper.ShootPlusPattern(Projectile.GetSource_FromAI(), Projectile.position, Main.rand.Next(3, 5), Main.rand.Next(3, 6), type, damage, Projectile.knockBack, Projectile.owner);
+			}
 
-				// Create a projectile for velocity
-				Projectile proj = Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.position, value17, ModContent.ProjectileType<EldrichTentacle>(), (int)(Projectile.damage * .75f), 1f, Projectile.owner);
-				proj.localNPCHitCooldown *= 2;
+			foreach (int projId in proj)
+			{
+				Main.projectile[projId].localNPCHitCooldown *= 2;
 			}
 		}
 	}

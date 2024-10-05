@@ -27,6 +27,10 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			Projectile.position.X = center13.X - (float)(Projectile.width / 2);
 			Projectile.position.Y = center13.Y - (float)(Projectile.height / 2);
 			ref float ptr = ref Projectile.localAI[0];
+			if (Projectile.ai[2] == 0)
+			{
+				Projectile.ai[2] = (Projectile.velocity.RotatedByRandom(.1) * Main.rand.Next(-1, 1)).ToRotation();
+			}
 			if ((double)Projectile.localAI[0] < 0.1)
 			{
 				ptr = ref Projectile.localAI[0];
@@ -36,8 +40,8 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			{
 				ptr = ref Projectile.localAI[0];
 				ptr += 0.025f;
-			}
-			if (Projectile.localAI[0] >= 0.95f)
+            }
+            if (Projectile.localAI[0] >= 0.95f)
 			{
 				Projectile.Kill();
 			}
@@ -48,7 +52,7 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			if (Projectile.velocity.Length() > 16f)
 			{
 				Projectile.velocity.Normalize();
-				Projectile.velocity *= 16f;
+                Projectile.velocity *= 16f;
 			}
 			ptr = ref Projectile.ai[0];
 			ptr *= 1.05f;
@@ -56,7 +60,11 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			ptr *= 1.05f;
 			if (Projectile.scale < 1f)
 			{
-				int num791 = 0;
+				Projectile.velocity = Projectile.velocity.RotatedBy(Projectile.ai[2] / 100);
+				Projectile.ai[2] *= 1.065f;
+
+
+                int num791 = 0;
 				while ((float)num791 < Projectile.scale * 10f)
 				{
 					int num792 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.CorruptionThorns, Projectile.velocity.X, Projectile.velocity.Y, 100, default(Color), .5f);

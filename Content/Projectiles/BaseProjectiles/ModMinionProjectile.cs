@@ -42,10 +42,10 @@ namespace SupernovaMod.Content.Projectiles.BaseProjectiles
         {
             if (owner.dead || !owner.active)
             {
-                owner.ClearBuff(BuffType);
+                if (BuffType != -1) owner.ClearBuff(BuffType);
             }
 
-            if (owner.HasBuff(BuffType))
+            if (BuffType == -1 || owner.HasBuff(BuffType))
             {
                 Projectile.timeLeft = 2;
                 return true;

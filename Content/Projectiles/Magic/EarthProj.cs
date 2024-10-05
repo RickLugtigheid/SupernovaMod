@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using SupernovaMod.Api;
 using SupernovaMod.Api.Effects;
+using SupernovaMod.Common.Players;
 
 namespace SupernovaMod.Content.Projectiles.Magic
 {
@@ -60,9 +61,18 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			{
 				Dust.NewDust(Projectile.position, (int)(Projectile.width * Projectile.scale), (int)(Projectile.height * Projectile.scale), DustID.Dirt, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, 20, default, Main.rand.NextFloat(1, 2));
 			}
+
 			// Break sound
 			SoundEngine.PlaySound(SoundID.Item70, Projectile.position);
-		}
+
+            // Screen shake
+            //
+            EffectsPlayer effectPlayer = Main.LocalPlayer.GetModPlayer<EffectsPlayer>();
+            if (effectPlayer.ScreenShakePower < 2f)
+            {
+                effectPlayer.ScreenShakePower = .75f;
+            }
+        }
 
 		public override Color? GetAlpha(Color lightColor)
 		{

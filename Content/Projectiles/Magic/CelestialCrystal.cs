@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using SupernovaMod.Api;
+using SupernovaMod.Api.Effects;
 
 namespace SupernovaMod.Content.Projectiles.Magic
 {
@@ -38,8 +39,8 @@ namespace SupernovaMod.Content.Projectiles.Magic
 
 		public override void OnKill(int timeLeft)
 		{
-			// Spawn dust on hit
-			for (int i = 0; i <= Main.rand.Next(10, 20); i++)
+            // Spawn dust on hit
+            for (int i = 0; i <= Main.rand.Next(10, 20); i++)
             {
 				Dust.NewDust(Projectile.position, Projectile.width * 2, Projectile.height * 2, TerrariaRandom.NextDustIDCrystalShard(), Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, 20, default, Main.rand.NextFloat(.5f, 1f));
 			}

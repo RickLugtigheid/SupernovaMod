@@ -10,7 +10,9 @@ namespace SupernovaMod.Common.Players
 		/// TODO: Add to mod config
 		/// </summary>
 		private bool CanShakeScreen = true;
-
+		/// <summary>
+		/// The power of the sceen shake. The higher the value the stronger (and longer) the shake.
+		/// </summary>
 		public float ScreenShakePower = 0;
 
 		public override void ModifyScreenPosition()
