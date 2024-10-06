@@ -1138,11 +1138,21 @@ Mods: {
 			BossChecklistIntegration.SpawnInfo: Spawns during Bloodmoon
 		}
 
-		CosmicCollective.DisplayName: Cosmic Collective
+		CosmicCollective: {
+			DisplayName: Cosmic Collective,
+			BossChecklistIntegration.SpawnInfo: Use a [i:SupernovaMod/BugOnAStick] ... (TODO: Make spawn item)
+		}
+
 		CosmicCollectiveEye.DisplayName: Cosmic Collective Eye
 		Cosmoling.DisplayName: Cosmoling
-		Fallen.DisplayName: Fallen
+
+		Fallen: {
+			DisplayName: Fallen,
+			BossChecklistIntegration.SpawnInfo: Use a [i:SupernovaMod/BugOnAStick] in hell (TODO: Make spawn item)
+		}
+
 		AshBall.DisplayName: Ash Ball
+		// ======================[ Enemy NPCs ]======================
 		Gazer.DisplayName: Gazer
 		CosmicAnomaly.DisplayName: Cosmic Anomaly
 		FrostFlayer.DisplayName: Frost Flayer

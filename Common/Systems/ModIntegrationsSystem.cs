@@ -63,10 +63,26 @@ namespace SupernovaMod.Common.Systems
 				.AddMiniBoss(Mod, Supernova.Instance.bossChecklist);
 
 
-			// [Harmode bosses]
+            // [Harmode bosses]
+            //
+            // Cosmic Collective
 			//
-		}
-		public static void HandleIntegrationRogueCalamity()
+            new BossChecklistItemBuilder()
+				.ForBoss<Content.Npcs.CosmicCollective.CosmicCollective>()
+				.SetWeight(VanillaWeights.TheTwins + .5f)
+				// TODO: .SetAdditionalEntryData;
+				.SetDownedCallback(() => DownedSystem.downedCosmicCollective)
+				.AddBoss(Mod, Supernova.Instance.bossChecklist);
+            // The Fallen
+            //
+            new BossChecklistItemBuilder()
+                .ForBoss<Content.Npcs.Fallen.Fallen>()
+                .SetWeight(VanillaWeights.Plantera + .25f)
+                // TODO: .SetAdditionalEntryData;
+                .SetDownedCallback(() => DownedSystem.downedCosmicCollective)
+                .AddBoss(Mod, Supernova.Instance.bossChecklist);
+        }
+        public static void HandleIntegrationRogueCalamity()
 		{
 			if (!Supernova.Instance.HasModCalamity)
 			{
