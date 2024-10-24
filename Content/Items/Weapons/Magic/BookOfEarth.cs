@@ -15,16 +15,16 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 47;
+			Item.damage = 48;
 			Item.crit = 2;
 			Item.width = 24;
 			Item.height = 28;
-			Item.useTime = 23;
-			Item.useAnimation = 23;
+			Item.useTime = 22;
+			Item.useAnimation = 22;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.noMelee = true;
 			Item.knockBack = 12;
-			Item.value = BuyPrice.RarityGreen;
+			Item.value = BuyPrice.RarityLightRed;
 			Item.rare = ItemRarityID.LightRed;
 			Item.mana = 10;
 			Item.UseSound = SoundID.Item21;
@@ -36,7 +36,7 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			velocity.RotatedByRandom(.02f);
+			velocity = velocity.RotatedByRandom(.02f);
 			base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
 		}
 

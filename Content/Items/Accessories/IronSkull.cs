@@ -1,4 +1,5 @@
 ﻿using SupernovaMod.Api;
+using System;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -27,23 +28,28 @@ namespace SupernovaMod.Content.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual = false)
 		{
-			if (player.statLife < 100)
-			{
-				player.statDefense += 11;
-				return;
-			}
-			player.statDefense += (int)(10 / (player.statLife / 100f));
+			HandleUpdateAccessory(player);
 		}
 
-		public override void AddRecipes()
+        public static void HandleUpdateAccessory(Player player)
+        {
+            if (player.statLife < 100)
+            {
+                player.statDefense += 11;
+                return;
+            }
+            player.statDefense += (int)(10 / (player.statLife / 100f));
+        }
+
+        public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
 			recipe.acceptedGroups = new() { RecipeGroupID.IronBar };
-			recipe.AddIngredient(ItemID.IronBar, 4);
+			recipe.AddIngredient(ItemID.IronskinPotion);
 			recipe.AddIngredient(ItemID.Skull);
 			recipe.AddIngredient(ModContent.ItemType<Materials.HelixStone>());
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.Register();
 		}
-	}
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using SupernovaMod.Api.Effects;
+using SupernovaMod.Content.Effects.Particles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,12 +28,10 @@ namespace SupernovaMod.Content.Projectiles.Melee
 
 		public override void AI()
 		{
-			//if (Projectile.localAI[0] % 8 == 0)
-			{
-				//DrawDust.Electricity(_startPosition.Value, Projectile.position, DustID.Electric, .65f, 60, default, .6f);
-				DrawDust.RingScaleOutwards(Projectile.Center, Vector2.One * 3, Vector2.One * 5, DustID.AncientLight, dustScale: .8f);
-			}
+			// Do the dust thing
+			DrawDust.RingScaleOutwards(Projectile.Center, Vector2.One * 3, Vector2.One * 5, DustID.AncientLight, dustScale: .8f);
 
+			// Do more dust things
 			int num3;
 			int num240 = (int)Projectile.ai[0];
 			for (int num241 = 0; num241 < 3; num241 = num3 + 1)
@@ -62,5 +61,11 @@ namespace SupernovaMod.Content.Projectiles.Melee
 				num3 = num243;
 			}
 		}
-	}
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            // Impact star particle
+            ParticleSystem.SpawnParticle(new StarParticle(Projectile.Center, Vector2.Zero, Color.Lerp(Color.White, new Color(255, 253, 232), 0.5f), .4f, 10, 2));
+        }
+    }
 }

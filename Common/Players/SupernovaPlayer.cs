@@ -41,7 +41,7 @@ namespace SupernovaMod.Common.Players
 
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
-            if (blackFlamesDebuff && Main.rand.Next(5) < 4)
+            if (blackFlamesDebuff && Main.rand.Next(5) < 3)
             {
                 int dust13 = Dust.NewDust(Player.position - new Vector2(2f, 2f), Player.width, Player.height, ModContent.DustType<Content.Dusts.BlackFlamesDust>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 0, default(Color), 1f);
                 Main.dust[dust13].noGravity = true;

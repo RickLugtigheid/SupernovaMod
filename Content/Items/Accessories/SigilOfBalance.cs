@@ -25,33 +25,10 @@ namespace SupernovaMod.Content.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual = false)
 		{
-			// HeartOfPower
-			player.GetDamage(DamageClass.Generic) += .04f * (player.statLife / 100);
-			// ManaCore
-			player.manaCost -= .06f * (player.statLife / 100);
-			// SoulOfSwiftness
-			UpdateAccessorySoulOfSwiftness(player);
-			//
-			UpdateAccessoryIronSkull(player);
-		}
-		private void UpdateAccessorySoulOfSwiftness(Player player)
-		{
-			if (player.statLife < 100)
-			{
-				player.moveSpeed *= 1.14f;
-				return;
-			}
-			float multi = .14f / (player.statLife / 100);
-			player.moveSpeed *= 1 + multi;
-		}
-		private void UpdateAccessoryIronSkull(Player player)
-		{
-			if (player.statLife < 100)
-			{
-				player.statDefense += 11;
-				return;
-			}
-			player.statDefense += (int)(10 / (player.statLife / 100f));
+			HeartOfPower.HandleUpdateAccessory(player);
+			ManaCore.HandleUpdateAccessory(player);
+			SoulOfSwiftness.HandleUpdateAccessory(player);
+			IronSkull.HandleUpdateAccessory(player);
 		}
 
 		public override void AddRecipes()
@@ -61,10 +38,10 @@ namespace SupernovaMod.Content.Items.Accessories
 			recipe.AddIngredient(ModContent.ItemType<ManaCore>());
 			recipe.AddIngredient(ModContent.ItemType<SoulOfSwiftness>());
 			recipe.AddIngredient(ModContent.ItemType<IronSkull>());
-			//recipe.AddIngredient(ModContent.ItemType<Materials.Starcore>());
-			//recipe.AddTile(TileID.MythrilAnvil);
-			recipe.AddTile(ModContent.TileType<Tiles.StarfireForgeTile>()); // TODO: Use MythrilAnvil? instead when the starcore is available
-			recipe.Register();
+			recipe.AddIngredient(ModContent.ItemType<Materials.Starcore>());
+			recipe.AddTile(TileID.TinkerersWorkbench);
+            //recipe.AddTile(ModContent.TileType<Tiles.StarfireForgeTile>()); // TODO: Use TinkerersWorkbench? instead when the starcore is available
+            recipe.Register();
 		}
 	}
 }

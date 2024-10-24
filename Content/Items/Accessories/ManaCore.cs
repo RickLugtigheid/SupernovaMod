@@ -25,11 +25,16 @@ namespace SupernovaMod.Content.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual = false)
 		{
-			// 400 / 100 = 4 * .06f = .24f
-			player.manaCost -= .06f * (player.statLife / 100);
+			HandleUpdateAccessory(player);
 		}
 
-		public override void AddRecipes()
+        public static void HandleUpdateAccessory(Player player)
+        {
+            // 400 / 100 = 4 * .06f = .24f
+            player.manaCost -= .06f * (player.statLife / 100);
+        }
+
+        public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.CrystalShard, 4);

@@ -17,9 +17,9 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 
 		public override void SetDefaults()
 		{
-			Item.knockBack = 1.8f;
-			Item.damage = 50;
-			Item.crit = 2;
+			Item.knockBack = 4;
+			Item.damage = 51;
+			Item.crit = 1;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.width = 24;
 			Item.height = 24;
@@ -31,8 +31,8 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 			Item.useTime = 56;
 			Item.shoot = ModContent.ProjectileType<Projectiles.Melee.Yoyos.DriveSpinnerProjectile>();
 			Item.shootSpeed = 23f;
-			Item.value = BuyPrice.RarityLightRed;
-			Item.rare = ItemRarityID.LightRed;
+			Item.value = BuyPrice.RarityPink;
+			Item.rare = ItemRarityID.Pink;
 
 			Item.DamageType = DamageClass.MeleeNoSpeed;
 		}

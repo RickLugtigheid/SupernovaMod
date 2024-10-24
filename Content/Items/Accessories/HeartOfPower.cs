@@ -27,14 +27,20 @@ namespace SupernovaMod.Content.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual = false)
 		{
-			// 400 / 100 = 4 * .04f = .16f
-			player.GetDamage(DamageClass.Generic) += .04f * (player.statLife / 100);
+			HandleUpdateAccessory(player);
 		}
 
-		public override void AddRecipes()
+		public static void HandleUpdateAccessory(Player player)
+		{
+            // 400 / 100 = 4 * .04f = .16f
+            player.GetDamage(DamageClass.Generic) += .04f * (player.statLife / 100);
+        }
+
+
+        public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(ModContent.ItemType<Materials.BloodShards>(), 2);
+			recipe.AddIngredient(ModContent.ItemType<Materials.BloodShards>(), 4);
 			recipe.AddIngredient(ItemID.LifeCrystal);
 			recipe.AddIngredient(ModContent.ItemType<Materials.HelixStone>());
 			recipe.AddTile(TileID.MythrilAnvil);

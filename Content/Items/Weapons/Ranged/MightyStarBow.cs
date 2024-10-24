@@ -58,21 +58,6 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 			Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
 			proj.DamageType = DamageClass.Ranged;
 			return false;
-			/*if (_shots >= 2)
-			{
-				for (int i = 0; i < 10; i++)
-				{
-					int dust = Dust.NewDust(player.position, player.width, player.height, DustID.Enchanted_Pink, Scale: 1.4f);
-					Main.dust[dust].noGravity = true;
-					Main.dust[dust].velocity *= 2f;
-					Main.dust[dust].velocity *= 2f;
-				}
-				SoundEngine.PlaySound(SoundID.Item4);
-				ShootExtra(player, source, position, velocity, type, damage, knockback);
-				_shots = 0;
-			}
-			_shots++;*/
-			return base.Shoot(player, source, position, velocity, type, damage, knockback);
 		}
 
         private void ShootExtra(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

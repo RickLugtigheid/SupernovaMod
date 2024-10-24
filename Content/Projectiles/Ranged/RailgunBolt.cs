@@ -19,7 +19,7 @@ namespace SupernovaMod.Content.Projectiles.Ranged
 			Projectile.penetrate = 8;
 			AIType = ProjectileID.Bullet;
 		}
-		public override void AI()
+        public override void AI()
 		{
 			Projectile.localAI[0]++;
 			if (Projectile.localAI[0] % 8 == 0)
@@ -42,14 +42,15 @@ namespace SupernovaMod.Content.Projectiles.Ranged
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			if (Main.rand.NextChance(.25f))
+			if (Main.rand.NextChance(.3f))
 			{
 				target.AddBuff(BuffID.Electrified, 120);
 			}
 		}
+
 		public override void OnHitPlayer(Player target, Player.HurtInfo info)
 		{
-			if (Main.rand.NextChance(.25f))
+			if (Main.rand.NextChance(.3f))
 			{
 				target.AddBuff(BuffID.Electrified, 120);
 			}

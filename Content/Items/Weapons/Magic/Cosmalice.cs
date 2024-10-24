@@ -15,17 +15,17 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 		public override void SetDefaults()
 		{
 			Item.damage = 47;
-			Item.crit = 2;
+			Item.crit = 3;
 			Item.width = 24;
 			Item.height = 28;
-			Item.useTime = 26;
-			Item.useAnimation = 26;
+			Item.useTime = 27;
+			Item.useAnimation = 27;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.noMelee = true;
 			Item.knockBack = 4;
 			Item.value = BuyPrice.RarityGreen;
 			Item.rare = ItemRarityID.LightRed;
-			Item.mana = 10;
+			Item.mana = 14;
 			Item.UseSound = SoundID.Item21;
 			Item.autoReuse = true;
 			Item.shoot = ModContent.ProjectileType<Projectiles.Magic.EldrichBolt>();
@@ -33,12 +33,13 @@ namespace SupernovaMod.Content.Items.Weapons.Magic
 			Item.DamageType = DamageClass.Magic;
 		}
 
-		/*public override void AddRecipes()
+		public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.SpellTome);
+			recipe.AddIngredient<Materials.EldritchEssence>(20);
 			recipe.AddTile(TileID.Bookcases);
 			recipe.Register();
-		}*/
+		}
 	}
 }

@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using SupernovaMod.Api;
 
 namespace SupernovaMod.Content.Items.Weapons.Melee
 {
@@ -14,14 +15,14 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 		public override void SetDefaults()
 		{
 			Item.damage = 58;
-			Item.crit = 7;
+			Item.crit = 5;
 			Item.width = 44;
 			Item.height = 44;
-			Item.useTime = 27;
-			Item.useAnimation = 27;
+			Item.useTime = 26;
+			Item.useAnimation = 26;
 			Item.knockBack = 6;
 
-			Item.value = Item.buyPrice(0, 12, 0, 0);
+			Item.value = BuyPrice.RarityLightRed;
 			Item.rare = ItemRarityID.LightRed;
 
 			Item.useStyle = ItemUseStyleID.Rapier;

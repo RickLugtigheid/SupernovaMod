@@ -28,7 +28,7 @@ namespace SupernovaMod.Content.Projectiles.Thrown
 			Projectile.DamageType = DamageClass.Throwing;
 			Projectile.tileCollide = true;                 //this make that the projectile does not go thru walls
 			Projectile.ignoreWater = false;
-			Projectile.timeLeft = 40;
+			Projectile.timeLeft = 36;
 			Projectile.scale = .8f;
 		}
 

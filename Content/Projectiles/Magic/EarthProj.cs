@@ -43,8 +43,15 @@ namespace SupernovaMod.Content.Projectiles.Magic
 				target.AddBuff(BuffID.Confused, 180);
 			}
 		}
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (Main.rand.NextBool(7))
+            {
+                target.AddBuff(BuffID.Confused, 180);
+            }
+        }
 
-		public override bool PreKill(int timeLeft)
+        public override bool PreKill(int timeLeft)
 		{
 			if (Projectile.owner == Main.myPlayer)
 			{

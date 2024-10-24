@@ -183,6 +183,7 @@ namespace SupernovaMod.Content.Items.Weapons.BaseWeapons
         /// <summary>
         /// Enables muzzle flash
         /// </summary>
+        [Obsolete("Not implemented correctly yet!")]
         public bool muzzleFlash = false;
 
         /// <summary>
