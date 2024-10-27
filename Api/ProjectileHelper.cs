@@ -9,11 +9,19 @@ namespace SupernovaMod.Api
 	/// </summary>
 	public static class ProjectileHelper
 	{
-		/// <summary>
-		/// Spawns {<paramref name="projectileAmount"/>} of projectiles in a cross (X) pattern.
-		/// </summary>
-		/// <returns>Projectile ids</returns>
-		public static int[] ShootCrossPattern(IEntitySource spawnSource, Vector2 position, int projectileAmount, float shootSpeed, int type, int damage, float knockback, int owner = -1, float ai0 = 0, float ai1 = 0, float ai2 = 0)
+		public static Vector2 CalculateBasicTargetPrediction(Vector2 sourcePosition, Vector2 targetPosition, Vector2 velocity)
+		{
+            // Basic target prediction
+            // https://www.reddit.com/r/Unity3D/comments/do5ymo/comment/f5k2thx/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+            float dist = Vector2.Distance(sourcePosition, targetPosition);
+			Vector2 timeToTarget = velocity / dist;
+			return targetPosition + (velocity * timeToTarget);
+        }
+        /// <summary>
+        /// Spawns {<paramref name="projectileAmount"/>} of projectiles in a cross (X) pattern.
+        /// </summary>
+        /// <returns>Projectile ids</returns>
+        public static int[] ShootCrossPattern(IEntitySource spawnSource, Vector2 position, int projectileAmount, float shootSpeed, int type, int damage, float knockback, int owner = -1, float ai0 = 0, float ai1 = 0, float ai2 = 0)
 		{
 			int[] res = new int[projectileAmount];
 			for (int i = 0; i < projectileAmount; i++)

@@ -18,6 +18,7 @@ namespace SupernovaMod.Content.Items.Materials
 			Item.height = 16;
 			Item.maxStack = 9999;
 			Item.rare = ItemRarityID.LightPurple;
+			Item.value = Item.sellPrice(0, 5);
 		}
 
 		public override void AddRecipes()

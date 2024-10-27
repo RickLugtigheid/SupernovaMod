@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using SupernovaMod.Api;
 using SupernovaMod.Api.Helpers;
 using SupernovaMod.Common.GlobalProjectiles;
 using Terraria;
@@ -50,7 +51,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 			}
 
 			UpdateVisuals();
-			SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter, out NPC target);
+			SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter, out NPC? target);
 
 			ref float timer = ref Projectile.localAI[0];
 			if (foundTarget)
@@ -69,7 +70,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 				// Shoot
 				if (timer > 80 && (timer % 20) == 0)
 				{
-					Shoot(targetCenter + (target.velocity * 2));
+					Shoot(targetCenter);
 				}
 			}
 			else
@@ -116,7 +117,7 @@ namespace SupernovaMod.Content.Projectiles.Summon
 			}
 		}
 
-		private void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter, out NPC target)
+		private void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter, out NPC? target)
 		{
 			// Starting search distance
 			distanceFromTarget = 700f;
@@ -179,7 +180,12 @@ namespace SupernovaMod.Content.Projectiles.Summon
 		{
 			SoundEngine.PlaySound(SoundID.Item20, Projectile.Center);
 			Vector2 Velocity = Mathf.VelocityFPTP(Projectile.Center, targetCenter, 8f + Main.rand.NextFloat());
-			int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, ProjectileID.UnholyTridentFriendly, Projectile.damage, Projectile.knockBack, Projectile.owner);
+			float dist = Vector2.Distance(Projectile.Center, targetCenter);
+
+            targetCenter = ProjectileHelper.CalculateBasicTargetPrediction(Projectile.Center, targetCenter, Velocity);
+            Velocity = Mathf.VelocityFPTP(Projectile.Center, targetCenter, 8f + Main.rand.NextFloat());
+
+            int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center.X, Projectile.Center.Y, Velocity.X, Velocity.Y, ProjectileID.UnholyTridentFriendly, Projectile.damage, Projectile.knockBack, Projectile.owner);
 			Main.projectile[proj].DamageType = DamageClass.Summon;
 		}
 	}

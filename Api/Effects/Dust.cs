@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 using Terraria;
@@ -122,34 +122,6 @@ namespace SupernovaMod.Api.Effects
                     Electricity(point, lastPoint.Value, dustType, dustScale);
                 }
                 lastPoint = point;
-            }
-        }
-        public static void RingElectric(Vector2 position, Vector2 size, int dustType, int dustCount = 30, float dustScale = 1)
-        {
-			double rx = size.X / 2;
-			double ry = size.Y / 2;
-			double cx = position.X - rx;
-			double cy = position.Y - ry;
-
-            // Start at the top
-            //
-            double theta = -Math.PI / 2;
-            double dtheta = 4 * Math.PI / dustCount;
-			Vector2? lastPoint = null;
-            for (int i = 0; i < dustCount; i++)
-			{
-				Vector2 point = new Vector2(
-					(float)(cx + rx * Math.Cos(theta)),
-					(float)(cy + ry * Math.Sin(theta))
-				);
-				theta += dtheta;
-				if (lastPoint != null)
-				{
-					Electricity(point, lastPoint.Value, dustType, dustScale);
-				}
-				lastPoint = point;
-                /*Dust dust = Dust.NewDustPerfect(point, dustType, Vector2.Zero, Scale: dustScale);
-                dust.noGravity = true;*/
             }
         }
     }

@@ -87,7 +87,7 @@ namespace SupernovaMod.Api.Effects
 			//
 			if (_particlesActive >= maxParticles)
 			{
-				return -1;
+                return -1;
 			}
 
 			//

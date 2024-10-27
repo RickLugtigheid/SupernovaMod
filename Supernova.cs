@@ -15,6 +15,7 @@ namespace SupernovaMod
 	{
 		public static Supernova Instance { get ; private set; }
 
+		[Obsolete("Use SupernovaModShaders.Shockwave instead")]
 		public static Effect ShaderShockwave { get; private set; }
 
 		public static ILog Log { get; private set; }
@@ -61,14 +62,15 @@ namespace SupernovaMod
 			ModLoader.TryGetMod("BossChecklist", out bossChecklist);
 
 			//
-			if (Main.netMode != NetmodeID.Server)
-			{
-				SupernovaModTextures.LoadTextures();
-				LoadShaders();
-			}
 			if (!Main.dedServ)
-			{
-				ParticleSystem.Load();
+            {
+				// Load systems
+				SupernovaModShaders.LoadEffects();
+				SupernovaModTextures.LoadTextures();
+                ParticleSystem.Load();
+
+				// Deprecated
+                LoadShaders();
 			}
 		}
 
@@ -107,7 +109,15 @@ namespace SupernovaMod
 			{
 				return null;
 			}
-			return new int?(MusicLoader.GetMusicSlot(supernovaMusic, "Assets/Music/" + songFile));
+			try
+			{
+                return new int?(MusicLoader.GetMusicSlot(supernovaMusic, "Assets/Music/" + songFile));
+            }
+			catch (Exception ex)
+			{
+				Logger.Error("Failed to load music '" + songFile + "' | Exception: " + ex.ToString());
+				return null;
+			}
 		}
 
 		#region Statics

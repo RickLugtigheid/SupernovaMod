@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using SupernovaMod.Api;
+using SupernovaMod.Common.Systems;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,9 +16,9 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
 
         public override void SetDefaults()
         {
-            Item.damage = 46;
+            Item.damage = 44;
             Item.crit = 2;
-            Item.knockBack = 4;
+            Item.knockBack = 3;
 			Item.width = 22;
 			Item.height = 44;
             Item.useAnimation = 28;
@@ -26,12 +28,22 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
 			Item.noMelee = true;
 			Item.autoReuse = true;
 			Item.noUseGraphic = true;
-            Item.value = Item.buyPrice(0, 8);
+            Item.value = BuyPrice.RarityLightRed;
             Item.rare = ItemRarityID.LightRed;
             Item.shootSpeed = 14;
             Item.shoot = ModContent.ProjectileType<Projectiles.Thrown.HarpyMothersFeather>();
 
-            Item.DamageType = DamageClass.Throwing;
+			Item.DamageType = GlobalModifiers.DamageClass_ThrowingRanged;
+		}
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.Feather, 10);
+            recipe.AddIngredient(ItemID.GiantHarpyFeather);
+            recipe.AddIngredient(ItemID.SoulofFlight, 5);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.Register();
         }
-	}
+    }
 }

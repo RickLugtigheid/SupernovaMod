@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using SupernovaMod.Api;
-using SupernovaMod.Api.Effects;
 
 namespace SupernovaMod.Content.Projectiles.Magic
 {
@@ -54,5 +53,5 @@ namespace SupernovaMod.Content.Projectiles.Magic
                 Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, velocity, ModContent.ProjectileType<CelestialCystalShard>(), (int)(Projectile.damage * .6f), Projectile.knockBack / 2, Projectile.owner);
             }
 		}
-	}
+    }
 }

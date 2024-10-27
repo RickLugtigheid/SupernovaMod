@@ -10,10 +10,10 @@ namespace SupernovaMod.Content.Items.Materials
         {
             Item.width = 24;
 			Item.height = 24;
-			Item.value = Item.buyPrice(0, 0, 3, 65);
+			Item.value = Item.buyPrice(0, 0, 6);
 			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item1;
-			Item.maxStack = 999;
+			Item.maxStack = 9999;
         }
     }
 }

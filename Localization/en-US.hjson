@@ -802,7 +802,7 @@ Mods: {
 
 			HelixStone: {
 				DisplayName: Helix Stone
-				Tooltip: ""
+				Tooltip: Remains of a Balancer
 			}
 
 			HiTechFirearmManual: {
@@ -873,12 +873,12 @@ Mods: {
 				Tooltip:
 					'''
 					The less health you have left the faster you will be
-					Increases movement speed by a max of 14% at 100 health
+					Increases movement speed by a max of 20% at 100 health
 					'''
 			}
 
 			IronSkull: {
-				DisplayName: Iron Skull
+				DisplayName: Skull of Protection
 				Tooltip:
 					'''
 					The less health you have left the less damage you take
@@ -895,7 +895,7 @@ Mods: {
 					Reduces a max of 30% mana cost when at 500 health
 
 					The less health you have left the faster you will be, and less damage you take
-					Increases movement speed by a max of 14% at 100 health
+					Increases movement speed by a max of 20% at 100 health
 					Increases defense by a max of 10 at 100 health
 					'''
 			}
@@ -912,7 +912,7 @@ Mods: {
 
 			CosmofleshCutter: {
 				DisplayName: Cosmoflesh Cutter
-				Tooltip: ""
+				Tooltip: Summons a tentacle on hit
 			}
 
 			MoonSplitterYatagarasu: {
@@ -1108,6 +1108,11 @@ Mods: {
 
 			Necronomicon: {
 				DisplayName: Necronomicon
+				Tooltip: ""
+			}
+
+			CrystalineDye: {
+				DisplayName: Crystaline Dye
 				Tooltip: ""
 			}
 		}

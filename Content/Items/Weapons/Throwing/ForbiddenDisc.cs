@@ -1,3 +1,5 @@
+using SupernovaMod.Api;
+using SupernovaMod.Common.Systems;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -15,28 +17,28 @@ namespace SupernovaMod.Content.Items.Weapons.Throwing
 
         public override void SetDefaults()
         {
-            Item.damage = 44;
-            Item.crit = 3;
+            Item.damage = 48;
+            Item.crit = 1;
             Item.noMelee = true;
             Item.maxStack = 1;
             Item.width = 48;
             Item.height = 48;
-            Item.useTime = 11;
-            Item.useAnimation = 11;
+            Item.useTime = 13;
+            Item.useAnimation = 13;
             Item.noUseGraphic = true;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 3f;
-            Item.value = Item.buyPrice(0, 1, 0, 0);
-            Item.rare = ItemRarityID.Pink;
+            Item.knockBack = 5;
+            Item.value = BuyPrice.RarityLightRed;
+            Item.rare = ItemRarityID.LightRed;
             Item.shootSpeed = 16;
             Item.shoot = ModContent.ProjectileType<Projectiles.Thrown.ForbiddenDiscProj>();
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
 
-            Item.DamageType = DamageClass.Throwing;
-        }
+			Item.DamageType = GlobalModifiers.DamageClass_ThrowingMelee;
+		}
 
-        public override void AddRecipes()
+		public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.AncientBattleArmorMaterial);

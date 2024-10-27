@@ -45,19 +45,10 @@ namespace SupernovaMod.Content.Projectiles.Magic
 			}
 
 			Projectile.ai[0] += 1f;
-			Projectile.ai[1] += 1f;
-			if (Projectile.ai[1] >= 3f)
-			{
-				//Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<Dusts.TerrorDust>(), new Vector2?(new Vector2(0f, 0f)), 0, default(Color), 1f).noGravity = true;
-				Projectile.ai[1] = 0f;
-				int dust = Dust.NewDust(Projectile.position, Projectile.width + 2, Projectile.height + 2, ModContent.DustType<Dusts.TerrorDust>(), Projectile.velocity.X * 0.45f, Projectile.velocity.Y * 0.45f, 80, default);
-				Dust.NewDust(Projectile.position, Projectile.width + 2, Projectile.height + 2, DustID.Shadowflame, Projectile.velocity.X * 0.45f, Projectile.velocity.Y * 0.45f, 80, default);
-				Main.dust[dust].noGravity = true; //this make so the dust has no gravity
-			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			if (Projectile.ai[0] >= 10f)
 			{
-				float d = 128f;
+				float d = 248f;
 				bool targetfound = false;
 				Vector2 targetcenter = Projectile.position;
 				for (int i = 0; i < 200; i++)

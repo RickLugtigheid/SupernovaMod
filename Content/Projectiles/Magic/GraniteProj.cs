@@ -10,12 +10,6 @@ namespace SupernovaMod.Content.Projectiles.Magic
 {
     public class GraniteProj : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-            // DisplayName.SetDefault("Chunk of Granite");
-            //ProjectileID.Sets.TrailCacheLength[projectile.type] = 0;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
-        }
         public override void SetDefaults()
         {
             Projectile.width = 16;
@@ -112,14 +106,13 @@ namespace SupernovaMod.Content.Projectiles.Magic
 
 		public override void OnKill(int timeLeft)
 		{
-			for (int x = 0; x <= 7; x++)
-			{
-				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Granite, -Projectile.velocity.X, -Projectile.velocity.Y, 80, default, 1);   //this defines the flames dust and color, change DustID to wat dust you want from Terraria, or add mod.DustType("CustomDustName") for your custom dust
-				Main.dust[dust].noGravity = false; //this make so the dust has no gravity
-				Main.dust[dust].velocity *= .07f;
-			}
+            for (int i = 0; i < 15; i++)
+            {
+                Dust.NewDustPerfect(Projectile.Center + Vector2.One.RotatedByRandom(6.28f) * Main.rand.NextFloat(4), DustID.Granite,
+                    Vector2.One.RotatedByRandom(6.28f) * Main.rand.NextFloat(0.8f, 1.3f), 0, default, 0.5f);
+            }
 
-			SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
+            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
 		}
 	}
 }

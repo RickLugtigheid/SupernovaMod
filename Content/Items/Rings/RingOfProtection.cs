@@ -21,7 +21,7 @@ namespace SupernovaMod.Content.Items.Rings
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(0, 5, 0, 0);
         }
-        public override int BaseCooldown => 60 * 60; // 1 minute
+        public override int BaseCooldown => 47 * 60; // 47 seonds
         public override void RingActivate(Player player, float ringPowerMulti)
         {
             // Add dust effect
@@ -39,6 +39,7 @@ namespace SupernovaMod.Content.Items.Rings
 			int buffTime = 60 * 30;
 			buffTime = (int)(buffTime * ringPowerMulti);
 			player.AddBuff(BuffID.ShadowDodge, buffTime);
+            player.ShadowDodge();
         }
 
         public override int MaxAnimationFrames => 1;

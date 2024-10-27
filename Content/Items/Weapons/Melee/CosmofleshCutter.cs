@@ -15,21 +15,21 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-			Item.damage = 56;
-			Item.crit = 2;
+			Item.damage = 83;
+			Item.crit = 1;
 			Item.width = 58;
 			Item.height = 58;
-			Item.useTime = 21;
-			Item.useAnimation = 21;
+			Item.useTime = 24;
+			Item.useAnimation = 24;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 4;
-			Item.value = BuyPrice.RarityGreen;
-			Item.rare = ItemRarityID.Green;
+			Item.knockBack = 4.5f;
+			Item.value = BuyPrice.RarityLightRed;
+			Item.rare = ItemRarityID.LightRed;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			Item.useTurn = true;
 			Item.DamageType = DamageClass.Melee;
-			Item.scale = 1.2f;
+			Item.scale = 1.25f;
 		}
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
@@ -59,6 +59,25 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 			//
 			Projectile proj = Projectile.NewProjectileDirect(Item.GetSource_OnHit(target), groundPosition.Value, velocity, ModContent.ProjectileType<Projectiles.Magic.EldrichTentacle>(), Item.damage, Item.knockBack);
 			proj.DamageType = DamageClass.MeleeNoSpeed;
+		}
+
+		public override void AddRecipes()
+		{
+			// Corruption recipe
+			//
+			Recipe recipe = CreateRecipe();
+			recipe.AddIngredient(ItemID.DemoniteBar, 8);
+			recipe.AddIngredient<Materials.EldritchEssence>(20);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.Register();
+
+			// Crimson recipe
+			//
+			recipe = CreateRecipe();
+			recipe.AddIngredient(ItemID.CrimtaneBar, 8);
+			recipe.AddIngredient<Materials.EldritchEssence>(20);
+			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.Register();
 		}
 	}
 }

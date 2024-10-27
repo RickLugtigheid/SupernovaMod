@@ -11,8 +11,10 @@
 
 #### Items:
 
+- Magnitrix
 - Harpy Mother's Feather
 - Forbidden Disc
+- Seal of Samael
 - Hi Tech Firearm Manual
 - Broken Sword Shards
 - Kusanagi
@@ -29,6 +31,9 @@
 - Cosmolash
 - Cosmoflesh Cutter
 - Cosmalice
+- Starcore
+- Starcore Staff
+- Mighty Star Bow
 
 
 #### NPCs:

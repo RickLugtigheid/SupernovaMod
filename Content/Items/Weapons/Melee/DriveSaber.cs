@@ -26,13 +26,13 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 			Item.useAnimation = 24;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 5;
-			Item.value = BuyPrice.RarityLightRed;
-			Item.rare = ItemRarityID.LightRed;
+			Item.value = BuyPrice.RarityPink;
+			Item.rare = ItemRarityID.Pink;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 
 			Item.DamageType = DamageClass.Melee;
-			Item.shoot = ProjectileID.MagnetSphereBolt;
+			Item.shoot = ProjectileID.PulseBolt;// ProjectileID.MagnetSphereBolt;
 			Item.shootSpeed = 5;
 		}
 
@@ -62,9 +62,9 @@ namespace SupernovaMod.Content.Items.Weapons.Melee
 
 		public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
 		{
-			// 40% chance to inflict Electrified 
+			// 60% chance to inflict Electrified 
 			// 
-			if (Main.rand.NextChance(.4f))
+			if (Main.rand.NextChance(.6f))
 			{
 				target.AddBuff(BuffID.Electrified, Main.rand.Next(1, 3) * 60);
 			}
