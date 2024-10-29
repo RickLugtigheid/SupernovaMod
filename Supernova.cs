@@ -89,7 +89,7 @@ namespace SupernovaMod
 
 		private void LoadShaders()
 		{
-			ShaderShockwave = ModContent.Request<Effect>(GetEffectPath("ShockwaveEffect"), ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+			ShaderShockwave = ModContent.Request<Effect>(GetEffectPath("ScreenFilters/Shockwave"), ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
 			Filters.Scene["Shockwave"] = new Filter(new ScreenShaderData(new Ref<Effect>(ShaderShockwave), "Shockwave"), EffectPriority.VeryHigh);
 			Filters.Scene["Shockwave"].Load();
 		}

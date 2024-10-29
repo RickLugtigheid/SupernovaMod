@@ -71,7 +71,7 @@ namespace SupernovaMod.Content.Items.Rings
 
         private int[] _gemDusts = new int[] { DustID.GemTopaz, DustID.GemSapphire, DustID.GemRuby, DustID.GemEmerald, DustID.GemDiamond };
         private float _rot = 0;
-        public override void RingUseAnimation(Player player)
+        public override void RingUseAnimation(Player player, int frame)
         {
             SoundEngine.PlaySound(SoundID.Item15);
 

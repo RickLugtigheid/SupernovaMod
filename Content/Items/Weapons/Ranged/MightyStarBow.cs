@@ -19,19 +19,20 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 
 		public override void SetDefaults()
         {
-            Item.crit = 1;
+            Item.damage = 37;
+            Item.crit = 0;
+            Item.knockBack = 2;
             Item.width = 16;
             Item.height = 24;
 
 			Item.autoReuse = true;
-			Item.damage = 61;
-			Item.useAnimation = 15;
-			Item.useTime = 5;
-			Item.reuseDelay = 27;
-			Item.UseSound = SoundID.Item5; // Sound for Bows
-			Item.shootSpeed = 17.5f;
+			Item.useAnimation = 9;
+			Item.useTime = 3;
+			Item.reuseDelay = 23;
+			Item.shootSpeed = 17;
+            Item.UseSound = SoundID.Item5;
 
-			Item.useStyle = ItemUseStyleID.Shoot;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true; // Doesn't deal damage if an enemy touches at melee range.
             Item.value = BuyPrice.RarityLightPurple; // Another way to handle value of item.
             Item.rare = ItemRarityID.LightPurple;
@@ -47,10 +48,11 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 			{
 				type = ProjectileID.StarCloakStar;
 			}
-			else if (type == ProjectileID.JestersArrow)
-			{
-				type = ProjectileID.StarCannonStar;
-			}
+			// Does not work as expected...
+			//else if (type == ProjectileID.JestersArrow)
+			//{
+			//	type = ProjectileID.StarCannonStar;
+			//}
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -58,22 +60,6 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 			Projectile proj = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
 			proj.DamageType = DamageClass.Ranged;
 			return false;
-		}
-
-        private void ShootExtra(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-			Vector2 speed = Main.MouseWorld - position;
-			speed.Normalize();
-			speed *= 17.5f;
-
-			for (int i = 0; i < Main.rand.Next(2, 4); ++i)
-			{
-				Vector2 muzzleOffset = Vector2.Normalize(velocity) * -Main.rand.Next(20, 100);
-				muzzleOffset.Y += Main.rand.Next(-55, 55);
-				int proj = Projectile.NewProjectile(source, position.X + muzzleOffset.X, position.Y + muzzleOffset.Y, speed.X, speed.Y, ProjectileID.StarCloakStar, (int)(damage * .77f), knockback, player.whoAmI);
-				Main.projectile[proj].scale = .65f;
-				Main.projectile[proj].DamageType = DamageClass.Ranged;
-			}
 		}
 
 		public override void AddRecipes()

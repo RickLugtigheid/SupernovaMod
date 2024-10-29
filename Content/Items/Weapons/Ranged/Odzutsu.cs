@@ -41,10 +41,5 @@ namespace SupernovaMod.Content.Items.Weapons.Ranged
 			base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
 		}
 
-		protected override void ModifyMuzzleFlash(ref Vector2 position, ref Vector2 speed, ref int flashDustId, ref int flashDustCount, ref int smokeDustId, ref int smokeDustCount)
-		{
-            flashDustCount = 20;
-            smokeDustCount = 12;
-		}
 	}
 }

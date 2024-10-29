@@ -9,7 +9,7 @@ namespace SupernovaMod
 	public static class SupernovaModShaders
 	{
         // public static Filter ExampleShader => Filters.Scene["SupernovaMod:ExampleShader"];
-        public static Filter ShockwaveShader => Filters.Scene["ShockwaveShader"];//Filters.Scene["SupernovaMod:ShockwaveShader"];
+        public static Filter ShockwaveShader => Filters.Scene["SupernovaMod:shockwave"];
 
         public static void LoadEffects()
 		{
@@ -17,17 +17,17 @@ namespace SupernovaMod
 
             // TODO: Add error handling so when one shader does not
             // load, others are able to load.
-			LoadRegularShaders(assets);
+			LoadScreenShaders(assets);
             LoadArmorShaders(assets);
         }
 
-		public static void LoadRegularShaders(AssetRepository assets)
+		public static void LoadScreenShaders(AssetRepository assets)
 		{
             // Shockwave shader
             //
-   //         Asset<Effect> shockwaveShader = assets.Request<Effect>("Assets/Effects/ShockwaveEffect", AssetRequestMode.ImmediateLoad);
-			//Filters.Scene["SupernovaMod:ShockwaveShader"] = new Filter(new(shockwaveShader, "SupernovaMod:ShockwaveShader"), EffectPriority.VeryHigh);
-   //         Filters.Scene["SupernovaMod:ShockwaveShader"].Load();
+            Asset<Effect> shockwaveShader = assets.Request<Effect>("Assets/Effects/ScreenFilters/Shockwave", AssetRequestMode.ImmediateLoad);
+            Filters.Scene["SupernovaMod:shockwave"] = new Filter(new(shockwaveShader, "Shockwave"), EffectPriority.VeryHigh);
+            Filters.Scene["SupernovaMod:shockwave"].Load();
         }
 
 		public static void LoadArmorShaders(AssetRepository assets)

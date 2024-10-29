@@ -49,7 +49,7 @@ namespace SupernovaMod.Content.Items.Rings
         }
 
         public override int MaxAnimationFrames => 30;
-        public override void RingUseAnimation(Player player)
+        public override void RingUseAnimation(Player player, int frame)
         {
             SoundEngine.PlaySound(SoundID.CoinPickup);
 

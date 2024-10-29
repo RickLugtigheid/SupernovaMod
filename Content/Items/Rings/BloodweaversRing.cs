@@ -106,7 +106,7 @@ namespace SupernovaMod.Content.Items.Rings
         public override int MaxAnimationFrames => 75;
 
 		private float _rot = 0;
-		public override void RingUseAnimation(Player player)
+		public override void RingUseAnimation(Player player, int frame)
         {
             SoundEngine.PlaySound(SoundID.Item15);
 

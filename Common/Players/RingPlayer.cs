@@ -54,7 +54,7 @@ namespace SupernovaMod.Common.Players
 						else if (RingAnimationActive)
 						{
 							// Update our ring animation until done
-							equipedRing.RingUseAnimation(Player);
+							equipedRing.RingUseAnimation(Player, _ringAnimationFrame);
 							_ringAnimationFrame--;
 
 							// On our last frame activate the ring
