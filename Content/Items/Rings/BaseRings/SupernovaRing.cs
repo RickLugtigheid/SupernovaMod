@@ -70,7 +70,7 @@ namespace SupernovaMod.Content.Items.Rings.BaseRings
         /// Update the use animation for our ring.
         /// </summary>
         /// <returns>Animation done</returns>
-		public virtual void RingUseAnimation(Player player)
+		public virtual void RingUseAnimation(Player player, int frame)
         {
 
         }

@@ -1212,6 +1212,7 @@ Mods: {
 			CosmorangProj.DisplayName: Cosmorang
 			CosmicEyeProjectile.DisplayName: Cosmic Eye
 			MicroMagnetSphere.DisplayName: Micro Magnet Sphere
+			Shockwave.DisplayName: Shockwave
 		}
 	}
 }
