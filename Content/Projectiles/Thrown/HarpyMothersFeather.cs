@@ -109,9 +109,9 @@ namespace SupernovaMod.Content.Projectiles.Thrown
 			if (!IsModeHoming)
 			{
 				Vector2 velocity = Vector2.Normalize(Projectile.velocity) * 12;
-				Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, velocity.RotatedBy(.3), ModContent.ProjectileType<HarpyMothersFeather>(), (int)(Projectile.damage * .6f), Projectile.knockBack, Projectile.owner, 1);
-				Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, velocity, ModContent.ProjectileType<HarpyMothersFeather>(), (int)(Projectile.damage * .6f), Projectile.knockBack, Projectile.owner, 1);
-				Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, velocity.RotatedBy(-.3), ModContent.ProjectileType<HarpyMothersFeather>(), (int)(Projectile.damage * .6f), Projectile.knockBack, Projectile.owner, 1);
+				Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, velocity.RotatedBy(.3), ModContent.ProjectileType<HarpyMothersFeather>(), (int)(Projectile.damage * .8f), Projectile.knockBack, Projectile.owner, 1);
+				Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, velocity, ModContent.ProjectileType<HarpyMothersFeather>(), (int)(Projectile.damage * .8f), Projectile.knockBack, Projectile.owner, 1);
+				Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, velocity.RotatedBy(-.3), ModContent.ProjectileType<HarpyMothersFeather>(), (int)(Projectile.damage * .8f), Projectile.knockBack, Projectile.owner, 1);
 				SoundEngine.PlaySound(SoundID.DD2_JavelinThrowersAttack);
 			}
 		}

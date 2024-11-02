@@ -8,7 +8,7 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
 {
 	public class Cosmoling : ModNPC
 	{
-		private float _speed = 13;
+		private float _speed = 12.35f;
 		private Player player;
 
 		public override void SetStaticDefaults()

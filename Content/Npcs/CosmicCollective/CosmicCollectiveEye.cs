@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SupernovaMod.Content.Dusts;
 using System;
 using System.IO;
 using Terraria;
@@ -78,12 +79,28 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
 			// Shoot
 			//
 			int timeTilNextShot = (Owner.State == CosmicCollective.AIState.Phase2 ? 160 : 180) + extraShootDelay;
-			if (Main.expertMode || Main.masterMode)
-			{
-				timeTilNextShot -= 10;
-			}
+            if (Main.expertMode || Main.masterMode)
+            {
+                timeTilNextShot -= 10;
+            }
+            if (Owner.EyesActive < 5)
+            {
+                timeTilNextShot -= 10;
+            }
+            if (Owner.EyesActive < 4)
+            {
+                timeTilNextShot -= 20;
+            }
+            if (Owner.EyesActive < 3)
+            {
+                timeTilNextShot -= 35;
+            }
+            if (Owner.EyesActive < 2)
+            {
+                timeTilNextShot -= 50;
+            }
 
-			if (Timer % timeTilNextShot == 0)
+            if (Timer % timeTilNextShot == 0)
 			{
 				ShootToPlayer(ProjectileID.EyeLaser, 45);
 			}
@@ -118,7 +135,16 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
 
 		public override void OnKill()
 		{
-			Owner.OnEyeKilled(this);
+            float sin = 1f + (float)Math.Sin(((ModNPC)this).NPC.timeLeft * 10);
+            float cos = 1f + (float)Math.Cos(((ModNPC)this).NPC.timeLeft * 10);
+            Color color = new Color(0.5f + cos * 0.2f, 0.8f, 0.5f + sin * 0.2f);
+            for (int i = 0; i < 18; i++)
+            {
+                Dust.NewDustPerfect(NPC.Center + Utils.RotatedByRandom(Vector2.One, 6.28000020980835) * Utils.NextFloat(Main.rand, 4f), 5, (Vector2?)(Utils.RotatedByRandom(Vector2.One, 6.28000020980835) * Utils.NextFloat(Main.rand, 2f, 4f)), 0, color, Utils.NextFloat(Main.rand, 0.85f, 1.6f)).customData = Utils.NextFloat(Main.rand, 0.5f, 1f);
+                Dust.NewDustPerfect(NPC.Center + Utils.RotatedByRandom(Vector2.One, 6.28000020980835) * Utils.NextFloat(Main.rand, 4f), ModContent.DustType<BloodDust>(), (Vector2?)(Utils.RotatedByRandom(Vector2.One, 6.28000020980835) * Utils.NextFloat(Main.rand, 0.7f, 1.25f)), 0, color, 0.5f);
+            }
+
+            Owner.OnEyeKilled(this);
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -128,18 +154,20 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
 
 		private void ShootToPlayer(int type, int damage, float velocityMulti = .7f, float rotationMulti = 1)
 		{
-			Vector2 position = NPC.Center;
+            float sin = 1f + (float)Math.Sin(((ModNPC)this).NPC.timeLeft * 10);
+            float cos = 1f + (float)Math.Cos(((ModNPC)this).NPC.timeLeft * 10);
+            Color color = new Color(0.5f + cos * 0.2f, 0.8f, 0.5f + sin * 0.2f);
+            for (int i = 0; i < 10; i++)
+            {
+                Dust.NewDustPerfect(NPC.Center + Utils.RotatedByRandom(Vector2.One, 6.28000020980835) * Utils.NextFloat(Main.rand, 4f), 71, (Vector2?)(Utils.RotatedByRandom(Vector2.One, 6.28000020980835) * Utils.NextFloat(Main.rand, 1.5f, 3f)), 0, color, Utils.NextFloat(Main.rand, 0.7f, 1.2f)).customData = Utils.NextFloat(Main.rand, 0.5f, 1f);
+            }
+
+            Vector2 position = NPC.Center;
 			float rotation = (float)Math.Atan2(position.Y - (target.position.Y + target.height * 0.2f), position.X - (target.position.X + target.width * 0.15f));
 			rotation *= rotationMulti;
 
 			Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .75f, (float)-(Math.Sin(rotation) * 18) * .75f) * velocityMulti;
 			Projectile.NewProjectile(NPC.GetSource_FromAI(), position, velocity, type, (int)(damage * ExpertDamageMultiplier), 0f, 0);
-
-			for (int x = 0; x < 5; x++)
-			{
-				int dust = Dust.NewDust(position, NPC.width, NPC.height, DustID.UndergroundHallowedEnemies, velocity.X / 2, velocity.Y / 2, 80, default, Main.rand.NextFloat(.9f, 1.6f));
-				Main.dust[dust].noGravity = true;
-			}
 		}
 	}
 }

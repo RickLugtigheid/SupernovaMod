@@ -987,7 +987,12 @@ Mods: {
 			}
 
 			RingOfQuake: {
-				DisplayName: Ring Of Quake
+				DisplayName: Ring of Quake
+				Tooltip: When the 'Ring Ability button' is pressed a powerfull earthquake will strike your enemies
+			}
+
+			RingOfQuake_Adamantite: {
+				DisplayName: Ring of Quake
 				Tooltip: When the 'Ring Ability button' is pressed a powerfull earthquake will strike your enemies
 			}
 

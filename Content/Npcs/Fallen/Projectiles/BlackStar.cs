@@ -10,6 +10,7 @@ namespace SupernovaMod.Content.Npcs.Fallen.Projectiles
 {
 	public class BlackStar : ModProjectile
 	{
+        public override string GlowTexture => Texture + "_Glow";
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[base.Projectile.type] = 2;
@@ -36,15 +37,15 @@ namespace SupernovaMod.Content.Npcs.Fallen.Projectiles
 		}
 		private void UpdateEffects()
 		{
-            if (Projectile.ai[0] == 1)
-            {
-                // Add sinewave effect
-                const double amp = 2;
-                const double freq = .1;
-                float sineWave = (float)(Math.Cos(freq * Projectile.timeLeft) * amp * freq) * Projectile.ai[1];
-                //projectile.position.Y += sineWave;
-                Projectile.velocity.Y += sineWave;
-            }
+            //if (Projectile.ai[0] == 1)
+            //{
+            //    // Add sinewave effect
+            //    const double amp = 2;
+            //    const double freq = .1;
+            //    float sineWave = (float)(Math.Cos(freq * Projectile.timeLeft) * amp * freq) * Projectile.ai[1];
+            //    //projectile.position.Y += sineWave;
+            //    Projectile.velocity.Y += sineWave;
+            //}
 
             //
             if (Projectile.timeLeft > (Projectile.timeLeft - 20))
@@ -96,9 +97,9 @@ namespace SupernovaMod.Content.Npcs.Fallen.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-			lightColor = Color.Black;
-            lightColor.R = (byte)(30 * base.Projectile.Opacity);
-            lightColor.B = (byte)(30 * base.Projectile.Opacity);
+			//lightColor = Color.Black;
+            //lightColor.R = (byte)(30 * base.Projectile.Opacity);
+            //lightColor.B = (byte)(30 * base.Projectile.Opacity);
 
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
             int frameHeight = texture.Height / Main.projFrames[Projectile.type];

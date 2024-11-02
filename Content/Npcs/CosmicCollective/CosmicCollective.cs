@@ -28,6 +28,7 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
 		public float npcLifeRatio;
 
 		public AIState State { get; private set; }
+		public int EyesActive => _eyesActive;
 
 		private byte _eyesActive = 0;
 		private int[] _cosmolingsOwned = new int[MAX_COSMOLINGS + 1];
@@ -239,7 +240,7 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
                     if (Timer % shootTime == 0)
                     {
                         int type = ProjectileID.BloodShot;
-                        int damage = (int)(28 * ExpertDamageMultiplier);
+                        int damage = (int)(34 * ExpertDamageMultiplier);
 
                         SoundEngine.PlaySound(SoundID.NPCDeath55, NPC.Center);
                         Vector2 Velocity = -Vector2.UnitY * 12;
@@ -251,16 +252,25 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
                     }
                 }
 
-				// Every x time spawn minions
-				//
-				int spawnTime = 210;
-				if (Timer % spawnTime == 0)
+                // Every x time spawn minions
+                //
+                int spawnTime = 245;
+                if (_eyesActive < 5)
+                {
+                    spawnTime -= 10;
+                }
+                if (_eyesActive < 4)
+                {
+                    spawnTime -= 20;
+                }
+                if (_eyesActive < 3)
+                {
+                    spawnTime -= 10;
+                }
+                if (Timer % spawnTime == 0 && CosmolingsActive() < MAX_COSMOLINGS)
 				{
-                    if (CosmolingsActive() < MAX_COSMOLINGS)
-                    {
-                        SoundEngine.PlaySound(SoundID.NPCDeath13, NPC.Center);
-                        SpawnCosmolings(Main.rand.Next(2, 3));
-                    }
+                    SoundEngine.PlaySound(SoundID.NPCDeath13, NPC.Center);
+                    SpawnCosmolings(Main.rand.Next(2, 3));
                 }
 			}
 			else // Else when no eyes are left
@@ -333,7 +343,7 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
                             // Shoot
                             //
                             int type = ProjectileID.EyeLaser;
-                            int damage = (int)(26 * ExpertDamageMultiplier);
+                            int damage = (int)(36 * ExpertDamageMultiplier);
 
                             SoundEngine.PlaySound(SoundID.NPCDeath55, NPC.Center);
                             Vector2 Velocity = Mathf.VelocityFPTP(NPC.Center, new Vector2(target.Center.X, target.Center.Y), 5.2f);
@@ -384,18 +394,20 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective
 
                             // Spawn projectiles
                             //
-                            if (AtkTimer % 20 == 0)
+                            if (AtkTimer % 10 == 0)
 							{
 								for (int i = 0; i < Main.rand.Next(2, 5); i++)
 								{
-                                    int damage = (int)(28 * ExpertDamageMultiplier);
+                                    int damage = (int)(34 * ExpertDamageMultiplier);
                                     Vector2 position = NPC.Center + Main.rand.NextVector2CircularEdge(1300, 1300);
                                     Vector2 velocity = Mathf.VelocityFPTP(position, NPC.Center, 3.5f);
 
                                     SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack, NPC.Center);
                                     Projectile proj = Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), position, velocity, TerrariaRandom.NextProjectileIDMeteor(), damage, 4);
-									proj.friendly = false;
-									proj.hostile = true;
+                                    proj.tileCollide = false;
+                                    proj.timeLeft = 340;
+                                    proj.friendly = false;
+                                    proj.hostile = true;
                                 }
 							}
                         }

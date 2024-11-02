@@ -44,6 +44,7 @@ namespace SupernovaMod.Content.Npcs.CosmicCollective.Projectiles
 
                 Vector2 position = Projectile.Center;
                 float rotation = (float)Math.Atan2(position.Y - (target.position.Y + target.height * 0.2f), position.X - (target.position.X + target.width * 0.15f));
+                rotation *= Utils.NextFloat(Main.rand, 0.98f, 1.02f);
 
                 Vector2 velocity = new Vector2((float)-(Math.Cos(rotation) * 18) * .75f, (float)-(Math.Sin(rotation) * 18) * .75f);
                 velocity *= .75f;
