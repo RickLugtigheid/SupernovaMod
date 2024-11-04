@@ -57,6 +57,7 @@ Mods: {
 			RingForge.MapEntry: Ring Forge
 			StarfireForgeTile.MapEntry: Starfire Forge Tile
 			ZirconiumOreTile.MapEntry: Zirconium Ore Tile
+			OtherworldlyStone.MapEntry: Otherworldly Stone
 		}
 
 		NPCs: {
@@ -1118,6 +1119,21 @@ Mods: {
 
 			CrystalineDye: {
 				DisplayName: Crystaline Dye
+				Tooltip: ""
+			}
+
+			DreamlandsPortal: {
+				DisplayName: Dreamlands Portal
+				Tooltip: ""
+			}
+
+			OtherworldlyStone: {
+				DisplayName: Otherworldly Stone
+				Tooltip: ""
+			}
+
+			OtherworldlyStoneBlock: {
+				DisplayName: Otherworldly Stone Block
 				Tooltip: ""
 			}
 		}
