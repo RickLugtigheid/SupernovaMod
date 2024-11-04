@@ -8,13 +8,14 @@ using Terraria.GameContent.Generation;
 using Terraria.ModLoader;
 using ReLogic.Utilities;
 using System;
-using static tModPorter.ProgressUpdate;
 using Terraria.DataStructures;
 
 namespace SupernovaMod.Common.World.Dreamlands
 {
     public class DreamlandsSubworld : Subworld
     {
+        public override string Name => "Dreamlands";
+
         public static double worldSurface;
         public static double worldSurfaceHigh;
         public static double worldSurfaceLow;

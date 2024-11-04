@@ -13,8 +13,13 @@ namespace SupernovaMod
 }
 namespace SupernovaMod.Common.Players
 {
-	public class SupernovaPlayer : ModPlayer
+    public class SupernovaPlayer : ModPlayer
 	{
+        public bool ZoneDreamlands
+        {
+            get => Player.InModBiome(ModContent.GetInstance<Content.Biomes.DreamlandsOverworldBiome>());
+        }
+
         public bool blackFlamesDebuff = false;
 
         public override void ResetEffects()

@@ -127,6 +127,7 @@ Mods: {
 			TerrorBat.DisplayName: Terror Bat
 			Mechromite.DisplayName: Mechromite
 			Balancer.DisplayName: Balancer
+			EldritchSlime.DisplayName: Eldritch Slime
 		}
 
 		Buffs: {
@@ -1234,6 +1235,13 @@ Mods: {
 			CosmicEyeProjectile.DisplayName: Cosmic Eye
 			MicroMagnetSphere.DisplayName: Micro Magnet Sphere
 			Shockwave.DisplayName: Shockwave
+		}
+
+		Biomes: {
+			DreamlandsOverworldBiome: {
+				DisplayName: Dreamlands Overworld Biome
+				TownNPCDialogueName: the Dreamlands Overworld Biome
+			}
 		}
 	}
 }
