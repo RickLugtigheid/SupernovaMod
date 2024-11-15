@@ -1,7 +1,10 @@
 ﻿using SupernovaMod.Content.Npcs.DreamlandsNPCs;
+using System.Collections;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace SupernovaMod.Common.GlobalNPCs
 {
@@ -27,9 +30,36 @@ namespace SupernovaMod.Common.GlobalNPCs
             // are met.                             //
             // ==================================== //
 
-            //if (Main.dayTime)
+            // Overworld NPCs
+            //
+            if (spawnInfo.Player.ZoneOverworldHeight)
             {
-                pool.Add(ModContent.NPCType<EldritchSlime>(), .3f);
+                if (Main.dayTime)
+                {
+                    pool.Add(ModContent.NPCType<EldritchSlime>(), .3f);
+                }
+                else
+                {
+                    pool.Add(NPCID.DemonEye, .2f);
+                    pool.Add(190, .1f);
+                    pool.Add(191, .1f);
+                    pool.Add(192, .1f);
+                    pool.Add(193, .1f);
+                    pool.Add(194, .1f);
+                    pool.Add(317, .05f);
+                    pool.Add(318, .05f);
+
+                    if (Main.hardMode)
+                    {
+                        pool.Add(NPCID.WanderingEye, .1f);
+                    }
+                }
+            }
+            // Underground NPCs
+            //
+            else
+            {
+
             }
         }
     }

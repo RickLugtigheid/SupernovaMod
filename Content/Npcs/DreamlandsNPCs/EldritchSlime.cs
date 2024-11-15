@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
+using SupernovaMod.Common.Systems;
 
 namespace SupernovaMod.Content.Npcs.DreamlandsNPCs
 {
@@ -75,6 +76,15 @@ namespace SupernovaMod.Content.Npcs.DreamlandsNPCs
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.SlimeBunny, 1.5f * hit.HitDirection, -1, 0, color, 0.8f);
                 }
             }
+        }
+
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (!spawnInfo.Player.Supernova().ZoneDreamlands || !spawnInfo.Player.ZoneOverworldHeight || spawnInfo.PlayerSafe || spawnInfo.PlayerInTown || spawnInfo.Player.ZoneOldOneArmy || Main.snowMoon || Main.pumpkinMoon)
+            {
+                return 0f;
+            }
+            return .2f;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

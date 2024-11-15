@@ -9,6 +9,8 @@ using Terraria.ModLoader;
 using ReLogic.Utilities;
 using System;
 using Terraria.DataStructures;
+using Terraria.Utilities;
+using Microsoft.Xna.Framework;
 
 namespace SupernovaMod.Common.World.Dreamlands
 {
@@ -24,8 +26,8 @@ namespace SupernovaMod.Common.World.Dreamlands
         public static double rockLayerLow;
 
 
-        public override int Width => 1400;
-        public override int Height => 420;
+        public override int Width => 1600;
+        public override int Height => 800;
 
         public override bool ShouldSave => false; // TODO: Change after testing
         public override bool NoPlayerSaving => false; // TODO: Change after testing
@@ -39,6 +41,7 @@ namespace SupernovaMod.Common.World.Dreamlands
             //
             Main.worldSurface = worldSurface;
             Main.rockLayer = rockLayer;
+
             ushort dirtTileID = (ushort)ModContent.TileType<Content.Tiles.Dreamlands.OtherworldlyStone>();
             ushort stoneTileID = (ushort)ModContent.TileType<Content.Tiles.Dreamlands.OtherworldlyStone>();
             genPasses.Add(new PassLegacy("Reset", delegate (GenerationProgress progress, GameConfiguration configuration)
@@ -64,6 +67,9 @@ namespace SupernovaMod.Common.World.Dreamlands
                 worldSurfaceHigh = worldSurface;
                 rockLayerLow = rockLayer;
                 rockLayerHigh = rockLayer;
+
+                Main.worldSurface = worldSurface;
+                Main.rockLayer = rockLayer;
 
                 // For each tile in width
                 //
@@ -442,81 +448,81 @@ namespace SupernovaMod.Common.World.Dreamlands
             genPasses.Add(new PassLegacy("Surface Caves", delegate (GenerationProgress progress, GameConfiguration configuration)
             {
                 progress.Message = Lang.gen[10].Value;
-                for (int num644 = 0; num644 < (int)((double)Width * 0.002); num644++)
+                for (int x = 0; x < (int)((double)Width * 0.002); x++)
                 {
                     i2 = WorldGen.genRand.Next(0, Width);
                     while ((float)i2 > (float)Width * 0.45f && (float)i2 < (float)Width * 0.55f)
                     {
                         i2 = WorldGen.genRand.Next(0, Width);
                     }
-                    int num645 = 0;
-                    while ((double)num645 < worldSurfaceHigh)
+                    int j2 = 0;
+                    while ((double)j2 < worldSurfaceHigh)
                     {
-                        if (!Main.tile[i2, num645].HasTile)
+                        if (!Main.tile[i2, j2].HasTile)
                         {
-                            num645++;
+                            j2++;
                             continue;
                         }
-                        WorldGen.TileRunner(i2, num645, (double)WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(5, 50), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 1f, false, true);
+                        WorldGen.TileRunner(i2, j2, (double)WorldGen.genRand.Next(3, 6), WorldGen.genRand.Next(5, 50), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 1f, false, true);
                         break;
                     }
                 }
-                for (int num646 = 0; num646 < (int)((double)Width * 0.0007); num646++)
+                for (int x = 0; x < (int)((double)Width * 0.0007); x++)
                 {
                     i2 = WorldGen.genRand.Next(0, Width);
                     while ((float)i2 > (float)Width * 0.43f && (float)i2 < (float)Width * 0.57f)
                     {
                         i2 = WorldGen.genRand.Next(0, Width);
                     }
-                    int num647 = 0;
-                    while ((double)num647 < worldSurfaceHigh)
+                    int j2 = 0;
+                    while ((double)j2 < worldSurfaceHigh)
                     {
-                        if (!Main.tile[i2, num647].HasTile)
+                        if (!Main.tile[i2, j2].HasTile)
                         {
-                            num647++;
+                            j2++;
                             continue;
                         }
-                        WorldGen.TileRunner(i2, num647, (double)WorldGen.genRand.Next(10, 15), WorldGen.genRand.Next(50, 130), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 2f, false, true);
+                        WorldGen.TileRunner(i2, j2, (double)WorldGen.genRand.Next(10, 15), WorldGen.genRand.Next(50, 130), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 2f, false, true);
                         break;
                     }
                 }
-                for (int num648 = 0; num648 < (int)((double)Width * 0.0003); num648++)
+                for (int x = 0; x < (int)((double)Width * 0.0003); x++)
                 {
                     i2 = WorldGen.genRand.Next(0, Width);
                     while ((float)i2 > (float)Width * 0.4f && (float)i2 < (float)Width * 0.6f)
                     {
                         i2 = WorldGen.genRand.Next(0, Width);
                     }
-                    int num649 = 0;
-                    while ((double)num649 < worldSurfaceHigh)
+                    int j2 = 0;
+                    while ((double)j2 < worldSurfaceHigh)
                     {
-                        if (!Main.tile[i2, num649].HasTile)
+                        if (!Main.tile[i2, j2].HasTile)
                         {
-                            num649++;
+                            j2++;
                             continue;
                         }
-                        WorldGen.TileRunner(i2, num649, (double)WorldGen.genRand.Next(12, 25), WorldGen.genRand.Next(150, 500), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 4f, false, true);
-                        WorldGen.TileRunner(i2, num649, (double)WorldGen.genRand.Next(8, 17), WorldGen.genRand.Next(60, 200), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 2f, false, true);
-                        WorldGen.TileRunner(i2, num649, (double)WorldGen.genRand.Next(5, 13), WorldGen.genRand.Next(40, 170), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 2f, false, true);
+                        WorldGen.TileRunner(i2, j2, (double)WorldGen.genRand.Next(12, 25), WorldGen.genRand.Next(150, 500), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 4f, false, true);
+                        WorldGen.TileRunner(i2, j2, (double)WorldGen.genRand.Next(8, 17), WorldGen.genRand.Next(60, 200), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 2f, false, true);
+                        WorldGen.TileRunner(i2, j2, (double)WorldGen.genRand.Next(5, 13), WorldGen.genRand.Next(40, 170), -1, false, (float)WorldGen.genRand.Next(-10, 11) * 0.1f, 2f, false, true);
                         break;
                     }
                 }
-                for (int num650 = 0; num650 < (int)((double)Width * 0.0004); num650++)
+                for (int x = 0; x < (int)((double)Width * 0.0004); x++)
                 {
                     i2 = WorldGen.genRand.Next(0, Width);
                     while ((float)i2 > (float)Width * 0.4f && (float)i2 < (float)Width * 0.6f)
                     {
                         i2 = WorldGen.genRand.Next(0, Width);
                     }
-                    int num651 = 0;
-                    while ((double)num651 < worldSurfaceHigh)
+                    int j2 = 0;
+                    while ((double)j2 < worldSurfaceHigh)
                     {
-                        if (!Main.tile[i2, num651].HasTile)
+                        if (!Main.tile[i2, j2].HasTile)
                         {
-                            num651++;
+                            j2++;
                             continue;
                         }
-                        WorldGen.TileRunner(i2, num651, (double)WorldGen.genRand.Next(7, 12), WorldGen.genRand.Next(150, 250), -1, false, 0f, 1f, true, true);
+                        WorldGen.TileRunner(i2, j2, (double)WorldGen.genRand.Next(7, 12), WorldGen.genRand.Next(150, 250), -1, false, 0f, 1f, true, true);
                         break;
                     }
                 }
@@ -532,6 +538,169 @@ namespace SupernovaMod.Common.World.Dreamlands
                     }
                 }
             }));
+
+            //
+            genPasses.Add(new DreamlandsSwampBiomePass(Mod));
+
+            //void Jungle(GenerationProgress progress, GameConfiguration configuration)
+            //{
+            //    progress.Message = Lang.gen[11].Value;
+            //    float position = (float)(Main.maxTilesX / 4200);
+            //    position *= 1.5f;
+            //    float randPos = (float)WorldGen.genRand.Next(15, 30) * 0.01f;
+            //    int worldPosition;
+            //    float dungeonSide = -1;
+            //    if (dungeonSide == -1)
+            //    {
+            //        randPos = 1f - randPos;
+            //        worldPosition = (int)((float)Main.maxTilesX * randPos);
+            //    }
+            //    else
+            //    {
+            //        worldPosition = (int)((float)Main.maxTilesX * randPos);
+            //    }
+            //    int num615 = (int)((double)Main.maxTilesY + Main.rockLayer) / 2;
+            //    worldPosition += WorldGen.genRand.Next((int)(-100f * position), (int)(101f * position));
+            //    num615 += WorldGen.genRand.Next((int)(-100f * position), (int)(101f * position));
+            //    int num616 = worldPosition;
+            //    int num617 = num615;
+
+            //    // Generate mud
+            //    WorldGen.TileRunner(worldPosition, num615, (double)WorldGen.genRand.Next((int)(250f * position), (int)(500f * position)), WorldGen.genRand.Next(50, 150), TileID.Mud, false, (float)(dungeonSide * 3), 0f, false, true);
+
+            //    // Generate gems???
+            //    for (int num618 = 0; (float)num618 < 6f * position; num618++)
+            //    {
+            //        WorldGen.TileRunner(worldPosition + WorldGen.genRand.Next(-(int)(125f * position), (int)(125f * position)), num615 + WorldGen.genRand.Next(-(int)(125f * position), (int)(125f * position)), (double)WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(TileID.Sapphire, TileID.Emerald), false, 0f, 0f, false, true);
+            //    }
+
+            //    // Generate more mud
+            //    WorldGen.mudWall = true;
+            //    progress.Set(0.15f);
+            //    worldPosition += WorldGen.genRand.Next((int)(-250f * position), (int)(251f * position));
+            //    num615 += WorldGen.genRand.Next((int)(-150f * position), (int)(151f * position));
+            //    int num619 = worldPosition;
+            //    int num620 = num615;
+            //    int num621 = worldPosition;
+            //    int num622 = num615;
+            //    WorldGen.TileRunner(worldPosition, num615, (double)WorldGen.genRand.Next((int)(250f * position), (int)(500f * position)), WorldGen.genRand.Next(50, 150), TileID.Mud, false, 0f, 0f, false, true);
+            //    WorldGen.mudWall = false;
+
+            //    // Generate more gems???
+            //    for (int num623 = 0; (float)num623 < 6f * position; num623++)
+            //    {
+            //        WorldGen.TileRunner(worldPosition + WorldGen.genRand.Next(-(int)(125f * position), (int)(125f * position)), num615 + WorldGen.genRand.Next(-(int)(125f * position), (int)(125f * position)), (double)WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(TileID.Emerald, TileID.Amethyst), false, 0f, 0f, false, true);
+            //    }
+
+            //    WorldGen.mudWall = true;
+            //    progress.Set(0.3f);
+            //    worldPosition += WorldGen.genRand.Next((int)(-400f * position), (int)(401f * position));
+            //    num615 += WorldGen.genRand.Next((int)(-150f * position), (int)(151f * position));
+            //    int num624 = worldPosition;
+            //    int num625 = num615;
+
+            //    // More mud?
+            //    WorldGen.TileRunner(worldPosition, num615, (double)WorldGen.genRand.Next((int)(250f * position), (int)(500f * position)), WorldGen.genRand.Next(50, 150), TileID.Mud, false, (float)(dungeonSide * -3), 0f, false, true);
+            //    WorldGen.mudWall = false;
+
+            //    // Generate gems and jungle stuff??
+            //    for (int num626 = 0; (float)num626 < 6f * position; num626++)
+            //    {
+            //        WorldGen.TileRunner(worldPosition + WorldGen.genRand.Next(-(int)(125f * position), (int)(125f * position)), num615 + WorldGen.genRand.Next(-(int)(125f * position), (int)(125f * position)), (double)WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(3, 8), WorldGen.genRand.Next(TileID.Amethyst, TileID.JungleThorns), false, 0f, 0f, false, true);
+            //    }
+            //    WorldGen.mudWall = true;
+            //    progress.Set(0.45f);
+            //    worldPosition = (num616 + num619 + num624) / 3;
+            //    num615 = (num617 + num620 + num625) / 3;
+
+            //    // More mud...
+            //    WorldGen.TileRunner(worldPosition, num615, (double)WorldGen.genRand.Next((int)(400f * position), (int)(600f * position)), 10000, TileID.Mud, false, 0f, -20f, true, true);
+            //    WorldGen.JungleRunner(worldPosition, num615);
+            //    progress.Set(0.6f);
+            //    WorldGen.mudWall = false;
+
+            //    // Add mud walls
+            //    for (int num627 = 0; num627 < Main.maxTilesX / 4; num627++)
+            //    {
+            //        worldPosition = WorldGen.genRand.Next(20, Main.maxTilesX - 20);
+            //        num615 = WorldGen.genRand.Next((int)WorldGen.worldSurface + 10, Main.maxTilesY - 200);
+            //        while (Main.tile[worldPosition, num615].wall != 64 && Main.tile[worldPosition, num615].wall != 15)
+            //        {
+            //            worldPosition = WorldGen.genRand.Next(20, Main.maxTilesX - 20);
+            //            num615 = WorldGen.genRand.Next((int)WorldGen.worldSurface + 10, Main.maxTilesY - 200);
+            //        }
+            //        WorldGen.MudWallRunner(worldPosition, num615);
+            //    }
+            //    worldPosition = num621;
+            //    num615 = num622;
+
+            //    // More mud???
+            //    for (int num628 = 0; (float)num628 <= 20f * position; num628++)
+            //    {
+            //        progress.Set((60f + (float)num628 / position) * 0.01f);
+            //        worldPosition += WorldGen.genRand.Next((int)(-5f * position), (int)(6f * position));
+            //        num615 += WorldGen.genRand.Next((int)(-5f * position), (int)(6f * position));
+            //        WorldGen.TileRunner(worldPosition, num615, (double)WorldGen.genRand.Next(40, 100), WorldGen.genRand.Next(300, 500), TileID.Mud, false, 0f, 0f, false, true);
+            //    }
+
+            //    //
+            //    for (int num629 = 0; (float)num629 <= 10f * position; num629++)
+            //    {
+            //        progress.Set((80f + (float)num629 / position * 2f) * 0.01f);
+            //        worldPosition = num621 + WorldGen.genRand.Next((int)(-600f * position), (int)(600f * position));
+            //        num615 = num622 + WorldGen.genRand.Next((int)(-200f * position), (int)(200f * position));
+            //        while (true)
+            //        {
+            //            // 
+            //            if (worldPosition >= 1 && worldPosition < Main.maxTilesX - 1 && num615 >= 1 && num615 < Main.maxTilesY - 1 && Main.tile[worldPosition, num615].TileType == TileID.Mud)
+            //            {
+            //                break;
+            //            }
+            //            worldPosition = num621 + WorldGen.genRand.Next((int)(-600f * position), (int)(600f * position));
+            //            num615 = num622 + WorldGen.genRand.Next((int)(-200f * position), (int)(200f * position));
+            //        }
+
+            //        //
+            //        for (int num630 = 0; (float)num630 < 8f * position; num630++)
+            //        {
+            //            worldPosition += WorldGen.genRand.Next(-30, 31);
+            //            num615 += WorldGen.genRand.Next(-30, 31);
+
+            //            // Random liquid??
+            //            int type5 = -1;
+            //            if (WorldGen.genRand.Next(7) == 0)
+            //            {
+            //                type5 = -2;
+            //            }
+            //            // Place liquid
+            //            WorldGen.TileRunner(worldPosition, num615, (double)WorldGen.genRand.Next(10, 20), WorldGen.genRand.Next(30, 70), type5, false, 0f, 0f, false, true);
+            //        }
+            //    }
+
+            //    // Undeground generation stuff???
+            //    //
+            //    for (int num631 = 0; (float)num631 <= 300f * position; num631++)
+            //    {
+            //        worldPosition = num621 + WorldGen.genRand.Next((int)(-600f * position), (int)(600f * position));
+            //        num615 = num622 + WorldGen.genRand.Next((int)(-200f * position), (int)(200f * position));
+            //        while (true)
+            //        {
+            //            if (worldPosition >= 1 && worldPosition < Main.maxTilesX - 1 && num615 >= 1 && num615 < Main.maxTilesY - 1 && Main.tile[worldPosition, num615].type == 59)
+            //            {
+            //                break;
+            //            }
+            //            worldPosition = num621 + WorldGen.genRand.Next((int)(-600f * position), (int)(600f * position));
+            //            num615 = num622 + WorldGen.genRand.Next((int)(-200f * position), (int)(200f * position));
+            //        }
+            //        WorldGen.TileRunner(worldPosition, num615, (double)WorldGen.genRand.Next(4, 10), WorldGen.genRand.Next(5, 30), TileID.Stone, false, 0f, 0f, false, true);
+            //        if (WorldGen.genRand.Next(4) == 0)
+            //        {
+            //            // Generate more gems and JungleThorns
+            //            int type6 = WorldGen.genRand.Next(TileID.Sapphire, TileID.JungleThorns);
+            //            WorldGen.TileRunner(worldPosition + WorldGen.genRand.Next(-1, 2), num615 + WorldGen.genRand.Next(-1, 2), (double)WorldGen.genRand.Next(3, 7), WorldGen.genRand.Next(4, 8), type6, false, 0f, 0f, false, true);
+            //        }
+            //    }
+            //}
 
             //
             genPasses.Add(new PassLegacy("Spawn Point", delegate (GenerationProgress progress, GameConfiguration configuration)
@@ -696,18 +865,24 @@ namespace SupernovaMod.Common.World.Dreamlands
 
         public override void OnEnter()
         {
-            base.OnEnter();
+            //Clear the background.
+            Main.numClouds = 0;
+            Main.numCloudsTemp = 0;
+            Main.cloudBGAlpha = 0f;
+
+            Main.cloudAlpha = 0f;
+            Main.resetClouds = true;
+            Main.moonPhase = 4;
         }
 
-        //public override bool GetLight(Tile tile, int x, int y, ref FastRandom rand, ref Vector3 color)
-        //{
-        //    // Gives water a green glow 
-        //    // 
-        //    if (tile.LiquidType == LiquidID.Water && tile.LiquidAmount > 0)
-        //    {
-        //        color.Y = tile.LiquidAmount / 255f; // The result of integer division is rounded down, so one of the numbers must be a float 
-        //    }
-        //    return base.GetLight(tile, x, y, ref rand, ref color);
-        //}
+        public override bool GetLight(Tile tile, int x, int y, ref FastRandom rand, ref Vector3 color)
+        {
+            if (tile.LiquidType == LiquidID.Water && tile.LiquidAmount > 0)
+            {
+                color = Color.DarkGreen.ToVector3();
+                color.Y = tile.LiquidAmount / 255f; // The result of integer division is rounded down, so one of the numbers must be a float 
+            }
+            return base.GetLight(tile, x, y, ref rand, ref color);
+        }
     }
 }

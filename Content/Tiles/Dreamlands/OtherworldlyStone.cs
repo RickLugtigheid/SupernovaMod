@@ -14,8 +14,8 @@ namespace SupernovaMod.Content.Tiles.Dreamlands
             Main.tileMergeDirt[Type] = true;
             TileID.Sets.BlockMergesWithMergeAllBlock[Type] = true;
 
-            LocalizedText tileName = CreateMapEntryName();
-            AddMapEntry(new Color(187, 78, 181), tileName);
+            //LocalizedText tileName = CreateMapEntryName();
+            AddMapEntry(Color.DarkGreen/*, tileName*/);
             DustType = DustID.Chlorophyte;
         }
     }
